@@ -21,7 +21,6 @@ pip install openai==0.28.0
 pip install datasets tenacity
 
 export HF_HOME=/net/nfs/climate/tmp_cache/
-<<<<<<< HEAD
  -->
 
 
@@ -59,6 +58,3 @@ After you tested your script, you can create a PR so we will run your script on 
 
 
 
-=======
- -->
->>>>>>> add scripts
