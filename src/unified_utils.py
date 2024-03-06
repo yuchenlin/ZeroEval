@@ -12,6 +12,8 @@ from tenacity import (
 import vertexai
 from vertexai.generative_models import GenerativeModel, Part, Content
 import cohere
+from mistralai.client import MistralClient
+from mistralai.models.chat_completion import ChatMessage
  
 from datasets import load_dataset
 from tqdm import tqdm
@@ -415,3 +417,58 @@ def cohere_chat_request(
          max_tokens=max_tokens,
          prompt_truncation='AUTO') # TODO: frequency and presence penalty, stop
     return [response.text]
+
+
+def mistral_chat_request(
+    model: str=None,
+    engine: str=None,
+    temperature: float=0,
+    max_tokens: int=512,
+    top_p: float=1.0,
+    frequency_penalty: float=0,
+    presence_penalty: float=0,
+    prompt: str=None,
+    n: int=1,
+    messages: List[dict]=None,
+    stop: List[str]=None,
+    **kwargs,
+) -> List[str]:
+    """
+    Request the evaluation prompt from the OpenAI API in chat format.
+    Args:
+        prompt (str): The encoded prompt.
+        messages (List[dict]): The messages.
+        model (str): The model to use.
+        engine (str): The engine to use.
+        temperature (float, optional): The temperature. Defaults to 0.7.
+        max_tokens (int, optional): The maximum number of tokens. Defaults to 800.
+        top_p (float, optional): The top p. Defaults to 0.95.
+        frequency_penalty (float, optional): The frequency penalty. Defaults to 0.
+        presence_penalty (float, optional): The presence penalty. Defaults to 0.
+        stop (List[str], optional): The stop. Defaults to None.
+    Returns:
+        List[str]: The list of generated evaluation prompts.
+    """
+    assert prompt is not None or messages is not None, "Either prompt or messages should be provided."
+    if messages is None:
+        messages = [{"role":"system","content":"You are an AI assistant that helps people find information."},
+                {"role":"user","content": prompt}]
+    api_key = os.environ["MISTRAL_API_KEY"]
+    client = MistralClient(api_key=api_key)
+    #import pdb; pdb.set_trace()
+    response = client.chat(
+        model=model,
+        temperature=temperature,
+        top_p=top_p,
+        max_tokens=max_tokens,
+        messages=[ChatMessage(role=message['role'], content=message['content']) for message in messages],
+    )
+    #print(chat_response.choices[0].message.content)
+    
+    contents = []
+    for choice in response.choices:
+        contents.append(choice.message.content)
+    #import pdb; pdb.set_trace()
+
+    return contents
+     
