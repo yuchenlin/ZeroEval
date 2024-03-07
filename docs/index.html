@@ -153,26 +153,7 @@
 
 <body height="100%" >
 
-
-	<div class="responsive-menu visible-sm visible-xs">
-		<a href="#" class="toggle-menu"><i class="fa fa-bars"></i></a>
-		<div class="menu-open">
-			<nav>
-				<ul class="sf-menu">
-					<!-- <li ><a style="color:white; font-weight: 600" href="index.html">Introduction</a></li> 
-								<li ><a style="color:white; font-weight: 600" href="#bg">Background</a></li>
-								<li ><a style="color:white; font-weight: 600" href="#approach">Approach</a></li>
-								<li ><a style="color:white; font-weight: 600" href="#eval">Evaluation</a></li>
-								<li ><a style="color:white; font-weight: 600" href="#analysis">Analysis</a></li>
-								<li ><a style="color:white; font-weight: 600" href="#misc">Misc.</a></li> -->
-
-					<li style="background-color: #276be0;"><a style="color:white; font-weight: 500;"
-							href="index.html">&nbsp; Home</a></li>
-					<li><a style="color:white; font-weight: 500;" href="tds.html">&nbsp; Blog </a></li>
-				</ul>
-			</nav>
-		</div> <!-- /.menu-open -->
-	</div> <!-- /.responsive-menu -->
+ 
 
 	<header class="site-header" id="topsection"">
 			
@@ -237,17 +218,14 @@
 							<img src="https://img.shields.io/badge/-Github-purple?style=for-the-badge&logo=github" width="120" height="35">
 						</a>
 						
-						<a target="_blank" href="https://huggingface.co/datasets/re-align/just-eval-instruct">
+						<a target="_blank" href="https://huggingface.co/datasets/WildEval/WildBench">
 							<img src="https://img.shields.io/badge/-🤗_DATASETS-green?style=for-the-badge&logo=" width="145" height="35">
 						</a>
 						
-						<a target="_blank" href="https://huggingface.co/datasets/re-align/just-eval-instruct">
+						<a href="https://huggingface.co/spaces/WildEval/WildBench-Leaderboard">
 							<img src="https://img.shields.io/badge/-🤗_LEADERBOARD-orange?style=for-the-badge&logo=" width="160" height="35">
 						</a>
-
-						<a target="_blank" href="https://twitter.com/billyuchenlin/">
-							<!-- <img src="https://img.shields.io/badge/-Tweet-gray?style=for-the-badge&logo=twitter"> -->
-						</a>
+ 
 					</p>
 				</div>
 
@@ -274,9 +252,8 @@
 								<ul class="sf-menu sf-js-enabled sf-arrows">
 									<li style="background-color: #276be0;"><a
 											style="color:white; font-weight: 600; font-size: 18px"
-											href="index.html">Home</a></li>
-									<li><a style="color:white; font-weight: 600; font-size: 18px;" href="tds.html">Token
-											Dist. Shift</a></li> 
+											href="index.html#intro">Home</a></li>
+									<li><a style="color:white; font-weight: 600; font-size: 18px;" href="#data_source">Data Source</a></li> 
 									<!-- <li><a style="color:white; font-weight: 600; font-size: 18px" href="#misc">Misc.</a></li> -->
 									<!-- <li ><a href="#blog">Blogs</a></li>  -->
 									<!-- <li><a href="#contact">Contact</a></li> -->
@@ -286,33 +263,7 @@
 					</div> <!-- /.row -->
 				</div> <!-- /.inner-menu -->
 			</div> <!-- /.container -->
-		</div>
-
-
-		<div class="menu-wrapper visible-sm visible-xs">
-			<div class="container">
-				<div class="inner-menu">
-					<div class="row" style="text-align: center;">
-						<div class="col-md-12 main-menu">
-							<nav>
-								<ul class="sf-menu sf-js-enabled sf-arrows">
-									<li
-										style="padding: 0px 10px 0px 10px; border-right:0px; background-color: #276be0;">
-										<a style="color:white; font-weight: 300; font-size: 14px; "
-											href="index.html">Home</a></li>
-									<li style="padding: 0px 10px 0px 10px; border-right:0px"><a
-											style="color:white; font-weight: 300; font-size: 14px; "
-											href="tds.html">Blog</a></li> 
-									<!-- <li><a style="color:white; font-weight: 600; font-size: 18px" href="#misc">Misc.</a></li> -->
-									<!-- <li ><a href="#blog">Blogs</a></li>  -->
-									<!-- <li><a href="#contact">Contact</a></li> -->
-								</ul>
-							</nav>
-						</div> <!-- /.main-menu -->
-					</div> <!-- /.row -->
-				</div> <!-- /.inner-menu -->
-			</div> <!-- /.container -->
-		</div>
+		</div> 
 
 	</header> <!-- /.site-header --> 
 	
@@ -329,7 +280,7 @@
 							<div class="col-md-12" id="about" style="color: rgb(0, 81, 128);">
 								<!-- <h2 class="widget-title">(Bill) Yuchen Lin</h2> -->
 								<h4 class="widget-title"><span class="section"><a
-											href="#about"><b><em>Introduction</em></b></a></span></h4>  
+											href="#intro"><b><em>Introduction</em></b></a></span></h4>  
 <div class="callout-box">										
 ❓ &nbsp;<b style="color:#851871">Superficial alignment analysis:</b> Alignment tuning (SFT+RLHF) has become the de facto standard practice for enabling base LLMs to serve as open-domain AI assistants such as ChatGPT.  
 On the other hand, a recent study, <a href="https://arxiv.org/abs/2305.11206" target="_blank">LIMA</a>, shows that using only 1K examples for SFT can achieve significant alignment performance as well, suggesting that the effect of alignment tuning might be <em>superficial</em>.  
