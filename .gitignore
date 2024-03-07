@@ -1,3 +1,4 @@
+result_dirs/wild_bench/
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -158,3 +159,7 @@ cython_debug/
 #  and can be added to the global gitignore or merged into this file.  For a more nuclear
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
 #.idea/
+evaluation/results/
+result_dirs/alpaca_eval/hf_example_test.json
+result_dirs/alpaca_eval/tmp_hf_example_test/hf_example_test.json
+result_dirs/alpaca_eval/tmp_hf_example_test/Llama-2-7b-chat-hf.0-256.json
