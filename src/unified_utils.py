@@ -229,6 +229,8 @@ def retry_handler(retry_limit=10):
                                 print ('cohere prompt length issue!')
                                 flag_cohere_retry = True
                             print(f"Retrying for the {retried + 1} time..")
+                            #if 'output blocked by content filtering policy' in err_msg.lower():
+                            #    raise e
                         else:
                             # finally failed
                             print("Retry limit reached. Saving the error message and returning.")
