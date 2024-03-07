@@ -228,6 +228,8 @@ def retry_handler(retry_limit=10):
                             if 'cohere' in e.__class__.__name__.lower() and 'prompt exceeds context length' in err_msg:
                                 print ('cohere prompt length issue!')
                                 flag_cohere_retry = True
+                                return ['']
+                                #raise e
                             print(f"Retrying for the {retried + 1} time..")
                             #if 'output blocked by content filtering policy' in err_msg.lower():
                             #    raise e
