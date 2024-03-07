@@ -14,6 +14,7 @@ from vertexai.generative_models import GenerativeModel, Part, Content
 import cohere
 from mistralai.client import MistralClient
 from mistralai.models.chat_completion import ChatMessage
+from anthropic import Anthropic
  
 from datasets import load_dataset
 from tqdm import tqdm
@@ -30,6 +31,9 @@ def apply_template(chat_history, model_name):
             model_inputs.append("n/a") # gpt-s will be handled by another method.
             continue
         elif "cohere" in model_name.lower():
+            model_inputs.append("n/a") # gpt-s will be handled by another method.
+            continue
+        elif "anthropic" in model_name.lower():
             model_inputs.append("n/a") # gpt-s will be handled by another method.
             continue
         else:
@@ -472,3 +476,52 @@ def mistral_chat_request(
 
     return contents
      
+def anthropic_chat_request(
+    model: str=None,
+    engine: str=None,
+    temperature: float=0,
+    max_tokens: int=512,
+    top_p: float=1.0,
+    frequency_penalty: float=0,
+    presence_penalty: float=0,
+    prompt: str=None,
+    n: int=1,
+    system_msg: str=None,
+    messages: List[dict]=None,
+    stop: List[str]=None,
+    **kwargs,
+) -> List[str]:
+    """
+    Request the evaluation prompt from the OpenAI API in chat format.
+    Args:
+        prompt (str): The encoded prompt.
+        messages (List[dict]): The messages.
+        model (str): The model to use.
+        engine (str): The engine to use.
+        temperature (float, optional): The temperature. Defaults to 0.7.
+        max_tokens (int, optional): The maximum number of tokens. Defaults to 800.
+        top_p (float, optional): The top p. Defaults to 0.95.
+        frequency_penalty (float, optional): The frequency penalty. Defaults to 0.
+        presence_penalty (float, optional): The presence penalty. Defaults to 0.
+        stop (List[str], optional): The stop. Defaults to None.
+    Returns:
+        List[str]: The list of generated evaluation prompts.
+    """
+    assert prompt is not None or messages is not None, "Either prompt or messages should be provided."
+    if messages is None:
+        messages = [{"role":"user","content": prompt}]
+    api_key = os.environ["ANTHROPIC_API_KEY"]
+    #import pdb; pdb.set_trace()
+    client = Anthropic(api_key=api_key)
+    response = client.messages.create(
+        max_tokens=max_tokens,
+        system=system_msg,
+        messages=messages,
+        stop_sequences=stop,
+        model=model,
+        temperature=temperature,
+        top_p=top_p,
+    )
+    
+    contents = [response.content[0].text]
+    return contents
