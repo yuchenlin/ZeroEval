@@ -1,4 +1,4 @@
-result_dirs/wild_bench/
+result_dirs/
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
