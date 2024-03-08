@@ -1,3 +1,4 @@
+export ANTHROPIC_API_KEY=your_anthropic_api_key
 model_name="anthropic/claude-3-sonnet-20240229"
 model_pretty_name="claude-3-sonnet-20240229"
 output_dir="result_dirs/wild_bench/"
@@ -9,7 +10,7 @@ shard_size=128
 start_gpu=0
 shards_dir="${output_dir}/tmp_${model_pretty_name}"
 for ((start = 0, end = (($shard_size)), gpu = $start_gpu; gpu < $n_shards+$start_gpu; start += $shard_size, end += $shard_size, gpu++)); do
-    echo "python src/unified_infer.py \
+    python src/unified_infer.py \
         --data_name wild_bench \
         --start_index $start --end_index $end \
         --engine anthropic \
@@ -17,7 +18,7 @@ for ((start = 0, end = (($shard_size)), gpu = $start_gpu; gpu < $n_shards+$start
         --top_p $TOP_P --temperature $TEMP \
         --max_tokens $MAX_TOKENS \
         --output_folder $shards_dir/ \
-        --overwrite "
+        --overwrite
 done 
 wait 
 python src/merge_results.py $shards_dir/ $model_pretty_name

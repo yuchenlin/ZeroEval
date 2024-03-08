@@ -486,10 +486,7 @@ def anthropic_chat_request(
     temperature: float=0,
     max_tokens: int=512,
     top_p: float=1.0,
-    frequency_penalty: float=0,
-    presence_penalty: float=0,
     prompt: str=None,
-    n: int=1,
     system_msg: str=None,
     messages: List[dict]=None,
     stop: List[str]=None,
@@ -502,11 +499,10 @@ def anthropic_chat_request(
         messages (List[dict]): The messages.
         model (str): The model to use.
         engine (str): The engine to use.
+        system_msg (str): The system prompt. 
         temperature (float, optional): The temperature. Defaults to 0.7.
         max_tokens (int, optional): The maximum number of tokens. Defaults to 800.
         top_p (float, optional): The top p. Defaults to 0.95.
-        frequency_penalty (float, optional): The frequency penalty. Defaults to 0.
-        presence_penalty (float, optional): The presence penalty. Defaults to 0.
         stop (List[str], optional): The stop. Defaults to None.
     Returns:
         List[str]: The list of generated evaluation prompts.
@@ -514,8 +510,7 @@ def anthropic_chat_request(
     assert prompt is not None or messages is not None, "Either prompt or messages should be provided."
     if messages is None:
         messages = [{"role":"user","content": prompt}]
-    api_key = os.environ["ANTHROPIC_API_KEY"]
-    #import pdb; pdb.set_trace()
+    api_key = os.getenv("ANTHROPIC_API_KEY")
     client = Anthropic(api_key=api_key)
     response = client.messages.create(
         max_tokens=max_tokens,
