@@ -68,6 +68,8 @@ if __name__ == "__main__":
         pass
     elif args.engine == "cohere":
         pass
+    elif args.engine == "anthropic":
+        pass
     
     print("loading dataset!")
     # Data loading 
@@ -260,7 +262,6 @@ if __name__ == "__main__":
                 "top_p": args.top_p, 
                 "temperature": args.temperature,
                 "max_tokens": args.max_tokens,
-                "stop": stop_words,
             }  
             result = api(**mistral_args) 
             outputs.append(result) 

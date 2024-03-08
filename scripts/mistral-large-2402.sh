@@ -1,3 +1,4 @@
+export MISTRAL_API_KEY=your_mistral_api_key
 model_name="mistral/mistral-large-2402"
 model_pretty_name="mistral-large-2402"
 output_dir="result_dirs/wild_bench/"
