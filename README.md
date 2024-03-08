@@ -1,9 +1,13 @@
+
+
 # 🦁 WildBench: Benchmarking LLMs with Challenging Tasks from Real Users in the Wild
+
+<div style="display: flex; justify-content: flex-start;"><img src="https://allenai.github.io/WildBench/wildbench_logo.png" alt="Banner" style="width: 40vw; min-width: 300px; max-width: 800px;"> </div>
+
 
 ## Quick Links:
 - [HF Leaderboard](https://huggingface.co/spaces/allenai/WildBench)
 - [HF Dataset](https://huggingface.co/datasets/allenai/WildBench)
-- 
 
 
 ## Installation
@@ -30,7 +34,10 @@ export HF_HOME=/net/nfs/climate/tmp_cache/
  -->
 
 
-## How to add a new model to the benchmark
+## How to add a new model to 🦁 WildBench benchmark
+
+> [!NOTE]
+> If your model is on HuggingFace and it is supported by vLLM, please create an Issue here to tell us your model id, chat template, and your preferred sampling parameters. We will add your model to the benchmark for you. If you'd like to try to run inference on your model yourself, you can follow the instructions below. 
 
 ### 1. Models supported by vLLM
 
@@ -49,13 +56,16 @@ Some new models may not be supported by vLLM for now. You can do the same thing 
 
 You should change the code to add these APIs, for example, gemini, cohere, claude, and reka. You can refer to the `--engine openai` logic in the existing scripts to add your own API-based models. Please make sure that you do not expose your API keys in the code.
 
+
+
+<!-- 
 ## How to run the benchmark
 
 You can run the benchmark by running the scripts under `scripts` folder. For example, `bash scripts/zephyr-7b-beta.sh`. This will generate either a single result file in the specified `output_dir`. Note that if you use the shard mode, the script will merge the results into a single file later when all subprocesses are finished.
 
 
 After you tested your script, you can create a PR so we will run your script on our side and merge it into the benchmark. (Note that we may need to modify the script to make it work on our side, and we will let you know if we need to do so. Also, due to the non-deteministic nature of LLMs, our results may not be exactly the same as yours. )
-
+ -->
 
 
 
