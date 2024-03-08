@@ -314,28 +314,21 @@ def google_chat_request(
         prompt (str): The encoded prompt.
         messages (List[dict]): The messages.
         model (str): The model to use.
-        engine (str): The engine to use.
-        temperature (float, optional): The temperature. Defaults to 0.7.
-        max_tokens (int, optional): The maximum number of tokens. Defaults to 800.
-        top_p (float, optional): The top p. Defaults to 0.95.
-        frequency_penalty (float, optional): The frequency penalty. Defaults to 0.
-        presence_penalty (float, optional): The presence penalty. Defaults to 0.
-        stop (List[str], optional): The stop. Defaults to None.
+        generation_config (dict): Generation configurations.
     Returns:
         List[str]: The list of generated evaluation prompts.
     """
-    # Call openai api to generate aspects
+    # Call vertex to generate aspects
     assert prompt is not None or messages is not None, "Either prompt or messages should be provided."
     if messages is None:
         messages = [{"role":"user","parts": ["You are an AI assistant that helps people find information."]},
                     {"role":"model", "parts": ["Understood."]},
                 {"role":"user","parts": [prompt]}]
 
-    #import pdb; pdb.set_trace()
     messages = [Content(role= message["role"], parts=[Part.from_text(part) for part in message["parts"]]) for message in messages]
 
-    project_id = "grammarcorrection"
-    location = "us-central1"
+    project_id = os.getenv('VERTEX_PROJECT_ID')
+    location = os.getenv('VERTEX_PROJECT_location')
     vertexai.init(project=project_id, location=location)
     google_model = GenerativeModel(model)
     
@@ -343,20 +336,15 @@ def google_chat_request(
         messages,
         generation_config=generation_config,
     )
-    #import pdb; pdb.set_trace()
     if len(response.candidates) == 0:
-        output = '' # TODO: what should be done here?
-        #import pdb; pdb.set_trace()
-    #if len(response.candidates[0].content.parts) == 0:
-    #    import pdb; pdb.set_trace()
+        output = ''
     else:
         candidate = response.candidates[0]
         if candidate.finish_reason != 1 and candidate.finish_reason != 2:
-            output = '' # TODO: what should be done here?
+            output = ''
         else:
             output = candidate.content.parts[0].text
-    contents = [output] #TODO: check stop reason? multiple candidates?
-
+    contents = [output]
     return contents
 
 

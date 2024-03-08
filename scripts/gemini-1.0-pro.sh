@@ -1,3 +1,5 @@
+export GOOGLE_PROJECT_ID=your_google_project_with_vertex_api_id
+export GOOGLE_PROJECT_LOCATION=your_google_project_with_vertex_api_location
 model_name="google/gemini-1.0-pro"
 model_pretty_name="gemini-1.0-pro"
 output_dir="result_dirs/wild_bench/"
@@ -17,7 +19,7 @@ for ((start = 0, end = (($shard_size)), gpu = $start_gpu; gpu < $n_shards+$start
         --top_p $TOP_P --temperature $TEMP \
         --max_tokens $MAX_TOKENS \
         --output_folder $shards_dir/ \
-        --overwrite  &
+        --overwrite &
 done 
 wait 
 python src/merge_results.py $shards_dir/ $model_pretty_name
