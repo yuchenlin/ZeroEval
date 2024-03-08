@@ -123,3 +123,7 @@ websockets==11.0.3
 xformers==0.0.23.post1
 xxhash==3.4.1
 yarl==1.9.4
+google-cloud-aiplatform
+cohere
+anthropic
+mistralai
