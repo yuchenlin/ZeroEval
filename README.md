@@ -1,5 +1,9 @@
-# WildBench
-A Dynamic Benchmark for Evaluating LLMs in the Wild 
+# 🦁 WildBench: Benchmarking LLMs with Challenging Tasks from Real Users in the Wild
+
+## Quick Links:
+- [HF Leaderboard](https://huggingface.co/spaces/allenai/WildBench)
+- [HF Dataset](https://huggingface.co/datasets/allenai/WildBench)
+- 
 
 
 ## Installation
