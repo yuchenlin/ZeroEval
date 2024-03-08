@@ -12,6 +12,8 @@ pip install openai==0.28.0
 pip install datasets tenacity
 pip install google-cloud-aiplatform
 pip install cohere
+pip install anthropic
+pip install mistralai
 # export HF_HOME=/path/to/your/cache_dir/
 ```
 

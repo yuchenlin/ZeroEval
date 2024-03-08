@@ -12,6 +12,9 @@ from tenacity import (
 import vertexai
 from vertexai.generative_models import GenerativeModel, Part, Content
 import cohere
+from mistralai.client import MistralClient
+from mistralai.models.chat_completion import ChatMessage
+from anthropic import Anthropic
  
 from datasets import load_dataset
 from tqdm import tqdm
@@ -28,6 +31,9 @@ def apply_template(chat_history, model_name):
             model_inputs.append("n/a") # gpt-s will be handled by another method.
             continue
         elif "cohere" in model_name.lower():
+            model_inputs.append("n/a") # gpt-s will be handled by another method.
+            continue
+        elif "anthropic" in model_name.lower():
             model_inputs.append("n/a") # gpt-s will be handled by another method.
             continue
         else:
@@ -222,7 +228,11 @@ def retry_handler(retry_limit=10):
                             if 'cohere' in e.__class__.__name__.lower() and 'prompt exceeds context length' in err_msg:
                                 print ('cohere prompt length issue!')
                                 flag_cohere_retry = True
+                                return [''] # return empty strings for prompt longer than context window size, comment out this line to truncate prompt until it fits
+                                #raise e
                             print(f"Retrying for the {retried + 1} time..")
+                            #if 'output blocked by content filtering policy' in err_msg.lower():
+                            #    raise e
                         else:
                             # finally failed
                             print("Retry limit reached. Saving the error message and returning.")
@@ -304,28 +314,21 @@ def google_chat_request(
         prompt (str): The encoded prompt.
         messages (List[dict]): The messages.
         model (str): The model to use.
-        engine (str): The engine to use.
-        temperature (float, optional): The temperature. Defaults to 0.7.
-        max_tokens (int, optional): The maximum number of tokens. Defaults to 800.
-        top_p (float, optional): The top p. Defaults to 0.95.
-        frequency_penalty (float, optional): The frequency penalty. Defaults to 0.
-        presence_penalty (float, optional): The presence penalty. Defaults to 0.
-        stop (List[str], optional): The stop. Defaults to None.
+        generation_config (dict): Generation configurations.
     Returns:
         List[str]: The list of generated evaluation prompts.
     """
-    # Call openai api to generate aspects
+    # Call vertex to generate aspects
     assert prompt is not None or messages is not None, "Either prompt or messages should be provided."
     if messages is None:
         messages = [{"role":"user","parts": ["You are an AI assistant that helps people find information."]},
                     {"role":"model", "parts": ["Understood."]},
                 {"role":"user","parts": [prompt]}]
 
-    #import pdb; pdb.set_trace()
     messages = [Content(role= message["role"], parts=[Part.from_text(part) for part in message["parts"]]) for message in messages]
 
-    project_id = "grammarcorrection"
-    location = "us-central1"
+    project_id = os.getenv('VERTEX_PROJECT_ID')
+    location = os.getenv('VERTEX_PROJECT_location')
     vertexai.init(project=project_id, location=location)
     google_model = GenerativeModel(model)
     
@@ -333,34 +336,25 @@ def google_chat_request(
         messages,
         generation_config=generation_config,
     )
-    #import pdb; pdb.set_trace()
     if len(response.candidates) == 0:
-        output = '' # TODO: what should be done here?
-        #import pdb; pdb.set_trace()
-    #if len(response.candidates[0].content.parts) == 0:
-    #    import pdb; pdb.set_trace()
+        output = ''
     else:
         candidate = response.candidates[0]
         if candidate.finish_reason != 1 and candidate.finish_reason != 2:
-            output = '' # TODO: what should be done here?
+            output = ''
         else:
             output = candidate.content.parts[0].text
-    contents = [output] #TODO: check stop reason? multiple candidates?
-
+    contents = [output]
     return contents
 
 
 def cohere_chat_request(
     model: str=None,
-    engine: str=None,
     system_msg: str=None,
     temperature: float=0,
     max_tokens: int=512,
     top_p: float=1.0,
-    frequency_penalty: float=0,
-    presence_penalty: float=0,
     prompt: str=None,
-    n: int=1,
     shorten_msg_times: int=0,
     messages: List[dict]=None,
     stop: List[str]=None,
@@ -372,13 +366,9 @@ def cohere_chat_request(
         prompt (str): The encoded prompt.
         messages (List[dict]): The messages.
         model (str): The model to use.
-        engine (str): The engine to use.
         temperature (float, optional): The temperature. Defaults to 0.7.
         max_tokens (int, optional): The maximum number of tokens. Defaults to 800.
         top_p (float, optional): The top p. Defaults to 0.95.
-        frequency_penalty (float, optional): The frequency penalty. Defaults to 0.
-        presence_penalty (float, optional): The presence penalty. Defaults to 0.
-        stop (List[str], optional): The stop. Defaults to None.
     Returns:
         List[str]: The list of generated evaluation prompts.
     """
@@ -386,10 +376,9 @@ def cohere_chat_request(
     assert prompt is not None or messages is not None, "Either prompt or messages should be provided."
     if messages is None:
         messages = [{"role":"User","message": prompt}]
-    #import pdb; pdb.set_trace()
-    co = cohere.Client(os.getenv('COHERE_API_KEY'))
+    api_key = os.getenv('COHERE_API_KEY')
+    co = cohere.Client(api_key)
     assert messages[-1]['role'] == 'User', messages[-1]['role']
-    #import pdb; pdb.set_trace()
     chat_history = messages[:-1]
     message = messages[-1]['message']
     for _ in range(shorten_msg_times):
@@ -413,5 +402,93 @@ def cohere_chat_request(
          temperature=temperature,
          p=top_p,
          max_tokens=max_tokens,
-         prompt_truncation='AUTO') # TODO: frequency and presence penalty, stop
+         prompt_truncation='AUTO')
     return [response.text]
+
+
+def mistral_chat_request(
+    model: str=None,
+    engine: str=None,
+    temperature: float=0,
+    max_tokens: int=512,
+    top_p: float=1.0,
+    prompt: str=None,
+    messages: List[dict]=None,
+    **kwargs,
+) -> List[str]:
+    """
+    Request the evaluation prompt from the OpenAI API in chat format.
+    Args:
+        prompt (str): The encoded prompt.
+        messages (List[dict]): The messages.
+        model (str): The model to use.
+        engine (str): The engine to use.
+        temperature (float, optional): The temperature. Defaults to 0.7.
+        max_tokens (int, optional): The maximum number of tokens. Defaults to 800.
+        top_p (float, optional): The top p. Defaults to 0.95.
+    Returns:
+        List[str]: The list of generated evaluation prompts.
+    """
+    assert prompt is not None or messages is not None, "Either prompt or messages should be provided."
+    if messages is None:
+        messages = [{"role":"system","content":"You are an AI assistant that helps people find information."},
+                {"role":"user","content": prompt}]
+    api_key = os.getenv("MISTRAL_API_KEY")
+    client = MistralClient(api_key=api_key)
+    response = client.chat(
+        model=model,
+        temperature=temperature,
+        top_p=top_p,
+        max_tokens=max_tokens,
+        messages=[ChatMessage(role=message['role'], content=message['content']) for message in messages],
+    )
+    
+    contents = []
+    for choice in response.choices:
+        contents.append(choice.message.content)
+    return contents
+     
+def anthropic_chat_request(
+    model: str=None,
+    engine: str=None,
+    temperature: float=0,
+    max_tokens: int=512,
+    top_p: float=1.0,
+    prompt: str=None,
+    system_msg: str=None,
+    messages: List[dict]=None,
+    stop: List[str]=None,
+    **kwargs,
+) -> List[str]:
+    """
+    Request the evaluation prompt from the OpenAI API in chat format.
+    Args:
+        prompt (str): The encoded prompt.
+        messages (List[dict]): The messages.
+        model (str): The model to use.
+        engine (str): The engine to use.
+        system_msg (str): The system prompt. 
+        temperature (float, optional): The temperature. Defaults to 0.7.
+        max_tokens (int, optional): The maximum number of tokens. Defaults to 800.
+        top_p (float, optional): The top p. Defaults to 0.95.
+        stop (List[str], optional): The stop. Defaults to None.
+    Returns:
+        List[str]: The list of generated evaluation prompts.
+    """
+    assert prompt is not None or messages is not None, "Either prompt or messages should be provided."
+    if messages is None:
+        messages = [{"role":"user","content": prompt}]
+    api_key = os.getenv("ANTHROPIC_API_KEY")
+    client = Anthropic(api_key=api_key)
+    response = client.messages.create(
+        max_tokens=max_tokens,
+        system=system_msg,
+        messages=messages,
+        stop_sequences=stop,
+        model=model,
+        temperature=temperature,
+        top_p=top_p,
+    )
+    
+    contents = [response.content[0].text]
+    return contents
