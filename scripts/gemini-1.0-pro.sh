@@ -1,5 +1,5 @@
-export GOOGLE_PROJECT_ID=your_google_project_with_vertex_api_id
-export GOOGLE_PROJECT_LOCATION=your_google_project_with_vertex_api_location
+export VERTEX_PROJECT_ID=your_google_project_with_vertex_api_id
+export VERTEX_PROJECT_LOCATION=your_google_project_with_vertex_api_location
 model_name="google/gemini-1.0-pro"
 model_pretty_name="gemini-1.0-pro"
 output_dir="result_dirs/wild_bench/"
