@@ -218,7 +218,7 @@ if __name__ == "__main__":
         for cur_id in tqdm(range(0, len(todo_inputs)), desc=f"Generating {args.model_name} from {args.start_index} to {args.end_index}"):
             # input_text = todo_inputs[cur_id] 
             chat = todo_chats[cur_id]
-            system_msg = "You are an AI assistant that helps people find information." #TODO: find equivalent system prompt
+            system_msg = "You are an AI assistant that helps people find information."
             cohere_msg = []
             for i, chat_item in enumerate(chat):
                 if i % 2 == 0:
@@ -233,7 +233,6 @@ if __name__ == "__main__":
                 "top_p": args.top_p, 
                 "temperature": args.temperature,
                 "max_tokens": args.max_tokens,
-                "stop": stop_words,
             }  
             result = api(**cohere_args) 
             outputs.append(result) 

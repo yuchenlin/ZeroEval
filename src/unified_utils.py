@@ -228,7 +228,7 @@ def retry_handler(retry_limit=10):
                             if 'cohere' in e.__class__.__name__.lower() and 'prompt exceeds context length' in err_msg:
                                 print ('cohere prompt length issue!')
                                 flag_cohere_retry = True
-                                return ['']
+                                return [''] # return empty strings for prompt longer than context window size, comment out this line to truncate prompt until it fits
                                 #raise e
                             print(f"Retrying for the {retried + 1} time..")
                             #if 'output blocked by content filtering policy' in err_msg.lower():
@@ -350,15 +350,11 @@ def google_chat_request(
 
 def cohere_chat_request(
     model: str=None,
-    engine: str=None,
     system_msg: str=None,
     temperature: float=0,
     max_tokens: int=512,
     top_p: float=1.0,
-    frequency_penalty: float=0,
-    presence_penalty: float=0,
     prompt: str=None,
-    n: int=1,
     shorten_msg_times: int=0,
     messages: List[dict]=None,
     stop: List[str]=None,
@@ -370,13 +366,9 @@ def cohere_chat_request(
         prompt (str): The encoded prompt.
         messages (List[dict]): The messages.
         model (str): The model to use.
-        engine (str): The engine to use.
         temperature (float, optional): The temperature. Defaults to 0.7.
         max_tokens (int, optional): The maximum number of tokens. Defaults to 800.
         top_p (float, optional): The top p. Defaults to 0.95.
-        frequency_penalty (float, optional): The frequency penalty. Defaults to 0.
-        presence_penalty (float, optional): The presence penalty. Defaults to 0.
-        stop (List[str], optional): The stop. Defaults to None.
     Returns:
         List[str]: The list of generated evaluation prompts.
     """
@@ -384,10 +376,9 @@ def cohere_chat_request(
     assert prompt is not None or messages is not None, "Either prompt or messages should be provided."
     if messages is None:
         messages = [{"role":"User","message": prompt}]
-    #import pdb; pdb.set_trace()
-    co = cohere.Client(os.getenv('COHERE_API_KEY'))
+    api_key = os.getenv('COHERE_API_KEY')
+    co = cohere.Client(api_key)
     assert messages[-1]['role'] == 'User', messages[-1]['role']
-    #import pdb; pdb.set_trace()
     chat_history = messages[:-1]
     message = messages[-1]['message']
     for _ in range(shorten_msg_times):
@@ -411,7 +402,7 @@ def cohere_chat_request(
          temperature=temperature,
          p=top_p,
          max_tokens=max_tokens,
-         prompt_truncation='AUTO') # TODO: frequency and presence penalty, stop
+         prompt_truncation='AUTO')
     return [response.text]
 
 
