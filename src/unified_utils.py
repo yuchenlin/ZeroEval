@@ -235,6 +235,9 @@ def retry_handler(retry_limit=10):
                             #    raise e
                         else:
                             # finally failed
+                            if 'cohere' in e.__class__.__name__.lower() and 'blocked output' in err_msg:
+                                print ('cohere blocked output issue!')
+                                return [''] # return empty strings for prompt longer than context window size, comment out this line to truncate prompt until it fits
                             print("Retry limit reached. Saving the error message and returning.")
                             print(kwargs["prompt"])
                             raise e
@@ -357,7 +360,6 @@ def cohere_chat_request(
     prompt: str=None,
     shorten_msg_times: int=0,
     messages: List[dict]=None,
-    stop: List[str]=None,
     **kwargs,
 ) -> List[str]:
     """
@@ -397,7 +399,7 @@ def cohere_chat_request(
     response = co.chat(
          message=message,
          preamble=system_msg,
-         chat_history=None,
+         chat_history=chat_history,
          model=model,
          temperature=temperature,
          p=top_p,
