@@ -1,8 +1,10 @@
 import sys  
+import os
 import time 
 from functools import wraps
 from typing import List 
 import openai
+from anthropic import Anthropic
 from tenacity import (
     retry,
     stop_after_attempt,
@@ -130,3 +132,51 @@ def openai_chat_request(
     return contents
      
  
+def anthropic_chat_request(
+    model: str=None,
+    engine: str=None,
+    temperature: float=0,
+    max_tokens: int=512,
+    top_p: float=1.0,
+    prompt: str=None,
+    system_msg: str=None,
+    messages: List[dict]=None,
+    stop: List[str]=None,
+    **kwargs,
+) -> List[str]:
+    """
+    Request the evaluation prompt from the OpenAI API in chat format.
+    Args:
+        prompt (str): The encoded prompt.
+        messages (List[dict]): The messages.
+        model (str): The model to use.
+        engine (str): The engine to use.
+        temperature (float, optional): The temperature. Defaults to 0.7.
+        max_tokens (int, optional): The maximum number of tokens. Defaults to 800.
+        top_p (float, optional): The top p. Defaults to 0.95.
+        stop (List[str], optional): The stop. Defaults to None.
+    Returns:
+        List[str]: The list of generated evaluation prompts.
+    """
+    # Call openai api to generate aspects
+    assert prompt is not None or messages is not None, "Either prompt or messages should be provided."
+    if messages is None:
+        assert system_msg is None, system_msg
+        system_msg = "You are an AI assistant that helps people evaluate the quality of AI model ouputs."
+        messages = [{"role":"user","content": prompt}]
+    prefilled_response = '{\n    "reason":' # to make sure JSON format
+    messages.append({"role":"assistant","content": prefilled_response})
+
+    api_key = os.getenv("ANTHROPIC_API_KEY")
+    client = Anthropic(api_key=api_key)
+    response = client.messages.create(
+        max_tokens=max_tokens,
+        system=system_msg,
+        messages=messages,
+        stop_sequences=stop,
+        model=model,
+        temperature=temperature,
+        top_p=top_p,
+    )
+    contents = [prefilled_response+response.content[0].text]
+    return contents
