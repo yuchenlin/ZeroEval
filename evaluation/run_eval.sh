@@ -1,12 +1,20 @@
 model_name=$1
 # by default use gpt-3.5-turbo-0125 as ref_name
 ref_name=${2:-"gpt-3.5-turbo-0125"}
-gpt_eval_name="gpt-4-0125-preview"
-# gpt_eval_name="gpt-3.5-turbo-0125"
+# by default use "gpt-4-0125-preview" as gpt_eval_name
+gpt_eval_name=${3:-"gpt-4-0125-preview"}
+use_checklist=${4:-"True"} 
 
 eval_folder="evaluation/results/eval=${gpt_eval_name}/ref=${ref_name}/"
 mkdir -p $eval_folder
 
+if [ "$use_checklist" = "True" ]; then
+    echo "Using checklist" 
+    eval_template="evaluation/eval_template.md"
+else
+    echo "Not using checklist"
+    eval_template="evaluation/eval_template.no_checklist.md"
+fi
 
 n_shards=8
 shard_size=128
@@ -18,7 +26,7 @@ for ((start = 0, end = (($shard_size)), gpu = $start_gpu; gpu < $n_shards+$start
         --model $gpt_eval_name \
         --max_words_to_eval 1000 \
         --mode pairwise \
-        --eval_template evaluation/eval_template.md \
+        --eval_template $eval_template \
         --target_model_name $model_name \
         --ref_model_name $ref_name \
         --eval_output_file $eval_file \
@@ -34,6 +42,7 @@ python src/merge_results.py $eval_folder $model_name
 python src/upload_evaluation.py $gpt_eval_name $ref_name $model_name
 # >>>> bash evaluation/run_eval.sh gpt-3.5-turbo-0125 <<<< the reference itself 
 
+# by default, we use "gpt-3.5-turbo-0125" as the reference model
 # bash evaluation/run_eval.sh gpt-4-0125-preview
 # bash evaluation/run_eval.sh tulu-2-dpo-70b
 # bash evaluation/run_eval.sh Mixtral-8x7B-Instruct-v0.1
@@ -47,6 +56,12 @@ python src/upload_evaluation.py $gpt_eval_name $ref_name $model_name
 # bash evaluation/run_eval.sh gemma-7b-it
 # bash evaluation/run_eval.sh gemma-2b-it
 
+
+
+# Use gpt-4-0125-preview as the reference model
 # bash evaluation/run_eval.sh tulu-2-dpo-70b gpt-4-0125-preview
 # bash evaluation/run_eval.sh Mixtral-8x7B-Instruct-v0.1 gpt-4-0125-preview
 # bash evaluation/run_eval.sh zephyr-7b-beta gpt-4-0125-preview
+
+
+# Use gpt-4-0125-preview as the reference model and Claude as the judge 
