@@ -157,7 +157,10 @@ def gpt_eval(results, args):
                     results[ind]["winner"] = "tie"
                 else:
                     results[ind]["winner"] = r["choice"] 
-            results[ind]["price"] = compute_cost(args.model, item["prompt"], results[ind]["result"])
+            if not args.model.startswith('claude'):
+                results[ind]["price"] = compute_cost(args.model, item["prompt"], results[ind]["result"])
+            else:
+                results[ind]["price"] = {"cost": 0, "in_tokens": 0, "out_tokens": 0}
             results[ind]["error"] = "N/A"
         except Exception as e:
             print(e)
