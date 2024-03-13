@@ -1,5 +1,6 @@
-model_name="cohere/command"
-model_pretty_name="command"
+export COHERE_API_KEY=your_cohere_api_key
+model_name="cohere/command-r"
+model_pretty_name="command-r"
 output_dir="result_dirs/wild_bench/"
 TEMP=0; TOP_P=1.0; MAX_TOKENS=2048;
 
