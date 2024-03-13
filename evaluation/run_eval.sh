@@ -5,16 +5,21 @@ ref_name=${2:-"gpt-3.5-turbo-0125"}
 gpt_eval_name=${3:-"gpt-4-0125-preview"}
 use_checklist=${4:-"True"} 
 
-eval_folder="evaluation/results/eval=${gpt_eval_name}/ref=${ref_name}/"
-mkdir -p $eval_folder
+
+
+
 
 if [ "$use_checklist" = "True" ]; then
     echo "Using checklist" 
     eval_template="evaluation/eval_template.md"
+    eval_folder="evaluation/results/eval=${gpt_eval_name}/ref=${ref_name}/"
 else
     echo "Not using checklist"
     eval_template="evaluation/eval_template.no_checklist.md"
+    eval_folder="evaluation/results/eval=${gpt_eval_name}_woCL/ref=${ref_name}/"
 fi
+
+mkdir -p $eval_folder
 
 n_shards=8
 shard_size=128
@@ -64,4 +69,9 @@ python src/upload_evaluation.py $gpt_eval_name $ref_name $model_name
 # bash evaluation/run_eval.sh zephyr-7b-beta gpt-4-0125-preview
 
 
-# Use gpt-4-0125-preview as the reference model and Claude as the judge 
+
+# Use gpt-4-0125-preview as the reference model and GPT-4 as the judge (using no checklist)
+bash evaluation/run_eval.sh claude-3-opus-20240229 gpt-4-0125-preview gpt-4-0125-preview False
+
+# Use gpt-4-0125-preview as the reference model and Claude as the judge (not implemented yet)
+bash evaluation/run_eval.sh claude-3-opus-20240229 gpt-4-0125-preview claude-3-opus-20240229 False 

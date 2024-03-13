@@ -109,6 +109,7 @@ def gpt_eval(results, args):
                 cnt += 1
         print(f"loading {cnt} results from {args.eval_output_file}")
      
+    # TODO: add support for using other APIs as judge 
     openai_args = {
         "prompt": "TODO",
         "temperature": args.temperature,
@@ -119,7 +120,7 @@ def gpt_eval(results, args):
         openai_args['model'] = args.model
     if args.engine:
         openai_args['engine'] = args.engine
-        
+
     @retry_handler(retry_limit=10)
     def api(ind, item, **kwargs):
         result = openai_chat_request(**kwargs)
