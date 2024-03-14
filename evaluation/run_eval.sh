@@ -4,8 +4,7 @@ ref_name=${2:-"gpt-3.5-turbo-0125"}
 # by default use "gpt-4-0125-preview" as gpt_eval_name
 gpt_eval_name=${3:-"gpt-4-0125-preview"}
 use_checklist=${4:-"True"} 
-
-
+num_shards=${5:-8} # shards 
 
 
 
@@ -21,11 +20,9 @@ fi
 
 mkdir -p $eval_folder
 
-n_shards=8
-shard_size=128
-start_gpu=0
-for ((start = 0, end = (($shard_size)), gpu = $start_gpu; gpu < $n_shards+$start_gpu; start += $shard_size, end += $shard_size, gpu++)); do
-    eval_file="${eval_folder}/${model_name}.$start-$end.json"
+# Decide the shard size dynamically based on $num_shards and the total number 1024
+if [ "$num_shards" -eq 1 ]; then
+    eval_file="${eval_folder}/${model_name}.json"
     python src/eval.py \
         --action eval \
         --model $gpt_eval_name \
@@ -34,18 +31,35 @@ for ((start = 0, end = (($shard_size)), gpu = $start_gpu; gpu < $n_shards+$start
         --eval_template $eval_template \
         --target_model_name $model_name \
         --ref_model_name $ref_name \
-        --eval_output_file $eval_file \
-        --start_idx $start --end_idx $end \
-        &
-done
+        --eval_output_file $eval_file 
+else
+    shard_size=$((1024 / $num_shards))
+    start_gpu=0 # not used 
+    for ((start = 0, end = (($shard_size)), gpu = $start_gpu; gpu < $n_shards+$start_gpu; start += $shard_size, end += $shard_size, gpu++)); do
+        eval_file="${eval_folder}/${model_name}.$start-$end.json"
+        python src/eval.py \
+            --action eval \
+            --model $gpt_eval_name \
+            --max_words_to_eval 1000 \
+            --mode pairwise \
+            --eval_template $eval_template \
+            --target_model_name $model_name \
+            --ref_model_name $ref_name \
+            --eval_output_file $eval_file \
+            --start_idx $start --end_idx $end \
+            &
+    done 
+    # Wait for all background processes to finish
+    wait
 
-# Wait for all background processes to finish
-wait
+    # # Run the merge results script after all evaluation scripts have completed
+    python src/merge_results.py $eval_folder $model_name
+fi
 
-# # Run the merge results script after all evaluation scripts have completed
-python src/merge_results.py $eval_folder $model_name
 python src/upload_evaluation.py $gpt_eval_name $ref_name $model_name $use_checklist
 # >>>> bash evaluation/run_eval.sh gpt-3.5-turbo-0125 <<<< the reference itself 
+
+
 
 # by default, we use "gpt-3.5-turbo-0125" as the reference model
 # bash evaluation/run_eval.sh gpt-4-0125-preview
@@ -76,6 +90,4 @@ python src/upload_evaluation.py $gpt_eval_name $ref_name $model_name $use_checkl
 # bash evaluation/run_eval.sh claude-3-opus-20240229 gpt-4-0125-preview gpt-4-0125-preview False
 
 # Use gpt-4-0125-preview as the reference model and Claude as the judge (not implemented yet)
-# bash evaluation/run_eval.sh claude-3-opus-20240229 gpt-4-0125-preview claude-3-opus-20240229 False 
-
-
+# bash evaluation/run_eval.sh claude-3-opus-20240229 gpt-4-0125-preview claude-3-opus-20240229 False 1
