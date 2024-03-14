@@ -13,7 +13,7 @@ def load_and_upload(model_name, evaluator="gpt-4-0125-preview", reference=None, 
             config_name = model_name+"-eval="+evaluator+"-ref="+reference
         else:
             filepath = f"evaluation/results/eval={evaluator}_woCL/ref={reference}/{model_name}.json"
-            config_name = model_name+"-eval="+evaluator + '_woCL' + +"-ref="+reference
+            config_name = model_name+"-eval="+evaluator + '_woCL' + "-ref="+reference
     if not os.path.exists(filepath):
         print(f"File {filepath} does not exist.")
         return
