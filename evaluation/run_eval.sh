@@ -44,7 +44,7 @@ wait
 
 # # Run the merge results script after all evaluation scripts have completed
 python src/merge_results.py $eval_folder $model_name
-python src/upload_evaluation.py $gpt_eval_name $ref_name $model_name
+python src/upload_evaluation.py $gpt_eval_name $ref_name $model_name $use_checklist
 # >>>> bash evaluation/run_eval.sh gpt-3.5-turbo-0125 <<<< the reference itself 
 
 # by default, we use "gpt-3.5-turbo-0125" as the reference model
