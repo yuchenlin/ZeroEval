@@ -11,7 +11,8 @@ from threading import get_ident
 from concurrent.futures import ThreadPoolExecutor
 from eval_utils import (
     retry_handler, 
-    openai_chat_request, 
+    openai_chat_request,
+    anthropic_chat_request,
 )
 from datasets import load_dataset, get_dataset_config_names
 import tiktoken
@@ -123,11 +124,16 @@ def gpt_eval(results, args):
 
     @retry_handler(retry_limit=10)
     def api(ind, item, **kwargs):
-        result = openai_chat_request(**kwargs)
+        model = kwargs['model']
+        if model.startswith('claude'):
+            result = anthropic_chat_request(**kwargs)
+        else:
+            result = openai_chat_request(**kwargs)
         result = result[0]  
         return result
     
     # results = results[args.start_idx:args.end_idx] # for debug
+    #import pdb; pdb.set_trace()
     for ind, item in tqdm(enumerate(results), total=len(results), desc=f"Evaluating: {args.eval_output_file} "):
         computed = False
         if item["result"] != "N/A" or item.get("error", "N/A") != "N/A": 
@@ -151,7 +157,10 @@ def gpt_eval(results, args):
                     results[ind]["winner"] = "tie"
                 else:
                     results[ind]["winner"] = r["choice"] 
-            results[ind]["price"] = compute_cost(args.model, item["prompt"], results[ind]["result"])
+            if not args.model.startswith('claude'):
+                results[ind]["price"] = compute_cost(args.model, item["prompt"], results[ind]["result"])
+            else:
+                results[ind]["price"] = {"cost": 0, "in_tokens": 0, "out_tokens": 0}
             results[ind]["error"] = "N/A"
         except Exception as e:
             print(e)
