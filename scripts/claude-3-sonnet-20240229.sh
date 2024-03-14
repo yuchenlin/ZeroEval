@@ -1,4 +1,4 @@
-export ANTHROPIC_API_KEY=your_anthropic_api_key
+# export ANTHROPIC_API_KEY=your_anthropic_api_key
 model_name="anthropic/claude-3-sonnet-20240229"
 model_pretty_name="claude-3-sonnet-20240229"
 output_dir="result_dirs/wild_bench/"

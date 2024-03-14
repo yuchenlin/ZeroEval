@@ -1,4 +1,4 @@
-export COHERE_API_KEY=your_cohere_api_key
+# export COHERE_API_KEY=your_cohere_api_key
 model_name="cohere/command"
 model_pretty_name="command"
 output_dir="result_dirs/wild_bench/"
