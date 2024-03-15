@@ -89,5 +89,8 @@ python src/upload_evaluation.py $gpt_eval_name $ref_name $model_name $use_checkl
 # Use gpt-4-0125-preview as the reference model and GPT-4 as the judge (using NO checklist)
 # bash evaluation/run_eval.sh claude-3-opus-20240229 gpt-4-0125-preview gpt-4-0125-preview False
 
-# Use gpt-4-0125-preview as the reference model and Claude as the judge (not implemented yet)
+# Use gpt-4-0125-preview as the reference model and Claude as the judge (using NO checklist)
 # bash evaluation/run_eval.sh claude-3-opus-20240229 gpt-4-0125-preview claude-3-opus-20240229 False 1
+
+# Use gpt-4-0125-preview as the reference model and Claude as the judge (using Checklist)
+# bash evaluation/run_eval.sh claude-3-opus-20240229 gpt-4-0125-preview claude-3-opus-20240229 True 1

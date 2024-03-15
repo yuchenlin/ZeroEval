@@ -272,6 +272,13 @@ def compose_eval_item(b, t, r, histories, last_queries, checklists):
 def main():
     args = get_args() 
     random.seed(args.seed)
+
+    # assert the api key is ready 
+    if args.model.startswith("claude"):
+        assert os.environ.get("ANTHROPIC_API_KEY") is not None, "Please set the ANTHROPIC_API_KEY in the environment variables."
+    elif args.model.startswith("gpt"):
+        assert os.environ.get("OPENAI_API_KEY") is not None, "Please set the OPENAI_API_KEY in the environment variables."
+
     if args.action.startswith("trial"):
         results = placeholder_generation(args)
         print(f"We have {len(results)} examples to evaluate!")
@@ -280,7 +287,7 @@ def main():
     elif args.action.startswith("eval"):  
         if args.mode != "pairwise":
             raise Exception("Not implemented yet!")
-        bench_data = load_dataset("WildEval/WildBench", split="test")
+        bench_data = load_dataset("allenai/WildBench", split="test")
         target_model_data = load_dataset("WildEval/WildBench-Results", args.target_model_name, split="train")
         ref_model_data = load_dataset("WildEval/WildBench-Results", args.ref_model_name, split="train")
         histories = []
@@ -298,7 +305,7 @@ def main():
         if args.mode != "pairwise":
             raise Exception("Not implemented yet!")
         print("loading the data from WildEval/WildBench")
-        bench_data = load_dataset("WildEval/WildBench", split="test")
+        bench_data = load_dataset("allenai/WildBench", split="test")
         print("loading the data from WildEval/WildBench-Results")
         model_names = get_dataset_config_names("WildEval/WildBench-Results")
         print(f"model_names={model_names}")

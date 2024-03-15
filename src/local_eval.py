@@ -93,7 +93,7 @@ def placeholder_generation(args):
     
     results = [] 
          
-    bench_data = load_dataset("WildEval/WildBench", split="test")
+    bench_data = load_dataset("allenai/WildBench", split="test")
     target_model_data = load_dataset("WildEval/WildBench-Results", args.target_model_name, split="train") 
     histories = []
     last_queries = []

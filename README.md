@@ -18,7 +18,8 @@ conda activate wildbench
 pip install vllm==0.3.2
 pip install openai==0.28.0
 pip install datasets tenacity
-pip install google-cloud-aiplatform cohere anthropic mistralai 
+pip install google-cloud-aiplatform cohere mistralai 
+pip install anthropic==0.19.0
 # export HF_HOME=/path/to/your/cache_dir/
 ```
 
