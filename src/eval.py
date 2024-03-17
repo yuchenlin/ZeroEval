@@ -56,9 +56,13 @@ def get_args():
 def parse_result(result_str, mode="json"): 
     result_str = result_str.strip() 
     try: 
+        # result_str = result_str.replace(".\n", ". ")
+        # result_str = result_str.replace(".\n\n", ". ")
+        result_str = result_str.replace("\n", " ")
         parsed_result = json.loads(result_str)
     except Exception as e:
-        # print(e)
+        print(result_str)
+        print(e)
         # raise Exception(f"Failed to parse the result: {result_str}")
         parsed_result = {"N/A": "N/A"}
         # exit()
@@ -107,7 +111,13 @@ def gpt_eval(results, args):
                 t["result"] = e["result"]
                 if "parsed_result" in e: 
                     t["parsed_result"] = e["parsed_result"]
+            if "error" in e:
+                t["error"] = e["error"]
+            
+            if "winner" in e:
+                t["winner"] = e["winner"]
                 cnt += 1
+            
         print(f"loading {cnt} results from {args.eval_output_file}")
      
     # TODO: add support for using other APIs as judge 
@@ -136,7 +146,7 @@ def gpt_eval(results, args):
     #import pdb; pdb.set_trace()
     for ind, item in tqdm(enumerate(results), total=len(results), desc=f"Evaluating: {args.eval_output_file} "):
         computed = False
-        if item["result"] != "N/A" or item.get("error", "N/A") != "N/A": 
+        if item["result"] != "N/A" and item.get("error", "N/A") == "N/A" and "winner" in item:  
             results[ind]["parsed_result"] = parse_result(results[ind]["result"]) 
             computed = True  
             
@@ -146,6 +156,8 @@ def gpt_eval(results, args):
             if not computed:
                 result = api(ind, item, **openai_args)
                 results[ind]["result"] = result
+            else:
+                result = results[ind]["result"]
 
             results[ind]["parsed_result"] = parse_result(results[ind]["result"])
             r = results[ind]["parsed_result"]
@@ -165,7 +177,7 @@ def gpt_eval(results, args):
         except Exception as e:
             print(e)
             results[ind]["error"] = str(e)
-            results[ind]["result"] = str(e)
+            results[ind]["result"] = result
             results[ind]["parsed_result"] = {"choice": "N/A"}
             results[ind]["price"] = {"cost": 0, "in_tokens": 0, "out_tokens": 0}
             pass 
