@@ -50,4 +50,6 @@ python src/upload_results.py Llama-2-13b-chat-hf.nosp
 python src/upload_results.py Llama-2-7b-chat-hf.nosp
 
 python src/upload_results.py mistral-large-2402
+
+python src/upload_results.py Qwen1.5-72B-Chat
 """

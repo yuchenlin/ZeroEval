@@ -28,6 +28,7 @@ def parse_args():
     parser.add_argument('--temperature',default=0, type=float)
     parser.add_argument('--repetition_penalty',default=1, type=float)
     parser.add_argument('--max_tokens',default=7500, type=int)
+    parser.add_argument('--max_model_len',default=None, type=int)
     parser.add_argument('--start_index',default=0, type=int) # 0 means from the beginning of the list
     parser.add_argument('--end_index',default=-1, type=int) # -1 means to the end of the list 
     parser.add_argument('--filepath',default="auto", type=str)  
@@ -57,7 +58,10 @@ if __name__ == "__main__":
         args.tokenizer_name = args.model_name
     if args.engine == "vllm":
         from vllm import LLM, SamplingParams
-        llm = LLM(model=args.model_name, tokenizer=args.tokenizer_name, tensor_parallel_size=args.tensor_parallel_size, download_dir=args.download_dir, dtype=args.dtype, tokenizer_mode=args.tokenizer_mode)        
+        llm = LLM(model=args.model_name, tokenizer=args.tokenizer_name, tensor_parallel_size=args.tensor_parallel_size, 
+                        download_dir=args.download_dir, dtype=args.dtype, tokenizer_mode=args.tokenizer_mode,
+                        max_model_len=args.max_model_len,
+                        )        
     elif args.engine == "hf":
         llm = DecoderOnlyModelManager(args.model_name, args.model_name, cache_dir=args.download_dir, 
                                     bf16=args.hf_bf16, gptq=args.hf_gptq)     

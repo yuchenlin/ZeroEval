@@ -16,6 +16,7 @@ from eval_utils import (
 )
 from datasets import load_dataset, get_dataset_config_names
 import tiktoken
+from eval_constants import BOOSTING_MODELS, DEBOOSTING_MODELS, MUST_CHOOSE_MODELS
  
 encoding = None 
 
@@ -327,16 +328,16 @@ def main():
         eval_results = load_dataset("WildEval/WildBench-Evaluation", "all", split="train") 
         covered_eval_ids = [x['eval_id'] for x in eval_results]
         # ["Llama-2-7b-chat-hf.nosp", "Llama-2-13b-chat-hf.nosp", "Llama-2-70b-chat-hf.nosp"] # ["gemini-1.0-pro", "command"]
-        must_choose_models = ["mistral-large-2402"] 
-        boosting_models = []
-        deboosting_models = [] # "gpt-3.5-turbo-0125"
+        must_choose_models = MUST_CHOOSE_MODELS
+        boosting_models = BOOSTING_MODELS
+        deboosting_models = DEBOOSTING_MODELS
         sampling_weights = {x: 1.0 for x in model_names}
         candidates, references, histories, last_queries, checklists = [], [], [], [], []
         # boosting some models 
         for x in boosting_models:
-            sampling_weights[x] *= 2.0
+            sampling_weights[x] *= 10.0
         for x in deboosting_models:
-            sampling_weights[x] *= 0.5
+            sampling_weights[x] *= 0.1
         for index, b in tqdm(enumerate(list(bench_data)), desc="Composing the evaluation items: "):
             sid = b["session_id"]
             while True:
@@ -345,7 +346,8 @@ def main():
                 else:
                     sampled_model_1 = random.choices(model_names, weights=[sampling_weights[x] for x in model_names], k=1)[0]
                 model_names_without_model_1 = [x for x in model_names if x != sampled_model_1]
-                sampled_model_2 = random.choices(model_names_without_model_1, k=1)[0]
+                
+                sampled_model_2 = random.choices(model_names_without_model_1, weights=[sampling_weights[x] for x in model_names_without_model_1], k=1)[0]
                 eval_id = sid + "-" + sampled_model_1 + "-" + sampled_model_2
                 eval_id_ = sid + "-" + sampled_model_2 + "-" + sampled_model_1
                 if eval_id not in covered_eval_ids and eval_id_ not in covered_eval_ids:

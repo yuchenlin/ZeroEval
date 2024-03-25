@@ -27,8 +27,7 @@ wait
 
 # # Run the merge results script after all evaluation scripts have completed
 python src/merge_results.py $eval_folder $run_name
-python src/upload_evaluation.py $gpt_eval_name "arena" $run_name
-# >>>> bash evaluation/run_eval.sh gpt-3.5-turbo-0125 <<<< the reference itself  
+python src/upload_evaluation.py $gpt_eval_name "arena" $run_name 
 
 # bash evaluation/run_arena.sh round1 42
 # bash evaluation/run_arena.sh round2 1337
