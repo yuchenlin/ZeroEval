@@ -33,10 +33,13 @@ if [ "$num_shards" -eq 1 ]; then
         --ref_model_name $ref_name \
         --eval_output_file $eval_file 
 else
+    echo "Using $num_shards shards"
     shard_size=$((1024 / $num_shards))
+    echo "Shard size: $shard_size"
     start_gpu=0 # not used 
-    for ((start = 0, end = (($shard_size)), gpu = $start_gpu; gpu < $n_shards+$start_gpu; start += $shard_size, end += $shard_size, gpu++)); do
+    for ((start = 0, end = (($shard_size)), gpu = $start_gpu; gpu < $num_shards+$start_gpu; start += $shard_size, end += $shard_size, gpu++)); do
         eval_file="${eval_folder}/${model_name}.$start-$end.json"
+        echo "Evaluating $model_name vs $ref_name from $start to $end"
         python src/eval.py \
             --action eval \
             --model $gpt_eval_name \
