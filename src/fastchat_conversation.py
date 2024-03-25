@@ -6,10 +6,15 @@ Conversation prompt templates.
 import dataclasses
 from enum import auto, IntEnum
 from typing import List, Any, Dict, Union, Tuple
+from transformers import AutoTokenizer
 
+HF_TEMPLATED_MODELS = ["HuggingFaceH4/zephyr-7b-gemma-v0.1", "Qwen/Qwen1.5-72B-Chat", "NousResearch/Nous-Hermes-2-Mixtral-8x7B-DPO"]
 
 def map_to_conv(model_name):
-    if "gemma" in model_name.lower() and "-it" in model_name.lower():
+    if model_name in HF_TEMPLATED_MODELS:
+        print(f"Model {model_name} is using HF chat-template method.")
+        conv = HF_Conversation(model_name)
+    elif "gemma" in model_name.lower() and "-it" in model_name.lower():
         conv = get_conv_template("gemma")
     elif "tulu" in model_name.lower():
         conv = get_conv_template("tulu")
@@ -29,7 +34,37 @@ def map_to_conv(model_name):
     else:
         raise ValueError(f"Model {model_name} is not supported.")
 
-    return conv
+    return conv 
+
+class HF_Conversation:
+    def __init__(self, model_name):
+        self.roles = ["user", "assistant"]
+        self.messages = []
+        self.system_prompt = ""
+        self.hf_tokenizer = AutoTokenizer.from_pretrained(model_name) 
+
+    def set_system_message(self, system_message: str):
+        self.system_prompt = system_message
+        if len(self.messages) > 0:
+            self.messages.insert(0, {"role": "system", "content": system_message})
+            print(f"Warning: System message is set after the conversation has started. The system message will be added to the beginning of the conversation.")
+        else:
+            self.messages.append({"role": "system", "content": system_message})
+
+    def append_message(self, role: str, message: str):
+        if message is not None:
+            self.messages.append({"role": role, "content": message}) 
+        # We only append the message if it is not None.  
+        
+
+    def get_prompt(self):
+        # add_generation_prompt is True so we don't have to add the generation prompt manually
+        full_prompt = self.hf_tokenizer.apply_chat_template(self.messages, tokenize=False, add_generation_prompt=True)
+        return full_prompt
+    
+    def clear(self):
+        self.messages = []
+        self.system_prompt = ""
 
 class SeparatorStyle(IntEnum):
     """Separator styles."""
@@ -331,6 +366,10 @@ class Conversation:
             "messages": self.messages,
             "offset": self.offset,
         }
+
+    def clear(self):
+        """Clear the conversation."""
+        self.messages = [] 
 
 
 # A global registry for all conversation templates

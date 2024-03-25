@@ -1,6 +1,6 @@
 CACHE_DIR=${HF_HOME:-"default"}
-model_name="mistralai/Mixtral-8x7B-Instruct-v0.1"
-model_pretty_name="Mixtral-8x7B-Instruct-v0.1"
+model_name="NousResearch/Nous-Hermes-2-Mixtral-8x7B-DPO"
+model_pretty_name="Nous-Hermes-2-Mixtral-8x7B-DPO"
 output_dir="result_dirs/wild_bench/"
 TEMP=0.7; TOP_P=1.0; MAX_TOKENS=2048; 
 gpu="0,1,2,3"; num_gpus=4; batch_size=4;

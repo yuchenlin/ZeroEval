@@ -15,29 +15,34 @@ import cohere
 from mistralai.client import MistralClient
 from mistralai.models.chat_completion import ChatMessage
 from anthropic import Anthropic
+
  
 from datasets import load_dataset
 from tqdm import tqdm
-from fastchat_conversation import map_to_conv
+from fastchat_conversation import map_to_conv, HF_Conversation
 import json   
 
 def apply_template(chat_history, model_name):
     model_inputs = [] 
-    for chats in tqdm(chat_history, desc="Applying template", disable=True):
+    conv = None 
+    for chats in tqdm(chat_history, desc="Applying template", disable=False):
         if "gpt-" in model_name.lower():
-            model_inputs.append("n/a") # gpt-s will be handled by another method.
+            model_inputs.append("n/a") # will be handled by another ways.
             continue
         elif "gemini-" in model_name.lower():
-            model_inputs.append("n/a") # gpt-s will be handled by another method.
+            model_inputs.append("n/a") # will be handled by another ways.
             continue
         elif "cohere" in model_name.lower():
-            model_inputs.append("n/a") # gpt-s will be handled by another method.
+            model_inputs.append("n/a") # will be handled by another ways.
             continue
         elif "anthropic" in model_name.lower():
-            model_inputs.append("n/a") # gpt-s will be handled by another method.
+            model_inputs.append("n/a") # will be handled by another ways.
             continue
         else:
-            conv = map_to_conv(model_name)
+            if conv is None or isinstance(conv, HF_Conversation) == False:
+                conv = map_to_conv(model_name)
+            else:
+                conv.clear()
         for chat_id, chat in enumerate(chats):
             conv.append_message(conv.roles[chat_id%2], chat)
         conv.append_message(conv.roles[1], None)

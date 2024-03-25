@@ -9,6 +9,7 @@ import os
 from unified_utils import load_eval_data, save_outputs
 from unified_utils import openai_chat_request, retry_handler, google_chat_request, cohere_chat_request, mistral_chat_request, anthropic_chat_request
 from hf_models import DecoderOnlyModelManager
+from transformers import AutoTokenizer
 
 def parse_args():
     parser = argparse.ArgumentParser() 
@@ -108,9 +109,14 @@ if __name__ == "__main__":
     stop_words = []
     include_stop_str_in_output = True  
     stop_token_ids = []
-    if "yi-" in args.model_name.lower() and "chat" in args.model_name.lower():
-        stop_token_ids = [7]
-     
+    # if "yi-" in args.model_name.lower() and "chat" in args.model_name.lower():
+    #     stop_token_ids = [7]
+    # elif "zephyr-7b-gemma-v0.1" in args.model_name.lower():
+    #     stop_token_ids = [107]
+
+    if args.model_name in ["01-AI/Yi-34B-chat", "HuggingFaceH4/zephyr-7b-gemma-v0.1", "NousResearch/Nous-Hermes-2-Mixtral-8x7B-DPO"]: 
+        hf_tokenizer = AutoTokenizer.from_pretrained(args.model_name)
+        stop_token_ids = [hf_tokenizer.encode("<|im_end|>", add_special_tokens=False)[0]] 
    
     outputs = [] 
     # Load the existing outputs
