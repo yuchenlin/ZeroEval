@@ -12,10 +12,14 @@
 
 ## Installation
 
+<!-- 
+conda create -p /net/nfs/mosaic/yuchenl/envs/wbnfs python=3.10 
+conda activate /net/nfs/mosaic/yuchenl/envs/wbnfs
+-->
 ```bash
 conda create -n wildbench python=3.10
 conda activate wildbench
-pip install vllm==0.3.2
+pip install vllm==0.3.3 # pip install -e vllm 
 pip install openai==0.28.0
 pip install datasets tenacity
 pip install google-cloud-aiplatform cohere mistralai 

@@ -52,4 +52,7 @@ python src/upload_results.py Llama-2-7b-chat-hf.nosp
 python src/upload_results.py mistral-large-2402
 
 python src/upload_results.py Qwen1.5-72B-Chat
+python src/upload_results.py zephyr-7b-gemma-v0.1
+python src/upload_results.py Nous-Hermes-2-Mixtral-8x7B-DPO
+python src/upload_results.py Starling-LM-7B-beta
 """

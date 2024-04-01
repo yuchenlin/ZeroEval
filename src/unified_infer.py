@@ -10,6 +10,7 @@ from unified_utils import load_eval_data, save_outputs
 from unified_utils import openai_chat_request, retry_handler, google_chat_request, cohere_chat_request, mistral_chat_request, anthropic_chat_request
 from hf_models import DecoderOnlyModelManager
 from transformers import AutoTokenizer
+from infer_constants import IM_END_MODELS
 
 def parse_args():
     parser = argparse.ArgumentParser() 
@@ -61,7 +62,7 @@ if __name__ == "__main__":
         from vllm import LLM, SamplingParams
         llm = LLM(model=args.model_name, tokenizer=args.tokenizer_name, tensor_parallel_size=args.tensor_parallel_size, 
                         download_dir=args.download_dir, dtype=args.dtype, tokenizer_mode=args.tokenizer_mode,
-                        max_model_len=args.max_model_len,
+                        max_model_len=args.max_model_len, trust_remote_code=True,
                         )        
     elif args.engine == "hf":
         llm = DecoderOnlyModelManager(args.model_name, args.model_name, cache_dir=args.download_dir, 
@@ -114,8 +115,8 @@ if __name__ == "__main__":
     # elif "zephyr-7b-gemma-v0.1" in args.model_name.lower():
     #     stop_token_ids = [107]
 
-    if args.model_name in ["01-AI/Yi-34B-chat", "HuggingFaceH4/zephyr-7b-gemma-v0.1", "NousResearch/Nous-Hermes-2-Mixtral-8x7B-DPO"]: 
-        hf_tokenizer = AutoTokenizer.from_pretrained(args.model_name)
+    if args.model_name in IM_END_MODELS: 
+        hf_tokenizer = AutoTokenizer.from_pretrained(args.model_name, trust_remote_code=True)
         stop_token_ids = [hf_tokenizer.encode("<|im_end|>", add_special_tokens=False)[0]] 
    
     outputs = [] 

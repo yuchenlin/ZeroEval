@@ -31,3 +31,4 @@ python src/upload_evaluation.py $gpt_eval_name "arena" $run_name
 
 # bash evaluation/run_arena.sh round1 42
 # bash evaluation/run_arena.sh round2 1337
+# bash evaluation/run_arena.sh round_starling_v0 1337

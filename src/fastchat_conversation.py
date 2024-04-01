@@ -7,8 +7,7 @@ import dataclasses
 from enum import auto, IntEnum
 from typing import List, Any, Dict, Union, Tuple
 from transformers import AutoTokenizer
-
-HF_TEMPLATED_MODELS = ["HuggingFaceH4/zephyr-7b-gemma-v0.1", "Qwen/Qwen1.5-72B-Chat", "NousResearch/Nous-Hermes-2-Mixtral-8x7B-DPO"]
+from infer_constants import HF_TEMPLATED_MODELS
 
 def map_to_conv(model_name):
     if model_name in HF_TEMPLATED_MODELS:
@@ -31,6 +30,8 @@ def map_to_conv(model_name):
         conv = get_conv_template("vicuna_v1.1")
     elif "qwen" in model_name.lower():
         conv = get_conv_template("qwen-7b-chat")
+    elif "starling-lm" in model_name.lower():
+        conv = get_conv_template("openchat_3.5")
     else:
         raise ValueError(f"Model {model_name} is not supported.")
 
@@ -41,7 +42,7 @@ class HF_Conversation:
         self.roles = ["user", "assistant"]
         self.messages = []
         self.system_prompt = ""
-        self.hf_tokenizer = AutoTokenizer.from_pretrained(model_name) 
+        self.hf_tokenizer = AutoTokenizer.from_pretrained(model_name, trust_remote_code=True) 
 
     def set_system_message(self, system_message: str):
         self.system_prompt = system_message
