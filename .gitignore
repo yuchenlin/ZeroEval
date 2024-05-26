@@ -1,5 +1,4 @@
-
-
+!evaluation/results_v2.0522/pairwise.v2/eval=gpt-4-turbo-2024-04-09/ref=gpt-4-turbo-2024-04-09/*.json
 local_scripts/
 result_dirs/
 # Byte-compiled / optimized / DLL files
@@ -169,3 +168,8 @@ evaluation/results_*
 result_dirs/alpaca_eval/hf_example_test.json
 result_dirs/alpaca_eval/tmp_hf_example_test/hf_example_test.json
 result_dirs/alpaca_eval/tmp_hf_example_test/Llama-2-7b-chat-hf.0-256.json
+*.jsonl
+!evaluation/results_v2.0522/pairwise.v2/eval=gpt-4-turbo-2024-04-09/
+# !evaluation/results_v2.0522/pairwise.v2/
+# !evaluation/results_v2.0522/pairwise.v2/eval=gpt-4-turbo-2024-04-09/
+!evaluation/results_v2.0522/pairwise.v2/eval=gpt-4-turbo-2024-04-09/ref=gpt-4-turbo-2024-04-09/*.json
