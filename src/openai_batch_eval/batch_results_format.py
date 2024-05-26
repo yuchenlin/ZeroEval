@@ -92,10 +92,10 @@ for submission, item in zip(submit_data, results):
         })
         
         model_A_output = prompt.split("<|begin_of_response_A|>\n")[1].split("<|end_of_response_A|>\n")[0]
-        model_B_output = prompt.split("## Response B\n")[1].split("<|end_of_response_B|>\n")[0]
+        model_B_output = prompt.split("<|begin_of_response_B|>")[1].split("<|end_of_response_B|>\n")[0]
         results_item["model_outputs"] = {
-            model_A: model_A_output,
-            model_B: model_B_output,
+            model_A: model_A_output.strip(),
+            model_B: model_B_output.strip(),
         }
     elif MODE == "score":
         assert len(custom_id_splits) == 2
@@ -106,7 +106,7 @@ for submission, item in zip(submit_data, results):
             "score": score,
         })
         model_output = prompt.split("<|begin_of_response|>\n")[1].split("<|end_of_response|>\n")[0]
-        results_item["model_output"] = model_output
+        results_item["model_output"] = model_output.strip()
 
     submission = custom_id_to_submission[custom_id]
     
