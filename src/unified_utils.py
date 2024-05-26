@@ -4,6 +4,15 @@ import time
 from functools import wraps
 from typing import List 
 import openai
+if openai.__version__ == "0.28.0":
+    OPENAI_RATE_LIMIT_ERROR = openai.error.RateLimitError
+    OPENAI_API_ERROR = openai.error.APIError    
+else:
+    from openai import OpenAI
+    OPENAI_RATE_LIMIT_ERROR = openai.RateLimitError
+    OPENAI_API_ERROR = openai.APIError
+
+
 from tenacity import (
     retry,
     stop_after_attempt,
@@ -21,6 +30,9 @@ from datasets import load_dataset
 from tqdm import tqdm
 from fastchat_conversation import map_to_conv, HF_Conversation
 import json   
+from together import Together
+
+ 
 
 def apply_template(chat_history, model_name):
     model_inputs = [] 
@@ -36,6 +48,9 @@ def apply_template(chat_history, model_name):
             model_inputs.append("n/a") # will be handled by another ways.
             continue
         elif "anthropic" in model_name.lower():
+            model_inputs.append("n/a") # will be handled by another ways.
+            continue
+        elif "together" in model_name.lower():
             model_inputs.append("n/a") # will be handled by another ways.
             continue
         else:
@@ -61,6 +76,12 @@ def load_eval_data(args, data_name=None, model_name=None):
     if data_name == "wild_bench":
         dataset = load_dataset("allenai/WildBench", split="test")
         metadata = {"session_id": [], "primary_tag": []}
+    elif data_name == "wild_bench_v2_internal":
+        dataset = load_dataset("WildEval/WildBench-v2-dev", split="test")
+        metadata = {"session_id": [], "primary_tag": []}
+    elif data_name == "wild_bench_v2_dev":
+        dataset = load_dataset("WildEval/WildBench-V2", "v2.0522", split="test")
+        metadata = {"session_id": [], "primary_tag": []}
     elif data_name == "alpaca_eval":
         dataset = load_dataset("tatsu-lab/alpaca_eval", "alpaca_eval", split="eval")
         metadata = {"dataset": []}
@@ -82,7 +103,7 @@ def load_eval_data(args, data_name=None, model_name=None):
     print(f"Loaded {len(dataset)} examples from {data_name}")
 
     for ind, item in enumerate(dataset):
-        if data_name == "wild_bench":
+        if data_name in ["wild_bench", "wild_bench_v2_internal", "wild_bench_v2_dev"]:
             assert item["conversation_input"][-1]["role"] == "user"
             extracted_chats = [chat["content"] for chat in item["conversation_input"]]
             chat_history.append(extracted_chats)
@@ -122,7 +143,7 @@ def clear_output(output, model_name):
 
 def save_outputs(args, id_strs, outputs, chat_history, metadata, model_inputs, filepath):
     formatted_outputs = []
-    if args.data_name == "wild_bench":
+    if args.data_name in ["wild_bench", "wild_bench_v2_internal", "wild_bench_v2_dev"]:
         for ind in range(len(outputs)):
             output_item = {}
             output_item["session_id"] = id_strs[ind]
@@ -211,7 +232,7 @@ def retry_handler(retry_limit=10):
                     return func(*args, **kwargs)
                 except Exception as e:
                     # if rate limit error, wait 2 seconds and retry
-                    if isinstance(e, openai.error.RateLimitError):
+                    if isinstance(e, OPENAI_RATE_LIMIT_ERROR):
                         words = str(e).split(' ')
                         try:
                             time_to_wait = int(words[words.index('after') + 1])
@@ -220,7 +241,7 @@ def retry_handler(retry_limit=10):
                         # print("Rate limit error, waiting for {} seconds for another try..".format(time_to_wait))
                         time.sleep(time_to_wait) # wait 30 seconds
                         # print("Finished waiting for {} seconds. Start another try".format(time_to_wait))
-                    elif isinstance(e, openai.error.APIError):
+                    elif isinstance(e, OPENAI_API_ERROR):
                         # this is because the prompt contains content that is filtered by OpenAI API
                         print("API error:", str(e))
                         if "Invalid" in str(e):
@@ -234,6 +255,9 @@ def retry_handler(retry_limit=10):
                                 print ('cohere prompt length issue!')
                                 flag_cohere_retry = True
                                 return [''] # return empty strings for prompt longer than context window size, comment out this line to truncate prompt until it fits
+                            if 'blocked' in err_msg:
+                                print ('blocked output issue!')
+                                return ['Error: this query is blocked by APIs.']
                                 #raise e
                             print(f"Retrying for the {retried + 1} time..")
                             #if 'output blocked by content filtering policy' in err_msg.lower():
@@ -283,30 +307,105 @@ def openai_chat_request(
     # Call openai api to generate aspects
     assert prompt is not None or messages is not None, "Either prompt or messages should be provided."
     if messages is None:
-        messages = [{"role":"system","content":"You are an AI assistant that helps people find information."},
-                {"role":"user","content": prompt}]
-        # messages = [{"role":"system","content":"You are an AI assistant that helps people find information."}]
+        messages = [{"role":"system","content":"You are a helpful AI assistant."},
+                    {"role":"user","content": prompt}]
     
-    response = openai.ChatCompletion.create(
+    if openai.__version__ == "0.28.0":
+        response = openai.ChatCompletion.create(
+            model=model,
+            engine=engine,
+            messages=messages,
+            temperature=temperature,
+            max_tokens=max_tokens,
+            top_p=top_p,
+            n=n,
+            frequency_penalty=frequency_penalty,
+            presence_penalty=presence_penalty,
+            stop=stop,
+            **kwargs,
+        )
+        contents = []
+        for choice in response['choices']:
+            # Check if the response is valid
+            if choice['finish_reason'] not in ['stop', 'length']:
+                raise ValueError(f"OpenAI Finish Reason Error: {choice['finish_reason']}")
+            contents.append(choice['message']['content'])
+    else:
+        # for version > 1.0
+        client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
+        # print(f"Requesting chat completion from OpenAI API with model {model}")
+        response = client.chat.completions.create(
+            model=model, 
+            messages=messages,
+            temperature=temperature,
+            max_tokens=max_tokens,
+            top_p=top_p,
+            n=n,
+            frequency_penalty=frequency_penalty,
+            presence_penalty=presence_penalty,
+            stop=stop,
+            **kwargs,
+        )
+        # print(f"Received response from OpenAI API with model {model}")
+        contents = []
+        for choice in response.choices:
+            # Check if the response is valid
+            if choice.finish_reason not in ['stop', 'length']:
+                if 'content_filter' in choice.finish_reason:
+                    contents.append("Error: content filtered due to OpenAI policy. ")
+                else:
+                    raise ValueError(f"OpenAI Finish Reason Error: {choice.finish_reason}")
+            contents.append(choice.message.content.strip())
+    return contents
+
+def together_chat_request(
+    model: str=None,
+    engine: str=None,
+    temperature: float=0,
+    max_tokens: int=4096,
+    top_p: float=1.0, 
+    repetition_penalty: float=0,
+    prompt: str=None,
+    n: int=1,
+    messages: List[dict]=None,
+    stop: List[str]=None,
+    **kwargs,
+) -> List[str]:
+    """
+    Request the evaluation prompt from the OpenAI API in chat format.
+    Args:
+        prompt (str): The encoded prompt.
+        messages (List[dict]): The messages.
+        model (str): The model to use.
+        engine (str): The engine to use.
+        temperature (float, optional): The temperature. Defaults to 0.7.
+        max_tokens (int, optional): The maximum number of tokens. Defaults to 800.
+        top_p (float, optional): The top p. Defaults to 0.95. 
+        repetition_penalty (float, optional): The presence penalty. Defaults to 0.
+        stop (List[str], optional): The stop. Defaults to None.
+    Returns:
+        List[str]: The list of generated evaluation prompts.
+    """
+    # Call openai api to generate aspects
+    assert prompt is not None or messages is not None, "Either prompt or messages should be provided." 
+    if messages is None:
+        messages = [{"role":"user","content": prompt}]
+    client = Together(api_key=os.environ.get("TOGETHER_API_KEY")) 
+    response = client.chat.completions.create(
         model=model,
-        engine=engine,
         messages=messages,
         temperature=temperature,
         max_tokens=max_tokens,
         top_p=top_p,
         n=n,
-        frequency_penalty=frequency_penalty,
-        presence_penalty=presence_penalty,
+        repetition_penalty=repetition_penalty,
         stop=stop,
-        **kwargs,
+        **kwargs
     )
+    # print(response.choices[0].message.content)
     contents = []
-    for choice in response['choices']:
-        # Check if the response is valid
-        if choice['finish_reason'] not in ['stop', 'length']:
-            raise ValueError(f"OpenAI Finish Reason Error: {choice['finish_reason']}")
-        contents.append(choice['message']['content'])
-
+    for choice in response.choices:
+        contents.append(choice.message.content)
     return contents
      
  

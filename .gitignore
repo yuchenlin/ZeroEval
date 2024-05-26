@@ -1,3 +1,5 @@
+
+
 local_scripts/
 result_dirs/
 # Byte-compiled / optimized / DLL files
@@ -162,6 +164,8 @@ cython_debug/
 #.idea/
 .DS_Store
 evaluation/results/
+evaluation/results_*
+*internal*
 result_dirs/alpaca_eval/hf_example_test.json
 result_dirs/alpaca_eval/tmp_hf_example_test/hf_example_test.json
 result_dirs/alpaca_eval/tmp_hf_example_test/Llama-2-7b-chat-hf.0-256.json

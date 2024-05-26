@@ -7,10 +7,10 @@ from tqdm import tqdm
 import json
 import os  
 from unified_utils import load_eval_data, save_outputs
-from unified_utils import openai_chat_request, retry_handler, google_chat_request, cohere_chat_request, mistral_chat_request, anthropic_chat_request
+from unified_utils import openai_chat_request, retry_handler, google_chat_request, cohere_chat_request, mistral_chat_request, anthropic_chat_request, together_chat_request
 from hf_models import DecoderOnlyModelManager
 from transformers import AutoTokenizer
-from infer_constants import IM_END_MODELS
+from infer_constants import IM_END_MODELS, HF_TEMPLATED_MODELS
 
 def parse_args():
     parser = argparse.ArgumentParser() 
@@ -39,7 +39,10 @@ def parse_args():
     parser.add_argument('--hf_bf16', action='store_true')
     parser.add_argument('--hf_gptq', action='store_true')
 
-    # only for MT-bench 
+    parser.add_argument('--use_hf_conv_template', action='store_true')
+    parser.add_argument('--use_imend_stop', action='store_true')
+
+    # only for MT-bench; not useful for other benchmarks
     parser.add_argument('--mt_turn', default=-1, type=int)
     parser.add_argument('--mt_turn1_result', default=None, type=str) 
     return parser.parse_args()
@@ -76,8 +79,16 @@ if __name__ == "__main__":
         pass
     elif args.engine == "anthropic":
         pass
+    elif args.engine == "together":
+        pass
     
     print("loading dataset!")
+
+    if args.use_hf_conv_template:
+        HF_TEMPLATED_MODELS.append(args.model_name)
+    if args.use_imend_stop:
+        IM_END_MODELS.append(args.model_name)
+
     # Data loading 
     id_strs, chat_history, model_inputs, metadata = load_eval_data(args) 
     
@@ -169,7 +180,7 @@ if __name__ == "__main__":
         for cur_id in tqdm(range(0, len(todo_inputs)), desc=f"Generating {args.model_name} from {args.start_index} to {args.end_index}"):
             # input_text = todo_inputs[cur_id] 
             chat = todo_chats[cur_id]
-            openai_msg = [{"role":"system", "content":"You are an AI assistant that helps people find information."}]
+            openai_msg = [{"role":"system", "content":"You are a helpful AI assistant."}]
             for i, chat_item in enumerate(chat):
                 if i % 2 == 0:
                     openai_msg.append({"role":"user","content": chat_item})
@@ -188,6 +199,36 @@ if __name__ == "__main__":
             outputs.append(result) 
             save_outputs(args, id_strs, outputs, chat_history, metadata, model_inputs, filepath) 
 
+    elif args.engine == "together":        
+        todo_chats = chat_history[num_skipped:]
+        @retry_handler(retry_limit=10)
+        def api(**kwargs):
+            result = together_chat_request(**kwargs)
+            return result
+         
+        for cur_id in tqdm(range(0, len(todo_inputs)), desc=f"Generating {args.model_name} from {args.start_index} to {args.end_index}"):
+            # input_text = todo_inputs[cur_id] 
+            chat = todo_chats[cur_id]
+            msgs = []
+            for i, chat_item in enumerate(chat):
+                if i % 2 == 0:
+                    msgs.append({"role":"user","content": chat_item})
+                else:
+                    msgs.append({"role":"assistant","content": chat_item})
+            openai_args = {
+                "model": args.model_name.replace("@together", ""),
+                "prompt": None,
+                "messages": msgs,
+                "top_p": args.top_p, 
+                "temperature": args.temperature,
+                "max_tokens": args.max_tokens,
+                "stop": stop_words,
+            }  
+            result = api(**openai_args) 
+            outputs.append(result) 
+            save_outputs(args, id_strs, outputs, chat_history, metadata, model_inputs, filepath) 
+
+
     elif args.engine == "google":        
         todo_chats = chat_history[num_skipped:]
         @retry_handler(retry_limit=10)
@@ -198,7 +239,7 @@ if __name__ == "__main__":
         for cur_id in tqdm(range(0, len(todo_inputs)), desc=f"Generating {args.model_name} from {args.start_index} to {args.end_index}"):
             # input_text = todo_inputs[cur_id] 
             chat = todo_chats[cur_id]
-            google_msg = [{"role":"user", "parts": ["You are an AI assistant that helps people find information."]}]
+            google_msg = [{"role":"user", "parts": ["You are a helpful AI assistant."]}]
             google_msg.append({"role":"model", "parts": ["Understood."]})
             for i, chat_item in enumerate(chat):
                 if i % 2 == 0:
@@ -229,7 +270,7 @@ if __name__ == "__main__":
         for cur_id in tqdm(range(0, len(todo_inputs)), desc=f"Generating {args.model_name} from {args.start_index} to {args.end_index}"):
             # input_text = todo_inputs[cur_id] 
             chat = todo_chats[cur_id]
-            system_msg = "You are an AI assistant that helps people find information."
+            system_msg = "You are a helpful AI assistant."
             cohere_msg = []
             for i, chat_item in enumerate(chat):
                 if i % 2 == 0:
@@ -259,7 +300,7 @@ if __name__ == "__main__":
         for cur_id in tqdm(range(0, len(todo_inputs)), desc=f"Generating {args.model_name} from {args.start_index} to {args.end_index}"):
             # input_text = todo_inputs[cur_id] 
             chat = todo_chats[cur_id]
-            mistral_msg = [{"role":"system", "content":"You are an AI assistant that helps people find information."}]
+            mistral_msg = [{"role":"system", "content":"You are a helpful AI assistant."}]
             for i, chat_item in enumerate(chat):
                 if i % 2 == 0:
                     mistral_msg.append({"role":"user","content": chat_item})
@@ -287,7 +328,7 @@ if __name__ == "__main__":
         for cur_id in tqdm(range(0, len(todo_inputs)), desc=f"Generating {args.model_name} from {args.start_index} to {args.end_index}"):
             # input_text = todo_inputs[cur_id] 
             chat = todo_chats[cur_id]
-            system_msg = "You are an AI assistant that helps people find information."
+            system_msg = "You are a helpful AI assistant."
             anthropic_msg = []
             for i, chat_item in enumerate(chat):
                 if i % 2 == 0:

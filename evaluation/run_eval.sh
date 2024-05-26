@@ -1,8 +1,8 @@
-model_name=$1
+model_name=$1 # model to test 
 # by default use gpt-3.5-turbo-0125 as ref_name
-ref_name=${2:-"gpt-3.5-turbo-0125"}
+ref_name=${2:-"gpt-3.5-turbo-0125"} # model to compare 
 # by default use "gpt-4-0125-preview" as gpt_eval_name
-gpt_eval_name=${3:-"gpt-4-0125-preview"}
+gpt_eval_name=${3:-"gpt-4-0125-preview"} # evaluator name  # gpt-4-0125-preview
 use_checklist=${4:-"True"} 
 num_shards=${5:-8} # shards 
 

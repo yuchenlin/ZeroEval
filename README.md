@@ -19,7 +19,7 @@ conda activate /net/nfs/mosaic/yuchenl/envs/wbnfs
 ```bash
 conda create -n wildbench python=3.10
 conda activate wildbench
-pip install vllm # pip install -e vllm 
+pip install vllm -U # pip install -e vllm 
 pip install openai==0.28.0
 pip install datasets tenacity
 pip install google-cloud-aiplatform cohere mistralai 

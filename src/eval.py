@@ -17,7 +17,29 @@ from eval_utils import (
 from datasets import load_dataset, get_dataset_config_names
 import tiktoken
 from eval_constants import BOOSTING_MODELS, DEBOOSTING_MODELS, MUST_CHOOSE_MODELS
- 
+
+# HF_BENCH_PATH = "allenai/WildBench"
+# HF_BENCH_CONFIG = "default"
+# HF_RESULTS_PATH = "WildEval/WildBench-Results"
+
+# internal
+# HF_BENCH_PATH = "WildEval/WildBench-v2-dev"
+# HF_BENCH_CONFIG = "default"
+# HF_RESULTS_PATH = "WildEval/WildBench-Results-v2-internal" 
+
+# v2 candidate 
+# HF_BENCH_PATH = "WildEval/WildBench-V2"
+# HF_BENCH_CONFIG = "default"
+# HF_RESULTS_PATH = "WildEval/WildBench-Results-V2" 
+
+# v2.0522 
+HF_BENCH_PATH = "WildEval/WildBench-V2"
+HF_BENCH_CONFIG = "v2.0522"
+HF_RESULTS_PATH = "WildEval/WildBench-Results-V2.0522" 
+
+
+print(f"Loading the benchmark data from {HF_BENCH_PATH} and the results from {HF_RESULTS_PATH}") 
+
 encoding = None 
 
 def get_args():
@@ -43,7 +65,7 @@ def get_args():
     parser.add_argument("--temperature", type=float, default=0.0)
     parser.add_argument("--max_tokens", type=int, default=1024)
     parser.add_argument("--overwrite", action="store_true")
-
+    parser.add_argument("--batch_mode", action="store_true")
     
     parser.add_argument("--seed", type=int, default=42)
     
@@ -72,18 +94,37 @@ def parse_result(result_str, mode="json"):
 def compute_cost(gpt_model_name, prompt, result):
     global encoding
     if encoding is None:
-        encoding = tiktoken.encoding_for_model(gpt_model_name)
-    if gpt_model_name in ["gpt-4-1106-preview", "gpt-4-0125-preview", "gpt-4-turbo-preview"]:
+        if gpt_model_name.startswith("gpt"):
+            encoding = tiktoken.encoding_for_model(gpt_model_name)
+        else:
+            encoding = tiktoken.encoding_for_model("gpt-4-1106-preview") # default to gpt-4-1106-preview
+    if gpt_model_name.startswith("gpt-4-"): # gpt-4-turbo series 
         price_per_input_token = 0.01 / 1000
         price_per_output_token = 0.03 / 1000
+    elif gpt_model_name.startswith("gpt-4o"): # gpt-4-turbo series 
+        price_per_input_token = 0.005 / 1000
+        price_per_output_token = 0.015 / 1000
     elif gpt_model_name in ["gpt-3.5-turbo-0125"]:
         price_per_input_token = 0.0005 / 1000
         price_per_output_token = 0.0015 / 1000
     elif gpt_model_name in ["gpt-4"]:
         price_per_input_token = 0.03 / 1000
         price_per_output_token = 0.06 / 1000
+    elif gpt_model_name.startswith("claude-3-opus"):
+        price_per_input_token = 0.015 / 1000
+        price_per_output_token = 0.075 / 1000
+    elif gpt_model_name.startswith("claude-3-sonnet"):
+        price_per_input_token = 0.003 / 1000
+        price_per_output_token = 0.015 / 1000
+    elif gpt_model_name.startswith("claude-3-haiku"):
+        price_per_input_token = 0.00025 / 1000
+        price_per_output_token = 0.00125 / 1000
     else:
-        raise Exception(f"Unknown model: {gpt_model_name}")
+        # raise Exception(f"Unknown model: {gpt_model_name}")
+        # print(f"Unknown model: {gpt_model_name}")
+        pass 
+        price_per_input_token = 0.0
+        price_per_output_token = 0.0
     
     price_item = {
                 # compute openai token number
@@ -93,8 +134,30 @@ def compute_cost(gpt_model_name, prompt, result):
     price_item["cost"] = price_item["in_tokens"] * price_per_input_token + price_item["out_tokens"] * price_per_output_token
     return price_item
 
+def batch_eval_generate(results, args):
+    json_lines = []
+    for ind, item in tqdm(enumerate(results), total=len(results)):
+        sid = item["session_id"]
+        batch_item = {}
 
-def gpt_eval(results, args): 
+        if args.mode == "pairwise":
+            model_A = item["assignment"]["A"]
+            model_B = item["assignment"]["B"]
+            batch_item["custom_id"] = f"{sid}||A:{model_A}||B:{model_B}"
+        elif args.mode == "score":
+            model_test = item["generator"]
+            batch_item["custom_id"] = f"{sid}||{model_test}"
+        
+        
+        batch_item["method"] = "POST"
+        batch_item["url"] = "/v1/chat/completions"
+        batch_item["body"] = {"model": args.model, "temperature": args.temperature, "max_tokens": args.max_tokens, "response_format": {"type": "json_object"}}
+        batch_item["body"]["messages"] = [{"role": "user", "content": item["prompt"]}]
+        json_lines.append(batch_item)
+    return json_lines
+    
+
+def run_eval(results, args): 
     # try to load the existing results from args.eval_output_file 
     if os.path.exists(args.eval_output_file) and not args.overwrite:
         cnt = 0 
@@ -115,8 +178,12 @@ def gpt_eval(results, args):
             if "error" in e:
                 t["error"] = e["error"]
             
-            if "winner" in e:
+
+            if args.mode == "pairwise" and "winner" in e:
                 t["winner"] = e["winner"]
+                cnt += 1
+            elif args.mode == "checklist" and "score" in e:
+                t["score"] = e["score"]
                 cnt += 1
             
         print(f"loading {cnt} results from {args.eval_output_file}")
@@ -170,10 +237,13 @@ def gpt_eval(results, args):
                     results[ind]["winner"] = "tie"
                 else:
                     results[ind]["winner"] = r["choice"] 
-            if not args.model.startswith('claude'):
-                results[ind]["price"] = compute_cost(args.model, item["prompt"], results[ind]["result"])
-            else:
-                results[ind]["price"] = {"cost": 0, "in_tokens": 0, "out_tokens": 0}
+            elif args.mode == "checklist":
+                results[ind]["score"] = float(r["score"])
+            
+            # if not args.model.startswith('claude'):
+            results[ind]["price"] = compute_cost(args.model, item["prompt"], results[ind]["result"])
+            # else:
+            #     results[ind]["price"] = {"cost": 0, "in_tokens": 0, "out_tokens": 0}
             results[ind]["error"] = "N/A"
         except Exception as e:
             print(e)
@@ -223,7 +293,7 @@ def placeholder_generation(args, candidates, references, histories, last_queries
     for item, ref_item, history, last_query, checklist in zip(candidates, references, histories, last_queries, checklists):
         # print(item, ref_item, history, last_query, checklist)
         o = item["output"][0] if type(item["output"]) == list else item["output"]
-        r = ref_item["output"][0] if type(ref_item["output"]) == list else ref_item["output"]
+        
         # random decide which is A and which is B 
         d = {}
         d["session_id"] = item["session_id"]
@@ -233,6 +303,7 @@ def placeholder_generation(args, candidates, references, histories, last_queries
         # d["generator"] = args.target_model_name
         d["generator"] = item["generator"]
         if args.mode == "pairwise":
+            r = ref_item["output"][0] if type(ref_item["output"]) == list else ref_item["output"]
             d["ref_output"] =  r 
             # d["ref_generator"] = args.ref_model_name 
             d["ref_generator"] = ref_item["generator"]
@@ -251,24 +322,68 @@ def placeholder_generation(args, candidates, references, histories, last_queries
             prompt = eval_template
             prompt = prompt.replace("{$history}", shorten(history, args.max_words_to_eval))
             prompt = prompt.replace("{$user_query}", shorten(last_query, args.max_words_to_eval))
-            prompt = prompt.replace("{$candidate_A}", shorten(A, args.max_words_to_eval))
-            prompt = prompt.replace("{$candidate_B}", shorten(B, args.max_words_to_eval))
-            prompt = prompt.replace("{$checklist}", json.dumps(checklist, indent=2), args.max_words_to_eval)
-        
-        d["prompt"] = prompt
-        if A.strip() == "" and B.strip() == "":
-            d["result"] = json.dumps({"reason": "Both responses are empty.", "choice": "tie"})
-        elif A.strip() == "":
-            d["result"] = json.dumps({"reason": "The response A is empty.", "choice": "B"})
-        elif B.strip() == "":
-            d["result"] = json.dumps({"reason": "The response B is empty.", "choice": "A"})
-        else:
-            d["result"] = "N/A" 
-        results.append(d)
+            A_output_str = shorten(A, args.max_words_to_eval)
+            B_output_str = shorten(B, args.max_words_to_eval)
+            if A_output_str.strip() == "":
+                A_output_str = "[This model response is empty.]"
+            if B_output_str.strip() == "":
+                B_output_str = "[This model response is empty.]"
+            prompt = prompt.replace("{$candidate_A}", A_output_str)
+            prompt = prompt.replace("{$candidate_B}", B_output_str)
+            checklist_mardkdown = ""
+            for checklist_item in checklist:
+                checklist_mardkdown += f"- {checklist_item}\n"
+            prompt = prompt.replace("{$checklist}", checklist_mardkdown)
+            d["prompt"] = prompt
+            if A.strip() == "" and B.strip() == "":
+                d["result"] = json.dumps({"reason": "Both responses are empty.", "choice": "A=B"})
+            elif A.strip() == "":
+                d["result"] = json.dumps({"reason": "The response A is empty.", "choice": "B++"})
+            elif B.strip() == "":
+                d["result"] = json.dumps({"reason": "The response B is empty.", "choice": "A++"})
+            else:
+                d["result"] = "N/A" 
+            results.append(d)
+
+        elif args.mode == "score":
+            prompt = eval_template
+            prompt = prompt.replace("{$history}", shorten(history, args.max_words_to_eval))
+            prompt = prompt.replace("{$user_query}", shorten(last_query, args.max_words_to_eval))
+            prompt = prompt.replace("{$model_output}", shorten(o, args.max_words_to_eval))
+            checklist_mardkdown = ""
+            for checklist_item in checklist:
+                checklist_mardkdown += f"- {checklist_item}\n"
+            prompt = prompt.replace("{$checklist}", checklist_mardkdown)
+            d_copy = d.copy()
+            d_copy["prompt"] = prompt
+            if o.strip() == "":
+                d_copy["result"] = json.dumps({"strengths": "N/A", "weaknesses": "The model output is empty.", "score": "1"})
+            else:
+                d_copy["result"] = "N/A" 
+            results.append(d_copy)
+        elif args.mode == "checklist":
+            for criteria in checklist:
+                prompt = eval_template
+                prompt = prompt.replace("{$history}", shorten(history, args.max_words_to_eval))
+                prompt = prompt.replace("{$user_query}", shorten(last_query, args.max_words_to_eval))
+                prompt = prompt.replace("{$model_output}", shorten(o, args.max_words_to_eval)) 
+                prompt = prompt.replace("{$criteria}", criteria, args.max_words_to_eval)
+                d_copy = d.copy()
+                d_copy["prompt"] = prompt
+                d_copy["criteria"] = criteria
+                if o.strip() == "":
+                    d_copy["result"] = json.dumps({"reason": "The model output is empty.", "score": "1"})
+                else:
+                    d_copy["result"] = "N/A" 
+                results.append(d_copy)
+
     return results 
 
 def compose_eval_item(b, t, r, histories, last_queries, checklists):
-    assert b["session_id"] == t["session_id"] == r["session_id"]
+    if r is not None:
+        assert b["session_id"] == t["session_id"] == r["session_id"]
+    else:
+        assert b["session_id"] == t["session_id"]
     history = ""
     checklist = b["checklist"]
     if len(b["conversation_input"]) > 0: 
@@ -285,7 +400,7 @@ def compose_eval_item(b, t, r, histories, last_queries, checklists):
 def main():
     args = get_args() 
     random.seed(args.seed)
-
+    print(args)
     # assert the api key is ready 
     if args.model.startswith("claude"):
         assert os.environ.get("ANTHROPIC_API_KEY") is not None, "Please set the ANTHROPIC_API_KEY in the environment variables."
@@ -298,11 +413,16 @@ def main():
         with open(args.eval_output_file, "w") as f:
             json.dump(results, f, indent=2) 
     elif args.action.startswith("eval"):  
-        if args.mode != "pairwise":
+        if args.mode not in ["pairwise", "checklist", "score"]:
             raise Exception("Not implemented yet!")
-        bench_data = load_dataset("allenai/WildBench", split="test")
-        target_model_data = load_dataset("WildEval/WildBench-Results", args.target_model_name, split="train")
-        ref_model_data = load_dataset("WildEval/WildBench-Results", args.ref_model_name, split="train")
+
+        bench_data = load_dataset(HF_BENCH_PATH, HF_BENCH_CONFIG, split="test")
+        target_model_data = load_dataset(HF_RESULTS_PATH, args.target_model_name, split="train")
+        if args.mode == "pairwise":
+            ref_model_data = load_dataset(HF_RESULTS_PATH, args.ref_model_name, split="train")
+        else:
+            print("No reference model is needed for checklist evaluation.")
+            ref_model_data = [None] * len(target_model_data)
         histories = []
         last_queries = []
         checklists = []
@@ -313,18 +433,25 @@ def main():
         candidates = list(target_model_data)
         references = list(ref_model_data)    
         results = placeholder_generation(args, candidates, references, histories, last_queries, checklists)
-        results = gpt_eval(results, args) 
+        if args.batch_mode:
+            print("Batch mode is enabled!")
+            json_lines = batch_eval_generate(results, args)
+            with open(args.eval_output_file, "w") as f:
+                for line in json_lines:
+                    f.write(json.dumps(line) + "\n")
+        else:
+            results = run_eval(results, args) 
     elif args.action.startswith("arena"):
         if args.mode != "pairwise":
             raise Exception("Not implemented yet!")
         print("loading the data from WildEval/WildBench")
-        bench_data = load_dataset("allenai/WildBench", split="test")
+        bench_data = load_dataset(HF_BENCH_PATH, split="test")
         print("loading the data from WildEval/WildBench-Results")
-        model_names = get_dataset_config_names("WildEval/WildBench-Results")
+        model_names = get_dataset_config_names(HF_RESULTS_PATH)
         print(f"model_names={model_names}")
         all_inference_results = {}
         for model_name in tqdm(model_names, desc="Loading the inference results: "):
-            all_inference_results[model_name] = list(load_dataset("WildEval/WildBench-Results", model_name, split="train"))
+            all_inference_results[model_name] = list(load_dataset(HF_RESULTS_PATH, model_name, split="train"))
         eval_results = load_dataset("WildEval/WildBench-Evaluation", "all", split="train") 
         covered_eval_ids = [x['eval_id'] for x in eval_results]
         # ["Llama-2-7b-chat-hf.nosp", "Llama-2-13b-chat-hf.nosp", "Llama-2-70b-chat-hf.nosp"] # ["gemini-1.0-pro", "command"]
@@ -363,7 +490,7 @@ def main():
         # print(len(candidates), len(references), len(histories), len(last_queries), len(checklists))
         results = placeholder_generation(args, candidates, references, histories, last_queries, checklists)
         # print(f"We have {len(results)} examples to evaluate!")
-        results = gpt_eval(results, args)            
+        results = run_eval(results, args)            
                 
     else:
         print("Not implemented yet!")
