@@ -35,8 +35,9 @@ with jsonlines.open(result_file, "r") as f:
 
 # print(json.dumps(results[0], indent=2))
 results_json = []
-for submission, item in zip(submit_data, results):
+for item in results:
     custom_id = item["custom_id"]
+    submission = custom_id_to_submission[custom_id]
     custom_id_splits = custom_id.split("||")
     session_id = custom_id_splits[0]
     eval_output = item["response"]["body"]["choices"][0]["message"]["content"]
@@ -108,7 +109,7 @@ for submission, item in zip(submit_data, results):
         model_output = prompt.split("<|begin_of_response|>\n")[1].split("<|end_of_response|>\n")[0]
         results_item["model_output"] = model_output.strip()
 
-    submission = custom_id_to_submission[custom_id]
+    
     
     
     
