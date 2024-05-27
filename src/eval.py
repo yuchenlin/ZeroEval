@@ -21,22 +21,7 @@ from eval_constants import BOOSTING_MODELS, DEBOOSTING_MODELS, MUST_CHOOSE_MODEL
 HF_BENCH_PATH = "allenai/WildBench"
 HF_BENCH_CONFIG = "v2"
 HF_RESULTS_PATH = "WildEval/WildBench-Results-V2.0522"
-
-# internal
-# HF_BENCH_PATH = "WildEval/WildBench-v2-dev"
-# HF_BENCH_CONFIG = "default"
-# HF_RESULTS_PATH = "WildEval/WildBench-Results-v2-internal" 
-
-# v2 candidate 
-# HF_BENCH_PATH = "WildEval/WildBench-V2"
-# HF_BENCH_CONFIG = "default"
-# HF_RESULTS_PATH = "WildEval/WildBench-Results-V2" 
-
-# v2.0522 
-# HF_BENCH_PATH = "WildEval/WildBench-V2"
-# HF_BENCH_CONFIG = "v2.0522"
-# HF_RESULTS_PATH = "WildEval/WildBench-Results-V2.0522" 
-
+ 
 
 print(f"Loading the benchmark data from {HF_BENCH_PATH} and the results from {HF_RESULTS_PATH}") 
 
@@ -181,10 +166,7 @@ def run_eval(results, args):
 
             if args.mode == "pairwise" and "winner" in e:
                 t["winner"] = e["winner"]
-                cnt += 1
-            elif args.mode == "checklist" and "score" in e:
-                t["score"] = e["score"]
-                cnt += 1
+                cnt += 1 
             
         print(f"loading {cnt} results from {args.eval_output_file}")
      
@@ -360,22 +342,7 @@ def placeholder_generation(args, candidates, references, histories, last_queries
                 d_copy["result"] = json.dumps({"strengths": "N/A", "weaknesses": "The model output is empty.", "score": "1"})
             else:
                 d_copy["result"] = "N/A" 
-            results.append(d_copy)
-        elif args.mode == "checklist":
-            for criteria in checklist:
-                prompt = eval_template
-                prompt = prompt.replace("{$history}", shorten(history, args.max_words_to_eval))
-                prompt = prompt.replace("{$user_query}", shorten(last_query, args.max_words_to_eval))
-                prompt = prompt.replace("{$model_output}", shorten(o, args.max_words_to_eval)) 
-                prompt = prompt.replace("{$criteria}", criteria, args.max_words_to_eval)
-                d_copy = d.copy()
-                d_copy["prompt"] = prompt
-                d_copy["criteria"] = criteria
-                if o.strip() == "":
-                    d_copy["result"] = json.dumps({"reason": "The model output is empty.", "score": "1"})
-                else:
-                    d_copy["result"] = "N/A" 
-                results.append(d_copy)
+            results.append(d_copy) 
 
     return results 
 
@@ -413,7 +380,7 @@ def main():
         with open(args.eval_output_file, "w") as f:
             json.dump(results, f, indent=2) 
     elif args.action.startswith("eval"):  
-        if args.mode not in ["pairwise", "checklist", "score"]:
+        if args.mode not in ["pairwise", "score"]:
             raise Exception("Not implemented yet!")
 
         bench_data = load_dataset(HF_BENCH_PATH, HF_BENCH_CONFIG, split="test")
@@ -441,57 +408,7 @@ def main():
                     f.write(json.dumps(line) + "\n")
         else:
             results = run_eval(results, args) 
-    elif args.action.startswith("arena"):
-        if args.mode != "pairwise":
-            raise Exception("Not implemented yet!")
-        print("loading the data from WildEval/WildBench")
-        bench_data = load_dataset(HF_BENCH_PATH, split="test")
-        print("loading the data from WildEval/WildBench-Results")
-        model_names = get_dataset_config_names(HF_RESULTS_PATH)
-        print(f"model_names={model_names}")
-        all_inference_results = {}
-        for model_name in tqdm(model_names, desc="Loading the inference results: "):
-            all_inference_results[model_name] = list(load_dataset(HF_RESULTS_PATH, model_name, split="train"))
-        eval_results = load_dataset("WildEval/WildBench-Evaluation", "all", split="train") 
-        covered_eval_ids = [x['eval_id'] for x in eval_results]
-        # ["Llama-2-7b-chat-hf.nosp", "Llama-2-13b-chat-hf.nosp", "Llama-2-70b-chat-hf.nosp"] # ["gemini-1.0-pro", "command"]
-        must_choose_models = MUST_CHOOSE_MODELS
-        boosting_models = BOOSTING_MODELS
-        deboosting_models = DEBOOSTING_MODELS
-        sampling_weights = {x: 1.0 for x in model_names}
-        candidates, references, histories, last_queries, checklists = [], [], [], [], []
-        # boosting some models 
-        for x in boosting_models:
-            sampling_weights[x] *= 10.0
-        for x in deboosting_models:
-            sampling_weights[x] *= 0.1
-        for index, b in tqdm(enumerate(list(bench_data)), desc="Composing the evaluation items: "):
-            sid = b["session_id"]
-            while True:
-                if must_choose_models:
-                    sampled_model_1 = random.choices(must_choose_models, k=1)[0]
-                else:
-                    sampled_model_1 = random.choices(model_names, weights=[sampling_weights[x] for x in model_names], k=1)[0]
-                model_names_without_model_1 = [x for x in model_names if x != sampled_model_1]
-                
-                sampled_model_2 = random.choices(model_names_without_model_1, weights=[sampling_weights[x] for x in model_names_without_model_1], k=1)[0]
-                eval_id = sid + "-" + sampled_model_1 + "-" + sampled_model_2
-                eval_id_ = sid + "-" + sampled_model_2 + "-" + sampled_model_1
-                if eval_id not in covered_eval_ids and eval_id_ not in covered_eval_ids:
-                    break
-            t = all_inference_results[sampled_model_1][index]
-            r = all_inference_results[sampled_model_2][index]
-            t["generator"] = sampled_model_1
-            r["generator"] = sampled_model_2
-            candidates.append(t)
-            references.append(r)
-            compose_eval_item(b, t, r, histories, last_queries, checklists)
-            covered_eval_ids.append(eval_id)
-        # print(len(candidates), len(references), len(histories), len(last_queries), len(checklists))
-        results = placeholder_generation(args, candidates, references, histories, last_queries, checklists)
-        # print(f"We have {len(results)} examples to evaluate!")
-        results = run_eval(results, args)            
-                
+     
     else:
         print("Not implemented yet!")
 
