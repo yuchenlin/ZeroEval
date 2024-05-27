@@ -1,8 +1,8 @@
 
 
-# 🦁 WildBench: Benchmarking LLMs with Challenging Tasks from Real Users in the Wild
+# 🦁 WildBench: Benchmarking LLMs with Challenging Tasks from Real Users in the Wild (v2)
 
-<div style="display: flex; justify-content: flex-start;"><img src="https://allenai.github.io/WildBench/wildbench_logo.png" alt="Banner" style="width: 40vw; min-width: 300px; max-width: 800px;"> </div>
+<div style="display: flex; justify-content: flex-start;"><img src="https://github.com/allenai/WildBench/blob/main/docs/gray_banner.png?raw=true" alt="Banner" style="width: 40vw; min-width: 300px; max-width: 800px;"> </div>
 
 
 ## Quick Links:
@@ -20,11 +20,10 @@ conda activate /net/nfs/mosaic/yuchenl/envs/wbnfs
 conda create -n wildbench python=3.10
 conda activate wildbench
 pip install vllm -U # pip install -e vllm 
-pip install openai==0.28.0
-pip install datasets tenacity
+pip install openai datasets tenacity
 pip install google-cloud-aiplatform cohere mistralai 
 pip install anthropic==0.19.0
-# export HF_HOME=/path/to/your/cache_dir/
+# export HF_HOME=/path/to/your/custom/cache_dir/
 ```
 
 <!-- 
@@ -36,7 +35,7 @@ export HF_HOME=/net/nfs/climate/tmp_cache/
  -->
 
 
-## How to add a new model to 🦁 WildBench benchmark
+## How to add a new model to 🦁 WildBench benchmark 
 
 > [!NOTE]
 > If your model is on HuggingFace and/or it is supported by [vLLM](https://github.com/vllm-project/vllm), please create an **Issue** here to tell us your model id, chat template, and your preferred sampling parameters. We will add the script to run your model to the repo here and run inference & evaluation for you. If you'd like to try to run inference on your model yourself or you'd like to create a PR for adding your model here, you can follow the instructions below. 

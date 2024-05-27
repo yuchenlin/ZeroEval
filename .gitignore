@@ -173,3 +173,13 @@ result_dirs/alpaca_eval/tmp_hf_example_test/Llama-2-7b-chat-hf.0-256.json
 # !evaluation/results_v2.0522/pairwise.v2/
 # !evaluation/results_v2.0522/pairwise.v2/eval=gpt-4-turbo-2024-04-09/
 !evaluation/results_v2.0522/pairwise.v2/eval=gpt-4-turbo-2024-04-09/ref=gpt-4-turbo-2024-04-09/*.json
+
+evaluation/eval_checklist_score_only.md
+evaluation/eval_checklist_score_reason.md
+evaluation/eval_template.md
+evaluation/eval_template.no_checklist.md
+
+# git rm --cached evaluation/eval_checklist_score_only.md
+# git rm --cached evaluation/eval_checklist_score_reason.md
+# git rm --cached evaluation/eval_template.md
+# git rm --cached evaluation/eval_template.no_checklist.md
