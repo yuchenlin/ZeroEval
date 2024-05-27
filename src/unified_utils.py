@@ -74,7 +74,8 @@ def load_eval_data(args, data_name=None, model_name=None):
     id_strs = []
     metadata = {}
     if data_name == "wild_bench":
-        dataset = load_dataset("allenai/WildBench", split="test")
+        # Note that this is changed to V2 on May 22.
+        dataset = load_dataset("allenai/WildBench", "v2", split="test")
         metadata = {"session_id": [], "primary_tag": []}
     elif data_name == "wild_bench_v2_internal":
         dataset = load_dataset("WildEval/WildBench-v2-dev", split="test")

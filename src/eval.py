@@ -18,9 +18,9 @@ from datasets import load_dataset, get_dataset_config_names
 import tiktoken
 from eval_constants import BOOSTING_MODELS, DEBOOSTING_MODELS, MUST_CHOOSE_MODELS
 
-# HF_BENCH_PATH = "allenai/WildBench"
-# HF_BENCH_CONFIG = "default"
-# HF_RESULTS_PATH = "WildEval/WildBench-Results"
+HF_BENCH_PATH = "allenai/WildBench"
+HF_BENCH_CONFIG = "v2"
+HF_RESULTS_PATH = "WildEval/WildBench-Results-V2.0522"
 
 # internal
 # HF_BENCH_PATH = "WildEval/WildBench-v2-dev"
@@ -33,9 +33,9 @@ from eval_constants import BOOSTING_MODELS, DEBOOSTING_MODELS, MUST_CHOOSE_MODEL
 # HF_RESULTS_PATH = "WildEval/WildBench-Results-V2" 
 
 # v2.0522 
-HF_BENCH_PATH = "WildEval/WildBench-V2"
-HF_BENCH_CONFIG = "v2.0522"
-HF_RESULTS_PATH = "WildEval/WildBench-Results-V2.0522" 
+# HF_BENCH_PATH = "WildEval/WildBench-V2"
+# HF_BENCH_CONFIG = "v2.0522"
+# HF_RESULTS_PATH = "WildEval/WildBench-Results-V2.0522" 
 
 
 print(f"Loading the benchmark data from {HF_BENCH_PATH} and the results from {HF_RESULTS_PATH}") 
