@@ -17,6 +17,8 @@
 - [ ] Gemini 1.5 series
 - [ ] Phi-3 series 
 
+Create an Issue if you'd like to add a model that you wanna see on our leaderboard!
+
 ## Installation
 
 <!-- 
