@@ -68,12 +68,12 @@ You should change the code to add these APIs, for example, gemini, cohere, claud
 <details>
     <summary style="font-weight: bold;">How do you evaluate the performance of LLMs on WildBench? （V2 Updates)</summary>
     <div style="font-size: 1.2em; margin-top: 30px;">
-        <h2>3.1. Checklists </h2> 
+        <h3>Checklists </h3> 
         For each task in WildBench (v2), we generate a checklist of 5-10 questions by prompting GPT-4-turbo and Claude-3-Opus to comprehensively evaluate the responses of different models. The checklist is example-specific and is designed to be interpretable and easy to verify. We combine the responses of GPT-4-turbo and Claude-3-Opus to finalize the checklists to reduce the bias of a single evaluator. 
         These checklists are used as part of the prompts for LLM judges to evaluate the responses of different models.
-        <h2>3.2. WB Score</h2> 
+        <h3>WB Score</h3> 
         To individually evaluate the performance of each model on WildBench, we prompt GPT-4-turbo to give a score form 1 to 10 for each model's response. The WB score is the average of the scores on 1024 examples, and re-scaled by (Y-5)*2, where Y is the original score outputted by GPT-4-turbo. Note that 5 represents that a response is boderline acceptable. 
-        <h2>3.3. WB Reward</h2> 
+        <h3>WB Reward</h3> 
         To evaluate two models (A and B) on a certain task of WildBench, we prompt GPT-4-turbo to choose the better response between two models. There are five choices: A is much/worse than B, A is slightly better/worse than B, and Tie.
         We define WB reward for Model A as follows:
         <ul>
@@ -84,7 +84,7 @@ You should change the code to add these APIs, for example, gemini, cohere, claud
         <li> Reward=<b>-100</b> if the A is <b>much worse</b> than B.</li>
         </ul>
         We use three reference models (GPT-4-turbo-0429, Claude-3-Opus, and Llama-2-70B-chat) to compute the rewards for each model. The final WB Reward-Mix is the average of the three rewards on 1024 examples.
-        <h2>3.4. Mitigating Length Bias</h2>  
+        <h3>3.4. Mitigating Length Bias</h3>  
         As many studies have shown, LLM judges tend to prefer longer responses. To mitigate this bias, we propose a simple and customizable length penalty method. <b>We convert Slightly Win/Lose to be a Tie if the winner is longer than the loser by a certain length threshold (K characters).</b> We set K=50 by default, but you can customize it on our leaderboard UI. Note that <b>K= ∞ will disable the length penalty.</b>
     </div>
 </details>
@@ -130,9 +130,23 @@ The final formatted results will be saved as follows:
 
 4. View the results
 
-- View Scores: 
 - WB Reward on GPT-4-turbo: `python src/view_wb_eval.py pairwise-gpt4t 500`
 - WB Reward on Claude-3-Haiku: `python src/view_wb_eval.py pairwise-haiku 500`
 - WB Reward on Llama-2-70b-chat: `python src/view_wb_eval.py pairwise-llama 500`
 - WB Score on Llama-2-70b-chat: `python src/view_wb_eval.py score`
+
+Note that the 2nd argument is K, the length margin for the length penalty. You can set it to -1 or leave it empty to disable the length penalty.
+
+ 
+
+## Citation
+
+```bibtex
+@misc{wildbench2024,
+	title        = {WildBench: Benchmarking Language Models with Challenging Tasks from Real Users in the Wild},
+	author       = {Bill Yuchen Lin and Khyathi Chandu and Faeze Brahman and Yuntian Deng and Abhilasha Ravichander and Valentina Pyatkin and Ronan Le Bras and Yejin Choi},
+	year         = 2024,
+	url			 = {https://huggingface.co/spaces/allenai/WildBench},
+}
+```
 
