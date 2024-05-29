@@ -91,9 +91,9 @@ You should change the code to add these APIs, for example, gemini, cohere, claud
 
 ### Run scripts 
 
-#### OpenAI's Batch Mode (Fast, Cheap, and Convenient)
+We suggest to use OpenAI's [Batch Mode](https://platform.openai.com/docs/guides/batch) for evaluation, which is faster, cheaper and more reliable. 
 
-1. Generate the `*.batch_submit.jsonl` files.
+#### 1. Generate the `*.batch_submit.jsonl` files.
 
 ```bash
 MODEL="Yi-1.5-9B-Chat-Test" # your model name
@@ -105,7 +105,7 @@ bash evaluation/run_eval_v2_batch.sh $MODEL Llama-2-70b-chat-hf # pairwise eval 
 ```
 You can look at the batch-submit files to see if they are correct.
 
-2. Submit the batch jobs to OpenAI
+#### 2. Submit the batch jobs to OpenAI
 
 ```bash
 MODEL="Yi-1.5-9B-Chat-Test" # your model name
@@ -116,7 +116,7 @@ python src/openai_batch_eval/submit_batch.py eval_results/v2.0522/score.v2/eval=
 ```
 Each of the above command will output a batch id: `Batch submitted. ID: batch_ZiiPf06AvELbqjPhf6qxJNls` which you can use to check the status of the batch job.
 
-3. Retrieve the Batch Result
+#### 3. Retrieve the Batch Result
 
 ```bash
 python src/openai_batch_eval/check_batch_status_with_id.py batch_ZiiPf06AvELbqjPhf6qxJNls
@@ -128,7 +128,7 @@ The final formatted results will be saved as follows:
 - `eval_results/v2.0522/pairwise.v2/eval=gpt-4-turbo-2024-04-09/ref=Llama-2-70b-chat-hf/${MODEL}.json`
 - `eval_results/v2.0522/score.v2/eval=gpt-4-turbo-2024-04-09/${MODEL}.json`
 
-4. View the results
+#### 4. View the results
 
 - WB Reward on GPT-4-turbo: `python src/view_wb_eval.py pairwise-gpt4t 500`
 - WB Reward on Claude-3-Haiku: `python src/view_wb_eval.py pairwise-haiku 500`
