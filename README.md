@@ -152,10 +152,10 @@ To analyze the correlation between WildBench (v2) and human evaluation, we consi
 
 ```bibtex
 @misc{wildbench2024,
-	title        = {WildBench: Benchmarking Language Models with Challenging Tasks from Real Users in the Wild},
-	author       = {Bill Yuchen Lin and Khyathi Chandu and Faeze Brahman and Yuntian Deng and Abhilasha Ravichander and Valentina Pyatkin and Ronan Le Bras and Yejin Choi},
-	year         = 2024,
-	url			 = {https://huggingface.co/spaces/allenai/WildBench},
+	title= {WildBench: Benchmarking Language Models with Challenging Tasks from Real Users in the Wild},
+	author = {Bill Yuchen Lin and Khyathi Chandu and Faeze Brahman and Yuntian Deng and Abhilasha Ravichander and Valentina Pyatkin and Ronan Le Bras and Yejin Choi},
+	year = 2024,
+	url	= {https://huggingface.co/spaces/allenai/WildBench},
 }
 ```
 
