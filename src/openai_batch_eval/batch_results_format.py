@@ -119,3 +119,4 @@ for item in results:
 output_file = result_file.replace(".batch_results.jsonl", ".json")
 with open(output_file, "w") as f:
     json.dump(results_json, f, indent=2)
+    print(f"Output file written to {output_file}")

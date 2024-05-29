@@ -11,11 +11,11 @@ total_ex=1024
 if [ "$use_checklist" = "True" ]; then
     echo "Using checklist" 
     eval_template="evaluation/eval_template.md"
-    eval_folder="evaluation/results_v2.0522/eval=${gpt_eval_name}/ref=${ref_name}/"
+    eval_folder="eval_results/v2.0522/eval=${gpt_eval_name}/ref=${ref_name}/"
 else
     echo "Not using checklist"
     eval_template="evaluation/eval_template.no_checklist.md"
-    eval_folder="evaluation/results_v2.0522/eval=${gpt_eval_name}_woCL/ref=${ref_name}/"
+    eval_folder="eval_results/v2.0522/eval=${gpt_eval_name}_woCL/ref=${ref_name}/"
 fi
 
 mkdir -p $eval_folder

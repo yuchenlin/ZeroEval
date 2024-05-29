@@ -19,7 +19,7 @@ batch_input_file = client.files.create(
   purpose="batch"
 )
 batch_input_file_id = batch_input_file.id
-print(f"Batch input file created. ID: {batch_input_file_id}")
+# print(f"Batch input file created. ID: {batch_input_file_id}")
 
 rq = client.batches.create(
     input_file_id=batch_input_file_id,

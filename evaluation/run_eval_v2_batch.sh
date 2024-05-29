@@ -8,7 +8,7 @@ gpt_eval_name=${3:-"gpt-4-turbo-2024-04-09"} # evaluator name  # gpt-4-0125-prev
 
 
 eval_template="evaluation/eval_template.pairwise.v2.md"
-eval_folder="evaluation/results_v2.0522/pairwise.v2/eval=${gpt_eval_name}/ref=${ref_name}/"
+eval_folder="eval_results/v2.0522/pairwise.v2/eval=${gpt_eval_name}/ref=${ref_name}/"
 echo "Evaluating $model_name vs $ref_name using $gpt_eval_name with $eval_template"
 
 

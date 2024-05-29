@@ -7,7 +7,7 @@ total_ex=1024
 
 
 eval_template="evaluation/eval_template.score.v2.md"
-eval_folder="evaluation/results_v2.0522/score.v2/eval=${gpt_eval_name}/"
+eval_folder="eval_results/v2.0522/score.v2/eval=${gpt_eval_name}/"
 echo "Evaluating $model_name using $gpt_eval_name with $eval_template"
 mkdir -p $eval_folder 
 

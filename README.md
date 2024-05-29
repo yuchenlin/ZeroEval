@@ -60,21 +60,79 @@ You should change the code to add these APIs, for example, gemini, cohere, claud
 
 
 
-### Next: How to run the benchmark
+## Evaluation 
 
 
+### Metrics
 
-<!-- You can run the benchmark by running the scripts under `scripts` folder. For example, `bash scripts/zephyr-7b-beta.sh`. This will generate either a single result file in the specified `output_dir`. Note that if you use the shard mode, the script will merge the results into a single file later when all subprocesses are finished.
+<details>
+    <summary style="font-weight: bold;">How do you evaluate the performance of LLMs on WildBench? （V2 Updates)</summary>
+    <div style="font-size: 1.2em; margin-top: 30px;">
+        <h2>3.1. Checklists </h2> 
+        For each task in WildBench (v2), we generate a checklist of 5-10 questions by prompting GPT-4-turbo and Claude-3-Opus to comprehensively evaluate the responses of different models. The checklist is example-specific and is designed to be interpretable and easy to verify. We combine the responses of GPT-4-turbo and Claude-3-Opus to finalize the checklists to reduce the bias of a single evaluator. 
+        These checklists are used as part of the prompts for LLM judges to evaluate the responses of different models.
+        <h2>3.2. WB Score</h2> 
+        To individually evaluate the performance of each model on WildBench, we prompt GPT-4-turbo to give a score form 1 to 10 for each model's response. The WB score is the average of the scores on 1024 examples, and re-scaled by (Y-5)*2, where Y is the original score outputted by GPT-4-turbo. Note that 5 represents that a response is boderline acceptable. 
+        <h2>3.3. WB Reward</h2> 
+        To evaluate two models (A and B) on a certain task of WildBench, we prompt GPT-4-turbo to choose the better response between two models. There are five choices: A is much/worse than B, A is slightly better/worse than B, and Tie.
+        We define WB reward for Model A as follows:
+        <ul>
+        <li> Reward=<b>100</b> if the A is <b>much better</b> than B.</li>
+        <li> Reward=<b>50</b> if the A is <b>slightly better</b> than B.</li>
+        <li> Reward=<b>0</b> if there is a <b>Tie</b>.</li>
+        <li> Reward=<b>-50</b> if the A is <b>slightly worse</b> than B.</li>
+        <li> Reward=<b>-100</b> if the A is <b>much worse</b> than B.</li>
+        </ul>
+        We use three reference models (GPT-4-turbo-0429, Claude-3-Opus, and Llama-2-70B-chat) to compute the rewards for each model. The final WB Reward-Mix is the average of the three rewards on 1024 examples.
+        <h2>3.4. Mitigating Length Bias</h2>  
+        As many studies have shown, LLM judges tend to prefer longer responses. To mitigate this bias, we propose a simple and customizable length penalty method. <b>We convert Slightly Win/Lose to be a Tie if the winner is longer than the loser by a certain length threshold (K characters).</b> We set K=50 by default, but you can customize it on our leaderboard UI. Note that <b>K= ∞ will disable the length penalty.</b>
+    </div>
+</details>
 
+### Run scripts 
 
-After you tested your script, you can create a PR so we will run your script on our side and merge it into the benchmark. (Note that we may need to modify the script to make it work on our side, and we will let you know if we need to do so. Also, due to the non-deterministic nature of LLMs, our results may not be the same as yours. ) -->
+#### OpenAI's Batch Mode (Fast, Cheap, and Convenient)
 
+1. Generate the `*.batch_submit.jsonl` files.
 
+```bash
+MODEL="Yi-1.5-9B-Chat-Test" # your model name
+bash evaluation/run_eval_v2_batch.score.sh $MODEL # individual scoring 
+bash evaluation/run_eval_v2_batch.sh $MODEL gpt-4-turbo-2024-04-09 # pairwise eval with gpt-4-turbo
+bash evaluation/run_eval_v2_batch.sh $MODEL claude-3-haiku-20240307 # pairwise eval with Claude-3-Opus
+bash evaluation/run_eval_v2_batch.sh $MODEL Llama-2-70b-chat-hf # pairwise eval with Llama-2-70b-chat
+# Now you should have the .batch_submit.jsonl files in the output_dir
+```
+You can look at the batch-submit files to see if they are correct.
 
+2. Submit the batch jobs to OpenAI
 
+```bash
+MODEL="Yi-1.5-9B-Chat-Test" # your model name
+python src/openai_batch_eval/submit_batch.py eval_results/v2.0522/pairwise.v2/eval=gpt-4-turbo-2024-04-09/ref=gpt-4-turbo-2024-04-09/$MODEL.batch-submit.jsonl
+python src/openai_batch_eval/submit_batch.py eval_results/v2.0522/pairwise.v2/eval=gpt-4-turbo-2024-04-09/ref=claude-3-haiku-20240307/$MODEL.batch-submit.jsonl
+python src/openai_batch_eval/submit_batch.py eval_results/v2.0522/pairwise.v2/eval=gpt-4-turbo-2024-04-09/ref=Llama-2-70b-chat-hf/$MODEL.batch-submit.jsonl
+python src/openai_batch_eval/submit_batch.py eval_results/v2.0522/score.v2/eval=gpt-4-turbo-2024-04-09/$MODEL.batch-submit.jsonl
+```
+Each of the above command will output a batch id: `Batch submitted. ID: batch_ZiiPf06AvELbqjPhf6qxJNls` which you can use to check the status of the batch job.
 
+3. Retrieve the Batch Result
 
+```bash
+python src/openai_batch_eval/check_batch_status_with_id.py batch_ZiiPf06AvELbqjPhf6qxJNls
+# repeat this command until all batch jobs are finished
+```
+The final formatted results will be saved as follows:
+- `eval_results/v2.0522/pairwise.v2/eval=gpt-4-turbo-2024-04-09/ref=gpt-4-turbo-2024-04-09/${MODEL}.json`
+- `eval_results/v2.0522/pairwise.v2/eval=gpt-4-turbo-2024-04-09/ref=claude-3-haiku-20240307/${MODEL}.json`
+- `eval_results/v2.0522/pairwise.v2/eval=gpt-4-turbo-2024-04-09/ref=Llama-2-70b-chat-hf/${MODEL}.json`
+- `eval_results/v2.0522/score.v2/eval=gpt-4-turbo-2024-04-09/${MODEL}.json`
 
+4. View the results
 
-
+- View Scores: 
+- WB Reward on GPT-4-turbo: `python src/view_wb_eval.py pairwise-gpt4t 500`
+- WB Reward on Claude-3-Haiku: `python src/view_wb_eval.py pairwise-haiku 500`
+- WB Reward on Llama-2-70b-chat: `python src/view_wb_eval.py pairwise-llama 500`
+- WB Score on Llama-2-70b-chat: `python src/view_wb_eval.py score`
 

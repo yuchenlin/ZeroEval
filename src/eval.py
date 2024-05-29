@@ -20,7 +20,7 @@ from eval_constants import BOOSTING_MODELS, DEBOOSTING_MODELS, MUST_CHOOSE_MODEL
 
 HF_BENCH_PATH = "allenai/WildBench"
 HF_BENCH_CONFIG = "v2"
-HF_RESULTS_PATH = "WildEval/WildBench-Results-V2.0522"
+HF_RESULTS_PATH = "allenai/WildBench-V2-Model-Outputs"
  
 
 print(f"Loading the benchmark data from {HF_BENCH_PATH} and the results from {HF_RESULTS_PATH}") 
@@ -38,7 +38,7 @@ def get_args():
     parser.add_argument("--eval_output_file", type=str, required=True)
     parser.add_argument("--start_idx", type=int, default=0)
     parser.add_argument("--end_idx", type=int, default=-1)  
-    parser.add_argument("--save_interval", type=int, default=3)
+    parser.add_argument("--save_interval", type=int, default=1)
     
     # Prompt configs 
     parser.add_argument("--max_words_to_eval", type=int, default=1000)
@@ -53,6 +53,8 @@ def get_args():
     parser.add_argument("--batch_mode", action="store_true")
     
     parser.add_argument("--seed", type=int, default=42)
+
+    parser.add_argument("--local_result_file", type=str, default=None)
     
     args = parser.parse_args() 
     if args.api_key is not None:
@@ -384,7 +386,22 @@ def main():
             raise Exception("Not implemented yet!")
 
         bench_data = load_dataset(HF_BENCH_PATH, HF_BENCH_CONFIG, split="test")
-        target_model_data = load_dataset(HF_RESULTS_PATH, args.target_model_name, split="train")
+        
+        if args.local_result_file is not None:
+            with open(args.local_result_file, "r") as f:
+                target_model_data = json.load(f)
+                print(f"Loaded the local results from {args.local_result_file}")
+        else:
+            try:
+                target_model_data = load_dataset(HF_RESULTS_PATH, args.target_model_name, split="train")
+            except Exception as e:
+                print(f"Failed to load the target model data from {HF_RESULTS_PATH}/{args.target_model_name}")
+                if args.local_result_file is None:
+                    args.local_result_file = f"result_dirs/wild_bench_v2/{args.target_model_name}.json"
+                print(f"Try loading from the local file {args.local_result_file}")
+                with open(args.local_result_file, "r") as f:
+                    target_model_data = json.load(f)
+                    print(f"Loaded the local results from {args.local_result_file}")
         if args.mode == "pairwise":
             ref_model_data = load_dataset(HF_RESULTS_PATH, args.ref_model_name, split="train")
         else:
