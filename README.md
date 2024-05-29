@@ -137,7 +137,16 @@ The final formatted results will be saved as follows:
 
 Note that the 2nd argument is K, the length margin for the length penalty. You can set it to -1 or leave it empty to disable the length penalty.
 
- 
+
+
+## Correlation Analysis: How well does WildBench (v2) correlates with Human Evaluation?
+To analyze the correlation between WildBench (v2) and human evaluation, we consider the correlation between different metrics and human-based Chatbot Arena Elo scores (until 2024-05-20 on Hard-English split).  We find that the WB Reward-Mix has the highest correlation. Please find the pearson correlation coefficients below:
+<img src="https://huggingface.co/spaces/allenai/WildBench/resolve/main/assets/wb_corr.png" width="95%" /> 
+
+- Top Models: `['gpt-4-turbo-2024-04-09', 'claude-3-opus-20240229', 'Meta-Llama-3-70B-Instruct', 'claude-3-sonnet-20240229', 'mistral-large-2402', 'Meta-Llama-3-8B-Instruct']`
+- All Models: `['gpt-4-turbo-2024-04-09', 'claude-3-opus-20240229', 'Meta-Llama-3-70B-Instruct', 'Qwen1.5-72B-Chat', 'claude-3-sonnet-20240229', 'mistral-large-2402', 'dbrx-instruct@together', 'Mixtral-8x7B-Instruct-v0.1', 'Meta-Llama-3-8B-Instruct', 'tulu-2-dpo-70b', 'Llama-2-70b-chat-hf', 'Llama-2-7b-chat-hf', 'gemma-7b-it', 'gemma-2b-it']`
+
+
 
 ## Citation
 
