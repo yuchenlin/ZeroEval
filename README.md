@@ -10,6 +10,13 @@
 - [HF Dataset](https://huggingface.co/datasets/allenai/WildBench)
 
 
+## Models pending to evaluate 
+
+- [ ] Hermes Theta
+- [ ] Command-R+
+- [ ] Gemini 1.5 series
+- [ ] Phi-3 series 
+
 ## Installation
 
 <!-- 
