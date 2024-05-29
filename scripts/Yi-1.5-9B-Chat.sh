@@ -10,8 +10,8 @@ output_dir="result_dirs/wild_bench_v2/"
 
 # Data-parallellism
 start_gpu=0
-num_gpus=1
-n_shards=4
+num_gpus=1 # per shard
+n_shards=4 # total number of shards (Number of GPUs used = num_gpus * n_shards)
 shard_size=256
 shards_dir="${output_dir}/tmp_${model_pretty_name}"
 for ((start = 0, end = (($shard_size)), gpu = $start_gpu; gpu < $n_shards+$start_gpu; start += $shard_size, end += $shard_size, gpu++)); do

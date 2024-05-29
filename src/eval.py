@@ -41,7 +41,7 @@ def get_args():
     parser.add_argument("--save_interval", type=int, default=3)
     
     # Prompt configs 
-    parser.add_argument("--max_words_to_eval", type=int, default=-1)
+    parser.add_argument("--max_words_to_eval", type=int, default=1000)
     
     # OpenAI Configs
     parser.add_argument("--api_key", type=str, default=None)

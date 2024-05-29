@@ -1,6 +1,5 @@
 !evaluation/results_v2.0522/pairwise.v2/eval=gpt-4-turbo-2024-04-09/ref=gpt-4-turbo-2024-04-09/*.json
 local_scripts/
-result_dirs/
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -183,3 +182,10 @@ evaluation/eval_template.no_checklist.md
 # git rm --cached evaluation/eval_checklist_score_reason.md
 # git rm --cached evaluation/eval_template.md
 # git rm --cached evaluation/eval_template.no_checklist.md
+result_dirs/wild_bench/
+result_dirs/wild_bench_v2_dev/
+result_dirs/wild_bench_v2_dev.0522/
+result_dirs/wild_bench_v2_internal/
+# !result_dirs/wild_bench_v2/
+result_dirs/wild_bench_v2/tmp_*
+
