@@ -12,7 +12,7 @@
 
 ## Models pending to evaluate 
 
-- [ ] Hermes Theta
+- [ ] NousResearch/Hermes-2-Theta-Llama-3-8B
 - [ ] Command-R+
 - [ ] Gemini 1.5 series
 - [ ] Phi-3 series 
