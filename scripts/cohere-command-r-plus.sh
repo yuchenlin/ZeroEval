@@ -1,8 +1,8 @@
 # export COHERE_API_KEY=your_cohere_api_key
 model_name="cohere/command-r-plus"
 model_pretty_name="command-r-plus"
-output_dir="result_dirs/wild_bench/"
-TEMP=0; TOP_P=1.0; MAX_TOKENS=2048;
+output_dir="result_dirs/wild_bench_v2/"
+TEMP=0; TOP_P=1.0; MAX_TOKENS=4096;
 
 # shard_size should be 1024 // n_shards
 n_shards=8
