@@ -10,9 +10,9 @@
 - [HF Dataset](https://huggingface.co/datasets/allenai/WildBench)
 
 
-## Todos
+### Todos
 
-### Models pending to test 
+#### Models pending to test 
 
 - [ ] NousResearch/Hermes-2-Theta-Llama-3-8B
 - [ ] Command-R+
@@ -24,12 +24,12 @@
 
 Create an Issue if you'd like to add a model that you wanna see on our leaderboard!
 
-### Code updates
+#### Code updates
 
 - [ ] commandline for one-click evaluation
 - [ ] support models via openai-style apis
 
-### Leadeboard updates
+#### Leadeboard updates
 
 - [ ] Show task categorized results  
 
