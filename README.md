@@ -15,7 +15,8 @@
 - [ ] NousResearch/Hermes-2-Theta-Llama-3-8B
 - [ ] Command-R+
 - [ ] Gemini 1.5 series
-- [ ] Phi-3 series 
+- [ ] Phi-3 series
+- [ ] Yi-Large (via OpenAI-like APIs)
 
 Create an Issue if you'd like to add a model that you wanna see on our leaderboard!
 
