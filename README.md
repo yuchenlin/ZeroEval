@@ -10,7 +10,9 @@
 - [HF Dataset](https://huggingface.co/datasets/allenai/WildBench)
 
 
-## Models pending to evaluate 
+## Todos
+
+### Models pending to test 
 
 - [ ] NousResearch/Hermes-2-Theta-Llama-3-8B
 - [ ] Command-R+
@@ -18,8 +20,18 @@
 - [ ] Phi-3 series
 - [ ] Reka Flash/Core
 - [ ] Yi-Large (via OpenAI-like APIs)
+- [ ] SimPO (top models on alpaca_eval)      
 
 Create an Issue if you'd like to add a model that you wanna see on our leaderboard!
+
+### Code updates
+
+- [ ] commandline for one-click evaluation
+- [ ] support models via openai-style apis
+
+### Leadeboard updates
+
+- [ ] Show task categorized results  
 
 ## Installation
 
