@@ -86,6 +86,9 @@ You should change the code to add these APIs, for example, gemini, cohere, claud
 ## Evaluation 
 
 
+> [!NOTE]
+> We are working on making a more convenient way to run the following bash commands. Here we show all deatiled steps to make things more transparent. If you'd like to have your model results verified and published on our leaderboard, please create an issue telling us and we'll do the inference and evaluation for you. 
+
 ### Metrics
 
 <details>
