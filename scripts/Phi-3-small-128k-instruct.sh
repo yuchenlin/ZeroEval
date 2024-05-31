@@ -1,5 +1,7 @@
-model_name="01-ai/Yi-1.5-34B-Chat"
-model_pretty_name="Yi-1.5-34B-Chat"
+model_name="microsoft/Phi-3-small-128k-instruct"
+model_pretty_name="Phi-3-small-128k-instruct" 
+
+  
 TEMP=0; TOP_P=1.0; MAX_TOKENS=4096; 
 gpu="0,1,2,3"; num_gpus=4; batch_size=4;
 
@@ -10,11 +12,12 @@ CUDA_VISIBLE_DEVICES=$gpu \
 python src/unified_infer.py \
     --data_name wild_bench \
     --model_name $model_name \
-    --use_hf_conv_template --use_imend_stop \
+    --max_model_len 40960 \
+    --use_hf_conv_template \
     --download_dir $CACHE_DIR \
     --tensor_parallel_size $num_gpus \
     --dtype bfloat16 \
     --top_p $TOP_P --temperature $TEMP \
     --batch_size $batch_size --max_tokens $MAX_TOKENS \
-    --output_folder $output_dir/ \
+    --output_folder $output_dir/ 
       

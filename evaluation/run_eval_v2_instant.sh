@@ -8,15 +8,9 @@ num_shards=${5:-8} # shards
 
 total_ex=1024
 
-if [ "$use_checklist" = "True" ]; then
-    echo "Using checklist" 
-    eval_template="evaluation/eval_template.md"
-    eval_folder="eval_results/v2.0522/eval=${gpt_eval_name}/ref=${ref_name}/"
-else
-    echo "Not using checklist"
-    eval_template="evaluation/eval_template.no_checklist.md"
-    eval_folder="eval_results/v2.0522/eval=${gpt_eval_name}_woCL/ref=${ref_name}/"
-fi
+eval_template="evaluation/eval_template.pairwise.v2.md"
+eval_folder="eval_results/v2.0522/pairwise.v2/eval=${gpt_eval_name}/ref=${ref_name}/"
+echo "Evaluating $model_name vs $ref_name using $gpt_eval_name with $eval_template"
 
 mkdir -p $eval_folder
 

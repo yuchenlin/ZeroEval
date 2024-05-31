@@ -245,9 +245,11 @@ def retry_handler(retry_limit=10):
                     elif isinstance(e, OPENAI_API_ERROR):
                         # this is because the prompt contains content that is filtered by OpenAI API
                         print("API error:", str(e))
-                        if "Invalid" in str(e):
+                        if "invalid" in str(e).lower():
                             print("Invalid request, returning.")
+                            retried = retry_limit
                             raise e
+                        
                     else:
                         err_msg = str(e)
                         print(e.__class__.__name__+":", err_msg)

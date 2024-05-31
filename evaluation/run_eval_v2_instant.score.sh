@@ -40,8 +40,7 @@ else
             --eval_template $eval_template \
             --target_model_name $model_name \
             --eval_output_file $eval_file \
-            --start_idx $start --end_idx $end \
-            --overwrite &
+            --start_idx $start --end_idx $end &
     done 
     # Wait for all background processes to finish
     wait
