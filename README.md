@@ -115,17 +115,31 @@ You should change the code to add these APIs, for example, gemini, cohere, claud
     </div>
 </details>
 
-### Run scripts 
+### Run evaluation scripts 
 
 We suggest to use OpenAI's [Batch Mode](https://platform.openai.com/docs/guides/batch) for evaluation, which is faster, cheaper and more reliable. 
 
 You can:
 1. running `bash evaluation/run_all_eval_batch.sh ${MODEL_PRETTY_NAME}`to submmit the eval jobs.
-2. running `python src/openai_batch_eval/check_batch_status_with_model_name.py ${MODEL_PRETTY_NAME}` to track the status of the batch jobs, and download the results when batch jobs are finished.
+2. running `python src/openai_batch_eval/check_batch_status_with_model_name.py ${MODEL_PRETTY_NAME}` to track the status of the batch jobs.
+3. Step 2 will download the results when batch jobs are finished, and then you can view the results (see next section).
 
-Note that `MODEL_PRETTY_NAME` should be the same as the script name without the `.sh` extension.
-If you'd like to have more control on the evaluation methods, the detail steps are illustrated in [EVAL.md](EVAL.md).
+***Remarks***
+- `${MODEL_PRETTY_NAME}` should be the same as the script name without the `.sh` extension.
+- You can also track the progress of your batch jobs here: [https://platform.openai.com/batches](https://platform.openai.com/batches). The maximum turnaround time is 24 hours, but it is usually much faster depending on the queue and rate limits. 
+- If you'd like to have more control on the evaluation methods, the detail steps are illustrated in [EVAL.md](EVAL.md).
 
+
+### View the results
+
+When Step 3 in the above section is finished, you can view the results by running the following commands:
+
+- WB Reward on GPT-4-turbo: `python src/view_wb_eval.py pairwise-gpt4t 500`
+- WB Reward on Claude-3-Haiku: `python src/view_wb_eval.py pairwise-haiku 500`
+- WB Reward on Llama-2-70b-chat: `python src/view_wb_eval.py pairwise-llama 500`
+- WB Score on Llama-2-70b-chat: `python src/view_wb_eval.py score`
+
+The 2nd argument is `K`, the length margin for the length penalty. You can set it to -1 or leave it empty to disable the length penalty.
 
 
 ## Correlation Analysis: How well does WildBench (v2) correlate with human preferences?

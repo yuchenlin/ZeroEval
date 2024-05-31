@@ -47,4 +47,5 @@ The final formatted results will be saved as follows:
 - WB Reward on Llama-2-70b-chat: `python src/view_wb_eval.py pairwise-llama 500`
 - WB Score on Llama-2-70b-chat: `python src/view_wb_eval.py score`
 
-Note that the 2nd argument is K, the length margin for the length penalty. You can set it to -1 or leave it empty to disable the length penalty.
+
+The 2nd argument is `K`, the length margin for the length penalty. You can set it to -1 or leave it empty to disable the length penalty.
