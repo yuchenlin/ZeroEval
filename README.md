@@ -15,12 +15,13 @@
 #### Models pending to test 
 
 - [ ] NousResearch/Hermes-2-Theta-Llama-3-8B
-- [ ] Command-R+
-- [ ] Gemini 1.5 series
+- [ ] princeton-nlp/Llama-3-Instruct-8B-SimPO   
+- [ ] ZhangShenao/SELM-Zephyr-7B-iter-3
+- [ ] Command-R-plus
 - [ ] Phi-3 series
+- [ ] Gemini 1.5 series
 - [ ] Reka Flash/Core
 - [ ] Yi-Large (via OpenAI-like APIs)
-- [ ] SimPO (top models on alpaca_eval)      
 
 Create an Issue if you'd like to add a model that you wanna see on our leaderboard!
 
@@ -119,50 +120,7 @@ You should change the code to add these APIs, for example, gemini, cohere, claud
 
 We suggest to use OpenAI's [Batch Mode](https://platform.openai.com/docs/guides/batch) for evaluation, which is faster, cheaper and more reliable. 
 
-#### 1. Generate the `*.batch_submit.jsonl` files.
-
-```bash
-MODEL="Yi-1.5-9B-Chat-Test" # your model name
-bash evaluation/run_eval_v2_batch.score.sh $MODEL # individual scoring 
-bash evaluation/run_eval_v2_batch.sh $MODEL gpt-4-turbo-2024-04-09 # pairwise eval with gpt-4-turbo
-bash evaluation/run_eval_v2_batch.sh $MODEL claude-3-haiku-20240307 # pairwise eval with Claude-3-Opus
-bash evaluation/run_eval_v2_batch.sh $MODEL Llama-2-70b-chat-hf # pairwise eval with Llama-2-70b-chat
-# Now you should have the .batch_submit.jsonl files in the output_dir
-```
-You can look at the batch-submit files to see if they are correct.
-
-#### 2. Submit the batch jobs to OpenAI
-
-```bash
-MODEL="Yi-1.5-9B-Chat-Test" # your model name
-python src/openai_batch_eval/submit_batch.py eval_results/v2.0522/pairwise.v2/eval=gpt-4-turbo-2024-04-09/ref=gpt-4-turbo-2024-04-09/$MODEL.batch-submit.jsonl
-python src/openai_batch_eval/submit_batch.py eval_results/v2.0522/pairwise.v2/eval=gpt-4-turbo-2024-04-09/ref=claude-3-haiku-20240307/$MODEL.batch-submit.jsonl
-python src/openai_batch_eval/submit_batch.py eval_results/v2.0522/pairwise.v2/eval=gpt-4-turbo-2024-04-09/ref=Llama-2-70b-chat-hf/$MODEL.batch-submit.jsonl
-python src/openai_batch_eval/submit_batch.py eval_results/v2.0522/score.v2/eval=gpt-4-turbo-2024-04-09/$MODEL.batch-submit.jsonl
-```
-Each of the above command will output a batch id: `Batch submitted. ID: batch_ZiiPf06AvELbqjPhf6qxJNls` which you can use to check the status of the batch job.
-
-#### 3. Retrieve the Batch Result
-
-```bash
-python src/openai_batch_eval/check_batch_status_with_id.py batch_ZiiPf06AvELbqjPhf6qxJNls
-# repeat this command until all batch jobs are finished
-```
-The final formatted results will be saved as follows:
-- `eval_results/v2.0522/pairwise.v2/eval=gpt-4-turbo-2024-04-09/ref=gpt-4-turbo-2024-04-09/${MODEL}.json`
-- `eval_results/v2.0522/pairwise.v2/eval=gpt-4-turbo-2024-04-09/ref=claude-3-haiku-20240307/${MODEL}.json`
-- `eval_results/v2.0522/pairwise.v2/eval=gpt-4-turbo-2024-04-09/ref=Llama-2-70b-chat-hf/${MODEL}.json`
-- `eval_results/v2.0522/score.v2/eval=gpt-4-turbo-2024-04-09/${MODEL}.json`
-
-#### 4. View the results
-
-- WB Reward on GPT-4-turbo: `python src/view_wb_eval.py pairwise-gpt4t 500`
-- WB Reward on Claude-3-Haiku: `python src/view_wb_eval.py pairwise-haiku 500`
-- WB Reward on Llama-2-70b-chat: `python src/view_wb_eval.py pairwise-llama 500`
-- WB Score on Llama-2-70b-chat: `python src/view_wb_eval.py score`
-
-Note that the 2nd argument is K, the length margin for the length penalty. You can set it to -1 or leave it empty to disable the length penalty.
-
+The detail steps are illustrated in [EVAL.md](EVAL.md).
 
 
 ## Correlation Analysis: How well does WildBench (v2) correlate with human preferences?
