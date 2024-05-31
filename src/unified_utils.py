@@ -287,6 +287,7 @@ def openai_chat_request(
     n: int=1,
     messages: List[dict]=None,
     stop: List[str]=None,
+    json_mode: bool=False,
     **kwargs,
 ) -> List[str]:
     """
@@ -314,6 +315,7 @@ def openai_chat_request(
     if openai.__version__ == "0.28.0":
         response = openai.ChatCompletion.create(
             model=model,
+            response_format = {"type": "json_object"} if json_mode else None,
             engine=engine,
             messages=messages,
             temperature=temperature,
@@ -337,6 +339,7 @@ def openai_chat_request(
         # print(f"Requesting chat completion from OpenAI API with model {model}")
         response = client.chat.completions.create(
             model=model, 
+            response_format = {"type": "json_object"} if json_mode else None,
             messages=messages,
             temperature=temperature,
             max_tokens=max_tokens,

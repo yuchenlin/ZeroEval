@@ -188,6 +188,18 @@ evaluation/eval_template.no_checklist.md
 # result_dirs/wild_bench_v2_internal/
 # # !result_dirs/wild_bench_v2/
 # result_dirs/wild_bench_v2/tmp_*
+*.0-128.json
+*.128-256.json
+*.256-384.json
+*.384-512.json
+*.512-640.json
+*.640-768.json
+*.768-896.json
+*.896-1024.json
 
+*.0-256.json
+*.256-512.json
+*.512-768.json
+*.768-1024.json
 
 result_dirs/

@@ -9,14 +9,18 @@ from string import Template
 from tqdm import tqdm
 from threading import get_ident
 from concurrent.futures import ThreadPoolExecutor
-from eval_utils import (
-    retry_handler, 
+# from eval_utils import (
+    # retry_handler, 
+    # openai_chat_request,
+    # anthropic_chat_request,
+# )
+from unified_utils import (
+    retry_handler,
     openai_chat_request,
     anthropic_chat_request,
 )
 from datasets import load_dataset, get_dataset_config_names
-import tiktoken
-from eval_constants import BOOSTING_MODELS, DEBOOSTING_MODELS, MUST_CHOOSE_MODELS
+import tiktoken 
 
 HF_BENCH_PATH = "allenai/WildBench"
 HF_BENCH_CONFIG = "v2"
@@ -177,6 +181,7 @@ def run_eval(results, args):
         "prompt": "TODO",
         "temperature": args.temperature,
         "max_tokens": args.max_tokens,
+        "json_mode": True,
         "stop": []
     }
     if args.model:
@@ -198,7 +203,7 @@ def run_eval(results, args):
     #import pdb; pdb.set_trace()
     for ind, item in tqdm(enumerate(results), total=len(results), desc=f"Evaluating: {args.eval_output_file} "):
         computed = False
-        if item["result"] != "N/A" and item.get("error", "N/A") == "N/A" and "winner" in item:  
+        if item["result"] != "N/A" and item.get("error", "N/A") == "N/A" and "parsed" in item:  
             results[ind]["parsed_result"] = parse_result(results[ind]["result"]) 
             computed = True  
             
@@ -212,20 +217,22 @@ def run_eval(results, args):
                 result = results[ind]["result"]
 
             results[ind]["parsed_result"] = parse_result(results[ind]["result"])
-            r = results[ind]["parsed_result"]
-
-            if args.mode == "pairwise":
-                if r["choice"] in ["A", "B"]:
-                    results[ind]["winner"] = item["assignment"][r["choice"]]
-                elif r["choice"] == "tie":
-                    results[ind]["winner"] = "tie"
-                else:
-                    results[ind]["winner"] = r["choice"] 
-            elif args.mode == "checklist":
-                results[ind]["score"] = float(r["score"])
-            
+            results[ind]["parsed"] = True if results[ind]["parsed_result"] is not None else False
+            # r = results[ind]["parsed_result"]
+            # if args.mode == "pairwise":
+            #     # if r["choice"] in ["A", "B"]:
+            #     #     results[ind]["winner"] = item["assignment"][r["choice"]]
+            #     # elif r["choice"] == "tie":
+            #     #     results[ind]["winner"] = "tie"
+            #     # else:
+            #     #     results[ind]["winner"] = r["choice"] 
+            #     pass  # Note that we will do the parsing later.
+            # elif args.mode == "checklist":
+            #     results[ind]["score"] = float(r["score"]) 
+            # elif args.mode == "score":
+            #     pass 
             # if not args.model.startswith('claude'):
-            results[ind]["price"] = compute_cost(args.model, item["prompt"], results[ind]["result"])
+            # results[ind]["price"] = compute_cost(args.model, item["prompt"], results[ind]["result"])
             # else:
             #     results[ind]["price"] = {"cost": 0, "in_tokens": 0, "out_tokens": 0}
             results[ind]["error"] = "N/A"
@@ -234,7 +241,7 @@ def run_eval(results, args):
             results[ind]["error"] = str(e)
             results[ind]["result"] = result
             results[ind]["parsed_result"] = {"choice": "N/A"}
-            results[ind]["price"] = {"cost": 0, "in_tokens": 0, "out_tokens": 0}
+            # results[ind]["price"] = {"cost": 0, "in_tokens": 0, "out_tokens": 0}
             pass 
         
         # print("Done!") 

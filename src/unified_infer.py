@@ -119,7 +119,7 @@ if __name__ == "__main__":
     
     # speical handling
     stop_words = []
-    include_stop_str_in_output = True  
+    include_stop_str_in_output = False  
     stop_token_ids = []
     # if "yi-" in args.model_name.lower() and "chat" in args.model_name.lower():
     #     stop_token_ids = [7]
@@ -128,7 +128,11 @@ if __name__ == "__main__":
 
     if args.model_name in IM_END_MODELS: 
         hf_tokenizer = AutoTokenizer.from_pretrained(args.model_name, trust_remote_code=True)
-        stop_token_ids = [hf_tokenizer.encode("<|im_end|>", add_special_tokens=False)[0]] 
+        stop_token_ids += [hf_tokenizer.encode("<|im_end|>", add_special_tokens=False)[0]] 
+    if args.model_name in HF_TEMPLATED_MODELS:
+        hf_tokenizer = AutoTokenizer.from_pretrained(args.model_name, trust_remote_code=True)
+        stop_token_ids.append(hf_tokenizer.eos_token_id)
+
    
     outputs = [] 
     # Load the existing outputs
