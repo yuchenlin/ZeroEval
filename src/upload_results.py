@@ -12,8 +12,11 @@ import sys
 # DATA_NAME = "wild_bench_v2_dev"
 # HF_RESULTS_PATH = "WildEval/WildBench-Results-V2" 
 
-DATA_NAME = "wild_bench_v2_dev.0522"
-HF_RESULTS_PATH = "WildEval/WildBench-Results-V2.0522"
+# DATA_NAME = "wild_bench_v2_dev.0522"
+# HF_RESULTS_PATH = "WildEval/WildBench-Results-V2.0522"
+
+DATA_NAME = "wild_bench_v2"
+HF_RESULTS_PATH = "allenai/WildBench-V2-Model-Outputs"
 
 print(f"Uploading to {HF_RESULTS_PATH} with data name {DATA_NAME}.")
 
@@ -67,9 +70,9 @@ else:
         # "Qwen1.5-72B-Chat",
         # "Starling-LM-7B-beta",
         # "tulu-2-dpo-70b",
-        "Yi-1.5-34B-Chat",
-        "Yi-1.5-9B-Chat",
-        "Yi-1.5-6B-Chat",        
+        # "Yi-1.5-34B-Chat",
+        # "Yi-1.5-9B-Chat",
+        # "Yi-1.5-6B-Chat",        
     ]
 
     for model_name in json_files:
@@ -132,5 +135,5 @@ python src/upload_results.py  mistral-large-2402
 
 python src/upload_results.py  command-r
 python src/upload_results.py  gpt-4-0125-preview 
-
+python src/upload_results.py  command-r-plus
 """
