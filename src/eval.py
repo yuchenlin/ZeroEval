@@ -51,7 +51,7 @@ def get_args():
     parser.add_argument("--api_key", type=str, default=None)
     parser.add_argument("--model", type=str, default="gpt-4-1106-preview")
     parser.add_argument("--engine", type=str, default=None)
-    parser.add_argument("--temperature", type=float, default=0.0)
+    parser.add_argument("--temperature", type=float, default=0)
     parser.add_argument("--max_tokens", type=int, default=1024)
     parser.add_argument("--overwrite", action="store_true")
     parser.add_argument("--batch_mode", action="store_true")

@@ -6,7 +6,8 @@ import urllib.request
 from tqdm import tqdm
 import json
 import os  
-from unified_utils import load_eval_data, save_outputs, IM_END_MODELS, HF_TEMPLATED_MODELS
+from unified_utils import load_eval_data, save_outputs
+from global_configs import HF_TEMPLATED_MODELS, IM_END_MODELS
 from unified_utils import openai_chat_request, retry_handler, google_chat_request, cohere_chat_request, mistral_chat_request, anthropic_chat_request, together_chat_request
 from hf_models import DecoderOnlyModelManager
 from transformers import AutoTokenizer 

@@ -7,7 +7,7 @@ import dataclasses
 from enum import auto, IntEnum
 from typing import List, Any, Dict, Union, Tuple
 from transformers import AutoTokenizer
-from infer_constants import HF_TEMPLATED_MODELS
+from global_configs import HF_TEMPLATED_MODELS
 
 def map_to_conv(model_name):
     if model_name in HF_TEMPLATED_MODELS:
@@ -1489,9 +1489,7 @@ register_conv_template(
 )
 
 
-if __name__ == "__main__": 
-    
-    from fastchat.conversation import get_conv_template
+if __name__ == "__main__":  
 
     print("-- Vicuna template --")
     conv = get_conv_template("vicuna_v1.1")
