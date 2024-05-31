@@ -33,3 +33,5 @@ done
 wait 
 python src/merge_results.py $shards_dir/ $model_pretty_name
 cp $shards_dir/${model_pretty_name}.json $output_dir/${model_pretty_name}.json
+
+# Note that the output may contain "<|eot_id|>" at the end and we remove all of them before evaluation

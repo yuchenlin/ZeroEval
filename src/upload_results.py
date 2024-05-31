@@ -3,17 +3,6 @@ from datasets import load_dataset, Dataset
 import os 
 import sys
 
-# HF_RESULTS_PATH = "WildEval/WildBench-Results"
-# DATA_NAME = "wild_bench"
-
-# HF_RESULTS_PATH = "WildEval/WildBench-Results-v2-internal"
-# DATA_NAME = "wild_bench_v2_internal"
-
-# DATA_NAME = "wild_bench_v2_dev"
-# HF_RESULTS_PATH = "WildEval/WildBench-Results-V2" 
-
-# DATA_NAME = "wild_bench_v2_dev.0522"
-# HF_RESULTS_PATH = "WildEval/WildBench-Results-V2.0522"
 
 DATA_NAME = "wild_bench_v2"
 HF_RESULTS_PATH = "allenai/WildBench-V2-Model-Outputs"
@@ -81,38 +70,8 @@ else:
 
 
 
-"""
-python src/upload_results.py tulu-2-dpo-70b
-python src/upload_results.py gpt-3.5-turbo-0125
-python src/upload_results.py gpt-4-0125-preview
-
-python src/upload_results.py vicuna-13b-v1.5
-python src/upload_results.py Mixtral-8x7B-Instruct-v0.1
-python src/upload_results.py Mistral-7B-Instruct-v0.2
-python src/upload_results.py Yi-34B-Chat
-
-python src/upload_results.py Mistral-7B-Instruct-v0.1
-python src/upload_results.py zephyr-7b-beta
-python src/upload_results.py gemma-7b-it
-python src/upload_results.py gemma-2b-it
-
-
-python src/upload_results.py gemini-1.0-pro
-python src/upload_results.py command
-
-python src/upload_results.py Llama-2-70b-chat-hf.nosp
-python src/upload_results.py Llama-2-13b-chat-hf.nosp
-python src/upload_results.py Llama-2-7b-chat-hf.nosp
-
-python src/upload_results.py mistral-large-2402
-
-python src/upload_results.py Qwen1.5-72B-Chat
-python src/upload_results.py zephyr-7b-gemma-v0.1
-python src/upload_results.py Nous-Hermes-2-Mixtral-8x7B-DPO
-python src/upload_results.py Starling-LM-7B-beta
-
-
-# V2 candidates 
+""" 
+# V2 
 python src/upload_results.py  claude-3-opus-20240229
 python src/upload_results.py  claude-3-sonnet-20240229
 python src/upload_results.py  claude-3-haiku-20240307
@@ -132,8 +91,11 @@ python src/upload_results.py  Llama-2-70b-chat-hf
 python src/upload_results.py  gemma-2b-it
 python src/upload_results.py  gemma-7b-it
 python src/upload_results.py  mistral-large-2402
-
 python src/upload_results.py  command-r
 python src/upload_results.py  gpt-4-0125-preview 
+
+# 2024-05-30
 python src/upload_results.py  command-r-plus
+python src/upload_results.py  Hermes-2-Theta-Llama-3-8B
+python src/upload_results.py  Llama-3-Instruct-8B-SimPO
 """
