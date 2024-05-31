@@ -203,3 +203,4 @@ evaluation/eval_template.no_checklist.md
 *.768-1024.json
 
 result_dirs/
+*.instant.json
