@@ -11,7 +11,8 @@
 
 
 
-![image](https://github.com/allenai/WildBench/assets/10104354/89914c60-7f59-4c31-a97c-55c560b08ee6)
+![image](https://github.com/allenai/WildBench/assets/10104354/0903c807-5e1b-4764-9d32-41de0304fa9d)
+
 
 
 ## Installation
