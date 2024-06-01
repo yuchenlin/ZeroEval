@@ -18,8 +18,7 @@ from tenacity import (
     stop_after_attempt,
     wait_random_exponential,
 )  # for exponential backoff
-import vertexai
-from vertexai.generative_models import GenerativeModel, Part, Content
+import google.generativeai as genai
 import cohere
 from mistralai.client import MistralClient
 from mistralai.models.chat_completion import ChatMessage
@@ -432,23 +431,26 @@ def google_chat_request(
     Returns:
         List[str]: The list of generated evaluation prompts.
     """
-    # Call vertex to generate aspects
     assert prompt is not None or messages is not None, "Either prompt or messages should be provided."
     if messages is None:
         messages = [{"role":"user","parts": ["You are an AI assistant that helps people find information."]},
                     {"role":"model", "parts": ["Understood."]},
                 {"role":"user","parts": [prompt]}]
 
-    messages = [Content(role= message["role"], parts=[Part.from_text(part) for part in message["parts"]]) for message in messages]
+    api_key = os.getenv('GOOGLE_API_KEY')
+    genai.configure(api_key=api_key)
+    google_model = genai.GenerativeModel(model)
 
-    project_id = os.getenv('VERTEX_PROJECT_ID')
-    location = os.getenv('VERTEX_PROJECT_location')
-    vertexai.init(project=project_id, location=location)
-    google_model = GenerativeModel(model)
-    
+
     response = google_model.generate_content(
         messages,
-        generation_config=generation_config,
+        generation_config=genai.GenerationConfig(
+            max_output_tokens=generation_config['max_output_tokens'],
+            temperature=generation_config['temperature'],
+            stop_sequences=generation_config['stop_sequences'],
+            top_p=generation_config['top_p']
+        ),
+        request_options={"timeout": 600}
     )
     if len(response.candidates) == 0:
         output = ''
