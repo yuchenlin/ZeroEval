@@ -15,7 +15,17 @@
 
 
 
-## Installation
+
+
+## How to add a new model to 🦁 WildBench benchmark 
+
+> [!NOTE]
+> If your model is on HuggingFace and/or it is supported by [vLLM](https://github.com/vllm-project/vllm), please create an **Issue** here to tell us your model id, chat template, and your preferred sampling parameters. We will add the script to run your model to the repo here and run inference and evaluation for you.
+
+If you'd like to try to run inference on your model by yourself or you'd like to create a PR for adding your model here, you can follow the instructions below. 
+
+
+### Installation
 
 <!-- 
 conda create -p /net/nfs/mosaic/yuchenl/envs/wbnfs python=3.10 
@@ -39,13 +49,6 @@ pip install datasets tenacity
 export HF_HOME=/net/nfs/climate/tmp_cache/
  -->
 
-
-## How to add a new model to 🦁 WildBench benchmark 
-
-> [!NOTE]
-> If your model is on HuggingFace and/or it is supported by [vLLM](https://github.com/vllm-project/vllm), please create an **Issue** here to tell us your model id, chat template, and your preferred sampling parameters. We will add the script to run your model to the repo here and run inference and evaluation for you.
-
-If you'd like to try to run inference on your model by yourself or you'd like to create a PR for adding your model here, you can follow the instructions below. 
 
 **Case 1: Models supported by vLLM**
 
