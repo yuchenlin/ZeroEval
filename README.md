@@ -14,14 +14,14 @@
 
 #### Models pending to test 
 
-- [ ] NousResearch/Hermes-2-Theta-Llama-3-8B
-- [ ] princeton-nlp/Llama-3-Instruct-8B-SimPO   
-- [ ] ZhangShenao/SELM-Zephyr-7B-iter-3
-- [ ] Command-R-plus
-- [ ] Phi-3 series
 - [ ] Gemini 1.5 series
 - [ ] Reka Flash/Core
 - [ ] Yi-Large (via OpenAI-like APIs)
+- [x] ZhangShenao/SELM-Zephyr-7B-iter-3
+- [x] NousResearch/Hermes-2-Theta-Llama-3-8B
+- [x] princeton-nlp/Llama-3-Instruct-8B-SimPO   
+- [x] Command-R-plus
+- [x] Phi-3 series
 
 Create an Issue if you'd like to add a model that you wanna see on our leaderboard!
 
