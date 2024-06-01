@@ -10,28 +10,9 @@
 - [HF Dataset](https://huggingface.co/datasets/allenai/WildBench)
 
 
-### Todos
 
-#### Models pending to test 
+![image](https://github.com/allenai/WildBench/assets/10104354/89914c60-7f59-4c31-a97c-55c560b08ee6)
 
-- [ ] Gemini 1.5 series
-- [ ] Reka Flash/Core
-- [ ] Yi-Large (via OpenAI-like APIs)
-- [x] ZhangShenao/SELM-Zephyr-7B-iter-3
-- [x] NousResearch/Hermes-2-Theta-Llama-3-8B
-- [x] princeton-nlp/Llama-3-Instruct-8B-SimPO   
-- [x] Command-R-plus
-- [x] Phi-3 series
-
-Create an Issue if you'd like to add a model that you wanna see on our leaderboard!
-
-#### Code updates
-
-- [ ] support models via openai-style apis
-
-#### Leadeboard updates
-
-- [ ] Show task categorized results  
 
 ## Installation
 
@@ -149,6 +130,30 @@ To analyze the correlation between WildBench (v2) and human evaluation, we consi
 - Top Models: `['gpt-4-turbo-2024-04-09', 'claude-3-opus-20240229', 'Meta-Llama-3-70B-Instruct', 'claude-3-sonnet-20240229', 'mistral-large-2402', 'Meta-Llama-3-8B-Instruct']`
 - All Models: `['gpt-4-turbo-2024-04-09', 'claude-3-opus-20240229', 'Meta-Llama-3-70B-Instruct', 'Qwen1.5-72B-Chat', 'claude-3-sonnet-20240229', 'mistral-large-2402', 'dbrx-instruct@together', 'Mixtral-8x7B-Instruct-v0.1', 'Meta-Llama-3-8B-Instruct', 'tulu-2-dpo-70b', 'Llama-2-70b-chat-hf', 'Llama-2-7b-chat-hf', 'gemma-7b-it', 'gemma-2b-it']`
 
+
+
+## Todos
+
+### Models pending to test 
+
+- [ ] Gemini 1.5 series
+- [ ] Reka Flash/Core
+- [ ] Yi-Large (via OpenAI-like APIs)
+- [x] ZhangShenao/SELM-Zephyr-7B-iter-3
+- [x] NousResearch/Hermes-2-Theta-Llama-3-8B
+- [x] princeton-nlp/Llama-3-Instruct-8B-SimPO   
+- [x] Command-R-plus
+- [x] Phi-3 series
+
+Create an Issue if you'd like to add a model that you wanna see on our leaderboard!
+
+### Code updates
+
+- [ ] support models via openai-style apis
+
+### Leadeboard updates
+
+- [ ] Show task categorized results  
 
 
 ## Citation
