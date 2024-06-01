@@ -4,18 +4,25 @@
 
 <div style="display: flex; justify-content: flex-start;"><img src="https://github.com/allenai/WildBench/blob/main/docs/gray_banner.png?raw=true" alt="Banner" style="width: 40vw; min-width: 300px; max-width: 800px;"> </div>
 
-
-## Quick Links:
-- [HF Leaderboard](https://huggingface.co/spaces/allenai/WildBench)
-- [HF Dataset](https://huggingface.co/datasets/allenai/WildBench)
-
-
+## Intro
+- [HF Leaderboard](https://huggingface.co/spaces/allenai/WildBench) & [HF Dataset](https://huggingface.co/datasets/allenai/WildBench)
 
 ![image](https://github.com/allenai/WildBench/assets/10104354/0903c807-5e1b-4764-9d32-41de0304fa9d)
+![image](https://github.com/allenai/WildBench/assets/10104354/8bf376fd-b2a7-4190-b6ae-27bbf60069a6)
 
 
 
-## Installation
+
+
+## How to add a new model to 🦁 WildBench benchmark 
+
+> [!NOTE]
+> If your model is on HuggingFace and/or it is supported by [vLLM](https://github.com/vllm-project/vllm), please create an **Issue** here to tell us your model id, chat template, and your preferred sampling parameters. We will add the script to run your model to the repo here and run inference and evaluation for you.
+
+If you'd like to try to run inference on your model by yourself or you'd like to create a PR for adding your model here, you can follow the instructions below. 
+
+
+### Installation
 
 <!-- 
 conda create -p /net/nfs/mosaic/yuchenl/envs/wbnfs python=3.10 
@@ -40,12 +47,7 @@ export HF_HOME=/net/nfs/climate/tmp_cache/
  -->
 
 
-## How to add a new model to 🦁 WildBench benchmark 
-
-> [!NOTE]
-> If your model is on HuggingFace and/or it is supported by [vLLM](https://github.com/vllm-project/vllm), please create an **Issue** here to tell us your model id, chat template, and your preferred sampling parameters. We will add the script to run your model to the repo here and run inference and evaluation for you. If you'd like to try to run inference on your model yourself or you'd like to create a PR for adding your model here, you can follow the instructions below. 
-
-### Case 1: Models supported by vLLM
+**Case 1: Models supported by vLLM**
 
 You can take the files under `scripts` as a reference to add a new model to the benchmark, for example, to add `Yi-1.5-9B-Chat.sh` to the benchmark, you can follow the following steps:
 1. Create a script named "Yi-1.5-9B-Chat.sh.py" under `scripts` folder.
@@ -55,13 +57,16 @@ You can take the files under `scripts` as a reference to add a new model to the 
 5. Run your script to make sure it works. You can run the script by running `bash scripts/Yi-1.5-9B-Chat.sh` in the root folder. 
 6. Create a PR to add your script to the benchmark.
 
-### Case 2: Models that are only supported by native HuggingFace API
-
+<details>
+	<summary> Case 2: Models that are only supported by native HuggingFace API </summary>
 Some new models may not be supported by vLLM for now. You can do the same thing as above but use `--engine hf` in the script instead, and test your script. Note that some models may need more specific configurations, and you will need to read the code and modify them accordingly. In these cases, you should add name-checking conditions to ensure that the model-specific changes are only applied to the specific model.
+</details>
 
-### Case 3: Private API-based Models
 
+<details>
+    <summary> Case 3: Private API-based Models </summary>
 You should change the code to add these APIs, for example, gemini, cohere, claude, and reka. You can refer to the `--engine openai` logic in the existing scripts to add your own API-based models. Please make sure that you do not expose your API keys in the code. If your model is on Together.AI platform, you can use the `--engine together` option to run your model, see `scripts/dbrx-instruct@together.sh` for an example.
+</details>
 
 
 
@@ -93,7 +98,7 @@ You should change the code to add these APIs, for example, gemini, cohere, claud
         </ul>
         We use three reference models (GPT-4-turbo-0429, Claude-3-Opus, and Llama-2-70B-chat) to compute the rewards for each model. The final WB Reward-Mix is the average of the three rewards on 1024 examples.
         <h4>Mitigating Length Bias</h4>  
-        As many studies have shown, LLM judges tend to prefer longer responses. To mitigate this bias, we propose a simple and customizable length penalty method. <b>We convert Slightly Win/Lose to be a Tie if the winner is longer than the loser by a certain length threshold (K characters).</b> We set K=50 by default, but you can customize it on our leaderboard UI. Note that <b>K= ∞ will disable the length penalty.</b>
+        As many studies have shown, LLM judges tend to prefer longer responses. To mitigate this bias, we propose a simple and customizable length penalty method. <b>We convert Slightly Win/Lose to be a Tie if the winner is longer than the loser by a certain length threshold (K characters).</b> We set K=500 by default, but you can customize it on our leaderboard UI. Note that <b>K= ∞ will disable the length penalty.</b>
     </div>
 </details>
 

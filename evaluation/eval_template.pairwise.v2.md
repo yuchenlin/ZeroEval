@@ -64,9 +64,10 @@ First, please output your analysis for each model response, and then summarize y
 
 Please provide your evaluation results in the following json format by filling in the placeholders in []:
 ```
-{   "analysis of A": "[analysis of Response A]",
+{
+    "analysis of A": "[analysis of Response A]",
     "analysis of B": "[analysis of Response B]",
-    "reason of A=B": "[where Reponse A and B pefrom equally well]",
+    "reason of A=B": "[where Response A and B perform equally well]",
     "reason of A>B": "[where Response A is better than Response B]",
     "reason of B>A": "[where Response B is better than Response A]",
     "choice": "[A++ or A+ or A=B or B+ or B++]",
