@@ -16,7 +16,7 @@ for batch in batches:
     if MODEL_NAME not in desc:
         continue
     print(batch_id, status, desc)
-    if status == "completed":
+    if status == "completed" and batch.output_file_id is not None:
         content = client.files.content(batch.output_file_id)         
         filepath = f"{desc}.batch_results.jsonl"
         if os.path.exists(filepath):

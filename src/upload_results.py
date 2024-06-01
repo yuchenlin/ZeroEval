@@ -99,4 +99,6 @@ python src/upload_results.py  command-r-plus
 python src/upload_results.py  Hermes-2-Theta-Llama-3-8B
 python src/upload_results.py  Llama-3-Instruct-8B-SimPO
 python src/upload_results.py  Phi-3-mini-128k-instruct
+python src/upload_results.py  Phi-3-medium-128k-instruct
+
 """
