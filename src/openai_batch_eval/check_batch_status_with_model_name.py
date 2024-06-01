@@ -7,6 +7,7 @@ MODEL_NAME = sys.argv[1]
 
 
 batches = client.batches.list(limit=100)
+looked_desc = set()
 for batch in batches:
     batch_id = batch.id  
     status = batch.status
@@ -14,6 +15,10 @@ for batch in batches:
         continue
     desc = batch.metadata["description"]  
     if MODEL_NAME not in desc:
+        continue
+    if desc not in looked_desc:
+        looked_desc.add(desc)
+    else:
         continue
     print(batch_id, status, desc)
     if status == "completed" and batch.output_file_id is not None:

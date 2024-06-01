@@ -17,7 +17,7 @@ for ((start = 0, end = (($shard_size)), gpu = $start_gpu; gpu < $n_shards+$start
         --model_name $model_name \
         --top_p $TOP_P --temperature $TEMP \
         --max_tokens $MAX_TOKENS \
-        --output_folder $shards_dir/ &
+        --output_folder $shards_dir/ 
         # --overwrite &
 done 
 wait 
