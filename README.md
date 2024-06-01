@@ -140,6 +140,7 @@ To analyze the correlation between WildBench (v2) and human evaluation, we consi
 - [ ] Gemini 1.5 series
 - [ ] Reka Flash/Core
 - [ ] Yi-Large (via OpenAI-like APIs)
+- [ ] Qwen2-72B-Instruct
 - [x] ZhangShenao/SELM-Zephyr-7B-iter-3
 - [x] NousResearch/Hermes-2-Theta-Llama-3-8B
 - [x] princeton-nlp/Llama-3-Instruct-8B-SimPO   
@@ -178,6 +179,7 @@ bash evaluation/run_all_eval_batch.sh Llama-3-Instruct-8B-SimPO
 bash evaluation/run_all_eval_batch.sh Phi-3-mini-128k-instruct
 bash evaluation/run_all_eval_batch.sh Phi-3-medium-128k-instruct
 bash evaluation/run_all_eval_batch.sh SELM-Zephyr-7B-iter-3
+bash evaluation/run_all_eval_batch.sh Qwen2-72B-Instruct
 
 
 python src/openai_batch_eval/check_batch_status_with_model_name.py command-r-plus
@@ -186,6 +188,11 @@ python src/openai_batch_eval/check_batch_status_with_model_name.py Llama-3-Instr
 python src/openai_batch_eval/check_batch_status_with_model_name.py Phi-3-mini-128k-instruct
 python src/openai_batch_eval/check_batch_status_with_model_name.py Phi-3-medium-128k-instruct
 python src/openai_batch_eval/check_batch_status_with_model_name.py SELM-Zephyr-7B-iter-3
+python src/openai_batch_eval/check_batch_status_with_model_name.py Qwen2-72B-Instruct
 
 
+python src/view_wb_eval.py score
+python src/view_wb_eval.py pairwise-gpt4t 500
+python src/view_wb_eval.py pairwise-haiku 500
+python src/view_wb_eval.py pairwise-llama 500
  -->
