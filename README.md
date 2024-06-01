@@ -43,9 +43,11 @@ export HF_HOME=/net/nfs/climate/tmp_cache/
 ## How to add a new model to 🦁 WildBench benchmark 
 
 > [!NOTE]
-> If your model is on HuggingFace and/or it is supported by [vLLM](https://github.com/vllm-project/vllm), please create an **Issue** here to tell us your model id, chat template, and your preferred sampling parameters. We will add the script to run your model to the repo here and run inference and evaluation for you. If you'd like to try to run inference on your model yourself or you'd like to create a PR for adding your model here, you can follow the instructions below. 
+> If your model is on HuggingFace and/or it is supported by [vLLM](https://github.com/vllm-project/vllm), please create an **Issue** here to tell us your model id, chat template, and your preferred sampling parameters. We will add the script to run your model to the repo here and run inference and evaluation for you.
 
-### Case 1: Models supported by vLLM
+If you'd like to try to run inference on your model by yourself or you'd like to create a PR for adding your model here, you can follow the instructions below. 
+
+**Case 1: Models supported by vLLM**
 
 You can take the files under `scripts` as a reference to add a new model to the benchmark, for example, to add `Yi-1.5-9B-Chat.sh` to the benchmark, you can follow the following steps:
 1. Create a script named "Yi-1.5-9B-Chat.sh.py" under `scripts` folder.
@@ -55,13 +57,16 @@ You can take the files under `scripts` as a reference to add a new model to the 
 5. Run your script to make sure it works. You can run the script by running `bash scripts/Yi-1.5-9B-Chat.sh` in the root folder. 
 6. Create a PR to add your script to the benchmark.
 
-### Case 2: Models that are only supported by native HuggingFace API
-
+<details>
+	<summary> Case 2: Models that are only supported by native HuggingFace API </summary>
 Some new models may not be supported by vLLM for now. You can do the same thing as above but use `--engine hf` in the script instead, and test your script. Note that some models may need more specific configurations, and you will need to read the code and modify them accordingly. In these cases, you should add name-checking conditions to ensure that the model-specific changes are only applied to the specific model.
+</details>
 
-### Case 3: Private API-based Models
 
+<details>
+    <summary> Case 3: Private API-based Models </summary>
 You should change the code to add these APIs, for example, gemini, cohere, claude, and reka. You can refer to the `--engine openai` logic in the existing scripts to add your own API-based models. Please make sure that you do not expose your API keys in the code. If your model is on Together.AI platform, you can use the `--engine together` option to run your model, see `scripts/dbrx-instruct@together.sh` for an example.
+</details>
 
 
 
