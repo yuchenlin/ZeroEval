@@ -171,6 +171,7 @@ bash evaluation/run_all_eval_batch.sh Hermes-2-Theta-Llama-3-8B
 bash evaluation/run_all_eval_batch.sh Llama-3-Instruct-8B-SimPO
 bash evaluation/run_all_eval_batch.sh Phi-3-mini-128k-instruct
 bash evaluation/run_all_eval_batch.sh Phi-3-medium-128k-instruct
+bash evaluation/run_all_eval_batch.sh SELM-Zephyr-7B-iter-3
 
 
 python src/openai_batch_eval/check_batch_status_with_model_name.py command-r-plus
@@ -178,6 +179,7 @@ python src/openai_batch_eval/check_batch_status_with_model_name.py Hermes-2-Thet
 python src/openai_batch_eval/check_batch_status_with_model_name.py Llama-3-Instruct-8B-SimPO
 python src/openai_batch_eval/check_batch_status_with_model_name.py Phi-3-mini-128k-instruct
 python src/openai_batch_eval/check_batch_status_with_model_name.py Phi-3-medium-128k-instruct
+python src/openai_batch_eval/check_batch_status_with_model_name.py SELM-Zephyr-7B-iter-3
 
 
  -->
