@@ -1,6 +1,6 @@
 # export GOOGLE_API_KEY=your_google_studio_api_key
-model_name="google/gemini-1.0-pro"
-model_pretty_name="gemini-1.0-pro"
+model_name="google/gemini-1.5-pro"
+model_pretty_name="gemini-1.5-pro"
 output_dir="result_dirs/wild_bench_v2/"
 TEMP=0; TOP_P=1.0; MAX_TOKENS=4096;
 

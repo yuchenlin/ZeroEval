@@ -243,8 +243,9 @@ if __name__ == "__main__":
         for cur_id in tqdm(range(0, len(todo_inputs)), desc=f"Generating {args.model_name} from {args.start_index} to {args.end_index}"):
             # input_text = todo_inputs[cur_id] 
             chat = todo_chats[cur_id]
-            google_msg = [{"role":"user", "parts": ["You are a helpful AI assistant."]}]
-            google_msg.append({"role":"model", "parts": ["Understood."]})
+            #google_msg = [{"role":"user", "parts": ["You are a helpful AI assistant."]}]
+            #google_msg.append({"role":"model", "parts": ["Understood."]})
+            google_msg = []
             for i, chat_item in enumerate(chat):
                 if i % 2 == 0:
                     google_msg.append({"role":"user","parts": [chat_item,]})
