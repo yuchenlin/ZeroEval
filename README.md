@@ -144,10 +144,10 @@ To analyze the correlation between WildBench (v2) and human evaluation, we consi
 
 ### Models pending to test 
 
-- [ ] Gemini 1.5 series
 - [ ] Reka Flash/Core
 - [ ] Yi-Large (via OpenAI-like APIs)
-- [ ] Qwen2-72B-Instruct
+- [x] Gemini 1.5 series
+- [x] Qwen2-72B-Instruct
 - [x] ZhangShenao/SELM-Zephyr-7B-iter-3
 - [x] NousResearch/Hermes-2-Theta-Llama-3-8B
 - [x] princeton-nlp/Llama-3-Instruct-8B-SimPO   
