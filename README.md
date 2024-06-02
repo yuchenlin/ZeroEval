@@ -33,7 +33,9 @@ conda create -n wildbench python=3.10
 conda activate wildbench
 pip install vllm -U # pip install -e vllm 
 pip install openai datasets tenacity
-pip install google-cloud-aiplatform cohere mistralai 
+# pip install google-cloud-aiplatform 
+pip install google-generativeai
+pip install cohere mistralai 
 pip install anthropic==0.19.0
 # export HF_HOME=/path/to/your/custom/cache_dir/
 ```
@@ -177,7 +179,11 @@ Create an Issue if you'd like to add a model that you wanna see on our leaderboa
 
 
 <!-- 
- 
+
+python src/upload_results.py gemini-1.5-flash
+python src/upload_results.py gemini-1.5-pro
+
+
 bash evaluation/run_all_eval_batch.sh command-r-plus
 bash evaluation/run_all_eval_batch.sh Hermes-2-Theta-Llama-3-8B
 bash evaluation/run_all_eval_batch.sh Llama-3-Instruct-8B-SimPO
@@ -185,6 +191,9 @@ bash evaluation/run_all_eval_batch.sh Phi-3-mini-128k-instruct
 bash evaluation/run_all_eval_batch.sh Phi-3-medium-128k-instruct
 bash evaluation/run_all_eval_batch.sh SELM-Zephyr-7B-iter-3
 bash evaluation/run_all_eval_batch.sh Qwen2-72B-Instruct
+
+bash evaluation/run_all_eval_batch.sh gemini-1.5-flash
+bash evaluation/run_all_eval_batch.sh gemini-1.5-pro
 
 
 python src/openai_batch_eval/check_batch_status_with_model_name.py command-r-plus
@@ -194,6 +203,9 @@ python src/openai_batch_eval/check_batch_status_with_model_name.py Phi-3-mini-12
 python src/openai_batch_eval/check_batch_status_with_model_name.py Phi-3-medium-128k-instruct
 python src/openai_batch_eval/check_batch_status_with_model_name.py SELM-Zephyr-7B-iter-3
 python src/openai_batch_eval/check_batch_status_with_model_name.py Qwen2-72B-Instruct
+python src/openai_batch_eval/check_batch_status_with_model_name.py gemini-1.5-flash
+python src/openai_batch_eval/check_batch_status_with_model_name.py gemini-1.5-pro
+
 
 
 python src/view_wb_eval.py score
