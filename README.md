@@ -146,6 +146,11 @@ To analyze the correlation between WildBench (v2) and human evaluation, we consi
 
 - [ ] Reka Flash/Core
 - [ ] Yi-Large (via OpenAI-like APIs)
+- [ ] ZhangShenao/SELM-Llama-3-8B-Instruct-iter-3
+- [ ] ZhangShenao/SELM-Phi-3-mini-4k-instruct-iter-3
+- [ ] chujiezheng/Llama-3-Instruct-8B-SimPO-ExPO
+- [ ] chujiezheng/Starling-LM-7B-beta-ExPO
+- [ ] chujiezheng/tulu-2-dpo-70b-ExPO
 - [x] Gemini 1.5 series
 - [x] Qwen2-72B-Instruct
 - [x] ZhangShenao/SELM-Zephyr-7B-iter-3
