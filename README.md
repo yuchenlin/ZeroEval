@@ -148,9 +148,8 @@ To analyze the correlation between WildBench (v2) and human evaluation, we consi
 - [ ] Yi-Large (via OpenAI-like APIs)
 - [ ] ZhangShenao/SELM-Llama-3-8B-Instruct-iter-3
 - [ ] ZhangShenao/SELM-Phi-3-mini-4k-instruct-iter-3
-- [ ] chujiezheng/Llama-3-Instruct-8B-SimPO-ExPO
-- [ ] chujiezheng/Starling-LM-7B-beta-ExPO
-- [ ] chujiezheng/tulu-2-dpo-70b-ExPO
+- [x] chujiezheng/Llama-3-Instruct-8B-SimPO-ExPO
+- [x] chujiezheng/Starling-LM-7B-beta-ExPO
 - [x] Gemini 1.5 series
 - [x] Qwen2-72B-Instruct
 - [x] ZhangShenao/SELM-Zephyr-7B-iter-3
@@ -187,8 +186,10 @@ Create an Issue if you'd like to add a model that you wanna see on our leaderboa
 
 python src/upload_results.py gemini-1.5-flash
 python src/upload_results.py gemini-1.5-pro
+python src/upload_results.py Qwen2-72B-Instruct
 python src/upload_results.py Llama-3-Instruct-8B-SimPO-ExPO
 python src/upload_results.py Starling-LM-7B-beta-ExPO
+python src/upload_results.py Qwen1.5-72B-Chat-greedy
 
 
 ### Submit Batch Jobs
@@ -206,6 +207,8 @@ bash evaluation/run_all_eval_batch.sh gemini-1.5-pro
 bash evaluation/run_all_eval_batch.sh Llama-3-Instruct-8B-SimPO-ExPO
 bash evaluation/run_all_eval_batch.sh Starling-LM-7B-beta-ExPO
 
+bash evaluation/run_all_eval_batch.sh Qwen1.5-72B-Chat-greedy
+
 ### Check Batch Status
 python src/openai_batch_eval/check_batch_status_with_model_name.py command-r-plus
 python src/openai_batch_eval/check_batch_status_with_model_name.py Hermes-2-Theta-Llama-3-8B
@@ -220,6 +223,7 @@ python src/openai_batch_eval/check_batch_status_with_model_name.py gemini-1.5-pr
 python src/openai_batch_eval/check_batch_status_with_model_name.py Llama-3-Instruct-8B-SimPO-ExPO
 python src/openai_batch_eval/check_batch_status_with_model_name.py Starling-LM-7B-beta-ExPO
 
+python src/openai_batch_eval/check_batch_status_with_model_name.py Qwen1.5-72B-Chat-greedy
 
 
 python src/view_wb_eval.py score

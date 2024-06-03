@@ -83,7 +83,8 @@ for file in files:
                 lengths.append(test_model_output_len) 
 
             row_item = {
-                "model": test_model_id,
+                # "model": test_model_id,
+                "model": file.replace(".json", ""),
                 "win_much": sum(win_much_counts),
                 "win": sum(win_counts),
                 "tie": sum(tie_counts),
