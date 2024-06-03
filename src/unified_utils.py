@@ -23,6 +23,7 @@ import cohere
 from mistralai.client import MistralClient
 from mistralai.models.chat_completion import ChatMessage
 from anthropic import Anthropic
+from reka.client import Reka
 
  
 from datasets import load_dataset
@@ -51,6 +52,9 @@ def apply_template(chat_history, model_name):
             model_inputs.append("n/a") # will be handled by another ways.
             continue
         elif "together" in model_name.lower():
+            model_inputs.append("n/a") # will be handled by another ways.
+            continue
+        elif "reka" in model_name.lower():
             model_inputs.append("n/a") # will be handled by another ways.
             continue
         else:
@@ -269,6 +273,9 @@ def retry_handler(retry_limit=10):
                             # finally failed
                             if 'cohere' in e.__class__.__name__.lower() and 'blocked output' in err_msg:
                                 print ('cohere blocked output issue!')
+                                return [''] # return empty strings for prompt longer than context window size, comment out this line to truncate prompt until it fits
+                            if 'The read operation timed out' in err_msg:
+                                print ('reka time out issue!')
                                 return [''] # return empty strings for prompt longer than context window size, comment out this line to truncate prompt until it fits
                             print("Retry limit reached. Saving the error message and returning.")
                             print(kwargs["prompt"])
@@ -606,4 +613,46 @@ def anthropic_chat_request(
     )
     
     contents = [response.content[0].text]
+    return contents
+
+
+def reka_chat_request(
+    model: str=None,
+    engine: str=None,
+    temperature: float=0,
+    max_tokens: int=512,
+    top_p: float=1.0,
+    prompt: str=None,
+    messages: List[dict]=None,
+    stop: List[str]=None,
+    **kwargs,
+) -> List[str]:
+    """
+    Request the evaluation prompt from the OpenAI API in chat format.
+    Args:
+        prompt (str): The encoded prompt.
+        messages (List[dict]): The messages.
+        model (str): The model to use.
+        engine (str): The engine to use.
+        temperature (float, optional): The temperature. Defaults to 0.7.
+        max_tokens (int, optional): The maximum number of tokens. Defaults to 800.
+        top_p (float, optional): The top p. Defaults to 0.95.
+        stop (List[str], optional): The stop. Defaults to None.
+    Returns:
+        List[str]: The list of generated evaluation prompts.
+    """
+    assert prompt is not None or messages is not None, "Either prompt or messages should be provided."
+    if messages is None:
+        messages = [{"role":"user","content": prompt}]
+    api_key = os.getenv("REKA_API_KEY")
+    client = Reka(api_key=api_key)
+    response = client.chat.create(
+        messages=messages,
+        model=model,
+        max_tokens=max_tokens,
+        stop=stop,
+        temperature=temperature,
+        top_p=top_p,
+    )
+    contents = [response.responses[0].message.content]
     return contents
