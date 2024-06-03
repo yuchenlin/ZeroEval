@@ -187,8 +187,11 @@ Create an Issue if you'd like to add a model that you wanna see on our leaderboa
 
 python src/upload_results.py gemini-1.5-flash
 python src/upload_results.py gemini-1.5-pro
+python src/upload_results.py Llama-3-Instruct-8B-SimPO-ExPO
+python src/upload_results.py Starling-LM-7B-beta-ExPO
 
 
+### Submit Batch Jobs
 bash evaluation/run_all_eval_batch.sh command-r-plus
 bash evaluation/run_all_eval_batch.sh Hermes-2-Theta-Llama-3-8B
 bash evaluation/run_all_eval_batch.sh Llama-3-Instruct-8B-SimPO
@@ -200,7 +203,10 @@ bash evaluation/run_all_eval_batch.sh Qwen2-72B-Instruct
 bash evaluation/run_all_eval_batch.sh gemini-1.5-flash
 bash evaluation/run_all_eval_batch.sh gemini-1.5-pro
 
+bash evaluation/run_all_eval_batch.sh Llama-3-Instruct-8B-SimPO-ExPO
+bash evaluation/run_all_eval_batch.sh Starling-LM-7B-beta-ExPO
 
+### Check Batch Status
 python src/openai_batch_eval/check_batch_status_with_model_name.py command-r-plus
 python src/openai_batch_eval/check_batch_status_with_model_name.py Hermes-2-Theta-Llama-3-8B
 python src/openai_batch_eval/check_batch_status_with_model_name.py Llama-3-Instruct-8B-SimPO
@@ -210,6 +216,9 @@ python src/openai_batch_eval/check_batch_status_with_model_name.py SELM-Zephyr-7
 python src/openai_batch_eval/check_batch_status_with_model_name.py Qwen2-72B-Instruct
 python src/openai_batch_eval/check_batch_status_with_model_name.py gemini-1.5-flash
 python src/openai_batch_eval/check_batch_status_with_model_name.py gemini-1.5-pro
+
+python src/openai_batch_eval/check_batch_status_with_model_name.py Llama-3-Instruct-8B-SimPO-ExPO
+python src/openai_batch_eval/check_batch_status_with_model_name.py Starling-LM-7B-beta-ExPO
 
 
 
