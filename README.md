@@ -192,7 +192,7 @@ python src/upload_results.py Starling-LM-7B-beta-ExPO
 python src/upload_results.py Qwen1.5-72B-Chat-greedy
 python src/upload_results.py yi-large 
 python src/upload_results.py reka-flash-20240226
-
+python src/upload_results.py deepseekv2-chat
 
 ### Submit Batch Jobs
 bash evaluation/run_all_eval_batch.sh command-r-plus
@@ -212,6 +212,7 @@ bash evaluation/run_all_eval_batch.sh Qwen1.5-72B-Chat-greedy
 
 bash evaluation/run_all_eval_batch.sh yi-large
 bash evaluation/run_all_eval_batch.sh reka-flash-20240226
+bash evaluation/run_all_eval_batch.sh deepseekv2-chat
 
 ### Check Batch Status
 python src/openai_batch_eval/check_batch_status_with_model_name.py command-r-plus
@@ -230,7 +231,7 @@ python src/openai_batch_eval/check_batch_status_with_model_name.py Qwen1.5-72B-C
 
 python src/openai_batch_eval/check_batch_status_with_model_name.py yi-large
 python src/openai_batch_eval/check_batch_status_with_model_name.py reka-flash-20240226
-
+python src/openai_batch_eval/check_batch_status_with_model_name.py deepseekv2-chat
 
 python src/view_wb_eval.py score
 python src/view_wb_eval.py pairwise-gpt4t -1
