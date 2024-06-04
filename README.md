@@ -190,6 +190,8 @@ python src/upload_results.py Qwen2-72B-Instruct
 python src/upload_results.py Llama-3-Instruct-8B-SimPO-ExPO
 python src/upload_results.py Starling-LM-7B-beta-ExPO
 python src/upload_results.py Qwen1.5-72B-Chat-greedy
+python src/upload_results.py yi-large 
+python src/upload_results.py reka-flash-20240226
 
 
 ### Submit Batch Jobs
@@ -206,8 +208,10 @@ bash evaluation/run_all_eval_batch.sh gemini-1.5-pro
 
 bash evaluation/run_all_eval_batch.sh Llama-3-Instruct-8B-SimPO-ExPO
 bash evaluation/run_all_eval_batch.sh Starling-LM-7B-beta-ExPO
-
 bash evaluation/run_all_eval_batch.sh Qwen1.5-72B-Chat-greedy
+
+bash evaluation/run_all_eval_batch.sh yi-large
+bash evaluation/run_all_eval_batch.sh reka-flash-20240226
 
 ### Check Batch Status
 python src/openai_batch_eval/check_batch_status_with_model_name.py command-r-plus
@@ -222,12 +226,14 @@ python src/openai_batch_eval/check_batch_status_with_model_name.py gemini-1.5-pr
 
 python src/openai_batch_eval/check_batch_status_with_model_name.py Llama-3-Instruct-8B-SimPO-ExPO
 python src/openai_batch_eval/check_batch_status_with_model_name.py Starling-LM-7B-beta-ExPO
-
 python src/openai_batch_eval/check_batch_status_with_model_name.py Qwen1.5-72B-Chat-greedy
+
+python src/openai_batch_eval/check_batch_status_with_model_name.py yi-large
+python src/openai_batch_eval/check_batch_status_with_model_name.py reka-flash-20240226
 
 
 python src/view_wb_eval.py score
-python src/view_wb_eval.py pairwise-gpt4t 500
-python src/view_wb_eval.py pairwise-haiku 500
-python src/view_wb_eval.py pairwise-llama 500
+python src/view_wb_eval.py pairwise-gpt4t -1
+python src/view_wb_eval.py pairwise-haiku -1
+python src/view_wb_eval.py pairwise-llama -1
  -->
