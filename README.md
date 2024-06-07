@@ -8,6 +8,13 @@
 [📑 Paper](https://allenai.github.io/WildBench/WildBench_paper.pdf) | [🤗 Leaderboard](https://huggingface.co/spaces/allenai/WildBench) & [🤗 Dataset](https://huggingface.co/datasets/allenai/WildBench)
 
 
+### Evaluation Framework
+![img1](docs/wb_eval.png)
+
+### Dataset Overview
+![img1](docs/wb_table.png)
+![img1](docs/wb_stat.png)
+
 
 
 
@@ -130,7 +137,9 @@ The 2nd argument is `K`, the length margin for the length penalty. You can set i
 
 ## Correlation Analysis: How well does WildBench (v2) correlate with human preferences?
 To analyze the correlation between WildBench (v2) and human evaluation, we consider the correlation between different metrics and human-based Chatbot Arena Elo scores (until 2024-05-20 on Hard-English split).  We find that the WB Reward-Mix has the highest correlation. Please find the pearson correlation coefficients below:
-<img src="https://huggingface.co/spaces/allenai/WildBench/resolve/main/assets/wb_corr.png" width="85%" /> 
+<img src="docs/wb_corr.png" width="85%" /> 
+
+
 
 - Top Models: `['gpt-4-turbo-2024-04-09', 'claude-3-opus-20240229', 'Meta-Llama-3-70B-Instruct', 'claude-3-sonnet-20240229', 'mistral-large-2402', 'Meta-Llama-3-8B-Instruct']`
 - All Models: `['gpt-4-turbo-2024-04-09', 'claude-3-opus-20240229', 'Meta-Llama-3-70B-Instruct', 'Qwen1.5-72B-Chat', 'claude-3-sonnet-20240229', 'mistral-large-2402', 'dbrx-instruct@together', 'Mixtral-8x7B-Instruct-v0.1', 'Meta-Llama-3-8B-Instruct', 'tulu-2-dpo-70b', 'Llama-2-70b-chat-hf', 'Llama-2-7b-chat-hf', 'gemma-7b-it', 'gemma-2b-it']`
