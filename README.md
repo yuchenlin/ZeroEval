@@ -150,8 +150,11 @@ To analyze the correlation between WildBench (v2) and human evaluation, we consi
 
 ### Models pending to test 
 
-- [ ] Reka Flash/Core
-- [ ] Yi-Large (via OpenAI-like APIs)
+- [ ] GLM-4
+- [x] Reka Flash
+- [ ] DeepSeekV2-Chat
+- [ ] Reka Core
+- [x] Yi-Large (via OpenAI-like APIs)
 - [ ] ZhangShenao/SELM-Llama-3-8B-Instruct-iter-3
 - [ ] ZhangShenao/SELM-Phi-3-mini-4k-instruct-iter-3
 - [x] chujiezheng/Llama-3-Instruct-8B-SimPO-ExPO
