@@ -5,10 +5,7 @@
 <div style="display: flex; justify-content: flex-start;"><img src="https://github.com/allenai/WildBench/blob/main/docs/gray_banner.png?raw=true" alt="Banner" style="width: 40vw; min-width: 300px; max-width: 800px;"> </div>
 
 ## Intro
-- [HF Leaderboard](https://huggingface.co/spaces/allenai/WildBench) & [HF Dataset](https://huggingface.co/datasets/allenai/WildBench)
-
-![image](https://github.com/allenai/WildBench/assets/10104354/0903c807-5e1b-4764-9d32-41de0304fa9d)
-![image](https://github.com/allenai/WildBench/assets/10104354/8bf376fd-b2a7-4190-b6ae-27bbf60069a6)
+[📑 Paper](https://allenai.github.io/WildBench/WildBench_paper.pdf) | [🤗 Leaderboard](https://huggingface.co/spaces/allenai/WildBench) & [🤗 Dataset](https://huggingface.co/datasets/allenai/WildBench)
 
 
 
