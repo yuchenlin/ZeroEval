@@ -137,7 +137,7 @@ The 2nd argument is `K`, the length margin for the length penalty. You can set i
 
 ## Correlation Analysis: How well does WildBench (v2) correlate with human preferences?
 To analyze the correlation between WildBench (v2) and human evaluation, we consider the correlation between different metrics and human-based Chatbot Arena Elo scores (until 2024-05-20 on Hard-English split).  We find that the WB Reward-Mix has the highest correlation. Please find the pearson correlation coefficients below:
-<img src="docs/wb_corr.png" width="85%" /> 
+<img src="docs/wb_corr.png" width="100%" /> 
 
 
 
