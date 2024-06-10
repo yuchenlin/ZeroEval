@@ -54,7 +54,7 @@ Here are more detailed criteria for the scores:
 - Score 9~10: The response is perfect and provides helpful information that can help user solve the problem.
 
 ## Output Format 
-First, please output your analysis for each model response, and then summarize your assessment to three aspects: "reason A=B", "reason A>B", and "reason B>A", and finally make your choice for the final assessment.
+First, please output your analysis for the model response, and then summarize your assessment to two aspects: "strengths" and "weaknesses"; Finally, please write down your rating for the assessment.
 
 Please provide your evaluation results in the following json format by filling in the placeholders in []:
 ```
