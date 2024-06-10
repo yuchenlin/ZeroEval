@@ -102,7 +102,7 @@ You should change the code to add these APIs, for example, gemini, cohere, claud
         <li> Reward=<b>-50</b> if the A is <b>slightly worse</b> than B.</li>
         <li> Reward=<b>-100</b> if the A is <b>much worse</b> than B.</li>
         </ul>
-        We use three reference models (GPT-4-turbo-0429, Claude-3-Opus, and Llama-2-70B-chat) to compute the rewards for each model. The final WB Reward-Mix is the average of the three rewards on 1024 examples.
+        We use three reference models (GPT-4-turbo-0429, Claude-3-Haiku, and Llama-2-70B-chat) to compute the rewards for each model. The final WB Reward-Mix is the average of the three rewards on 1024 examples.
         <h4>Mitigating Length Bias</h4>  
         As many studies have shown, LLM judges tend to prefer longer responses. To mitigate this bias, we propose a simple and customizable length penalty method. <b>We convert Slightly Win/Lose to be a Tie if the winner is longer than the loser by a certain length threshold (K characters).</b> We set K=500 by default, but you can customize it on our leaderboard UI. Note that <b>K= ∞ will disable the length penalty.</b>
     </div>
