@@ -52,16 +52,58 @@ exit()
 
 
 """
+echo "Start"
 python evaluation/eval.py "result_dirs/mmlu-redux/cot=false/Llama-3-8B-OpenHermes-243K.json"
 python evaluation/eval.py "result_dirs/mmlu-redux/cot=false/Llama-3-8B-Ultrachat-200K.json"
 python evaluation/eval.py "result_dirs/mmlu-redux/cot=false/Llama-3-8B-Tulu-330K.json"
-python evaluation/eval.py "result_dirs/mmlu-redux/cot=false/Magpie-Pro-SFT-v0.1.json"
-python evaluation/eval.py "result_dirs/mmlu-redux/cot=false/Meta-Llama-3-8B-Instruct.json"
 python evaluation/eval.py "result_dirs/mmlu-redux/cot=false/Llama-3-8B-WildChat.json"
 python evaluation/eval.py "result_dirs/mmlu-redux/cot=false/Llama-3-8B-ShareGPT-112K.json"
+python evaluation/eval.py "result_dirs/mmlu-redux/cot=false/Magpie-Pro-SFT-v0.1.json"
+python evaluation/eval.py "result_dirs/mmlu-redux/cot=false/Meta-Llama-3-8B-Instruct.json"
+echo "Done"
+
 
 """
 
+
+"""
+
+File: result_dirs/mmlu-redux/cot=false/Llama-3-8B-OpenHermes-243K.json
+Total examples: 2778
+Correct: 1280
+Accuracy: 0.4607631389488841
+---------------------------------
+File: result_dirs/mmlu-redux/cot=false/Llama-3-8B-Ultrachat-200K.json
+Total examples: 2778
+Correct: 1409
+Accuracy: 0.5071994240460763
+---------------------------------
+File: result_dirs/mmlu-redux/cot=false/Llama-3-8B-Tulu-330K.json
+Total examples: 2778
+Correct: 1295
+Accuracy: 0.4661627069834413
+---------------------------------
+File: result_dirs/mmlu-redux/cot=false/Llama-3-8B-WildChat.json
+Total examples: 2778
+Correct: 1461
+Accuracy: 0.5259179265658748
+---------------------------------
+File: result_dirs/mmlu-redux/cot=false/Llama-3-8B-ShareGPT-112K.json
+Total examples: 2778
+Correct: 1399
+Accuracy: 0.5035997120230381
+---------------------------------
+File: result_dirs/mmlu-redux/cot=false/Magpie-Pro-SFT-v0.1.json
+Total examples: 2778
+Correct: 1448
+Accuracy: 0.5212383009359252
+---------------------------------
+File: result_dirs/mmlu-redux/cot=false/Meta-Llama-3-8B-Instruct.json
+Total examples: 2778
+Correct: 1628
+Accuracy: 0.5860331173506119
+---------------------------------
+"""
 
 example_prediction_item = """
 {
