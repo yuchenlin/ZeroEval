@@ -40,7 +40,7 @@ def apply_template(chat_history, model_name):
     model_inputs = [] 
     conv = None 
     for chats in tqdm(chat_history, desc="Applying template", disable=False):
-        if "gpt-" in model_name.lower():
+        if "gpt-" in model_name.lower() and "share" not in model_name.lower():
             model_inputs.append("n/a") # will be handled by another ways.
             continue
         elif "gemini-" in model_name.lower():
