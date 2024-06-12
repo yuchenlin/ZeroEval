@@ -1,10 +1,11 @@
 import json 
-
-# Load the prediction file
-# filepath = "result_dirs/mmlu-redux/cot=True/gpt-3.5-turbo-0125.json"
-# filepath = "result_dirs/mmlu-redux/cot=True/Magpie-Pro-SFT-v0.1.json"
+import sys 
+filepath = sys.argv[1]
+# Load the prediction file 
 # filepath = "ZeroEval/result_dirs/mmlu-redux/cot=false/Llama-3-8B-Tulu-330K.json"
-filepath = "ZeroEval/result_dirs/mmlu-redux/cot=false/Magpie-Pro-SFT-v0.1.json"
+# filepath = "ZeroEval/result_dirs/mmlu-redux/cot=false/Magpie-Pro-SFT-v0.1.json"
+# filepath = "ZeroEval/result_dirs/mmlu-redux/cot=false/Llama-3-8B-OpenHermes-243K.json"
+# filepath = "ZeroEval/result_dirs/mmlu-redux/cot=false/Llama-3-8B-Ultrachat-200K.json"
 
 filepath = filepath.replace("ZeroEval/", "")
 with open(filepath, 'r') as f:
@@ -15,30 +16,47 @@ total = 0
 correct = 0
 eval_ed_ids = set()
 
-total_examples = 0
-missing = 0
+total_examples = 0 
 correct = 0 
 for prediction_item in predictions: 
     total_examples += 1
     answer = prediction_item["correct_answer"]
+    # remove the endding "." from the answer
+    choices = []
+    for choice in prediction_item["choices"]:
+        while choice.endswith(".") or choice.endswith(","):
+            choice = choice[:-1]
+        choices.append(choice)
+    while answer.endswith(".") or answer.endswith(","):
+        answer = answer[:-1]
+    assert answer in choices
+    labels = ["(A)", "(B)", "(C)", "(D)", "(E)", "(F)"]
+    answer_label = labels[choices.index(answer)]
     output = prediction_item["output"][0]
-    if answer in output:
+    if f": {answer_label}" in output:
         correct += 1
-    # if "### Answer: " not in output:
-    #     print(output)
-    #     missing += 1
-    #     continue
-    # if answer in output.split("##Answer: ")[1]: 
-    #     correct += 1
+    elif f": {answer}" in output:
+        correct += 1
+    elif f"is {answer_label}" in output:
+        correct += 1
+    elif f"is {answer}" in output:
+        correct += 1 
 
 print(f"File: {filepath}")
-print(f"Total examples: {total_examples}")
-print(f"Missing choices: {missing}")
+print(f"Total examples: {total_examples}") 
 print(f"Correct: {correct}")
 print(f"Accuracy: {correct/total_examples}")
 
 exit()
 
+
+"""
+python evaluation/eval.py "result_dirs/mmlu-redux/cot=false/Llama-3-8B-OpenHermes-243K.json"
+python evaluation/eval.py "result_dirs/mmlu-redux/cot=false/Llama-3-8B-Ultrachat-200K.json"
+python evaluation/eval.py "result_dirs/mmlu-redux/cot=false/Llama-3-8B-Tulu-330K.json"
+python evaluation/eval.py "result_dirs/mmlu-redux/cot=false/Magpie-Pro-SFT-v0.1.json"
+python evaluation/eval.py "result_dirs/mmlu-redux/cot=false/Meta-Llama-3-8B-Instruct.json"
+"""
 
 
 example_prediction_item = """
