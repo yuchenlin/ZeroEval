@@ -12,6 +12,7 @@ else:
     OPENAI_RATE_LIMIT_ERROR = openai.RateLimitError
     OPENAI_API_ERROR = openai.APIError
 
+from _TEMPLATES import apply_mc_template
 
 from tenacity import (
     retry,
@@ -77,59 +78,28 @@ def load_eval_data(args, data_name=None, model_name=None):
     chat_history = []
     id_strs = []
     metadata = {}
-    if data_name == "wild_bench":
-        # Note that this is changed to V2 on May 22.
-        dataset = load_dataset("allenai/WildBench", "v2", split="test")
-        metadata = {"session_id": [], "primary_tag": []}
-    elif data_name == "wild_bench_v2_internal":
-        dataset = load_dataset("WildEval/WildBench-v2-dev", split="test")
-        metadata = {"session_id": [], "primary_tag": []}
-    elif data_name == "wild_bench_v2_dev":
-        dataset = load_dataset("WildEval/WildBench-V2", "v2.0522", split="test")
-        metadata = {"session_id": [], "primary_tag": []}
-    elif data_name == "alpaca_eval":
-        dataset = load_dataset("tatsu-lab/alpaca_eval", "alpaca_eval", split="eval")
-        metadata = {"dataset": []}
-    elif data_name == "just_eval":
-        dataset = load_dataset("re-align/just-eval-instruct", split="test") 
-        metadata = {"dataset": [], "source_id": []}
-    elif data_name == "mt-bench":
-        dataset = load_dataset("json", data_files="https://huggingface.co/spaces/lmsys/mt-bench/raw/main/data/mt_bench/question.jsonl", split="train")
-        metadata = {"question_id": [], "category": []}        
-        if args.mt_turn == 2:
-            with open(args.mt_turn1_result, "r") as f:
-                mt_turn1_result = json.load(f)
-            id_to_turn1_result = {}
-            for item in mt_turn1_result:
-                id_to_turn1_result[item["question_id"]] = item["turn1_output"] 
+    if data_name == "mmlu-redux":
+        dataset = load_dataset("yuchenlin/zero-eval", "mmlu-redux", split="test")
+    elif data_name == "gsm":
+        dataset = load_dataset("yuchenlin/zero-eval", "gsm", split="test")
     else:
         raise ValueError(f"Data name {data_name} not supported")
+    
     
     print(f"Loaded {len(dataset)} examples from {data_name}")
 
     for ind, item in enumerate(dataset):
-        if data_name in ["wild_bench", "wild_bench_v2_internal", "wild_bench_v2_dev"]:
-            assert item["conversation_input"][-1]["role"] == "user"
-            extracted_chats = [chat["content"] for chat in item["conversation_input"]]
-            chat_history.append(extracted_chats)
-            id_strs.append(item["session_id"])
-        elif data_name in ["alpaca_eval", "just_eval"]:
-            in_text = item["instruction"]    
-            id_strs.append(item.get("id", str(ind)))
-            chat_history.append([in_text])
-        elif data_name == "mt-bench":
-            if args.mt_turn == 1:
-                chat_history.append([item["turns"][0]])
-            elif args.mt_turn == 2:
-                chat_history.append([item["turns"][0], 
-                                     id_to_turn1_result[item["question_id"]], 
-                                     item["turns"][1]]) 
-            else:
-                raise ValueError(f"mt_turn {args.mt_turn} not supported; must be 1 or 2")
+        id_strs.append(item["id"]) 
+        if data_name in ["mmlu-redux"]:  # and other multiple-choice QA dataset 
+            prompt = apply_mc_template(item["question"], item["choices"], cot = args.cot)
+            chat_history.append([prompt])
+        elif data_name in ["gsm"]:
+            pass 
         else:
             raise ValueError(f"Data name {data_name} not supported")
-        for key in metadata: 
-            assert key in item, f"Key {key} not found in metadata"
+        for key in item: 
+            if key not in metadata:
+                metadata[key] = []
             metadata[key].append(item[key])
     print("Start applying template")
     model_inputs = apply_template(chat_history, model_name)
@@ -148,7 +118,7 @@ def clear_output(output, model_name):
 
 def save_outputs(args, id_strs, outputs, chat_history, metadata, model_inputs, filepath):
     formatted_outputs = []
-    if args.data_name in ["wild_bench", "wild_bench_v2_internal", "wild_bench_v2_dev"]:
+    if args.data_name in ["mmlu-redux"]:
         for ind in range(len(outputs)):
             output_item = {}
             output_item["session_id"] = id_strs[ind]
@@ -162,49 +132,15 @@ def save_outputs(args, id_strs, outputs, chat_history, metadata, model_inputs, f
                     "temperature": args.temperature,
                     "top_p": args.top_p,
                     "max_tokens": args.max_tokens,
+                    "cot": args.cot,
                 }
             output_item["dataset"] = args.data_name 
             for key in metadata:
+                if key in output_item:
+                    continue 
                 output_item[key] = metadata[key][ind]
             formatted_outputs.append(output_item)
-    elif args.data_name == "alpaca_eval":
-        for ind in range(len(outputs)):
-            output_item = {}
-            output_item["instruction"] = chat_history[ind][0]
-            output_item["output"] = [clear_output(outputs[ind][x].rstrip(), args.model_name) for x in range(len(outputs[ind]))]
-            output_item["generator"] = args.model_name
-            output_item["dataset"] = metadata["dataset"][ind]
-            output_item["model_input"] = model_inputs[ind]
-            formatted_outputs.append(output_item)
-    elif args.data_name == "just_eval":
-        for ind in range(len(outputs)):
-            output_item = {}
-            output_item["id"] = ind
-            output_item["instruction"] = chat_history[ind][0]
-            output_item["output"] = clear_output(outputs[ind][0].rstrip(), args.model_name)
-            output_item["generator"] = args.model_name
-            output_item["dataset"] = metadata["dataset"][ind]
-            output_item["source_id"] = metadata["source_id"][ind]
-            output_item["datasplit"] = "just_eval"
-            output_item["model_input"] = model_inputs[ind]
-            formatted_outputs.append(output_item)
-    elif args.data_name == "mt-bench":
-        for ind in range(len(outputs)):
-            output_item = {}
-            output_item["question_id"] = metadata["question_id"][ind]
-            output_item["category"] = metadata["category"][ind]
-            output_item[f"turn{args.mt_turn}_output"] = clear_output(outputs[ind][0].rstrip(), args.model_name)
-            output_item["model_id"] = args.model_name
-            output_item["turn_id"] = args.mt_turn
-            output_item["model_input"] = model_inputs[ind]
-            output_item["configs"] = {
-                "engine": args.engine,
-                "repetition_penalty": args.repetition_penalty,
-                "temperature": args.temperature,
-                "top_p": args.top_p,
-                "max_tokens": args.max_tokens,
-            }
-            formatted_outputs.append(output_item)
+    
     with open(filepath, "w") as f:
         json.dump(formatted_outputs, f, indent=2)
         
