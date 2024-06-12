@@ -15,8 +15,7 @@ This repository aims to evaluate instruction-tuned LLMs (i.e., chat models inste
 ## Run 
 
 ```bash 
-bash scripts/gpt-3.5-turbo-0125.sh mmlu-redux False # for cot=False
-bash scripts/gpt-3.5-turbo-0125.sh mmlu-redux True # for cot=True
+bash scripts/gpt-3.5-turbo-0125.sh mmlu-redux false # for using a simpel template
 ```
 
 
