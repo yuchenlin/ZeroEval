@@ -1,6 +1,7 @@
 import json 
 import sys 
 filepath = sys.argv[1]
+
 # Load the prediction file 
 # filepath = "ZeroEval/result_dirs/mmlu-redux/cot=false/Llama-3-8B-Tulu-330K.json"
 # filepath = "ZeroEval/result_dirs/mmlu-redux/cot=false/Magpie-Pro-SFT-v0.1.json"
@@ -56,6 +57,8 @@ python evaluation/eval.py "result_dirs/mmlu-redux/cot=false/Llama-3-8B-Ultrachat
 python evaluation/eval.py "result_dirs/mmlu-redux/cot=false/Llama-3-8B-Tulu-330K.json"
 python evaluation/eval.py "result_dirs/mmlu-redux/cot=false/Magpie-Pro-SFT-v0.1.json"
 python evaluation/eval.py "result_dirs/mmlu-redux/cot=false/Meta-Llama-3-8B-Instruct.json"
+python evaluation/eval.py "result_dirs/mmlu-redux/cot=false/Llama-3-8B-WildChat.json"
+
 """
 
 
