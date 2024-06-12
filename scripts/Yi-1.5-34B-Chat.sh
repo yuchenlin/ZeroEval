@@ -1,14 +1,16 @@
+DATA_NAME=$1
+COT=$2
 model_name="01-ai/Yi-1.5-34B-Chat"
 model_pretty_name="Yi-1.5-34B-Chat"
 TEMP=0; TOP_P=1.0; MAX_TOKENS=4096; 
 gpu="0,1,2,3"; num_gpus=4; batch_size=4;
 
 CACHE_DIR=${HF_HOME:-"default"}
-output_dir="result_dirs/wild_bench_v2/"
+output_dir="result_dirs/$DATA_NAME/cot=$COT/"
 
 CUDA_VISIBLE_DEVICES=$gpu \
 python src/unified_infer.py \
-    --data_name wild_bench \
+    --data_name $DATA_NAME --cot $COT \
     --model_name $model_name \
     --use_hf_conv_template --use_imend_stop \
     --download_dir $CACHE_DIR \

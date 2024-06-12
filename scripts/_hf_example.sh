@@ -1,3 +1,5 @@
+DATA_NAME=$1
+COT=$2
 model_name="meta-llama/Llama-2-7b-chat-hf"
 model_pretty_name="hf_example_test"
 TEMP=0; TOP_P=1.0; MAX_TOKENS=4096; 
