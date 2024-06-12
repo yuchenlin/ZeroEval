@@ -58,6 +58,7 @@ python evaluation/eval.py "result_dirs/mmlu-redux/cot=false/Llama-3-8B-Tulu-330K
 python evaluation/eval.py "result_dirs/mmlu-redux/cot=false/Magpie-Pro-SFT-v0.1.json"
 python evaluation/eval.py "result_dirs/mmlu-redux/cot=false/Meta-Llama-3-8B-Instruct.json"
 python evaluation/eval.py "result_dirs/mmlu-redux/cot=false/Llama-3-8B-WildChat.json"
+python evaluation/eval.py "result_dirs/mmlu-redux/cot=false/Llama-3-8B-ShareGPT-112K.json"
 
 """
 
