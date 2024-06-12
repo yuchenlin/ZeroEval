@@ -31,7 +31,7 @@ for prediction_item in predictions:
     while answer.endswith(".") or answer.endswith(","):
         answer = answer[:-1]
     assert answer in choices
-    labels = ["(A)", "(B)", "(C)", "(D)", "(E)", "(F)"]
+    labels = ["(A)", "(B)", "(C)", "(D)"]
     answer_label = labels[choices.index(answer)]
     output = prediction_item["output"][0]
     if f": {answer_label}" in output:
@@ -41,12 +41,18 @@ for prediction_item in predictions:
     elif f"is {answer_label}" in output:
         correct += 1
     elif f"is {answer}" in output:
+        correct += 1  
+    elif f"be {answer_label}" in output:
         correct += 1 
-
+    elif f"be {answer}" in output:
+        correct += 1  
+        
+print("---------------------------------")
 print(f"File: {filepath}")
-print(f"Total examples: {total_examples}") 
-print(f"Correct: {correct}")
+# print(f"Total examples: {total_examples}") 
+# print(f"Correct: {correct}")
 print(f"Accuracy: {correct/total_examples}")
+print("---------------------------------")
 
 exit()
 
@@ -59,7 +65,12 @@ python evaluation/eval.py "result_dirs/mmlu-redux/cot=false/Llama-3-8B-Tulu-330K
 python evaluation/eval.py "result_dirs/mmlu-redux/cot=false/Llama-3-8B-WildChat.json"
 python evaluation/eval.py "result_dirs/mmlu-redux/cot=false/Llama-3-8B-ShareGPT-112K.json"
 python evaluation/eval.py "result_dirs/mmlu-redux/cot=false/Magpie-Pro-SFT-v0.1.json"
-python evaluation/eval.py "result_dirs/mmlu-redux/cot=false/Meta-Llama-3-8B-Instruct.json"
+python evaluation/eval.py "result_dirs/mmlu-redux/cot=false/Llama-3-8B-WizardLM-196K.json"
+python evaluation/eval.py "result_dirs/mmlu-redux/cot=false/Meta-Llama-3-8B-Instruct.json" 
+python evaluation/eval.py "result_dirs/mmlu-redux/cot=false/Llama-3-8B-Magpie-Pro-SFT-200K-v0.1.json"
+python evaluation/eval.py "result_dirs/mmlu-redux/cot=false/Llama-3-8B-Magpie-Pro-SFT-100K-v0.1.json"
+python evaluation/eval.py "result_dirs/mmlu-redux/cot=false/Llama-3-8B-Magpie-Air-SFT-v0.1.json"
+
 echo "Done"
 
 
@@ -68,40 +79,36 @@ echo "Done"
 
 """
 
-File: result_dirs/mmlu-redux/cot=false/Llama-3-8B-OpenHermes-243K.json
-Total examples: 2778
-Correct: 1280
-Accuracy: 0.4607631389488841
 ---------------------------------
 File: result_dirs/mmlu-redux/cot=false/Llama-3-8B-Ultrachat-200K.json
-Total examples: 2778
-Correct: 1409
-Accuracy: 0.5071994240460763
+Accuracy: 0.5075593952483801
 ---------------------------------
 File: result_dirs/mmlu-redux/cot=false/Llama-3-8B-Tulu-330K.json
-Total examples: 2778
-Correct: 1295
-Accuracy: 0.4661627069834413
+Accuracy: 0.46976241900647947
 ---------------------------------
 File: result_dirs/mmlu-redux/cot=false/Llama-3-8B-WildChat.json
-Total examples: 2778
-Correct: 1461
 Accuracy: 0.5259179265658748
 ---------------------------------
 File: result_dirs/mmlu-redux/cot=false/Llama-3-8B-ShareGPT-112K.json
-Total examples: 2778
-Correct: 1399
-Accuracy: 0.5035997120230381
+Accuracy: 0.5068394528437725
 ---------------------------------
 File: result_dirs/mmlu-redux/cot=false/Magpie-Pro-SFT-v0.1.json
-Total examples: 2778
-Correct: 1448
-Accuracy: 0.5212383009359252
+Accuracy: 0.521598272138229
+---------------------------------
+File: result_dirs/mmlu-redux/cot=false/Llama-3-8B-WizardLM-196K.json
+Accuracy: 0.52735781137509
 ---------------------------------
 File: result_dirs/mmlu-redux/cot=false/Meta-Llama-3-8B-Instruct.json
-Total examples: 2778
-Correct: 1628
 Accuracy: 0.5860331173506119
+---------------------------------
+File: result_dirs/mmlu-redux/cot=false/Llama-3-8B-Magpie-Pro-SFT-200K-v0.1.json
+Accuracy: 0.5143988480921526
+---------------------------------
+File: result_dirs/mmlu-redux/cot=false/Llama-3-8B-Magpie-Pro-SFT-100K-v0.1.json
+Accuracy: 0.5255579553635709
+---------------------------------
+File: result_dirs/mmlu-redux/cot=false/Llama-3-8B-Magpie-Air-SFT-v0.1.json
+Accuracy: 0.5233981281497481
 ---------------------------------
 """
 

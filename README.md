@@ -35,4 +35,9 @@ bash scripts/Llama-3-8B-OpenHermes-243K.sh  mmlu-redux false
 wait 
 bash scripts/Llama-3-8B-Ultrachat-200K.sh mmlu-redux false
 wait 
+bash scripts/Llama-3-8B-WizardLM-196K.sh mmlu-redux false
+
+bash scripts/Llama-3-8B-Magpie-Pro-SFT-200K-v0.1.sh mmlu-redux false
+bash scripts/Llama-3-8B-Magpie-Pro-SFT-100K-v0.1.sh mmlu-redux false
+bash scripts/Llama-3-8B-Magpie-Air-SFT-v0.1.sh mmlu-redux false
  -->
