@@ -31,6 +31,8 @@ def parse_args():
     parser.add_argument('--repetition_penalty',default=1, type=float)
     parser.add_argument('--max_tokens',default=7500, type=int)
     parser.add_argument('--max_model_len',default=None, type=int)
+    parser.add_argument('--num_shards', default=1, type=int)
+    parser.add_argument('--shard_id', default=0, type=int)
     parser.add_argument('--start_index',default=0, type=int) # 0 means from the beginning of the list
     parser.add_argument('--end_index',default=-1, type=int) # -1 means to the end of the list
     parser.add_argument('--filepath',default="auto", type=str)
@@ -56,6 +58,9 @@ def sanitize_args(args):
 if __name__ == "__main__":
     args = parse_args()
     args = sanitize_args(args)
+
+   
+
     # Load the model
     print("loading model!")
     if args.tokenizer_name == "auto":
@@ -92,6 +97,20 @@ if __name__ == "__main__":
 
     # Data loading
     id_strs, chat_history, model_inputs, metadata = load_eval_data(args)
+
+
+
+    # decide start_index and end_index by num_shards and shard_id  
+    if args.num_shards > 1:
+        num_data = len(id_strs)
+        shard_size = num_data // args.num_shards
+        args.start_index = args.shard_id * shard_size
+        args.end_index = (args.shard_id + 1) * shard_size
+        if args.shard_id == args.num_shards - 1:
+            args.end_index = num_data
+    
+         
+
 
     # Decide the output filepath
     if args.filepath == "auto":

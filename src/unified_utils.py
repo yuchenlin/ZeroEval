@@ -12,7 +12,7 @@ else:
     OPENAI_RATE_LIMIT_ERROR = openai.RateLimitError
     OPENAI_API_ERROR = openai.APIError
 
-from _TEMPLATES import apply_mc_template
+from _TEMPLATES import apply_mc_template, apply_lgp_grid_template
 
 from tenacity import (
     retry,
@@ -82,6 +82,8 @@ def load_eval_data(args, data_name=None, model_name=None):
         dataset = load_dataset("yuchenlin/zero-eval", "mmlu-redux", split="test")
     elif data_name == "gsm":
         dataset = load_dataset("yuchenlin/zero-eval", "gsm", split="test")
+    elif data_name == "zebra-grid":
+        dataset = load_dataset("yuchenlin/LGP-Bench", "grid_mode", split="test")
     else:
         raise ValueError(f"Data name {data_name} not supported")
     
@@ -95,6 +97,9 @@ def load_eval_data(args, data_name=None, model_name=None):
             chat_history.append([prompt])
         elif data_name in ["gsm"]:
             pass 
+        elif data_name in ["zebra-grid"]:
+            prompt = apply_lgp_grid_template(item)
+            chat_history.append([prompt])
         else:
             raise ValueError(f"Data name {data_name} not supported")
         for key in item: 
@@ -118,7 +123,7 @@ def clear_output(output, model_name):
 
 def save_outputs(args, id_strs, outputs, chat_history, metadata, model_inputs, filepath):
     formatted_outputs = []
-    if args.data_name in ["mmlu-redux"]:
+    if args.data_name in ["mmlu-redux", "zebra-grid"]:
         for ind in range(len(outputs)):
             output_item = {}
             output_item["session_id"] = id_strs[ind]
@@ -140,6 +145,10 @@ def save_outputs(args, id_strs, outputs, chat_history, metadata, model_inputs, f
                     continue 
                 output_item[key] = metadata[key][ind]
             formatted_outputs.append(output_item)
+
+    # elif args.data_name in ["zebra-grid"]:
+    #     pass 
+
     
     with open(filepath, "w") as f:
         json.dump(formatted_outputs, f, indent=2)
