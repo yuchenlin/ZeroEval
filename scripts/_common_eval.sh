@@ -27,7 +27,6 @@ if [ $n_shards -eq 1 ]; then
         --output_folder $output_dir/  
 
 elif [ $n_shards -gt 1 ]; then
-    TOTAL_EXAMPLE=1024
     echo "Using Data-parallelism"
     start_gpu=0
     num_gpus=1 
