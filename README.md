@@ -15,10 +15,16 @@ This repository aims to evaluate instruction-tuned LLMs (i.e., chat models inste
 ## Run 
 
 ```bash 
-bash scripts/gpt-3.5-turbo-0125.sh mmlu-redux false # for using a simple no-cot template
-
+bash scripts/_common_eval.sh mmlu-redux meta-llama/Meta-Llama-3-8B-Instruct Meta-Llama-3-8B-Instruct 4
+# [DATA_NAME]  [model_name]  [model_pretty_name]  [n_shards]
 ```
 
+
+## ZebraBench 
+```bash 
+bash scripts/_common_eval.sh zebra-grid meta-llama/Meta-Llama-3-8B-Instruct Meta-Llama-3-8B-Instruct 4
+bash scripts/_common_eval.sh zebra-grid meta-llama/Meta-Llama-3-70B-Instruct Meta-Llama-3-70B-Instruct 1
+```
 
 <!-- 
 
