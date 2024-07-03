@@ -123,28 +123,28 @@ def clear_output(output, model_name):
 
 def save_outputs(args, id_strs, outputs, chat_history, metadata, model_inputs, filepath):
     formatted_outputs = []
-    if args.data_name in ["mmlu-redux", "zebra-grid"]:
-        for ind in range(len(outputs)):
-            output_item = {}
-            output_item["session_id"] = id_strs[ind]
-            output_item["chat_history"] = chat_history[ind]
-            output_item["model_input"] = model_inputs[ind]
-            output_item["output"] = [clear_output(o, args.model_name) for o in outputs[ind]]
-            output_item["generator"] = args.model_name
-            output_item["configs"] = {
-                    "engine": args.engine,
-                    "repetition_penalty": args.repetition_penalty,
-                    "temperature": args.temperature,
-                    "top_p": args.top_p,
-                    "max_tokens": args.max_tokens,
-                    "cot": args.cot,
-                }
-            output_item["dataset"] = args.data_name 
-            for key in metadata:
-                if key in output_item:
-                    continue 
-                output_item[key] = metadata[key][ind]
-            formatted_outputs.append(output_item)
+    # if args.data_name in ["mmlu-redux", "zebra-grid"]:
+    for ind in range(len(outputs)):
+        output_item = {}
+        output_item["session_id"] = id_strs[ind]
+        output_item["chat_history"] = chat_history[ind]
+        output_item["model_input"] = model_inputs[ind]
+        output_item["output"] = [clear_output(o, args.model_name) for o in outputs[ind]]
+        output_item["generator"] = args.model_name
+        output_item["configs"] = {
+                "engine": args.engine,
+                "repetition_penalty": args.repetition_penalty,
+                "temperature": args.temperature,
+                "top_p": args.top_p,
+                "max_tokens": args.max_tokens,
+                "cot": args.cot,
+            }
+        output_item["dataset"] = args.data_name 
+        for key in metadata:
+            if key in output_item:
+                continue 
+            output_item[key] = metadata[key][ind]
+        formatted_outputs.append(output_item)
 
     # elif args.data_name in ["zebra-grid"]:
     #     pass 
