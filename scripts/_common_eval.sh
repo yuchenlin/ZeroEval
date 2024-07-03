@@ -2,11 +2,12 @@ DATA_NAME=$1
 model_name=$2
 model_pretty_name=$3
 n_shards=$4
+cot=${5:-True}
 
 TEMP=0; TOP_P=1.0; MAX_TOKENS=4096; 
 batch_size=4; 
 CACHE_DIR=${HF_HOME:-"default"}
-output_dir="result_dirs/${DATA_NAME}/" 
+output_dir="result_dirs/${DATA_NAME}/cot=${cot}/" 
 
 # If the n_shards is 1, then we can directly run the model
 # else, use  Data-parallellism
@@ -16,6 +17,7 @@ if [ $n_shards -eq 1 ]; then
     CUDA_VISIBLE_DEVICES=$gpu \
     python src/unified_infer.py \
         --data_name $DATA_NAME \
+        --cot $cot \
         --model_name $model_name \
         --use_hf_conv_template --use_imend_stop \
         --download_dir $CACHE_DIR \
@@ -37,6 +39,7 @@ elif [ $n_shards -gt 1 ]; then
             --num_shards $n_shards \
             --shard_id $shard_id \
             --data_name $DATA_NAME \
+            --cot $cot \
             --model_name $model_name \
             --use_hf_conv_template --use_imend_stop \
             --download_dir $CACHE_DIR \

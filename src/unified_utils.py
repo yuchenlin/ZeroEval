@@ -98,7 +98,7 @@ def load_eval_data(args, data_name=None, model_name=None):
         elif data_name in ["gsm"]:
             pass 
         elif data_name in ["zebra-grid"]:
-            prompt = apply_lgp_grid_template(item)
+            prompt = apply_lgp_grid_template(item, cot = args.cot)
             chat_history.append([prompt])
         else:
             raise ValueError(f"Data name {data_name} not supported")
