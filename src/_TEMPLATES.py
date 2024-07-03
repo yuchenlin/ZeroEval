@@ -20,7 +20,54 @@ Let's think step by step, and then choose the best answer.
 """
 
 
-ZEBRA_GRID_TEMPLATE = """
+ZEBRA_GRID_SIMPLE_TEMPLATE = """
+# Example Puzzle 
+
+There are 3 houses, numbered 1 to 3 from left to right, as seen from across the street. Each house is occupied by a different person. They have different characteristics:
+ - Each person has a unique name: peter, eric, arnold
+ - Each person has a favorite drink: tea, water, milk
+
+## Clues for the Example Puzzle
+
+1. Peter is in the second house.
+2. Arnold is directly left of the one who only drinks water.
+3. The one who only drinks water is directly left of the person who likes milk.
+
+
+## Answer to the Example Puzzle
+
+{
+    "House 1": {
+        "Name": "arnold",
+        "Drink": "tea"
+    },
+    "House 2": {
+        "Name": "peter",
+        "Drink": "water"
+    },
+    "House 3": {
+        "Name": "eric",
+        "Drink": "milk"
+    }
+}
+
+# Puzzle to Solve 
+
+{puzzle}
+
+
+# Instruction
+
+Now please solve the above puzzle. Start directly presenting your answer after "## Answer:" with the following json format:
+
+## Final answer:
+
+{json_template}
+
+"""
+
+
+ZEBRA_GRID_COT_TEMPLATE = """
 # Example Puzzle 
 
 There are 3 houses, numbered 1 to 3 from left to right, as seen from across the street. Each house is occupied by a different person. They have different characteristics:
@@ -89,8 +136,13 @@ def apply_mc_template(question, choices, cot=False):
         raise ValueError("Invalid value for cot. Please specify either 'true' or 'false'.")
     
 
-def apply_lgp_grid_template(item):
-    primpt_str = ZEBRA_GRID_TEMPLATE[:]
+def apply_lgp_grid_template(item, cot = False):
+    if cot.lower() == "true":
+        primpt_str = ZEBRA_GRID_COT_TEMPLATE[:]
+    elif cot.lower() == "false":
+        primpt_str = ZEBRA_GRID_SIMPLE_TEMPLATE[:]
+    else:
+        raise ValueError("Invalid value for cot. Please specify either 'true' or 'false'.")
     primpt_str = primpt_str.replace("{puzzle}", item["puzzle"])
     num_houses = len(item["solution"]["rows"])
     columns = item["solution"]["header"]

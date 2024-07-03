@@ -19,7 +19,7 @@ from tabulate import tabulate
 # filepath = "result_dirs/zebra-grid/Qwen2-72B-Instruct.json"
 
 
-folder = "result_dirs/zebra-grid/"
+folder = "result_dirs/zebra-grid/cot=True"
 
 model_results = {}
 
@@ -128,7 +128,7 @@ def eval_model(model, filepath):
 
     # # print the success rate by size; order the dict by size first 
     easy_sizes = ["3*3", "3*4", "3*5", "3*6", "4*3"]
-    hard_sizes = ["4*4", "4*5", "4*6", "4*7", "4*8", "4*9"]
+    hard_sizes = ['4*4', '4*5', '4*6', '5*3', '5*4', '5*5', '5*6', '6*3', '6*4', '6*5', '6*6']
     sizes = sorted(num_total_puzzles_by_size.keys())
     # print(sizes) --> ['3*3', '3*4', '3*5', '3*6', '4*3', '4*4', '4*5', '4*6', '5*3', '5*4', '5*5', '5*6', '6*3', '6*4', '6*5', '6*6']
     easy_solved_puzzles = sum([solved_puzzles_by_size[size] for size in easy_sizes])
@@ -162,7 +162,7 @@ rows = sorted(rows, key=lambda x: -float(x["Puzzle-level Acc"]))
 # Convert rows to the expected format for tabulate
 table_data = [[row[col] for col in columns] for row in rows]
 
-print(tabulate(table_data, headers=columns, tablefmt="github"))
+print(tabulate(table_data, headers=columns, tablefmt="fancy_outline"))
 # print(tabulate(rows, headers=columns, tablefmt="github"))
 
     

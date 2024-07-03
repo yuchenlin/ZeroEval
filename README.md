@@ -20,14 +20,13 @@ bash scripts/_common_eval.sh mmlu-redux meta-llama/Meta-Llama-3-8B-Instruct Meta
 ```
 
 
-## ZebraBench 
+## ZebraBench (CoT)
+
 ```bash 
 bash scripts/_common_eval.sh zebra-grid meta-llama/Meta-Llama-3-8B-Instruct Meta-Llama-3-8B-Instruct 4
-bash scripts/_common_eval.sh zebra-grid meta-llama/Meta-Llama-3-70B-Instruct Meta-Llama-3-70B-Instruct 1
 bash scripts/_common_eval.sh zebra-grid Qwen/Qwen2-72B-Instruct Qwen2-72B-Instruct 1
-bash scripts/_common_eval.sh zebra-grid Qwen/Qwen2-7B-Instruct Qwen2-7B-Instruct 4
-wait 
-bash scripts/_common_eval.sh zebra-grid deepseek-ai/DeepSeek-Coder-V2-Instruct DeepSeek-Coder-V2-Instruct 1
+bash scripts/_common_eval.sh zebra-grid meta-llama/Meta-Llama-3-70B-Instruct Meta-Llama-3-70B-Instruct 1
+bash scripts/_common_eval.sh zebra-grid Qwen/Qwen2-7B-Instruct Qwen2-7B-Instruct 4 
 # wait 
 
 
@@ -50,6 +49,20 @@ bash scripts/_common_api_eval.sh zebra-grid google google/gemini-1.5-flash gemin
 bash scripts/_common_api_eval.sh zebra-grid reka reka/reka-flash-20240226 reka-flash-20240226 8
 bash scripts/_common_api_eval.sh zebra-grid reka reka/reka-core-20240501 reka-core-20240501 8
 
+```
+
+
+## ZebraBench (CoT=False)
+
+```bash
+
+bash scripts/_common_eval.sh zebra-grid Qwen/Qwen2-72B-Instruct Qwen2-72B-Instruct 1 False 
+wait
+bash scripts/_common_eval.sh zebra-grid meta-llama/Meta-Llama-3-70B-Instruct Meta-Llama-3-70B-Instruct 1 False
+wait 
+
+
+bash scripts/_common_api_eval.sh zebra-grid openai openai/gpt-4o-2024-05-13 gpt-4o-2024-05-13 8 False
 ```
 
 <!-- 
