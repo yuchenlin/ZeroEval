@@ -39,7 +39,7 @@ from together import Together
 def apply_template(chat_history, model_name):
     model_inputs = [] 
     conv = None 
-    for chats in tqdm(chat_history, desc="Applying template", disable=False):
+    for chats in tqdm(chat_history, desc="Applying template", disable=True):
         if "gpt-" in model_name.lower() and "share" not in model_name.lower():
             model_inputs.append("n/a") # will be handled by another ways.
             continue
@@ -83,7 +83,7 @@ def load_eval_data(args, data_name=None, model_name=None):
     elif data_name == "gsm":
         dataset = load_dataset("yuchenlin/zero-eval", "gsm", split="test")
     elif data_name == "zebra-grid":
-        dataset = load_dataset("yuchenlin/LGP-Bench", "grid_mode", split="test")
+        dataset = load_dataset("allenai/ZebraLogicBench", "grid_mode", split="test")
     else:
         raise ValueError(f"Data name {data_name} not supported")
     
@@ -93,7 +93,7 @@ def load_eval_data(args, data_name=None, model_name=None):
     for ind, item in enumerate(dataset):
         id_strs.append(item["id"]) 
         if data_name in ["mmlu-redux"]:  # and other multiple-choice QA dataset 
-            prompt = apply_mc_template(item["question"], item["choices"], cot = args.cot)
+            prompt = apply_mc_template(item, cot = args.cot)
             chat_history.append([prompt])
         elif data_name in ["gsm"]:
             pass 
