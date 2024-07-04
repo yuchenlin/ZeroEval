@@ -19,7 +19,6 @@ bash scripts/_common_eval.sh mmlu-redux meta-llama/Meta-Llama-3-8B-Instruct Meta
 # [DATA_NAME]  [model_name]  [model_pretty_name]  [n_shards]
 ```
 
-
 <!-- 
 
 
