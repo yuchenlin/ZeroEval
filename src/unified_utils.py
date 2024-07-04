@@ -277,6 +277,9 @@ def openai_chat_request(
         if "deepseek" in model:
             assert os.environ.get("DEEPSEEK_API_KEY") is not None, "Please set DEEPSEEK_API_KEY in the environment variables."
             client = OpenAI(api_key=os.environ.get("DEEPSEEK_API_KEY"), base_url="https://api.deepseek.com/v1")
+        elif "yi-" in model:
+            assert os.environ.get("YI_API_KEY") is not None, "Please set YI_API_KEY in the environment variables."
+            client = OpenAI(api_key=os.environ.get("YI_API_KEY"), base_url="https://api.lingyiwanwu.com/v1")
         else:
             client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
 
