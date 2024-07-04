@@ -52,7 +52,7 @@ def extract_last_complete_json(s):
     # Load the last JSON object
     if last_json_str:
         try:
-            return json.loads(last_json_str)
+            return json.loads(last_json_str.replace("\n", ""))
         except json.JSONDecodeError:
             pass
     
@@ -60,6 +60,7 @@ def extract_last_complete_json(s):
 
 def eval_model(model, filepath):
     with open(filepath, "r") as f:
+        print(f"Processing {filepath}")
         data = json.load(f)
 
     solved_puzzles = 0 
@@ -90,13 +91,18 @@ def eval_model(model, filepath):
 
         # Read and Parse the prediction from model output
         prediction_str = item["output"][0]     
-        prediction_table = extract_last_complete_json(prediction_str)
-        if prediction_table is None:
-            # print(prediction_str)
+        prediction_json = extract_last_complete_json(prediction_str)
+        if prediction_json is None or "solution" not in prediction_json:
+            # print("-"*100)
+            # prediction_str = prediction_str.replace("\n", "")
+            # print([prediction_str])
+            # json.loads(prediction_str)
             no_asnwer += 1
             # print(item["id"])
             continue 
-
+        prediction_table = prediction_json["solution"]
+        
+        
 
         this_correct_cells = 0 # number in the solution_table 
         for house in solution_table:
@@ -120,19 +126,25 @@ def eval_model(model, filepath):
         if this_correct_cells == this_total_cells:
             solved_puzzles += 1
             solved_puzzles_by_size[size] += 1
-            
+        
     # print(f"Filepath: {filepath}")
     # print(f"Puzzle-level success rate: {solved_puzzles}/{num_total_puzzles} -> {solved_puzzles/num_total_puzzles*100:.2f}%")
     # print(f"Cell-wise accuracy: {correct_cells}/{total_cells}  -> {correct_cells/total_cells*100:.2f}%")
     # print(f"No answer: {no_asnwer} -> {no_asnwer/num_total_puzzles*100:.2f}%")
 
     # # print the success rate by size; order the dict by size first 
-    easy_sizes = ["3*3", "3*4", "3*5", "3*6", "4*3"]
-    hard_sizes = ['4*4', '4*5', '4*6', '5*3', '5*4', '5*5', '5*6', '6*3', '6*4', '6*5', '6*6']
+
+    easy_sizes = ['2*2', '2*3', '2*4','2*5', '3*2', '2*6','4*2',  '6*2','5*2',]
+    medium_sizes = ['3*6', '4*3', '4*4', '4*5','4*6', '3*3', '3*4', '3*5', ]
+    hard_sizes = ['5*3', '5*4', '5*5', '5*6',  '6*3', '6*4', '6*5', '6*6']
+    
+
     sizes = sorted(num_total_puzzles_by_size.keys())
-    # print(sizes) --> ['3*3', '3*4', '3*5', '3*6', '4*3', '4*4', '4*5', '4*6', '5*3', '5*4', '5*5', '5*6', '6*3', '6*4', '6*5', '6*6']
+    # print(sizes) # --> ['3*3', '3*4', '3*5', '3*6', '4*3', '4*4', '4*5', '4*6', '5*3', '5*4', '5*5', '5*6', '6*3', '6*4', '6*5', '6*6']
     easy_solved_puzzles = sum([solved_puzzles_by_size[size] for size in easy_sizes])
     easy_total_puzzles = sum([num_total_puzzles_by_size[size] for size in easy_sizes])
+    medium_solved_puzzles = sum([solved_puzzles_by_size[size] for size in medium_sizes])
+    medium_total_puzzles = sum([num_total_puzzles_by_size[size] for size in medium_sizes])
     hard_solved_puzzles = sum([solved_puzzles_by_size[size] for size in hard_sizes])
     hard_total_puzzles = sum([num_total_puzzles_by_size[size] for size in hard_sizes])
 
@@ -145,11 +157,13 @@ def eval_model(model, filepath):
     result["Cell-wise Acc"] = f"{correct_cells/total_cells*100:.2f}"
     result["No answer"] = f"{no_asnwer/num_total_puzzles*100:.2f}"
     result["Easy Puzzle-level Acc"] = f"{easy_solved_puzzles/easy_total_puzzles*100:.2f}"
+    result["Medium Puzzle-level Acc"] = f"{medium_solved_puzzles/medium_total_puzzles*100:.2f}"
     result["Hard Puzzle-level Acc"] = f"{hard_solved_puzzles/hard_total_puzzles*100:.2f}"
+    result["Total Puzzles"] = num_total_puzzles
     return result
 
 
-columns = ["Model", "Puzzle-level Acc", "Cell-wise Acc", "No answer", "Easy Puzzle-level Acc", "Hard Puzzle-level Acc"]
+columns = ["Model", "Puzzle-level Acc", "Cell-wise Acc", "No answer", "Easy Puzzle-level Acc", "Medium Puzzle-level Acc", "Hard Puzzle-level Acc", "Total Puzzles"]
 rows = []
 for model_name, filepath in model_results.items():
     # print(f"Model: {model_name}")
