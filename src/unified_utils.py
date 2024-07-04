@@ -36,28 +36,13 @@ from together import Together
 
 
 
-def apply_template(chat_history, model_name):
+def apply_template(chat_history, model_name, args):
     model_inputs = [] 
     conv = None 
     for chats in tqdm(chat_history, desc="Applying template", disable=True):
-        if "gpt-" in model_name.lower() and "share" not in model_name.lower():
+        if args.engine not in ["vllm", "hf"]: 
             model_inputs.append("n/a") # will be handled by another ways.
-            continue
-        elif "gemini-" in model_name.lower():
-            model_inputs.append("n/a") # will be handled by another ways.
-            continue
-        elif "cohere" in model_name.lower():
-            model_inputs.append("n/a") # will be handled by another ways.
-            continue
-        elif "anthropic" in model_name.lower():
-            model_inputs.append("n/a") # will be handled by another ways.
-            continue
-        elif "together" in model_name.lower():
-            model_inputs.append("n/a") # will be handled by another ways.
-            continue
-        elif "reka" in model_name.lower():
-            model_inputs.append("n/a") # will be handled by another ways.
-            continue
+            continue 
         else:
             if conv is None or isinstance(conv, HF_Conversation) == False:
                 conv = map_to_conv(model_name)
@@ -107,7 +92,7 @@ def load_eval_data(args, data_name=None, model_name=None):
                 metadata[key] = []
             metadata[key].append(item[key])
     print("Start applying template")
-    model_inputs = apply_template(chat_history, model_name)
+    model_inputs = apply_template(chat_history, model_name, args)
     return id_strs, chat_history, model_inputs, metadata
 
 
@@ -289,7 +274,12 @@ def openai_chat_request(
             contents.append(choice['message']['content'])
     else:
         # for version > 1.0
-        client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
+        if "deepseek" in model:
+            assert os.environ.get("DEEPSEEK_API_KEY") is not None, "Please set DEEPSEEK_API_KEY in the environment variables."
+            client = OpenAI(api_key=os.environ.get("DEEPSEEK_API_KEY"), base_url="https://api.deepseek.com/v1")
+        else:
+            client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
+
         # print(f"Requesting chat completion from OpenAI API with model {model}")
         response = client.chat.completions.create(
             model=model, 
