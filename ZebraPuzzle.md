@@ -36,6 +36,8 @@ bash scripts/_common_api_eval.sh zebra-grid together meta-llama/Llama-3-70b-chat
 
 bash scripts/_common_api_eval.sh zebra-grid openai deepseek-chat deepseek-chat 8
 bash scripts/_common_api_eval.sh zebra-grid openai deepseek-coder deepseek-coder 8
+
+bash scripts/_common_api_eval.sh zebra-grid openai yi-large yi-large 8
 ```
 
  
