@@ -4,8 +4,9 @@
 ```bash 
 bash scripts/_common_eval.sh zebra-grid Qwen/Qwen2-72B-Instruct Qwen2-72B-Instruct 1
 bash scripts/_common_eval.sh zebra-grid meta-llama/Meta-Llama-3-8B-Instruct Meta-Llama-3-8B-Instruct 4
-bash scripts/_common_eval.sh zebra-grid Qwen/Qwen2-7B-Instruct Qwen2-7B-Instruct 4 
 bash scripts/_common_eval.sh zebra-grid meta-llama/Meta-Llama-3-70B-Instruct Meta-Llama-3-70B-Instruct 1
+bash scripts/_common_eval.sh zebra-grid Qwen/Qwen2-7B-Instruct Qwen2-7B-Instruct 4 
+
 # wait 
 
 
