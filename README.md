@@ -8,35 +8,23 @@ This repository aims to evaluate instruction-tuned LLMs (i.e., chat models inste
 ## Tasks 
 
 - MMLU-redux 
-- GSM8K
+- AlpacaEval 
+- ZebraLogicBench 
+- ...
 
 
+## Arguments for `_common_eval.sh`
 
-## Run 
+- `-d` for DATA_NAME
+- `-m` for model_name
+- `-p` for model_pretty_name
+- `-s` for n_shards
+- `-r` for run_name (optional, default is “default”)
+- `-t` for TEMP (optional, default is 0)
+- `-o` for TOP_P (optional, default is 1.0)
+- `-e` for rp (optional, default is 1.0)
 
-```bash 
-bash scripts/_common_eval.sh mmlu-redux meta-llama/Meta-Llama-3-8B-Instruct Meta-Llama-3-8B-Instruct 4
-# [DATA_NAME]  [model_name]  [model_pretty_name]  [n_shards]
-```
 
-<!-- 
+## Run  
 
-
-bash scripts/Magpie-Pro-SFT-v0.1.sh mmlu-redux false
-wait 
-bash scripts/Meta-Llama-3-8B-Instruct.sh mmlu-redux false
-wait 
-bash scripts/Llama-3-8B-WildChat.sh mmlu-redux false
-wait 
-bash scripts/Llama-3-8B-Tulu-330K.sh mmlu-redux false
-wait 
-bash scripts/Llama-3-8B-OpenHermes-243K.sh  mmlu-redux false
-wait 
-bash scripts/Llama-3-8B-Ultrachat-200K.sh mmlu-redux false
-wait 
-bash scripts/Llama-3-8B-WizardLM-196K.sh mmlu-redux false
-
-bash scripts/Llama-3-8B-Magpie-Pro-SFT-200K-v0.1.sh mmlu-redux false
-bash scripts/Llama-3-8B-Magpie-Pro-SFT-100K-v0.1.sh mmlu-redux false
-bash scripts/Llama-3-8B-Magpie-Air-SFT-v0.1.sh mmlu-redux false
- -->
+TBD
