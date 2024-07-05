@@ -12,7 +12,6 @@ else:
     OPENAI_RATE_LIMIT_ERROR = openai.RateLimitError
     OPENAI_API_ERROR = openai.APIError
 
-from _TEMPLATES import apply_mc_template, apply_lgp_grid_template
 
 from tenacity import (
     retry,
@@ -33,6 +32,7 @@ from fastchat_conversation import map_to_conv, HF_Conversation
 import json   
 from together import Together
 
+from task_configs import mapping_task_names, prompt_generation
 
 
 
@@ -63,30 +63,15 @@ def load_eval_data(args, data_name=None, model_name=None):
     chat_history = []
     id_strs = []
     metadata = {}
-    if data_name == "mmlu-redux":
-        dataset = load_dataset("yuchenlin/zero-eval", "mmlu-redux", split="test")
-    elif data_name == "gsm":
-        dataset = load_dataset("yuchenlin/zero-eval", "gsm", split="test")
-    elif data_name == "zebra-grid":
-        dataset = load_dataset("allenai/ZebraLogicBench", "grid_mode", split="test")
-    else:
-        raise ValueError(f"Data name {data_name} not supported")
+    dataset = mapping_task_names(data_name)
     
     
     print(f"Loaded {len(dataset)} examples from {data_name}")
 
     for ind, item in enumerate(dataset):
         id_strs.append(item["id"]) 
-        if data_name in ["mmlu-redux"]:  # and other multiple-choice QA dataset 
-            prompt = apply_mc_template(item, cot = args.cot)
-            chat_history.append([prompt])
-        elif data_name in ["gsm"]:
-            pass 
-        elif data_name in ["zebra-grid"]:
-            prompt = apply_lgp_grid_template(item, cot = args.cot)
-            chat_history.append([prompt])
-        else:
-            raise ValueError(f"Data name {data_name} not supported")
+        prompt = prompt_generation(data_name, item, args)
+        chat_history.append([prompt])
         for key in item: 
             if key not in metadata:
                 metadata[key] = []
@@ -108,7 +93,6 @@ def clear_output(output, model_name):
 
 def save_outputs(args, id_strs, outputs, chat_history, metadata, model_inputs, filepath):
     formatted_outputs = []
-    # if args.data_name in ["mmlu-redux", "zebra-grid"]:
     for ind in range(len(outputs)):
         output_item = {}
         output_item["session_id"] = id_strs[ind]
@@ -129,12 +113,7 @@ def save_outputs(args, id_strs, outputs, chat_history, metadata, model_inputs, f
             if key in output_item:
                 continue 
             output_item[key] = metadata[key][ind]
-        formatted_outputs.append(output_item)
-
-    # elif args.data_name in ["zebra-grid"]:
-    #     pass 
-
-    
+        formatted_outputs.append(output_item)  
     with open(filepath, "w") as f:
         json.dump(formatted_outputs, f, indent=2)
         
