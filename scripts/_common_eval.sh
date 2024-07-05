@@ -3,8 +3,20 @@ model_name=$2
 model_pretty_name=$3
 n_shards=$4
 cot=${5:-True}
+sample=${6:-False}
+rp=${7:-1.0}
+# default rp = 1.0
+# default temp = 0.5
 
-TEMP=0; TOP_P=1.0; MAX_TOKENS=4096; 
+
+# if sample = false 
+if [ $sample = "False" ]; then
+    TEMP=0; TOP_P=1.0; 
+else
+    TEMP=0.5; TOP_P=1.0; 
+fi
+
+MAX_TOKENS=4096; 
 batch_size=4; 
 CACHE_DIR=${HF_HOME:-"default"}
 output_dir="result_dirs/${DATA_NAME}/cot=${cot}/" 
@@ -25,6 +37,7 @@ if [ $n_shards -eq 1 ]; then
         --dtype bfloat16 \
         --model_pretty_name $model_pretty_name \
         --top_p $TOP_P --temperature $TEMP \
+        --repetition_penalty $rp \
         --batch_size $batch_size --max_tokens $MAX_TOKENS \
         --output_folder $output_dir/  
 
@@ -47,6 +60,7 @@ elif [ $n_shards -gt 1 ]; then
             --dtype bfloat16 \
             --model_pretty_name $model_pretty_name \
             --top_p $TOP_P --temperature $TEMP \
+            --repetition_penalty $rp \
             --batch_size $batch_size --max_tokens $MAX_TOKENS \
             --output_folder $shards_dir/ \
               &

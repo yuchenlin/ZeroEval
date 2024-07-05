@@ -32,7 +32,7 @@ from fastchat_conversation import map_to_conv, HF_Conversation
 import json   
 from together import Together
 
-from task_configs import mapping_task_names, prompt_generation
+from task_configs import mapping_task_names, prompt_generation, result_format
 
 
 
@@ -63,13 +63,13 @@ def load_eval_data(args, data_name=None, model_name=None):
     chat_history = []
     id_strs = []
     metadata = {}
-    dataset = mapping_task_names(data_name)
+    dataset, id_name = mapping_task_names(data_name)
     
     
     print(f"Loaded {len(dataset)} examples from {data_name}")
 
     for ind, item in enumerate(dataset):
-        id_strs.append(item["id"]) 
+        id_strs.append(item.get(id_name, f"{data_name}#{ind}")) 
         prompt = prompt_generation(data_name, item, args)
         chat_history.append([prompt])
         for key in item: 
@@ -113,6 +113,7 @@ def save_outputs(args, id_strs, outputs, chat_history, metadata, model_inputs, f
             if key in output_item:
                 continue 
             output_item[key] = metadata[key][ind]
+        output_item = result_format(output_item, args)
         formatted_outputs.append(output_item)  
     with open(filepath, "w") as f:
         json.dump(formatted_outputs, f, indent=2)
