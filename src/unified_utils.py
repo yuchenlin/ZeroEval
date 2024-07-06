@@ -253,6 +253,7 @@ def openai_chat_request(
                 raise ValueError(f"OpenAI Finish Reason Error: {choice['finish_reason']}")
             contents.append(choice['message']['content'])
     else:
+        nvidia_mode = False 
         # for version > 1.0
         if "deepseek" in model:
             assert os.environ.get("DEEPSEEK_API_KEY") is not None, "Please set DEEPSEEK_API_KEY in the environment variables."
@@ -260,23 +261,46 @@ def openai_chat_request(
         elif "yi-" in model:
             assert os.environ.get("YI_API_KEY") is not None, "Please set YI_API_KEY in the environment variables."
             client = OpenAI(api_key=os.environ.get("YI_API_KEY"), base_url="https://api.lingyiwanwu.com/v1")
+        elif model.endswith("@nvidia"):             
+            assert os.environ.get("NVIDIA_API_KEY") is not None, "Please set NVIDIA_API_KEY in the environment variables."
+            client = OpenAI(api_key=os.environ.get("NVIDIA_API_KEY"), base_url="https://integrate.api.nvidia.com/v1")
+            model = model.replace("@nvidia", "")
+            nvidia_mode = True 
+            # print(model, client.api_key, client.base_url)
         else:
             client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
+            model = model.split("/")[-1]
 
-        # print(f"Requesting chat completion from OpenAI API with model {model}")
-        response = client.chat.completions.create(
-            model=model, 
-            response_format = {"type": "json_object"} if json_mode else None,
-            messages=messages,
-            temperature=temperature,
-            max_tokens=max_tokens,
-            top_p=top_p,
-            n=n,
-            frequency_penalty=frequency_penalty,
-            presence_penalty=presence_penalty,
-            stop=stop,
-            **kwargs,
-        )
+        if nvidia_mode:
+            # print(f"Requesting chat completion from OpenAI API with model {model}")
+            # remove system message
+            if messages[0]["role"] == "system":
+                messages = messages[1:]
+            response = client.chat.completions.create(
+                model=model, 
+                messages=messages,
+                temperature=0.001 if temperature == 0 else temperature,
+                max_tokens=max_tokens,
+                top_p=top_p,
+                # n=n,
+                # stop=stop,
+                **kwargs,
+            )
+        else: 
+            # print(f"Requesting chat completion from OpenAI API with model {model}")
+            response = client.chat.completions.create(
+                model=model, 
+                response_format = {"type": "json_object"} if json_mode else None,
+                messages=messages,
+                temperature=temperature,
+                max_tokens=max_tokens,
+                top_p=top_p,
+                n=n,
+                frequency_penalty=frequency_penalty,
+                presence_penalty=presence_penalty,
+                stop=stop,
+                **kwargs,
+            )
         # print(f"Received response from OpenAI API with model {model}")
         contents = []
         for choice in response.choices:

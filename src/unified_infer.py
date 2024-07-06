@@ -12,6 +12,9 @@ from unified_utils import openai_chat_request, retry_handler, google_chat_reques
 from hf_models import DecoderOnlyModelManager
 from transformers import AutoTokenizer
 
+# import multiprocessing as mp
+# mp.set_start_method('spawn', force=True)
+
 def parse_args():
     parser = argparse.ArgumentParser()
     parser.add_argument('--engine', default="vllm", type=str)
@@ -40,6 +43,7 @@ def parse_args():
     parser.add_argument('--no_repeat_ngram_size', default=0, type=int)
     parser.add_argument('--hf_bf16', action='store_true')
     parser.add_argument('--hf_gptq', action='store_true')
+    parser.add_argument('--gpu_memory_utilization', default=0.9, type=float)
 
     parser.add_argument('--use_hf_conv_template', action='store_true')
     parser.add_argument('--use_imend_stop', action='store_true')
@@ -69,7 +73,7 @@ if __name__ == "__main__":
         from vllm import LLM, SamplingParams
         llm = LLM(model=args.model_name, tokenizer=args.tokenizer_name, tensor_parallel_size=args.tensor_parallel_size,
                         download_dir=args.download_dir, dtype=args.dtype, tokenizer_mode=args.tokenizer_mode,
-                        max_model_len=args.max_model_len, trust_remote_code=True,
+                        max_model_len=args.max_model_len, trust_remote_code=True, gpu_memory_utilization=args.gpu_memory_utilization,
                         )
     elif args.engine == "hf":
         llm = DecoderOnlyModelManager(args.model_name, args.model_name, cache_dir=args.download_dir,
@@ -214,7 +218,7 @@ if __name__ == "__main__":
                 else:
                     openai_msg.append({"role":"assistant","content": chat_item})
             openai_args = {
-                "model": args.model_pretty_name,
+                "model": args.model_name,
                 "prompt": None,
                 "messages": openai_msg,
                 "top_p": args.top_p,

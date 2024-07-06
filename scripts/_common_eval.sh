@@ -10,18 +10,23 @@
 
 #!/bin/bash
 
+export VLLM_WORKER_MULTIPROC_METHOD=spawn
+
 # Initialize default values
 DATA_NAME=""
 model_name=""
 model_pretty_name=""
-n_shards=""
+n_shards=1
 run_name="default"
 TEMP=0
 TOP_P=1.0
 rp=1.0
+engine_name="vllm"
+batch_size=4
+gpu_memory_utilization=0.9
 
 # Parse named arguments
-while getopts ":d:m:p:s:r:t:o:e:" opt; do
+while getopts ":d:m:p:s:r:t:o:e:b:" opt; do
   case $opt in
     d) DATA_NAME="$OPTARG"
     ;;
@@ -39,6 +44,8 @@ while getopts ":d:m:p:s:r:t:o:e:" opt; do
     ;;
     e) rp="$OPTARG"
     ;;
+    b) batch_size="$OPTARG"
+    ;;
     \?) echo "Invalid option -$OPTARG" >&2
     ;;
   esac
@@ -46,18 +53,27 @@ done
 
 # Check if required arguments are provided
 if [ -z "$DATA_NAME" ] || [ -z "$model_name" ] || [ -z "$model_pretty_name" ] || [ -z "$n_shards" ]; then
-  echo "Usage: $0 -d DATA_NAME -m model_name -p model_pretty_name -s n_shards [-r run_name] [-t TEMP] [-o TOP_P] [-e rp]"
+  echo "Usage: $0 -d DATA_NAME -m model_name -p model_pretty_name -s n_shards [-r run_name] [-t TEMP] [-o TOP_P] [-e rp] [-b batch_size]"
   exit 1
 fi
 
 
 MAX_TOKENS=4096; 
-batch_size=4; 
+
 CACHE_DIR=${HF_HOME:-"default"}
 if [ "$run_name" = "default" ]; then
     output_dir="result_dirs/${DATA_NAME}/" 
 else
     output_dir="result_dirs/${DATA_NAME}/${run_name}/" 
+fi
+
+# if model name contains "gemma-2" then use a different vllm infer backend
+if [[ $model_name == *"gemma-2"* ]]; then
+    export VLLM_ATTENTION_BACKEND=FLASHINFER
+    # if 27b in model name, then use 0.8 gpu memory utilization
+    if [[ $model_name == *"27b"* ]]; then
+        gpu_memory_utilization=0.8
+    fi 
 fi
 
 
@@ -68,8 +84,10 @@ if [ $n_shards -eq 1 ]; then
     echo "n_shards = 1"
     CUDA_VISIBLE_DEVICES=$gpu \
     python src/unified_infer.py \
+        --engine $engine_name \
         --data_name $DATA_NAME \
         --model_name $model_name \
+        --gpu_memory_utilization $gpu_memory_utilization \
         --use_hf_conv_template --use_imend_stop \
         --download_dir $CACHE_DIR \
         --tensor_parallel_size $num_gpus \
@@ -88,10 +106,12 @@ elif [ $n_shards -gt 1 ]; then
     for ((shard_id = 0, gpu = $start_gpu; shard_id < $n_shards; shard_id++, gpu++)); do
         CUDA_VISIBLE_DEVICES=$gpu \
         python src/unified_infer.py \
+            --engine $engine_name \
             --num_shards $n_shards \
             --shard_id $shard_id \
             --data_name $DATA_NAME \
             --model_name $model_name \
+            --gpu_memory_utilization $gpu_memory_utilization \
             --use_hf_conv_template --use_imend_stop \
             --download_dir $CACHE_DIR \
             --tensor_parallel_size $num_gpus \
@@ -110,4 +130,4 @@ else
     echo "Invalid n_shards"
     exit
 fi
-
+ 
