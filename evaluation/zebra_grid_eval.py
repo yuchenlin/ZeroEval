@@ -19,7 +19,7 @@ from tabulate import tabulate
 # filepath = "result_dirs/zebra-grid/Qwen2-72B-Instruct.json"
 
 
-folder = "result_dirs/zebra-grid/cot=True"
+folder = "result_dirs/zebra-grid/"
 
 model_results = {}
 
