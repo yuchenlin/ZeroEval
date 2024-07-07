@@ -19,16 +19,23 @@ from tabulate import tabulate
 # filepath = "result_dirs/zebra-grid/Qwen2-72B-Instruct.json"
 
 
-folder = "result_dirs/zebra-grid/"
+
+run_name_folders = {
+    "greedy": "result_dirs/zebra-grid",
+    "sampling": "result_dirs/zebra-grid/sampling",
+}
+# folder = "result_dirs/zebra-grid"
 
 model_results = {}
-
-# iterate all json files under the folder 
-for filename in os.listdir(folder):
-    filepath = os.path.join(folder, filename)
-    if not filename.endswith(".json"):
-        continue
-    model_results[filename.replace(".json", "")] = filepath  
+for run_name, folder in run_name_folders.items():
+    # iterate all json files under the folder 
+    for filename in os.listdir(folder):
+        filepath = os.path.join(folder, filename)
+        if not filename.endswith(".json"):
+            continue
+        model_name = filename.replace(".json", "")  
+        model_name = f"{model_name}%{run_name}"
+        model_results[model_name] = filepath  
  
 def extract_last_complete_json(s):
     # Stack to keep track of opening and closing braces
@@ -152,7 +159,8 @@ def eval_model(model, filepath):
         # print(f"Size {size}: {solved_puzzles_by_size[size]}/{num_total_puzzles_by_size[size]} -> {solved_puzzles_by_size[size]/num_total_puzzles_by_size[size]*100:.2f}%")
 
     result = {}
-    result["Model"] = model
+    result["Model"] = model.split("%")[0]
+    result["Mode"] = model.split("%")[1]
     result["Puzzle-level Acc"] = f"{solved_puzzles/num_total_puzzles*100:.2f}"
     result["Cell-wise Acc"] = f"{correct_cells/total_cells*100:.2f}"
     result["No answer"] = f"{no_asnwer/num_total_puzzles*100:.2f}"
@@ -163,7 +171,7 @@ def eval_model(model, filepath):
     return result
 
 
-columns = ["Model", "Puzzle-level Acc", "Cell-wise Acc", "No answer", "Easy Puzzle-level Acc", "Medium Puzzle-level Acc", "Hard Puzzle-level Acc", "Total Puzzles"]
+columns = ["Model", "Mode", "Puzzle-level Acc", "Cell-wise Acc", "No answer", "Easy Puzzle-level Acc", "Medium Puzzle-level Acc", "Hard Puzzle-level Acc", "Total Puzzles"]
 rows = []
 for model_name, filepath in model_results.items():
     # print(f"Model: {model_name}")
