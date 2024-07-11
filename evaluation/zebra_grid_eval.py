@@ -2,7 +2,12 @@ import json
 from collections import defaultdict
 import os 
 from tabulate import tabulate
- 
+from datasets import load_dataset
+
+private_solutions = {}
+private_zebra_data = load_dataset("allenai/ZebraLogicBench-private", "grid_mode", split="test")
+for item in private_zebra_data:
+    private_solutions[item["id"]] = item["solution"]
 
 
 run_name_folders = {
@@ -65,7 +70,8 @@ def eval_model(model, filepath):
     solved_puzzles_by_size = defaultdict(int) 
 
     for item in data:
-        solution = item["solution"]
+        # solution = item["solution"]
+        solution = private_solutions[item["id"]]
         size = item["size"]
         num_total_puzzles_by_size[size] += 1
 
@@ -114,19 +120,14 @@ def eval_model(model, filepath):
                         this_correct_cells += 1  
         correct_cells += this_correct_cells
         
-        # compute puzzle-level success rate
+        # compute puzzle success rate
         if this_correct_cells == this_total_cells:
             solved_puzzles += 1
             solved_puzzles_by_size[size] += 1
-        
-    # print(f"Filepath: {filepath}")
-    # print(f"Puzzle-level success rate: {solved_puzzles}/{num_total_puzzles} -> {solved_puzzles/num_total_puzzles*100:.2f}%")
-    # print(f"Cell-wise accuracy: {correct_cells}/{total_cells}  -> {correct_cells/total_cells*100:.2f}%")
-    # print(f"No answer: {no_asnwer} -> {no_asnwer/num_total_puzzles*100:.2f}%")
+         
 
     # # print the success rate by size; order the dict by size first  
-    easy_sizes =  ['2*2', '2*3', '2*4', '2*5', '2*6', '3*2', '3*3',]
-    medium_sizes =  []
+    easy_sizes =  ['2*2', '2*3', '2*4', '2*5', '2*6', '3*2', '3*3',] 
     hard_sizes =  ['3*4', '3*5', '4*2', '3*6', '4*3', '4*4', '5*2', '6*2', '4*5', '4*6', '5*3', '5*4', '5*5', '5*6', '6*3', '6*4', '6*5', '6*6']
     
 
@@ -145,24 +146,24 @@ def eval_model(model, filepath):
     result = {}
     result["Model"] = model.split("%")[0]
     result["Mode"] = model.split("%")[1]
-    result["Puzzle-level Acc"] = f"{solved_puzzles/num_total_puzzles*100:.2f}"
-    result["Cell-wise Acc"] = f"{correct_cells/total_cells*100:.2f}"
+    result["Puzzle Acc"] = f"{solved_puzzles/num_total_puzzles*100:.2f}"
+    result["Cell Acc"] = f"{correct_cells/total_cells*100:.2f}"
     result["No answer"] = f"{no_asnwer/num_total_puzzles*100:.2f}"
-    result["Easy Puzzle-level Acc"] = f"{easy_solved_puzzles/easy_total_puzzles*100:.2f}"
-    # result["Medium Puzzle-level Acc"] = f"{medium_solved_puzzles/medium_total_puzzles*100:.2f}"
-    result["Hard Puzzle-level Acc"] = f"{hard_solved_puzzles/hard_total_puzzles*100:.2f}"
+    result["Easy Puzzle Acc"] = f"{easy_solved_puzzles/easy_total_puzzles*100:.2f}"
+    # result["Medium Puzzle Acc"] = f"{medium_solved_puzzles/medium_total_puzzles*100:.2f}"
+    result["Hard Puzzle Acc"] = f"{hard_solved_puzzles/hard_total_puzzles*100:.2f}"
     result["Total Puzzles"] = num_total_puzzles
     return result
 
 
-columns = ["Model", "Mode", "Puzzle-level Acc", "Cell-wise Acc", "No answer", "Easy Puzzle-level Acc", "Hard Puzzle-level Acc", "Total Puzzles"]
+columns = ["Model", "Mode", "Puzzle Acc", "Cell Acc", "No answer", "Easy Puzzle Acc", "Hard Puzzle Acc", "Total Puzzles"]
 rows = []
 for model_name, filepath in model_results.items(): 
     result = eval_model(model_name, filepath) 
     rows.append(result)
 
-# sort the rows by puzzle-level accuracy
-rows = sorted(rows, key=lambda x: -float(x["Puzzle-level Acc"]))
+# sort the rows by puzzle accuracy
+rows = sorted(rows, key=lambda x: -float(x["Puzzle Acc"]))
 # Convert rows to the expected format for tabulate
 table_data = [[row[col] for col in columns] for row in rows]
 
