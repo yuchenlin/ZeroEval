@@ -5,27 +5,26 @@ from tabulate import tabulate
 from datasets import load_dataset
 
 private_solutions = {}
-private_zebra_data = load_dataset("allenai/ZebraLogicBench-private", "grid_mode", split="test")
-for item in private_zebra_data:
-    private_solutions[item["id"]] = item["solution"]
 
+def load_private_solutions():
+    global private_solutions
+    private_zebra_data = load_dataset("allenai/ZebraLogicBench-private", "grid_mode", split="test")
+    for item in private_zebra_data:
+        private_solutions[item["id"]] = item["solution"] 
+    return 
 
-run_name_folders = {
-    "greedy": "result_dirs/zebra-grid",
-    "sampling": "result_dirs/zebra-grid/sampling",
-}
-# folder = "result_dirs/zebra-grid"
-
-model_results = {}
-for run_name, folder in run_name_folders.items():
-    # iterate all json files under the folder 
-    for filename in os.listdir(folder):
-        filepath = os.path.join(folder, filename)
-        if not filename.endswith(".json"):
-            continue
-        model_name = filename.replace(".json", "")  
-        model_name = f"{model_name}%{run_name}"
-        model_results[model_name] = filepath  
+def load_model_results(run_name_folders):
+    model_results = {}
+    for run_name, folder in run_name_folders.items():
+        # iterate all json files under the folder 
+        for filename in os.listdir(folder):
+            filepath = os.path.join(folder, filename)
+            if not filename.endswith(".json"):
+                continue
+            model_name = filename.replace(".json", "")  
+            model_name = f"{model_name}%{run_name}"
+            model_results[model_name] = filepath  
+    return model_results
  
 def extract_last_complete_json(s):
     # Stack to keep track of opening and closing braces
@@ -56,6 +55,7 @@ def extract_last_complete_json(s):
     return None
 
 def eval_model(model, filepath):
+    global private_solutions
     with open(filepath, "r") as f:
         print(f"Processing {filepath}")
         data = json.load(f)
@@ -127,16 +127,12 @@ def eval_model(model, filepath):
          
 
     # # print the success rate by size; order the dict by size first  
+    sizes = sorted(num_total_puzzles_by_size.keys()) 
     easy_sizes =  ['2*2', '2*3', '2*4', '2*5', '2*6', '3*2', '3*3',] 
     hard_sizes =  ['3*4', '3*5', '4*2', '3*6', '4*3', '4*4', '5*2', '6*2', '4*5', '4*6', '5*3', '5*4', '5*5', '5*6', '6*3', '6*4', '6*5', '6*6']
     
-
-    sizes = sorted(num_total_puzzles_by_size.keys())
-    # print(sizes) # --> ['3*3', '3*4', '3*5', '3*6', '4*3', '4*4', '4*5', '4*6', '5*3', '5*4', '5*5', '5*6', '6*3', '6*4', '6*5', '6*6']
     easy_solved_puzzles = sum([solved_puzzles_by_size[size] for size in easy_sizes])
-    easy_total_puzzles = sum([num_total_puzzles_by_size[size] for size in easy_sizes])
-    # medium_solved_puzzles = sum([solved_puzzles_by_size[size] for size in medium_sizes])
-    # medium_total_puzzles = sum([num_total_puzzles_by_size[size] for size in medium_sizes])
+    easy_total_puzzles = sum([num_total_puzzles_by_size[size] for size in easy_sizes]) 
     hard_solved_puzzles = sum([solved_puzzles_by_size[size] for size in hard_sizes])
     hard_total_puzzles = sum([num_total_puzzles_by_size[size] for size in hard_sizes])
 
@@ -149,25 +145,33 @@ def eval_model(model, filepath):
     result["Puzzle Acc"] = f"{solved_puzzles/num_total_puzzles*100:.2f}"
     result["Cell Acc"] = f"{correct_cells/total_cells*100:.2f}"
     result["No answer"] = f"{no_asnwer/num_total_puzzles*100:.2f}"
-    result["Easy Puzzle Acc"] = f"{easy_solved_puzzles/easy_total_puzzles*100:.2f}"
-    # result["Medium Puzzle Acc"] = f"{medium_solved_puzzles/medium_total_puzzles*100:.2f}"
+    result["Easy Puzzle Acc"] = f"{easy_solved_puzzles/easy_total_puzzles*100:.2f}" 
     result["Hard Puzzle Acc"] = f"{hard_solved_puzzles/hard_total_puzzles*100:.2f}"
     result["Total Puzzles"] = num_total_puzzles
     return result
 
 
-columns = ["Model", "Mode", "Puzzle Acc", "Cell Acc", "No answer", "Easy Puzzle Acc", "Hard Puzzle Acc", "Total Puzzles"]
-rows = []
-for model_name, filepath in model_results.items(): 
-    result = eval_model(model_name, filepath) 
-    rows.append(result)
+def gen_results():
+    run_name_folders = {
+        "greedy": "result_dirs/zebra-grid",
+        "sampling": "result_dirs/zebra-grid/sampling",
+    } 
+    model_results = load_model_results(run_name_folders)
 
-# sort the rows by puzzle accuracy
-rows = sorted(rows, key=lambda x: -float(x["Puzzle Acc"]))
-# Convert rows to the expected format for tabulate
-table_data = [[row[col] for col in columns] for row in rows]
+    columns = ["Model", "Mode", "Puzzle Acc", "Cell Acc", "No answer", "Easy Puzzle Acc", "Hard Puzzle Acc", "Total Puzzles"]
+    rows = []
+    for model_name, filepath in model_results.items(): 
+        result = eval_model(model_name, filepath) 
+        rows.append(result)
 
-print(tabulate(table_data, headers=columns, tablefmt="fancy_outline", stralign="center", numalign="center"))
-# print(tabulate(rows, headers=columns, tablefmt="github"))
+    # sort the rows by puzzle accuracy
+    rows = sorted(rows, key=lambda x: -float(x["Puzzle Acc"]))
+    # Convert rows to the expected format for tabulate
+    table_data = [[row[col] for col in columns] for row in rows]
 
-    
+    print(tabulate(table_data, headers=columns, tablefmt="fancy_outline", stralign="center", numalign="center"))
+    # print(tabulate(rows, headers=columns, tablefmt="github"))
+
+if __name__ == "__main__":
+    load_private_solutions()
+    gen_results()
