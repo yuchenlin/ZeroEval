@@ -68,7 +68,7 @@ def eval_model(model, filepath):
 
     num_total_puzzles_by_size = defaultdict(int)
     solved_puzzles_by_size = defaultdict(int) 
-
+    reason_lens = []
     for item in data:
         # solution = item["solution"]
         solution = private_solutions[item["id"]]
@@ -98,9 +98,10 @@ def eval_model(model, filepath):
             no_asnwer += 1
             # print(item["id"])
             continue 
+        reason = prediction_json.get("reasoning", "")
         prediction_table = prediction_json["solution"]
         
-        
+        reason_lens.append(len(reason))
 
         this_correct_cells = 0 # number in the solution_table 
         for house in solution_table:
@@ -124,6 +125,8 @@ def eval_model(model, filepath):
         if this_correct_cells == this_total_cells:
             solved_puzzles += 1
             solved_puzzles_by_size[size] += 1
+
+        
          
 
     # # print the success rate by size; order the dict by size first  
@@ -148,13 +151,14 @@ def eval_model(model, filepath):
     result["Easy Puzzle Acc"] = f"{easy_solved_puzzles/easy_total_puzzles*100:.2f}" 
     result["Hard Puzzle Acc"] = f"{hard_solved_puzzles/hard_total_puzzles*100:.2f}"
     result["Total Puzzles"] = num_total_puzzles
+    result["Reason Lens"] = f"{sum(reason_lens)/len(reason_lens):.2f}"
     return result
 
 
 def gen_results(run_name_folders): 
     model_results = load_model_results(run_name_folders)
 
-    columns = ["Model", "Mode", "Puzzle Acc", "Cell Acc", "No answer", "Easy Puzzle Acc", "Hard Puzzle Acc", "Total Puzzles"]
+    columns = ["Model", "Mode", "Puzzle Acc", "Cell Acc", "No answer", "Easy Puzzle Acc", "Hard Puzzle Acc", "Total Puzzles", "Reason Lens"]
     rows = []
     for model_name, filepath in model_results.items(): 
         result = eval_model(model_name, filepath) 
@@ -167,6 +171,11 @@ def gen_results(run_name_folders):
 
     print(tabulate(table_data, headers=columns, tablefmt="fancy_outline", stralign="center", numalign="center"))
     # print(tabulate(rows, headers=columns, tablefmt="github"))
+
+    # write to json file 
+    with open("result_dirs/zebra-grid.summary.json", "w") as f:
+        json.dump(rows, f, indent=2)
+
 
 if __name__ == "__main__":
     run_name_folders = {
