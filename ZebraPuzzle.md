@@ -5,6 +5,7 @@ bash scripts/_common_eval.sh -d zebra-grid -m Qwen/Qwen2-72B-Instruct -p Qwen2-7
 bash scripts/_common_eval.sh -d zebra-grid -m Qwen/Qwen2-72B-Instruct -p Qwen2-72B-Instruct -s 1 -r "sampling" -t 0.5
 bash scripts/_common_eval.sh -d zebra-grid -m meta-llama/Meta-Llama-3-70B-Instruct -p Meta-Llama-3-70B-Instruct -s 1 
 bash scripts/_common_eval.sh -d zebra-grid -m meta-llama/Meta-Llama-3-8B-Instruct -p Meta-Llama-3-8B-Instruct -s 4
+bash scripts/_common_eval.sh -d zebra-grid -m meta-llama/Meta-Llama-3-8B-Instruct -p Meta-Llama-3-8B-Instruct -s 4 -r "sampling" -t 0.5
 bash scripts/_common_eval.sh -d zebra-grid -m Qwen/Qwen2-7B-Instruct -p Qwen2-7B-Instruct -s 4 
 ```
 
