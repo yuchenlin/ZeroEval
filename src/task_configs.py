@@ -29,4 +29,8 @@ def prompt_generation(data_name, data_item, args):
 def result_format(output_item, args):
     if args.data_name in ["alpaca_eval"]:
         output_item["output"] = output_item["output"][0] # use str instead of list 
+    elif args.data_name in ["zebra-grid"]:
+        del output_item["solution"]
+    else:
+        pass 
     return output_item
