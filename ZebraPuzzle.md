@@ -3,9 +3,10 @@
 # export VLLM_WORKER_MULTIPROC_METHOD="FLASH_ATTN"
 # VLLM_WORKER_MULTIPROC_METHOD=spawn 
 bash scripts/_common_eval.sh -d zebra-grid -m Qwen/Qwen2-72B-Instruct -p Qwen2-72B-Instruct -s 1
+bash scripts/_common_eval.sh -d zebra-grid -m Qwen/Qwen2-72B-Instruct -p Qwen2-72B-Instruct -s 1 -r "sampling" -t 0.5
 bash scripts/_common_eval.sh -d zebra-grid -m meta-llama/Meta-Llama-3-70B-Instruct -p Meta-Llama-3-70B-Instruct -s 1 
 bash scripts/_common_eval.sh -d zebra-grid -m meta-llama/Meta-Llama-3-8B-Instruct -p Meta-Llama-3-8B-Instruct -s 4
-bash scripts/_common_eval.sh -d zebra-grid -m Qwen/Qwen2-7B-Instruct -p Qwen2-7B-Instruct -s 4
+bash scripts/_common_eval.sh -d zebra-grid -m Qwen/Qwen2-7B-Instruct -p Qwen2-7B-Instruct -s 4 
 
 
 
@@ -38,6 +39,9 @@ wait
 
 bash scripts/_common_api_eval.sh -d zebra-grid -f google -m google/gemini-1.5-pro -p gemini-1.5-pro -s 8
 bash scripts/_common_api_eval.sh -d zebra-grid -f google -m google/gemini-1.5-flash -p gemini-1.5-flash -s 8
+
+bash scripts/_common_api_eval.sh -d zebra-grid -f google -m google/gemini-1.5-pro -p gemini-1.5-pro -s 8 -r "sampling" -t 0.5
+bash scripts/_common_api_eval.sh -d zebra-grid -f google -m google/gemini-1.5-flash -p gemini-1.5-flash -s 8 -r "sampling" -t 0.5
 
 bash scripts/_common_api_eval.sh -d zebra-grid -f reka -m reka/reka-flash-20240226 -p reka-flash-20240226 -s 8
 bash scripts/_common_api_eval.sh -d zebra-grid -f reka -m reka/reka-core-20240501 -p reka-core-20240501 -s 8

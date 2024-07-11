@@ -2,22 +2,7 @@ import json
 from collections import defaultdict
 import os 
 from tabulate import tabulate
-
-# filepath = "result_dirs/zebra-grid/Meta-Llama-3-70B-Instruct.json"
-# filepath = "result_dirs/zebra-grid/Meta-Llama-3-8B-Instruct.json"
-# filepath = "result_dirs/zebra-grid/gpt-3.5-turbo-0125.json"
-# filepath = "result_dirs/zebra-grid/claude-3-haiku-20240307.json"
-# filepath = "result_dirs/zebra-grid/claude-3-5-sonnet-20240620.json"
-# filepath = "result_dirs/zebra-grid/claude-3-opus-20240229.json"
-# filepath = "result_dirs/zebra-grid/claude-3-sonnet-20240229.json"
-# filepath = "result_dirs/zebra-grid/gpt-4o-2024-05-13.json"
-# filepath = "result_dirs/zebra-grid/gpt-4-turbo-2024-04-09.json"
-# filepath = "result_dirs/zebra-grid/gemini-1.5-pro.json"
-# filepath = "result_dirs/zebra-grid/gemini-1.5-flash.json"
-# filepath = "result_dirs/zebra-grid/reka-flash-20240226.json"
-# filepath = "result_dirs/zebra-grid/reka-core-20240501.json"
-# filepath = "result_dirs/zebra-grid/Qwen2-72B-Instruct.json"
-
+ 
 
 
 run_name_folders = {
@@ -139,19 +124,18 @@ def eval_model(model, filepath):
     # print(f"Cell-wise accuracy: {correct_cells}/{total_cells}  -> {correct_cells/total_cells*100:.2f}%")
     # print(f"No answer: {no_asnwer} -> {no_asnwer/num_total_puzzles*100:.2f}%")
 
-    # # print the success rate by size; order the dict by size first 
-
-    easy_sizes = ['2*2', '2*3', '2*4','2*5', '3*2', '2*6','4*2',  '6*2','5*2',]
-    medium_sizes = ['3*6', '4*3', '4*4', '4*5','4*6', '3*3', '3*4', '3*5', ]
-    hard_sizes = ['5*3', '5*4', '5*5', '5*6',  '6*3', '6*4', '6*5', '6*6']
+    # # print the success rate by size; order the dict by size first  
+    easy_sizes =  ['2*2', '2*3', '2*4', '2*5', '2*6', '3*2', '3*3',]
+    medium_sizes =  []
+    hard_sizes =  ['3*4', '3*5', '4*2', '3*6', '4*3', '4*4', '5*2', '6*2', '4*5', '4*6', '5*3', '5*4', '5*5', '5*6', '6*3', '6*4', '6*5', '6*6']
     
 
     sizes = sorted(num_total_puzzles_by_size.keys())
     # print(sizes) # --> ['3*3', '3*4', '3*5', '3*6', '4*3', '4*4', '4*5', '4*6', '5*3', '5*4', '5*5', '5*6', '6*3', '6*4', '6*5', '6*6']
     easy_solved_puzzles = sum([solved_puzzles_by_size[size] for size in easy_sizes])
     easy_total_puzzles = sum([num_total_puzzles_by_size[size] for size in easy_sizes])
-    medium_solved_puzzles = sum([solved_puzzles_by_size[size] for size in medium_sizes])
-    medium_total_puzzles = sum([num_total_puzzles_by_size[size] for size in medium_sizes])
+    # medium_solved_puzzles = sum([solved_puzzles_by_size[size] for size in medium_sizes])
+    # medium_total_puzzles = sum([num_total_puzzles_by_size[size] for size in medium_sizes])
     hard_solved_puzzles = sum([solved_puzzles_by_size[size] for size in hard_sizes])
     hard_total_puzzles = sum([num_total_puzzles_by_size[size] for size in hard_sizes])
 
@@ -165,18 +149,16 @@ def eval_model(model, filepath):
     result["Cell-wise Acc"] = f"{correct_cells/total_cells*100:.2f}"
     result["No answer"] = f"{no_asnwer/num_total_puzzles*100:.2f}"
     result["Easy Puzzle-level Acc"] = f"{easy_solved_puzzles/easy_total_puzzles*100:.2f}"
-    result["Medium Puzzle-level Acc"] = f"{medium_solved_puzzles/medium_total_puzzles*100:.2f}"
+    # result["Medium Puzzle-level Acc"] = f"{medium_solved_puzzles/medium_total_puzzles*100:.2f}"
     result["Hard Puzzle-level Acc"] = f"{hard_solved_puzzles/hard_total_puzzles*100:.2f}"
     result["Total Puzzles"] = num_total_puzzles
     return result
 
 
-columns = ["Model", "Mode", "Puzzle-level Acc", "Cell-wise Acc", "No answer", "Easy Puzzle-level Acc", "Medium Puzzle-level Acc", "Hard Puzzle-level Acc", "Total Puzzles"]
+columns = ["Model", "Mode", "Puzzle-level Acc", "Cell-wise Acc", "No answer", "Easy Puzzle-level Acc", "Hard Puzzle-level Acc", "Total Puzzles"]
 rows = []
-for model_name, filepath in model_results.items():
-    # print(f"Model: {model_name}")
-    result = eval_model(model_name, filepath)
-    # print(json.dumps(data, indent=2))
+for model_name, filepath in model_results.items(): 
+    result = eval_model(model_name, filepath) 
     rows.append(result)
 
 # sort the rows by puzzle-level accuracy
@@ -184,7 +166,7 @@ rows = sorted(rows, key=lambda x: -float(x["Puzzle-level Acc"]))
 # Convert rows to the expected format for tabulate
 table_data = [[row[col] for col in columns] for row in rows]
 
-print(tabulate(table_data, headers=columns, tablefmt="fancy_outline"))
+print(tabulate(table_data, headers=columns, tablefmt="fancy_outline", stralign="center", numalign="center"))
 # print(tabulate(rows, headers=columns, tablefmt="github"))
 
     
