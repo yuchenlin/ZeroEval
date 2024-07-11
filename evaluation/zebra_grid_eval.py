@@ -151,11 +151,7 @@ def eval_model(model, filepath):
     return result
 
 
-def gen_results():
-    run_name_folders = {
-        "greedy": "result_dirs/zebra-grid",
-        "sampling": "result_dirs/zebra-grid/sampling",
-    } 
+def gen_results(run_name_folders): 
     model_results = load_model_results(run_name_folders)
 
     columns = ["Model", "Mode", "Puzzle Acc", "Cell Acc", "No answer", "Easy Puzzle Acc", "Hard Puzzle Acc", "Total Puzzles"]
@@ -173,5 +169,9 @@ def gen_results():
     # print(tabulate(rows, headers=columns, tablefmt="github"))
 
 if __name__ == "__main__":
+    run_name_folders = {
+        "greedy": "result_dirs/zebra-grid",
+        "sampling": "result_dirs/zebra-grid/sampling",
+    } 
     load_private_solutions()
-    gen_results()
+    gen_results(run_name_folders)
