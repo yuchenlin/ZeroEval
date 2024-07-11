@@ -286,6 +286,17 @@
     "Reason Lens": "1216.40"
   },
   {
+    "Model": "Meta-Llama-3-8B-Instruct",
+    "Mode": "sampling",
+    "Puzzle Acc": "11.00",
+    "Cell Acc": "26.11",
+    "No answer": "22.30",
+    "Easy Puzzle Acc": "36.79",
+    "Hard Puzzle Acc": "0.97",
+    "Total Puzzles": 1000,
+    "Reason Lens": "1282.40"
+  },
+  {
     "Model": "gpt-3.5-turbo-0125",
     "Mode": "greedy",
     "Puzzle Acc": "10.10",
