@@ -6,7 +6,19 @@ import re
  
 from eval_utils import load_model_results, extract_values_from_json
  
- 
+
+def santize_answer(answer):
+    # ignore symbols like $ 
+    answer = answer.replace("$", "").strip()
+    # ignore the units like miles after the number 
+    units = ["miles"]
+    for unit in units:
+        if answer.endswith(unit):
+            answer = answer[:-len(unit)].strip()
+    # remove "," in the number
+    answer = answer.replace(",", "")
+    # convert percentage to float 
+    return answer
 
 def eval_model(model, filepath):
     global private_solutions
@@ -33,10 +45,21 @@ def eval_model(model, filepath):
         reason = prediction_json.get("reasoning", "")
         model_answer = prediction_json["answer"]
         correct_answer = item["answer"].replace("#", "").strip()
-        # print(model_answer, correct_answer)
-        if model_answer == correct_answer:
+        # santize the answers
+        model_answer = santize_answer(model_answer)
+        correct_answer = santize_answer(correct_answer)
+        
+        if model_answer == correct_answer:  
             # TODO: use more sophisticated way to check the correctness
             solved_examples += 1
+        else:
+            # print(model_answer, correct_answer)
+            # Extract the first number from the answers
+            first_number_in_model_answer = re.search(r"\d+(\.\d+)?", model_answer)
+            first_number_in_correct_answer = re.search(r"\d+(\.\d+)?", correct_answer)
+            if first_number_in_model_answer and first_number_in_correct_answer:
+                if float(first_number_in_model_answer.group()) == float(first_number_in_correct_answer.group()):
+                    solved_examples += 1
         reason_lens.append(len(reason))
  
     result = {}

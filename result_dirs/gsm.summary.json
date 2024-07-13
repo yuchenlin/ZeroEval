@@ -2,7 +2,7 @@
   {
     "Model": "gpt-3.5-turbo-0125",
     "Mode": "greedy",
-    "Acc": "62.93",
+    "Acc": "80.36",
     "No answer": "0.00",
     "Total": 1319,
     "Reason Lens": "350.65"
