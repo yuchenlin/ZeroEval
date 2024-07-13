@@ -53,8 +53,8 @@ def eval_model(model, filepath):
         first_number_in_correct_answer = re.search(r"\d+(\.\d+)?", correct_answer)
         if first_number_in_model_answer and first_number_in_correct_answer:
             if float(first_number_in_model_answer.group()) == float(first_number_in_correct_answer.group()):
-                print(model_answer, correct_answer)
-                print(first_number_in_correct_answer.group(), first_number_in_model_answer.group())
+                # print(model_answer, correct_answer)
+                # print(first_number_in_correct_answer.group(), first_number_in_model_answer.group())
                 solved_examples += 1
         reason_lens.append(len(reason))
  
