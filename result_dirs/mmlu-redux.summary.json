@@ -1,11 +1,115 @@
 [
   {
+    "Model": "gpt-4o-2024-05-13",
+    "Mode": "greedy",
+    "Acc": "88.01",
+    "No answer": "0.14",
+    "Total": 2778,
+    "Reason Lens": "632.69"
+  },
+  {
+    "Model": "claude-3-5-sonnet-20240620",
+    "Mode": "greedy",
+    "Acc": "86.00",
+    "No answer": "0.11",
+    "Total": 2778,
+    "Reason Lens": "916.86"
+  },
+  {
+    "Model": "Qwen2-72B-Instruct",
+    "Mode": "greedy",
+    "Acc": "85.53",
+    "No answer": "0.00",
+    "Total": 304,
+    "Reason Lens": "423.45"
+  },
+  {
+    "Model": "gpt-4-turbo-2024-04-09",
+    "Mode": "greedy",
+    "Acc": "85.31",
+    "No answer": "0.00",
+    "Total": 2778,
+    "Reason Lens": "633.57"
+  },
+  {
+    "Model": "gemini-1.5-pro",
+    "Mode": "greedy",
+    "Acc": "82.76",
+    "No answer": "1.94",
+    "Total": 2778,
+    "Reason Lens": "651.47"
+  },
+  {
+    "Model": "claude-3-opus-20240229",
+    "Mode": "greedy",
+    "Acc": "82.54",
+    "No answer": "0.00",
+    "Total": 2778,
+    "Reason Lens": "497.86"
+  },
+  {
+    "Model": "gpt-4-0314",
+    "Mode": "greedy",
+    "Acc": "81.64",
+    "No answer": "0.04",
+    "Total": 2778,
+    "Reason Lens": "397.42"
+  },
+  {
+    "Model": "deepseek-chat",
+    "Mode": "greedy",
+    "Acc": "80.81",
+    "No answer": "0.11",
+    "Total": 2778,
+    "Reason Lens": "692.94"
+  },
+  {
+    "Model": "Meta-Llama-3-70B-Instruct",
+    "Mode": "greedy",
+    "Acc": "78.01",
+    "No answer": "0.11",
+    "Total": 2778,
+    "Reason Lens": "521.34"
+  },
+  {
+    "Model": "claude-3-sonnet-20240229",
+    "Mode": "greedy",
+    "Acc": "74.87",
+    "No answer": "0.04",
+    "Total": 2778,
+    "Reason Lens": "674.41"
+  },
+  {
+    "Model": "gemma-2-9b-it@nvidia",
+    "Mode": "greedy",
+    "Acc": "72.82",
+    "No answer": "0.00",
+    "Total": 2778,
+    "Reason Lens": "498.40"
+  },
+  {
+    "Model": "claude-3-haiku-20240307",
+    "Mode": "greedy",
+    "Acc": "72.32",
+    "No answer": "0.04",
+    "Total": 2778,
+    "Reason Lens": "647.72"
+  },
+  {
     "Model": "gpt-3.5-turbo-0125",
     "Mode": "greedy",
     "Acc": "68.36",
     "No answer": "0.00",
     "Total": 2778,
     "Reason Lens": "357.93"
+  },
+  {
+    "Model": "Qwen2-7B-Instruct",
+    "Mode": "greedy",
+    "Acc": "66.92",
+    "No answer": "0.58",
+    "Total": 2778,
+    "Reason Lens": "533.43"
   },
   {
     "Model": "Meta-Llama-3-8B-Instruct",

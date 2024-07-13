@@ -51,9 +51,10 @@ def eval_model(model, filepath):
         prediction_json = extract_values_from_json(prediction_str)
         if prediction_json is None or "answer" not in prediction_json: 
             no_asnwer += 1 
-            print(f"No answer for {item['id']}")
-            # print(prediction_str)
-            # print(prediction_json)
+            if False and  "claude-3-5-sonnet-20240620" in model:
+                print(f"No answer for {item['id']}")
+                print(prediction_str)
+                print(prediction_json)
             continue 
         reason = prediction_json.get("reasoning", "")
         model_answer = prediction_json["answer"]
