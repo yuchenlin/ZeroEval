@@ -48,13 +48,7 @@ def eval_model(model, filepath):
         # santize the answers
         model_answer = santize_answer(model_answer)
         correct_answer = santize_answer(correct_answer)
-        
-        # if model_answer == correct_answer:  
-        #     # TODO: use more sophisticated way to check the correctness
-        #     solved_examples += 1
-        # else:
-            # print(model_answer, correct_answer)
-            # Extract the first number from the answers
+         
         first_number_in_model_answer = re.search(r"\d+(\.\d+)?", model_answer)
         first_number_in_correct_answer = re.search(r"\d+(\.\d+)?", correct_answer)
         if first_number_in_model_answer and first_number_in_correct_answer:
