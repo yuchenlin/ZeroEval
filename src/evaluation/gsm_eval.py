@@ -10,14 +10,15 @@ from eval_utils import load_model_results, extract_values_from_json
 def santize_math_answers(answer):
     # ignore symbols like $ 
     answer = answer.replace("$", "").strip()
-    # ignore the units like miles after the number 
-    units = ["miles"]
-    for unit in units:
-        if answer.endswith(unit):
-            answer = answer[:-len(unit)].strip()
+    # ignore the units like miles after the number  
     # remove "," in the number
     answer = answer.replace(",", "")
-    # convert percentage to float 
+    # convert fractions to float
+    if "/" in answer:
+        try:
+            answer = str(float(eval(answer)))
+        except:
+            pass
     return answer
 
 def eval_model(model, filepath):
@@ -46,16 +47,29 @@ def eval_model(model, filepath):
         model_answer = prediction_json["answer"]
         correct_answer = item["answer"].replace("#", "").strip()
         # santize the answers
+        raw_model_answer = model_answer[:]
         model_answer = santize_math_answers(model_answer)
         correct_answer = santize_math_answers(correct_answer)
          
-        first_number_in_model_answer = re.search(r"\d+(\.\d+)?", model_answer)
-        first_number_in_correct_answer = re.search(r"\d+(\.\d+)?", correct_answer)
+        first_number_in_model_answer = re.search(r"-?\d+(\.\d+)?", model_answer)
+        first_number_in_correct_answer = re.search(r"-?\d+(\.\d+)?", correct_answer)
+        
+
         if first_number_in_model_answer and first_number_in_correct_answer:
             if float(first_number_in_model_answer.group()) == float(first_number_in_correct_answer.group()):
-                # print(model_answer, correct_answer)
-                # print(first_number_in_correct_answer.group(), first_number_in_model_answer.group())
+                if True and "Llama-3" in model:
+                    if model_answer != correct_answer:
+                        print(f"Raw Model Answer: {raw_model_answer}")
+                        print(f"Model Answer: {model_answer}, Truth: {correct_answer}")
+                        print(f"Extracted from model: {first_number_in_model_answer.group()}, Extracted from truth: {first_number_in_correct_answer.group()}")
+                        print("--- correct")
                 solved_examples += 1
+            else:
+                # to debug the wrong examples
+                if False and "Llama-3" in model:
+                    print(f"Model: {model_answer}, Truth: {correct_answer}")
+                    print(f"Extracted from model: {first_number_in_model_answer.group()}, Extracted from truth: {first_number_in_correct_answer.group()}")
+                    print("--- incorrect")
         reason_lens.append(len(reason))
  
     result = {}
