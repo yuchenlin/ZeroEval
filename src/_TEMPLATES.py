@@ -3,7 +3,7 @@ import json
 
 from templates.ZEBRA_GRID import ZEBRA_GRID
 from templates.MCQA import MCQA
-
+from templates.OEQA import OEQA
 
 
 def generate_choice_string(choices):
@@ -18,6 +18,12 @@ def apply_mc_template(item):
     prompt_str = MCQA[:]
     prompt_str = prompt_str.replace("{question}", question)
     prompt_str = prompt_str.replace("{choices}", generate_choice_string(choices))
+    return prompt_str
+
+def apply_oeqa_template(item):
+    question = item["question"]
+    prompt_str = OEQA[:]
+    prompt_str = prompt_str.replace("{question}", question) 
     return prompt_str
     
 
@@ -59,5 +65,17 @@ if __name__ == "__main__":
             print("-"*100)
             print(json.dumps(item["solution"], indent=2))
             break
-    
-    mcqa_test()
+
+    def gsm_test():
+        dataset = load_dataset("yuchenlin/zero-eval", "gsm", split="test")
+        dataset = list(dataset)
+        # shuffule
+        random.shuffle(dataset)
+        for item in dataset:
+            print(apply_oeqa_template(item))
+            print("-"*100) 
+            break
+
+
+    # mcqa_test()
+    gsm_test()

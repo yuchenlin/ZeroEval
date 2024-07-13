@@ -1,5 +1,5 @@
 from datasets import load_dataset
-from _TEMPLATES import apply_mc_template, apply_lgp_grid_template
+from _TEMPLATES import apply_mc_template, apply_lgp_grid_template, apply_oeqa_template
 
 def mapping_task_names(data_name):
     """
@@ -28,6 +28,8 @@ def prompt_generation(data_name, data_item, args):
         prompt = data_item["instruction"]
     elif data_name in ["zebra-grid"]:
         prompt = apply_lgp_grid_template(data_item) 
+    elif data_name in ["gsm"]:
+        prompt = apply_oeqa_template(data_item)
     else:
         raise ValueError(f"Data name {data_name} not supported")
     return prompt
