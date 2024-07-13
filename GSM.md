@@ -23,10 +23,9 @@ bash scripts/_common_api_eval.sh -d gsm -f openai -m openai/gpt-3.5-turbo-0125 -
 
 
 bash scripts/_common_api_eval.sh -d gsm -f openai -m openai/gpt-4o-2024-05-13 -p gpt-4o-2024-05-13 -s 8 
-bash scripts/_common_api_eval.sh -d gsm -f openai -m openai/gpt-4-0314 -p gpt-4-0314 -s 8
-bash scripts/_common_api_eval.sh -d gsm -f openai -m openai/gpt-4-turbo-2024-04-09 -p gpt-4-turbo-2024-04-09 -s 8 
-
-bash scripts/_common_api_eval.sh -d gsm -f anthropic -m anthropic/claude-3-5-sonnet-20240620 -p claude-3-5-sonnet-20240620 -s 8-t 0.5
+# bash scripts/_common_api_eval.sh -d gsm -f openai -m openai/gpt-4-0314 -p gpt-4-0314 -s 8
+# bash scripts/_common_api_eval.sh -d gsm -f openai -m openai/gpt-4-turbo-2024-04-09 -p gpt-4-turbo-2024-04-09 -s 8 
+bash scripts/_common_api_eval.sh -d gsm -f anthropic -m anthropic/claude-3-5-sonnet-20240620 -p claude-3-5-sonnet-20240620 -s 8
 bash scripts/_common_api_eval.sh -d gsm -f anthropic -m anthropic/claude-3-haiku-20240307 -p claude-3-haiku-20240307 -s 8
 bash scripts/_common_api_eval.sh -d gsm -f anthropic -m anthropic/claude-3-opus-20240229 -p claude-3-opus-20240229 -s 8
 bash scripts/_common_api_eval.sh -d gsm -f anthropic -m anthropic/claude-3-sonnet-20240229 -p claude-3-sonnet-20240229 -s 8
