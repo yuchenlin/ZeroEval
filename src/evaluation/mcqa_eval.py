@@ -4,35 +4,9 @@ import os
 from tabulate import tabulate 
 import re
  
-def load_model_results(run_name_folders):
-    model_results = {}
-    for run_name, folder in run_name_folders.items():
-        # iterate all json files under the folder 
-        for filename in os.listdir(folder):
-            filepath = os.path.join(folder, filename)
-            if not filename.endswith(".json"):
-                continue
-            model_name = filename.replace(".json", "")  
-            model_name = f"{model_name}%{run_name}"
-            model_results[model_name] = filepath  
-    return model_results
+from eval_utils import load_model_results, extract_values_from_json
  
 
-def extract_values_from_json(json_string, keys = ["reasoning", "answer"]):
-    extracted_values = {}
-    for key in keys:
-        # Create a regular expression pattern to find the value for the given key
-        pattern = f'"{key}"\\s*:\\s*"([^"]*?)"'
-        match = re.search(pattern, json_string)
-        if match:
-            extracted_values[key] = match.group(1)
-        else:
-            # Handle the case where the value might contain broken quotes
-            pattern = f'"{key}"\\s*:\\s*"(.*?)"'
-            match = re.search(pattern, json_string, re.DOTALL)
-            if match:
-                extracted_values[key] = match.group(1)
-    return extracted_values
 
 def eval_model(model, filepath):
     global private_solutions
