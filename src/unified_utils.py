@@ -106,7 +106,7 @@ def save_outputs(args, id_strs, outputs, chat_history, metadata, model_inputs, f
                 "temperature": args.temperature,
                 "top_p": args.top_p,
                 "max_tokens": args.max_tokens,
-                "cot": args.cot,
+                # "cot": args.cot,
             }
         output_item["dataset"] = args.data_name 
         for key in metadata:

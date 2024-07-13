@@ -1,0 +1,18 @@
+[
+  {
+    "Model": "gpt-3.5-turbo-0125",
+    "Mode": "greedy",
+    "Acc": "68.36",
+    "No answer": "0.00",
+    "Total": 2778,
+    "Reason Lens": "357.93"
+  },
+  {
+    "Model": "Meta-Llama-3-8B-Instruct",
+    "Mode": "greedy",
+    "Acc": "61.66",
+    "No answer": "0.97",
+    "Total": 2778,
+    "Reason Lens": "601.18"
+  }
+]
