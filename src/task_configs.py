@@ -2,6 +2,9 @@ from datasets import load_dataset
 from _TEMPLATES import apply_mc_template, apply_lgp_grid_template
 
 def mapping_task_names(data_name):
+    """
+    Mapping the task names to the dataset and id name.
+    """
     id_name = "id"
     if data_name == "mmlu-redux":
         dataset = load_dataset("yuchenlin/zero-eval", "mmlu-redux", split="test")
@@ -16,17 +19,23 @@ def mapping_task_names(data_name):
     return dataset, id_name
 
 def prompt_generation(data_name, data_item, args):
+    """
+    Generate prompt for different tasks.
+    """
     if data_name in ["mmlu-redux"]:  # and other multiple-choice QA dataset 
-        prompt = apply_mc_template(data_item, cot = args.cot) 
+        prompt = apply_mc_template(data_item) 
     elif data_name in ["alpaca_eval"]:
         prompt = data_item["instruction"]
     elif data_name in ["zebra-grid"]:
-        prompt = apply_lgp_grid_template(data_item, cot = args.cot) 
+        prompt = apply_lgp_grid_template(data_item) 
     else:
         raise ValueError(f"Data name {data_name} not supported")
     return prompt
 
 def result_format(output_item, args):
+    """
+    Modify the output format for different tasks if needed.
+    """
     if args.data_name in ["alpaca_eval"]:
         output_item["output"] = output_item["output"][0] # use str instead of list 
     elif args.data_name in ["zebra-grid"]:
