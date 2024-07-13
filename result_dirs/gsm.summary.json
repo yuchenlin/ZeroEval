@@ -1,10 +1,34 @@
 [
   {
+    "Model": "claude-3-5-sonnet-20240620",
+    "Mode": "greedy",
+    "Acc": "95.68",
+    "No answer": "0.00",
+    "Total": 1319,
+    "Reason Lens": "475.87"
+  },
+  {
+    "Model": "gpt-4o-2024-05-13",
+    "Mode": "greedy",
+    "Acc": "95.45",
+    "No answer": "0.00",
+    "Total": 1319,
+    "Reason Lens": "480.59"
+  },
+  {
     "Model": "gpt-3.5-turbo-0125",
     "Mode": "greedy",
     "Acc": "80.36",
     "No answer": "0.00",
     "Total": 1319,
     "Reason Lens": "350.65"
+  },
+  {
+    "Model": "Meta-Llama-3-8B-Instruct",
+    "Mode": "greedy",
+    "Acc": "78.77",
+    "No answer": "0.00",
+    "Total": 1319,
+    "Reason Lens": "429.94"
   }
 ]

@@ -7,7 +7,7 @@ import re
 from eval_utils import load_model_results, extract_values_from_json
  
 
-def santize_answer(answer):
+def santize_math_answers(answer):
     # ignore symbols like $ 
     answer = answer.replace("$", "").strip()
     # ignore the units like miles after the number 
@@ -46,8 +46,8 @@ def eval_model(model, filepath):
         model_answer = prediction_json["answer"]
         correct_answer = item["answer"].replace("#", "").strip()
         # santize the answers
-        model_answer = santize_answer(model_answer)
-        correct_answer = santize_answer(correct_answer)
+        model_answer = santize_math_answers(model_answer)
+        correct_answer = santize_math_answers(correct_answer)
          
         first_number_in_model_answer = re.search(r"\d+(\.\d+)?", model_answer)
         first_number_in_correct_answer = re.search(r"\d+(\.\d+)?", correct_answer)
