@@ -8,8 +8,8 @@ This repository aims to evaluate instruction-tuned LLMs (i.e., chat models inste
 ## Tasks 
 
 - MMLU-redux 
-- AlpacaEval 
 - GSM
+- AlpacaEval 
 - ...
 
 
