@@ -62,3 +62,13 @@ def extract_last_complete_json(s):
             pass
     
     return None
+
+
+if __name__ == "__main__":
+    json_test = """
+    {
+        "reasoning": "Calculate shipping cost ($1.40 per pound x 4 pounds) and mileage cost ($0.08 per mile x 20 miles), then add them together ($3.00). Determine refund amount (75% of $32 = $24) and subtract it from the total shipping cost to find Milly’s loss (-$21).",
+        "answer": -21
+    }
+    """
+    print(json.dumps(extract_last_complete_json(json_test), indent=2))

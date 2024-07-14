@@ -47,7 +47,7 @@ def eval_model(model, filepath):
                 print(prediction_json)
             continue 
         reason = prediction_json.get("reasoning", "")
-        model_answer = prediction_json["answer"]
+        model_answer = str(prediction_json["answer"])
         correct_answer = item["answer"].replace("#", "").strip()
         # santize the answers
         raw_model_answer = model_answer[:]
