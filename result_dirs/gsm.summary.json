@@ -122,9 +122,9 @@
   {
     "Model": "Llama-3-Instruct-8B-SimPO-v0.2",
     "Mode": "greedy",
-    "Acc": "55.57",
-    "No answer": "9.02",
+    "Acc": "57.47",
+    "No answer": "2.05",
     "Total": 1319,
-    "Reason Lens": "472.52"
+    "Reason Lens": "485.99"
   }
 ]

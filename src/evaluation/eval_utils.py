@@ -35,6 +35,11 @@ def extract_values_from_json(json_string, keys = ["reasoning", "answer"], allow_
             match = re.search(pattern, json_string)
             if match:
                 extracted_values[key] = match.group(1)
+            else:
+                pattern = f'{key}\\s*:\\s*([^,\\s]*)'
+                match = re.search(pattern, json_string)
+                if match:
+                    extracted_values[key] = match.group(1)
     return extracted_values
 
 
