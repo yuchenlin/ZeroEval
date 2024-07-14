@@ -37,11 +37,12 @@ def eval_model(model, filepath):
         prediction_str = item["output"][0]
         prediction_json = extract_last_complete_json(prediction_str)
         if prediction_json is None or "answer" not in prediction_json:
-            prediction_json = extract_values_from_json(prediction_str)
+            prediction_json = extract_values_from_json(prediction_str, allow_no_quotes=True)
             # print("-")
         if prediction_json is None or "answer" not in prediction_json: 
             no_asnwer += 1 
-            if False and  "claude-3-5-sonnet-20240620" in model:
+            if True and  "SimPO" in model:
+                print("--------------------------")
                 print(f"No answer for {item['id']}")
                 print(prediction_str)
                 print(prediction_json)
@@ -61,7 +62,7 @@ def eval_model(model, filepath):
             if float(first_number_in_model_answer.group()) == float(first_number_in_correct_answer.group()):
                 correct = True
                 # To debug the correct examples
-                if False and "Llama-3" in model:
+                if False and "SimPO" in model:
                     if raw_model_answer != correct_answer:
                         print(f"Raw Model Answer: {raw_model_answer}")
                         print(f"Model Answer: {model_answer}, Truth: {correct_answer}")
@@ -69,7 +70,7 @@ def eval_model(model, filepath):
                         print("--- correct")
             else:
                 # To debug the wrong examples
-                if False and "Llama-3" in model:
+                if False and "SimPO" in model:
                     print(f"Model: {model_answer}, Truth: {correct_answer}")
                     print(f"Extracted from model: {first_number_in_model_answer.group()}, Extracted from truth: {first_number_in_correct_answer.group()}")
                     print("--- incorrect")
@@ -84,7 +85,7 @@ def eval_model(model, filepath):
         #     print("--- correct" if correct else "--- incorrect")
 
         # For Debugging:
-        if False and "Llama-3" in model:
+        if False and "SimPO" in model:
             if not correct:
                 print(item["id"], "incorrect")
         reason_lens.append(len(reason))

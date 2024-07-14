@@ -16,7 +16,7 @@ def load_model_results(run_name_folders):
             model_results[model_name] = filepath  
     return model_results
 
-def extract_values_from_json(json_string, keys = ["reasoning", "answer"]):
+def extract_values_from_json(json_string, keys = ["reasoning", "answer"], allow_no_quotes = False):
     extracted_values = {}
     for key in keys:
         # Create a regular expression pattern to find the value for the given key
@@ -28,6 +28,11 @@ def extract_values_from_json(json_string, keys = ["reasoning", "answer"]):
             # Handle the case where the value might contain broken quotes
             pattern = f'"{key}"\\s*:\\s*"(.*?)"'
             match = re.search(pattern, json_string, re.DOTALL)
+            if match:
+                extracted_values[key] = match.group(1)
+        if not match and allow_no_quotes:
+            pattern = f'"{key}"\\s*:\\s*([^,\\s]*)'
+            match = re.search(pattern, json_string)
             if match:
                 extracted_values[key] = match.group(1)
     return extracted_values
