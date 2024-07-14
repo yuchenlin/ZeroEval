@@ -58,10 +58,10 @@
   {
     "Model": "Qwen2-72B-Instruct",
     "Mode": "greedy",
-    "Acc": "92.61",
+    "Acc": "92.72",
     "No answer": "0.00",
-    "Total": 812,
-    "Reason Lens": "369.92"
+    "Total": 1319,
+    "Reason Lens": "375.96"
   },
   {
     "Model": "claude-3-sonnet-20240229",
@@ -118,5 +118,13 @@
     "No answer": "0.00",
     "Total": 1319,
     "Reason Lens": "429.39"
+  },
+  {
+    "Model": "Llama-3-Instruct-8B-SimPO-v0.2",
+    "Mode": "greedy",
+    "Acc": "50.27",
+    "No answer": "21.99",
+    "Total": 1319,
+    "Reason Lens": "402.40"
   }
 ]
