@@ -5,7 +5,7 @@
     "Acc": "88.01",
     "No answer": "0.14",
     "Total": 2778,
-    "Reason Lens": "632.69"
+    "Reason Lens": "629.79"
   },
   {
     "Model": "claude-3-5-sonnet-20240620",
@@ -13,7 +13,7 @@
     "Acc": "86.00",
     "No answer": "0.11",
     "Total": 2778,
-    "Reason Lens": "916.86"
+    "Reason Lens": "907.24"
   },
   {
     "Model": "gpt-4-turbo-2024-04-09",
@@ -21,15 +21,15 @@
     "Acc": "85.31",
     "No answer": "0.00",
     "Total": 2778,
-    "Reason Lens": "633.57"
+    "Reason Lens": "631.32"
   },
   {
     "Model": "gemini-1.5-pro",
     "Mode": "greedy",
     "Acc": "82.76",
-    "No answer": "1.94",
+    "No answer": "1.04",
     "Total": 2778,
-    "Reason Lens": "651.47"
+    "Reason Lens": "664.20"
   },
   {
     "Model": "claude-3-opus-20240229",
@@ -37,7 +37,7 @@
     "Acc": "82.54",
     "No answer": "0.00",
     "Total": 2778,
-    "Reason Lens": "497.86"
+    "Reason Lens": "500.04"
   },
   {
     "Model": "gpt-4-0314",
@@ -45,23 +45,23 @@
     "Acc": "81.64",
     "No answer": "0.04",
     "Total": 2778,
-    "Reason Lens": "397.42"
+    "Reason Lens": "397.22"
   },
   {
     "Model": "Qwen2-72B-Instruct",
     "Mode": "greedy",
-    "Acc": "81.61",
+    "Acc": "81.57",
     "No answer": "0.07",
     "Total": 2778,
-    "Reason Lens": "486.68"
+    "Reason Lens": "486.70"
   },
   {
     "Model": "yi-large",
     "Mode": "greedy",
-    "Acc": "81.17",
+    "Acc": "81.25",
     "No answer": "0.00",
     "Total": 2778,
-    "Reason Lens": "775.75"
+    "Reason Lens": "773.80"
   },
   {
     "Model": "deepseek-chat",
@@ -69,7 +69,7 @@
     "Acc": "80.81",
     "No answer": "0.11",
     "Total": 2778,
-    "Reason Lens": "692.94"
+    "Reason Lens": "691.91"
   },
   {
     "Model": "deepseek-coder",
@@ -77,15 +77,15 @@
     "Acc": "79.63",
     "No answer": "0.11",
     "Total": 2778,
-    "Reason Lens": "705.72"
+    "Reason Lens": "704.60"
   },
   {
     "Model": "Meta-Llama-3-70B-Instruct",
     "Mode": "greedy",
-    "Acc": "78.01",
+    "Acc": "77.97",
     "No answer": "0.11",
     "Total": 2778,
-    "Reason Lens": "521.34"
+    "Reason Lens": "520.45"
   },
   {
     "Model": "gemini-1.5-flash",
@@ -93,15 +93,15 @@
     "Acc": "77.36",
     "No answer": "1.15",
     "Total": 2778,
-    "Reason Lens": "575.73"
+    "Reason Lens": "583.74"
   },
   {
     "Model": "reka-core-20240501",
     "Mode": "greedy",
     "Acc": "76.42",
-    "No answer": "0.86",
+    "No answer": "0.76",
     "Total": 2778,
-    "Reason Lens": "701.56"
+    "Reason Lens": "701.40"
   },
   {
     "Model": "claude-3-sonnet-20240229",
@@ -109,7 +109,7 @@
     "Acc": "74.87",
     "No answer": "0.04",
     "Total": 2778,
-    "Reason Lens": "674.41"
+    "Reason Lens": "671.71"
   },
   {
     "Model": "gemma-2-9b-it@nvidia",
@@ -117,7 +117,7 @@
     "Acc": "72.82",
     "No answer": "0.00",
     "Total": 2778,
-    "Reason Lens": "498.40"
+    "Reason Lens": "498.27"
   },
   {
     "Model": "claude-3-haiku-20240307",
@@ -125,7 +125,7 @@
     "Acc": "72.32",
     "No answer": "0.04",
     "Total": 2778,
-    "Reason Lens": "647.72"
+    "Reason Lens": "644.63"
   },
   {
     "Model": "gpt-3.5-turbo-0125",
@@ -133,7 +133,7 @@
     "Acc": "68.36",
     "No answer": "0.00",
     "Total": 2778,
-    "Reason Lens": "357.93"
+    "Reason Lens": "357.89"
   },
   {
     "Model": "Qwen2-7B-Instruct",
@@ -141,15 +141,15 @@
     "Acc": "66.92",
     "No answer": "0.58",
     "Total": 2778,
-    "Reason Lens": "533.43"
+    "Reason Lens": "533.34"
   },
   {
     "Model": "reka-flash-20240226",
     "Mode": "greedy",
     "Acc": "64.72",
-    "No answer": "0.36",
+    "No answer": "0.29",
     "Total": 2778,
-    "Reason Lens": "661.71"
+    "Reason Lens": "659.29"
   },
   {
     "Model": "Meta-Llama-3-8B-Instruct",
@@ -157,14 +157,14 @@
     "Acc": "61.66",
     "No answer": "0.97",
     "Total": 2778,
-    "Reason Lens": "601.18"
+    "Reason Lens": "600.81"
   },
   {
     "Model": "Llama-3-Instruct-8B-SimPO-v0.2",
     "Mode": "greedy",
-    "Acc": "54.82",
-    "No answer": "6.01",
+    "Acc": "54.90",
+    "No answer": "1.19",
     "Total": 2778,
-    "Reason Lens": "433.88"
+    "Reason Lens": "446.68"
   }
 ]
