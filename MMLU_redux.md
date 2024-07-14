@@ -5,6 +5,7 @@ bash scripts/_common_eval.sh -d mmlu-redux -m meta-llama/Meta-Llama-3-70B-Instru
 bash scripts/_common_eval.sh -d mmlu-redux -m meta-llama/Meta-Llama-3-8B-Instruct -p Meta-Llama-3-8B-Instruct -s 4
 bash scripts/_common_eval.sh -d mmlu-redux -m Qwen/Qwen2-7B-Instruct -p Qwen2-7B-Instruct -s 4 
 bash scripts/_common_eval.sh -d mmlu-redux -m Qwen/Qwen2-72B-Instruct -p Qwen2-72B-Instruct -s 1
+bash scripts/_common_eval.sh -d mmlu-redux -m princeton-nlp/Llama-3-Instruct-8B-SimPO-v0.2 -p Llama-3-Instruct-8B-SimPO-v0.2 -s 4
 
 ```
 

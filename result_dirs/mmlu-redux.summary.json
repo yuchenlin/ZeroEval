@@ -158,5 +158,13 @@
     "No answer": "0.97",
     "Total": 2778,
     "Reason Lens": "601.18"
+  },
+  {
+    "Model": "Llama-3-Instruct-8B-SimPO-v0.2",
+    "Mode": "greedy",
+    "Acc": "54.82",
+    "No answer": "6.01",
+    "Total": 2778,
+    "Reason Lens": "433.88"
   }
 ]
