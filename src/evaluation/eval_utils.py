@@ -31,11 +31,13 @@ def extract_values_from_json(json_string, keys = ["reasoning", "answer"], allow_
             if match:
                 extracted_values[key] = match.group(1)
         if not match and allow_no_quotes:
+            # to allow no quotes on the values
             pattern = f'"{key}"\\s*:\\s*([^,\\s]*)'
             match = re.search(pattern, json_string)
             if match:
                 extracted_values[key] = match.group(1)
             else:
+                # to allow no quotes on the keys
                 pattern = f'{key}\\s*:\\s*([^,\\s]*)'
                 match = re.search(pattern, json_string)
                 if match:
