@@ -53,23 +53,37 @@ def eval_model(model, filepath):
          
         first_number_in_model_answer = re.search(r"-?\d+(\.\d+)?", model_answer)
         first_number_in_correct_answer = re.search(r"-?\d+(\.\d+)?", correct_answer)
-        
-
+        correct = False 
         if first_number_in_model_answer and first_number_in_correct_answer:
             if float(first_number_in_model_answer.group()) == float(first_number_in_correct_answer.group()):
-                if True and "Llama-3" in model:
-                    if model_answer != correct_answer:
+                correct = True
+                # To debug the correct examples
+                if False and "Llama-3" in model:
+                    if raw_model_answer != correct_answer:
                         print(f"Raw Model Answer: {raw_model_answer}")
                         print(f"Model Answer: {model_answer}, Truth: {correct_answer}")
                         print(f"Extracted from model: {first_number_in_model_answer.group()}, Extracted from truth: {first_number_in_correct_answer.group()}")
                         print("--- correct")
-                solved_examples += 1
             else:
-                # to debug the wrong examples
+                # To debug the wrong examples
                 if False and "Llama-3" in model:
                     print(f"Model: {model_answer}, Truth: {correct_answer}")
                     print(f"Extracted from model: {first_number_in_model_answer.group()}, Extracted from truth: {first_number_in_correct_answer.group()}")
                     print("--- incorrect")
+        if correct:
+            solved_examples += 1
+        
+        # For Debugging:
+        # if item["id"] == "gsm8k-main-test-#2":
+        #     print(f"Raw Model Answer: {raw_model_answer}")
+        #     print(f"Model Answer: {model_answer}, Truth: {correct_answer}")
+        #     print(f"Extracted from model: {first_number_in_model_answer.group()}, Extracted from truth: {first_number_in_correct_answer.group()}") 
+        #     print("--- correct" if correct else "--- incorrect")
+
+        # For Debugging:
+        if True and "Llama-3" in model:
+            if not correct:
+                print(item["id"], "incorrect")
         reason_lens.append(len(reason))
  
     result = {}
