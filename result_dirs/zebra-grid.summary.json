@@ -286,6 +286,17 @@
     "Reason Lens": "1216.40"
   },
   {
+    "Model": "Yi-1.5-34B-Chat",
+    "Mode": "greedy",
+    "Puzzle Acc": "11.50",
+    "Cell Acc": "32.73",
+    "No answer": "4.40",
+    "Easy Puzzle Acc": "37.50",
+    "Hard Puzzle Acc": "1.39",
+    "Total Puzzles": 1000,
+    "Reason Lens": "869.65"
+  },
+  {
     "Model": "Meta-Llama-3-8B-Instruct",
     "Mode": "sampling",
     "Puzzle Acc": "11.00",
@@ -328,5 +339,16 @@
     "Hard Puzzle Acc": "0.28",
     "Total Puzzles": 1000,
     "Reason Lens": "1473.23"
+  },
+  {
+    "Model": "Yi-1.5-9B-Chat",
+    "Mode": "greedy",
+    "Puzzle Acc": "2.30",
+    "Cell Acc": "7.53",
+    "No answer": "11.30",
+    "Easy Puzzle Acc": "8.21",
+    "Hard Puzzle Acc": "0.00",
+    "Total Puzzles": 1000,
+    "Reason Lens": "1592.60"
   }
 ]
