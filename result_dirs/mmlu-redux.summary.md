@@ -14,10 +14,12 @@
 |        gemini-1.5-flash        | greedy | 77.36 |    1.15     |  2778   |    583.74     |
 |       reka-core-20240501       | greedy | 76.42 |    0.76     |  2778   |     701.4     |
 |    claude-3-sonnet-20240229    | greedy | 74.87 |    0.04     |  2778   |    671.71     |
+|        Yi-1.5-34B-Chat         | greedy |  73   |    0.22     |  2778   |    619.48     |
 |      gemma-2-9b-it@nvidia      | greedy | 72.82 |      0      |  2778   |    498.27     |
 |    claude-3-haiku-20240307     | greedy | 72.32 |    0.04     |  2778   |    644.63     |
 |       gpt-3.5-turbo-0125       | greedy | 68.36 |      0      |  2778   |    357.89     |
 |       Qwen2-7B-Instruct        | greedy | 66.92 |    0.58     |  2778   |    533.34     |
+|         Yi-1.5-9B-Chat         | greedy | 65.05 |    4.61     |  2778   |    542.37     |
 |      reka-flash-20240226       | greedy | 64.72 |    0.29     |  2778   |    659.29     |
 |    Meta-Llama-3-8B-Instruct    | greedy | 61.66 |    0.97     |  2778   |    600.81     |
 | Llama-3-Instruct-8B-SimPO-v0.2 | greedy | 54.9  |    1.19     |  2778   |    446.68     |

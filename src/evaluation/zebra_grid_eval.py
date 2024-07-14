@@ -53,7 +53,7 @@ def eval_model(model, filepath):
         # Read and Parse the prediction from model output
         prediction_str = item["output"][0]     
         prediction_json = extract_last_complete_json(prediction_str)
-        if prediction_json is None or "solution" not in prediction_json:
+        if prediction_json is None or "solution" not in prediction_json or prediction_json["solution"] is None:
             # print("-"*100)
             # prediction_str = prediction_str.replace("\n", "")
             # print([prediction_str])
