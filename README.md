@@ -9,7 +9,7 @@ This repository aims to evaluate instruction-tuned LLMs (i.e., chat models inste
 
 - MMLU-redux 
 - AlpacaEval 
-- ZebraLogicBench 
+- GSM
 - ...
 
 
