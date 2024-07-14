@@ -107,9 +107,9 @@
     "Model": "Qwen2-7B-Instruct",
     "Mode": "greedy",
     "Acc": "80.06",
-    "No answer": "0.08",
+    "No answer": "0.00",
     "Total": 1319,
-    "Reason Lens": "452.34"
+    "Reason Lens": "452.60"
   },
   {
     "Model": "Meta-Llama-3-8B-Instruct",
@@ -122,9 +122,9 @@
   {
     "Model": "Llama-3-Instruct-8B-SimPO-v0.2",
     "Mode": "greedy",
-    "Acc": "50.27",
-    "No answer": "21.99",
+    "Acc": "55.57",
+    "No answer": "9.02",
     "Total": 1319,
-    "Reason Lens": "402.40"
+    "Reason Lens": "472.52"
   }
 ]

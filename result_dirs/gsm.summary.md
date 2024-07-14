@@ -13,6 +13,6 @@
 |    claude-3-haiku-20240307     | greedy | 88.78 |      0      |  1319   |    587.65     |
 |         gemma-2-9b-it          | greedy | 87.41 |      0      |  1319   |    394.83     |
 |       gpt-3.5-turbo-0125       | greedy | 80.36 |      0      |  1319   |    350.97     |
-|       Qwen2-7B-Instruct        | greedy | 80.06 |    0.08     |  1319   |    452.34     |
+|       Qwen2-7B-Instruct        | greedy | 80.06 |      0      |  1319   |     452.6     |
 |    Meta-Llama-3-8B-Instruct    | greedy | 78.47 |      0      |  1319   |    429.39     |
-| Llama-3-Instruct-8B-SimPO-v0.2 | greedy | 50.27 |    21.99    |  1319   |     402.4     |
+| Llama-3-Instruct-8B-SimPO-v0.2 | greedy | 55.57 |    9.02     |  1319   |    472.52     |
