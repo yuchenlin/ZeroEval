@@ -1,34 +1,3 @@
-# ZeroEval 
-
-
-## Motivation
-
-This repository aims to evaluate instruction-tuned LLMs (i.e., chat models instead of base models) for their zero-shot performance on various reasoning tasks such as MMLU. We encourage the model to generate the answer in the form of a natural language sentence, instead of looking at their logits to decide the answer. 
-
-## Tasks 
-
-- MMLU-redux 
-- GSM
-- AlpacaEval 
-- ...
-
-
-## Arguments for `_common_eval.sh`
-
-- `-d` for DATA_NAME
-- `-m` for model_name
-- `-p` for model_pretty_name
-- `-s` for n_shards
-- `-r` for run_name (optional, default is “default”)
-- `-t` for TEMP (optional, default is 0)
-- `-o` for TOP_P (optional, default is 1.0)
-- `-e` for rp (optional, default is 1.0)
-
-
-## Results 
-
-### MMLU-Redux
-
 |           Model            |  Mode  |  Acc  |  No answer  |  Total  |  Reason Lens  |
 |----------------------------|--------|-------|-------------|---------|---------------|
 |     gpt-4o-2024-05-13      | greedy | 88.01 |    0.14     |  2778   |    632.69     |
@@ -51,14 +20,3 @@ This repository aims to evaluate instruction-tuned LLMs (i.e., chat models inste
 |     Qwen2-7B-Instruct      | greedy | 66.92 |    0.58     |  2778   |    533.43     |
 |    reka-flash-20240226     | greedy | 64.72 |    0.36     |  2778   |    661.71     |
 |  Meta-Llama-3-8B-Instruct  | greedy | 61.66 |    0.97     |  2778   |    601.18     |
-
-
-### GSM
-
-|           Model            |  Mode  |  Acc  |  No answer  |  Total  |  Reason Lens  |
-|----------------------------|--------|-------|-------------|---------|---------------|
-| claude-3-5-sonnet-20240620 | greedy | 95.6  |      0      |  1319   |    475.87     |
-|     gpt-4o-2024-05-13      | greedy | 95.38 |      0      |  1319   |    480.59     |
-|     gpt-3.5-turbo-0125     | greedy | 80.36 |      0      |  1319   |    350.65     |
-|  Meta-Llama-3-8B-Instruct  | greedy | 78.47 |      0      |  1319   |    429.94     |
-

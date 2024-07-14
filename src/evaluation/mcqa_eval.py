@@ -3,7 +3,7 @@ from collections import defaultdict
 import os 
 from tabulate import tabulate 
 import re
- 
+import sys
 from eval_utils import load_model_results, extract_values_from_json
  
 
@@ -69,10 +69,16 @@ def gen_results(run_name_folders):
     # write to json file 
     with open(f"result_dirs/{data_name}.summary.json", "w") as f:
         json.dump(rows, f, indent=2)
-
+    
+    # write to markdown file
+    with open(f"result_dirs/{data_name}.summary.md", "w") as f:
+        f.write(tabulate(table_data, headers=columns, tablefmt="github", stralign="center", numalign="center"))
 
 if __name__ == "__main__":
-    data_name = "mmlu-redux"
+    data_name = sys.argv[1]
+    if data_name not in ["mmlu-redux"]:
+        print(f"Invalid data name: {data_name}")
+        sys.exit(1)
     run_name_folders = {
         "greedy": f"result_dirs/{data_name}", 
     }  

@@ -139,6 +139,10 @@ def gen_results(run_name_folders):
     with open("result_dirs/zebra-grid.summary.json", "w") as f:
         json.dump(rows, f, indent=2)
 
+    # write to markdown file
+    # with open(f"result_dirs/zebra-grid.summary.md", "w") as f:
+    #     f.write(tabulate(table_data, headers=columns, tablefmt="github", stralign="center", numalign="center"))
+
 
 if __name__ == "__main__":
     run_name_folders = {

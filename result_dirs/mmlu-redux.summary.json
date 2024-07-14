@@ -56,6 +56,14 @@
     "Reason Lens": "486.68"
   },
   {
+    "Model": "yi-large",
+    "Mode": "greedy",
+    "Acc": "81.17",
+    "No answer": "0.00",
+    "Total": 2778,
+    "Reason Lens": "775.75"
+  },
+  {
     "Model": "deepseek-chat",
     "Mode": "greedy",
     "Acc": "80.81",

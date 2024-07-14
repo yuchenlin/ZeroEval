@@ -81,7 +81,7 @@ def eval_model(model, filepath):
         #     print("--- correct" if correct else "--- incorrect")
 
         # For Debugging:
-        if True and "Llama-3" in model:
+        if False and "Llama-3" in model:
             if not correct:
                 print(item["id"], "incorrect")
         reason_lens.append(len(reason))
@@ -112,6 +112,10 @@ def gen_results(run_name_folders):
 
     print(tabulate(table_data, headers=columns, tablefmt="fancy_outline", stralign="center", numalign="center"))
     # print(tabulate(rows, headers=columns, tablefmt="github"))
+
+    # write to markdown file
+    with open(f"result_dirs/{data_name}.summary.md", "w") as f:
+        f.write(tabulate(table_data, headers=columns, tablefmt="github", stralign="center", numalign="center"))
 
     # write to json file 
     with open(f"result_dirs/{data_name}.summary.json", "w") as f:
