@@ -19,10 +19,12 @@ This repository aims to evaluate instruction-tuned LLMs (i.e., chat models inste
 - `-m` for model_name
 - `-p` for model_pretty_name
 - `-s` for n_shards
+- `-f` for engine (`vllm` by default, can be `hf`, `openai`, `anthropic`, ...)
 - `-r` for run_name (optional, default is “default”)
 - `-t` for TEMP (optional, default is 0)
 - `-o` for TOP_P (optional, default is 1.0)
 - `-e` for rp (optional, default is 1.0)
+- `-b` for batch size (4 by default)
 
 
 ## Results 
