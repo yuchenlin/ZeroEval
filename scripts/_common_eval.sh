@@ -10,7 +10,7 @@
 
 #!/bin/bash
 
-export VLLM_WORKER_MULTIPROC_METHOD=spawn
+
 
 # Initialize default values
 DATA_NAME=""
