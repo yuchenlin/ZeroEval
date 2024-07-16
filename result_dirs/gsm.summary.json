@@ -166,5 +166,13 @@
     "No answer": "2.05",
     "Total": 1319,
     "Reason Lens": "485.99"
+  },
+  {
+    "Model": "gemma-2-27b-it",
+    "Mode": "greedy",
+    "Acc": "26.91",
+    "No answer": "20.55",
+    "Total": 1319,
+    "Reason Lens": "743.09"
   }
 ]

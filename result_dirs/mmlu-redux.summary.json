@@ -11,33 +11,41 @@
     "Model": "claude-3-5-sonnet-20240620",
     "Mode": "greedy",
     "Acc": "86.00",
-    "No answer": "0.11",
+    "No answer": "0.18",
     "Total": 2778,
-    "Reason Lens": "907.24"
+    "Reason Lens": "907.09"
   },
   {
     "Model": "gpt-4-turbo-2024-04-09",
     "Mode": "greedy",
     "Acc": "85.31",
-    "No answer": "0.00",
+    "No answer": "0.04",
     "Total": 2778,
-    "Reason Lens": "631.32"
+    "Reason Lens": "631.38"
   },
   {
     "Model": "gemini-1.5-pro",
     "Mode": "greedy",
     "Acc": "82.76",
-    "No answer": "1.04",
+    "No answer": "1.94",
     "Total": 2778,
-    "Reason Lens": "664.20"
+    "Reason Lens": "666.70"
   },
   {
     "Model": "claude-3-opus-20240229",
     "Mode": "greedy",
     "Acc": "82.54",
-    "No answer": "0.00",
+    "No answer": "0.58",
     "Total": 2778,
-    "Reason Lens": "500.04"
+    "Reason Lens": "500.35"
+  },
+  {
+    "Model": "yi-large-preview",
+    "Mode": "greedy",
+    "Acc": "82.18",
+    "No answer": "0.14",
+    "Total": 2778,
+    "Reason Lens": "968.52"
   },
   {
     "Model": "gpt-4-0314",
@@ -51,9 +59,9 @@
     "Model": "Qwen2-72B-Instruct",
     "Mode": "greedy",
     "Acc": "81.57",
-    "No answer": "0.07",
+    "No answer": "0.25",
     "Total": 2778,
-    "Reason Lens": "486.70"
+    "Reason Lens": "486.46"
   },
   {
     "Model": "yi-large",
@@ -75,9 +83,9 @@
     "Model": "deepseek-coder",
     "Mode": "greedy",
     "Acc": "79.63",
-    "No answer": "0.11",
+    "No answer": "0.14",
     "Total": 2778,
-    "Reason Lens": "704.60"
+    "Reason Lens": "704.72"
   },
   {
     "Model": "Meta-Llama-3-70B-Instruct",
@@ -91,9 +99,9 @@
     "Model": "gemini-1.5-flash",
     "Mode": "greedy",
     "Acc": "77.36",
-    "No answer": "1.15",
+    "No answer": "1.26",
     "Total": 2778,
-    "Reason Lens": "583.74"
+    "Reason Lens": "583.45"
   },
   {
     "Model": "reka-core-20240501",
@@ -107,25 +115,25 @@
     "Model": "claude-3-sonnet-20240229",
     "Mode": "greedy",
     "Acc": "74.87",
-    "No answer": "0.04",
+    "No answer": "0.07",
     "Total": 2778,
-    "Reason Lens": "671.71"
+    "Reason Lens": "671.75"
   },
   {
     "Model": "Yi-1.5-34B-Chat",
     "Mode": "greedy",
-    "Acc": "73.00",
-    "No answer": "0.22",
+    "Acc": "73.04",
+    "No answer": "0.58",
     "Total": 2778,
-    "Reason Lens": "619.48"
+    "Reason Lens": "618.29"
   },
   {
     "Model": "gemma-2-9b-it@nvidia",
     "Mode": "greedy",
     "Acc": "72.82",
-    "No answer": "0.00",
+    "No answer": "0.76",
     "Total": 2778,
-    "Reason Lens": "498.27"
+    "Reason Lens": "499.00"
   },
   {
     "Model": "claude-3-haiku-20240307",
@@ -139,17 +147,17 @@
     "Model": "gpt-3.5-turbo-0125",
     "Mode": "greedy",
     "Acc": "68.36",
-    "No answer": "0.00",
+    "No answer": "0.04",
     "Total": 2778,
-    "Reason Lens": "357.89"
+    "Reason Lens": "357.92"
   },
   {
     "Model": "Qwen2-7B-Instruct",
     "Mode": "greedy",
     "Acc": "66.92",
-    "No answer": "0.58",
+    "No answer": "0.72",
     "Total": 2778,
-    "Reason Lens": "533.34"
+    "Reason Lens": "533.15"
   },
   {
     "Model": "Yi-1.5-9B-Chat",
@@ -163,9 +171,9 @@
     "Model": "reka-flash-20240226",
     "Mode": "greedy",
     "Acc": "64.72",
-    "No answer": "0.29",
+    "No answer": "0.32",
     "Total": 2778,
-    "Reason Lens": "659.29"
+    "Reason Lens": "659.25"
   },
   {
     "Model": "Meta-Llama-3-8B-Instruct",
@@ -176,11 +184,35 @@
     "Reason Lens": "600.81"
   },
   {
+    "Model": "gemma-2-27b-it@vllm",
+    "Mode": "greedy",
+    "Acc": "59.47",
+    "No answer": "12.56",
+    "Total": 2778,
+    "Reason Lens": "990.98"
+  },
+  {
     "Model": "Llama-3-Instruct-8B-SimPO-v0.2",
     "Mode": "greedy",
-    "Acc": "54.90",
+    "Acc": "55.22",
     "No answer": "1.19",
     "Total": 2778,
     "Reason Lens": "446.68"
+  },
+  {
+    "Model": "Qwen2-1.5B-Instruct",
+    "Mode": "greedy",
+    "Acc": "41.11",
+    "No answer": "7.74",
+    "Total": 2778,
+    "Reason Lens": "280.53"
+  },
+  {
+    "Model": "Rex-v0.1-1.5B",
+    "Mode": "greedy",
+    "Acc": "39.09",
+    "No answer": "4.79",
+    "Total": 2778,
+    "Reason Lens": "329.29"
   }
 ]
