@@ -204,3 +204,7 @@ evaluation/eval_template.no_checklist.md
 *.768-1024.json
 *.instant.json
 tmp_*
+result_dirs/mmlu-redux/gemma-2-27b-it@vllm.json
+result_dirs/mmlu-redux/Rex-v0.1-1.5B.json
+result_dirs/gsm/gemma-2-27b-it@vllm.json
+result_dirs/zebra-grid/gemma-2-27b-it@vllm.json

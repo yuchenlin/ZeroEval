@@ -26,7 +26,7 @@ def eval_model(model, filepath):
         prediction_json = extract_last_complete_json(prediction_str)
         if prediction_json is None or "answer" not in prediction_json:
             prediction_json = extract_values_from_json(prediction_str, allow_no_quotes=True)
-        if prediction_json is None or "answer" not in prediction_json: 
+        if prediction_json is None or "answer" not in prediction_json or prediction_json["answer"] is None or prediction_json["answer"] == "": 
             no_asnwer += 1 
             if False and  "claude-3-5-sonnet-20240620" in model:
                 print(f"No answer for {item['id']}")
@@ -38,7 +38,7 @@ def eval_model(model, filepath):
         correct_answer = item["correct_answer"]
         index_of_correct_answer = item["choices"].index(correct_answer)
         label_of_correct_answer = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"[index_of_correct_answer]
-        if model_answer == label_of_correct_answer:
+        if  model_answer == label_of_correct_answer or f"{label_of_correct_answer})" in model_answer:
             solved_examples += 1
         reason_lens.append(len(reason))
  
