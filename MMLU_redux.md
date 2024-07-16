@@ -1,12 +1,11 @@
 <!-- 
-
+# bash scripts/_common_eval.sh -d mmlu-redux -m yuchenlin/Rex-v0.1-1.5B -p Rex-v0.1-1.5B -s 4 
  -->
 
 ```bash 
 # export VLLM_WORKER_MULTIPROC_METHOD="FLASH_ATTN"
 # VLLM_WORKER_MULTIPROC_METHOD=spawn 
 bash scripts/_common_eval.sh -d mmlu-redux -m Qwen/Qwen2-1.5B-Instruct -p Qwen2-1.5B-Instruct -s 4 
-bash scripts/_common_eval.sh -d mmlu-redux -m yuchenlin/Rex-v0.1-1.5B -p Rex-v0.1-1.5B -s 4 
 bash scripts/_common_eval.sh -d mmlu-redux -m meta-llama/Meta-Llama-3-70B-Instruct -p Meta-Llama-3-70B-Instruct -s 1 
 bash scripts/_common_eval.sh -d mmlu-redux -m meta-llama/Meta-Llama-3-8B-Instruct -p Meta-Llama-3-8B-Instruct -s 4
 bash scripts/_common_eval.sh -d mmlu-redux -m Qwen/Qwen2-7B-Instruct -p Qwen2-7B-Instruct -s 4 
