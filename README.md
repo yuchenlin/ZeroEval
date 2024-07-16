@@ -85,3 +85,4 @@ This repository aims to evaluate instruction-tuned LLMs (i.e., chat models inste
 |         Yi-1.5-9B-Chat         | greedy | 77.86 |    0.08     |  1319   |    485.07     |
 |      reka-flash-20240226       | greedy | 74.68 |    0.45     |  1319   |    460.06     |
 | Llama-3-Instruct-8B-SimPO-v0.2 | greedy | 57.47 |    2.05     |  1319   |    485.99     | 
+|      Qwen2-1.5B-Instruct       | greedy | 43.9  |    4.78     |  1319   |    298.07     |
