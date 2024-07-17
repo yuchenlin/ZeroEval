@@ -2,6 +2,12 @@
 # bash scripts/_common_eval.sh -d mmlu-redux -m yuchenlin/Rex-v0.1-1.5B -p Rex-v0.1-1.5B -s 4 
  -->
 
+## View the table 
+
+`python src/evaluation/mcqa_eval.py mmlu-redux`
+
+## Run model inference 
+
 ```bash 
 # export VLLM_WORKER_MULTIPROC_METHOD="FLASH_ATTN"
 # VLLM_WORKER_MULTIPROC_METHOD=spawn 
@@ -25,7 +31,10 @@ bash scripts/_common_eval.sh -d mmlu-redux -m 01-ai/Yi-1.5-34B-Chat -p Yi-1.5-34
 
 ```bash
 
+
 bash scripts/_common_api_eval.sh -d mmlu-redux -f openai -m openai/gpt-3.5-turbo-0125 -p gpt-3.5-turbo-0125 -s 8
+
+
 
 
 bash scripts/_common_api_eval.sh -d mmlu-redux -f openai -m openai/gpt-4o-2024-05-13 -p gpt-4o-2024-05-13 -s 8 
@@ -55,7 +64,7 @@ bash scripts/_common_api_eval.sh -d mmlu-redux -f reka -m reka/reka-core-2024050
 bash scripts/_common_api_eval.sh -d mmlu-redux -f openai -m yi-large -p yi-large -s 8
 bash scripts/_common_api_eval.sh -d mmlu-redux -f openai -m yi-large-preview -p yi-large-preview -s 8
 
-
+bash scripts/_common_api_eval.sh -d mmlu-redux -f together -m google/gemma-2-27b-it@together -p gemma-2-27b-it@together -s 8
 
 # bash scripts/_common_api_eval.sh -d mmlu-redux -f together -m meta-llama/Llama-3-70b-chat-hf -p Llama-3-70b-chat-hf -s 8
 # bash scripts/_common_api_eval.sh -d mmlu-redux -f together -m meta-llama/Llama-3-8B-chat-hf -p Llama-3-8B-chat-hf -s 8

@@ -1,6 +1,11 @@
-```bash 
-# export VLLM_WORKER_MULTIPROC_METHOD="FLASH_ATTN"
-# VLLM_WORKER_MULTIPROC_METHOD=spawn 
+
+## View the table 
+
+`python src/evaluation/gsm_eval.py`
+
+## Run model inference 
+
+```bash  
 bash scripts/_common_eval.sh -d gsm -m meta-llama/Meta-Llama-3-70B-Instruct -p Meta-Llama-3-70B-Instruct -s 1 
 bash scripts/_common_eval.sh -d gsm -m meta-llama/Meta-Llama-3-8B-Instruct -p Meta-Llama-3-8B-Instruct -s 4
 bash scripts/_common_eval.sh -d gsm -m Qwen/Qwen2-7B-Instruct -p Qwen2-7B-Instruct -s 4 
@@ -55,6 +60,7 @@ bash scripts/_common_api_eval.sh -d gsm -f openai -m yi-large -p yi-large -s 8
 bash scripts/_common_api_eval.sh -d gsm -f openai -m yi-large-preview -p yi-large-preview -s 8
 
 
+bash scripts/_common_api_eval.sh -d gsm -f together -m google/gemma-2-27b-it@together -p gemma-2-27b-it@together -s 8
 
 # bash scripts/_common_api_eval.sh -d gsm -f together -m meta-llama/Llama-3-70b-chat-hf -p Llama-3-70b-chat-hf -s 8
 # bash scripts/_common_api_eval.sh -d gsm -f together -m meta-llama/Llama-3-8B-chat-hf -p Llama-3-8B-chat-hf -s 8

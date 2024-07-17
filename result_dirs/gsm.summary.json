@@ -80,6 +80,14 @@
     "Reason Lens": "344.61"
   },
   {
+    "Model": "gemma-2-27b-it@together",
+    "Mode": "greedy",
+    "Acc": "90.22",
+    "No answer": "0.00",
+    "Total": 1319,
+    "Reason Lens": "364.68"
+  },
+  {
     "Model": "claude-3-haiku-20240307",
     "Mode": "greedy",
     "Acc": "88.78",

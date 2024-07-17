@@ -112,6 +112,14 @@
     "Reason Lens": "701.40"
   },
   {
+    "Model": "gemma-2-27b-it@together",
+    "Mode": "greedy",
+    "Acc": "75.67",
+    "No answer": "0.61",
+    "Total": 2778,
+    "Reason Lens": "446.51"
+  },
+  {
     "Model": "claude-3-sonnet-20240229",
     "Mode": "greedy",
     "Acc": "74.87",
