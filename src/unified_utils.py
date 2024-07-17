@@ -167,6 +167,9 @@ def retry_handler(retry_limit=10):
                     else:
                         err_msg = str(e)
                         print(e.__class__.__name__+":", err_msg)
+                        if "`inputs` tokens + `max_new_tokens` must be <=" in err_msg:
+                            print ('Exceeding max tokens issue! (in together.ai)')
+                            return ['']
                         if retried < retry_limit:
                             if 'cohere' in e.__class__.__name__.lower() and 'prompt exceeds context length' in err_msg:
                                 print ('cohere prompt length issue!')
@@ -176,6 +179,7 @@ def retry_handler(retry_limit=10):
                                 print ('blocked output issue!')
                                 return ['Error: this query is blocked by APIs.']
                                 #raise e
+                            
                             print(f"Retrying for the {retried + 1} time..")
                             #if 'output blocked by content filtering policy' in err_msg.lower():
                             #    raise e

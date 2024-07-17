@@ -14,6 +14,7 @@
 |   Meta-Llama-3-70B-Instruct    | greedy | 77.97 |    0.11     |  2778   |    520.45     |
 |        gemini-1.5-flash        | greedy | 77.36 |    1.26     |  2778   |    583.45     |
 |       reka-core-20240501       | greedy | 76.42 |    0.76     |  2778   |     701.4     |
+|    gemma-2-27b-it@together     | greedy | 75.67 |    0.61     |  2778   |    446.51     |
 |    claude-3-sonnet-20240229    | greedy | 74.87 |    0.07     |  2778   |    671.75     |
 |        Yi-1.5-34B-Chat         | greedy | 73.04 |    0.58     |  2778   |    618.29     |
 |      gemma-2-9b-it@nvidia      | greedy | 72.82 |    0.76     |  2778   |      499      |

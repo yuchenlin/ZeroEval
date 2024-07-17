@@ -10,6 +10,7 @@
 |       Qwen2-72B-Instruct       | greedy | 92.72 |      0      |  1319   |    375.96     |
 |    claude-3-sonnet-20240229    | greedy | 91.51 |      0      |  1319   |    762.69     |
 |        gemini-1.5-flash        | greedy | 91.36 |      0      |  1319   |    344.61     |
+|    gemma-2-27b-it@together     | greedy | 90.22 |      0      |  1319   |    364.68     |
 |    claude-3-haiku-20240307     | greedy | 88.78 |      0      |  1319   |    587.65     |
 |       reka-core-20240501       | greedy | 87.49 |    0.08     |  1319   |    414.33     |
 |         gemma-2-9b-it          | greedy | 87.41 |      0      |  1319   |    394.83     |
