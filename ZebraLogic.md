@@ -10,6 +10,8 @@ bash scripts/_common_eval.sh -d zebra-grid -m meta-llama/Meta-Llama-3-8B-Instruc
 bash scripts/_common_eval.sh -d zebra-grid -m meta-llama/Meta-Llama-3-8B-Instruct -p Meta-Llama-3-8B-Instruct -s 4 -r "sampling" -t 0.5
 bash scripts/_common_eval.sh -d zebra-grid -m Qwen/Qwen2-7B-Instruct -p Qwen2-7B-Instruct -s 4 
 bash scripts/_common_eval.sh -d zebra-grid -m 01-ai/Yi-1.5-34B-Chat -p Yi-1.5-34B-Chat -s 1
+
+bash scripts/_common_eval.sh -d zebra-grid -m mistralai/mathstral-7B-v0.1 -p mathstral-7B-v0.1 -s 4
 ```
 
 <!-- 

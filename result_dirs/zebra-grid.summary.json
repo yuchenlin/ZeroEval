@@ -350,5 +350,16 @@
     "Hard Puzzle Acc": "0.00",
     "Total Puzzles": 1000,
     "Reason Lens": "1592.60"
+  },
+  {
+    "Model": "gemma-2-27b-it@vllm",
+    "Mode": "greedy",
+    "Puzzle Acc": "0.47",
+    "Cell Acc": "0.31",
+    "No answer": "96.23",
+    "Easy Puzzle Acc": "2.08",
+    "Hard Puzzle Acc": "0.00",
+    "Total Puzzles": 212,
+    "Reason Lens": "1280.62"
   }
 ]
