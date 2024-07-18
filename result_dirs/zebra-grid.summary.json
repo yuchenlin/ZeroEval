@@ -121,6 +121,17 @@
     "Reason Lens": "1324.55"
   },
   {
+    "Model": "gpt-4o-mini-2024-07-18",
+    "Mode": "greedy",
+    "Puzzle Acc": "20.10",
+    "Cell Acc": "41.26",
+    "No answer": "0.10",
+    "Easy Puzzle Acc": "62.50",
+    "Hard Puzzle Acc": "3.61",
+    "Total Puzzles": 1000,
+    "Reason Lens": "943.52"
+  },
+  {
     "Model": "gemini-1.5-pro",
     "Mode": "sampling",
     "Puzzle Acc": "19.70",
