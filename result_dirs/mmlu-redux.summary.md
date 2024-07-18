@@ -25,7 +25,5 @@
 |         Yi-1.5-9B-Chat         | greedy | 65.05 |    4.61     |  2778   |    542.37     |
 |      reka-flash-20240226       | greedy | 64.72 |    0.32     |  2778   |    659.25     |
 |    Meta-Llama-3-8B-Instruct    | greedy | 61.66 |    0.97     |  2778   |    600.81     |
-|      gemma-2-27b-it@vllm       | greedy | 59.47 |    12.56    |  2778   |    990.98     |
 | Llama-3-Instruct-8B-SimPO-v0.2 | greedy | 55.22 |    1.19     |  2778   |    446.68     |
 |      Qwen2-1.5B-Instruct       | greedy | 41.11 |    7.74     |  2778   |    280.53     |
-|         Rex-v0.1-1.5B          | greedy | 39.09 |    4.79     |  2778   |    329.29     |

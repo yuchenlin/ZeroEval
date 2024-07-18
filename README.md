@@ -41,6 +41,7 @@ This repository aims to evaluate instruction-tuned LLMs (i.e., chat models inste
 |        yi-large-preview        | greedy | 82.18 |    0.14     |  2778   |    968.52     |
 |           gpt-4-0314           | greedy | 81.64 |    0.04     |  2778   |    397.22     |
 |       Qwen2-72B-Instruct       | greedy | 81.57 |    0.25     |  2778   |    486.46     |
+|     gpt-4o-mini-2024-07-18     | greedy | 81.5  |    0.07     |  2778   |      526      |
 |            yi-large            | greedy | 81.25 |      0      |  2778   |     773.8     |
 |         deepseek-chat          | greedy | 80.81 |    0.11     |  2778   |    691.91     |
 |         deepseek-coder         | greedy | 79.63 |    0.14     |  2778   |    704.72     |
@@ -57,7 +58,6 @@ This repository aims to evaluate instruction-tuned LLMs (i.e., chat models inste
 |         Yi-1.5-9B-Chat         | greedy | 65.05 |    4.61     |  2778   |    542.37     |
 |      reka-flash-20240226       | greedy | 64.72 |    0.32     |  2778   |    659.25     |
 |    Meta-Llama-3-8B-Instruct    | greedy | 61.66 |    0.97     |  2778   |    600.81     |
-|      gemma-2-27b-it@vllm       | greedy | 59.47 |    12.56    |  2778   |    990.98     |
 | Llama-3-Instruct-8B-SimPO-v0.2 | greedy | 55.22 |    1.19     |  2778   |    446.68     |
 |      Qwen2-1.5B-Instruct       | greedy | 41.11 |    7.74     |  2778   |    280.53     |
 
@@ -69,6 +69,7 @@ This repository aims to evaluate instruction-tuned LLMs (i.e., chat models inste
 |   claude-3-5-sonnet-20240620   | greedy | 95.6  |      0      |  1319   |    465.19     |
 |     claude-3-opus-20240229     | greedy | 95.6  |      0      |  1319   |    410.62     |
 |       gpt-4o-2024-05-13        | greedy | 95.38 |      0      |  1319   |    479.98     |
+|     gpt-4o-mini-2024-07-18     | greedy | 94.24 |      0      |  1319   |    463.71     |
 |         deepseek-chat          | greedy | 93.93 |      0      |  1319   |    495.52     |
 |         deepseek-coder         | greedy | 93.78 |      0      |  1319   |    566.89     |
 |         gemini-1.5-pro         | greedy | 93.4  |      0      |  1319   |    389.17     |
@@ -88,5 +89,4 @@ This repository aims to evaluate instruction-tuned LLMs (i.e., chat models inste
 |         Yi-1.5-9B-Chat         | greedy | 77.86 |    0.08     |  1319   |    485.07     |
 |      reka-flash-20240226       | greedy | 74.68 |    0.45     |  1319   |    460.06     |
 | Llama-3-Instruct-8B-SimPO-v0.2 | greedy | 57.47 |    2.05     |  1319   |    485.99     |
-|      Qwen2-1.5B-Instruct       | greedy | 43.9  |    4.78     |  1319   |    298.07     |
-|      gemma-2-27b-it@vllm       | greedy | 26.91 |    20.55    |  1319   |    743.09     |
+|      Qwen2-1.5B-Instruct       | greedy | 43.9  |    4.78     |  1319   |    298.07     | 
