@@ -3,6 +3,7 @@
 |   claude-3-5-sonnet-20240620   | greedy | 95.6  |      0      |  1319   |    465.19     |
 |     claude-3-opus-20240229     | greedy | 95.6  |      0      |  1319   |    410.62     |
 |       gpt-4o-2024-05-13        | greedy | 95.38 |      0      |  1319   |    479.98     |
+|     gpt-4o-mini-2024-07-18     | greedy | 94.24 |      0      |  1319   |    463.71     |
 |         deepseek-chat          | greedy | 93.93 |      0      |  1319   |    495.52     |
 |         deepseek-coder         | greedy | 93.78 |      0      |  1319   |    566.89     |
 |         gemini-1.5-pro         | greedy | 93.4  |      0      |  1319   |    389.17     |
