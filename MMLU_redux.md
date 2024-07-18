@@ -34,7 +34,7 @@ bash scripts/_common_eval.sh -d mmlu-redux -m 01-ai/Yi-1.5-34B-Chat -p Yi-1.5-34
 
 bash scripts/_common_api_eval.sh -d mmlu-redux -f openai -m openai/gpt-3.5-turbo-0125 -p gpt-3.5-turbo-0125 -s 8
 
-
+bash scripts/_common_api_eval.sh -d mmlu-redux -f openai -m openai/gpt-4o-mini-2024-07-18 -p gpt-4o-mini-2024-07-18 -s 8
 
 
 bash scripts/_common_api_eval.sh -d mmlu-redux -f openai -m openai/gpt-4o-2024-05-13 -p gpt-4o-2024-05-13 -s 8 

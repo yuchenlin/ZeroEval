@@ -64,6 +64,14 @@
     "Reason Lens": "486.46"
   },
   {
+    "Model": "gpt-4o-mini-2024-07-18",
+    "Mode": "greedy",
+    "Acc": "81.50",
+    "No answer": "0.07",
+    "Total": 2778,
+    "Reason Lens": "526.00"
+  },
+  {
     "Model": "yi-large",
     "Mode": "greedy",
     "Acc": "81.25",

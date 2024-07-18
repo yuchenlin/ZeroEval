@@ -30,6 +30,8 @@ bash scripts/_common_eval.sh -d gsm -m princeton-nlp/Llama-3-Instruct-8B-SimPO-v
 
 ```bash
 
+bash scripts/_common_api_eval.sh -d gsm -f openai -m openai/gpt-4o-mini-2024-07-18 -p gpt-4o-mini-2024-07-18 -s 8
+
 bash scripts/_common_api_eval.sh -d gsm -f openai -m openai/gpt-3.5-turbo-0125 -p gpt-3.5-turbo-0125 -s 8
 
 

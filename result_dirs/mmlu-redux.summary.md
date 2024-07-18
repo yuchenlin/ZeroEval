@@ -8,6 +8,7 @@
 |        yi-large-preview        | greedy | 82.18 |    0.14     |  2778   |    968.52     |
 |           gpt-4-0314           | greedy | 81.64 |    0.04     |  2778   |    397.22     |
 |       Qwen2-72B-Instruct       | greedy | 81.57 |    0.25     |  2778   |    486.46     |
+|     gpt-4o-mini-2024-07-18     | greedy | 81.5  |    0.07     |  2778   |      526      |
 |            yi-large            | greedy | 81.25 |      0      |  2778   |     773.8     |
 |         deepseek-chat          | greedy | 80.81 |    0.11     |  2778   |    691.91     |
 |         deepseek-coder         | greedy | 79.63 |    0.14     |  2778   |    704.72     |
