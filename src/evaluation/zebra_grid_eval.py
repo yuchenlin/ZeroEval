@@ -80,7 +80,7 @@ def eval_model(model, filepath):
                         predicted_cell = prediction_table[house][column].lower().strip()
                     else:
                         raise ValueError(f"Unknown type: {type(prediction_table[house][column])}")
-                    if truth_cell == predicted_cell:
+                    if truth_cell.lower().strip() == predicted_cell.lower().strip():
                         this_correct_cells += 1  
         correct_cells += this_correct_cells
         
