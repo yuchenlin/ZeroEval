@@ -7,15 +7,16 @@ This repository aims to evaluate instruction-tuned LLMs (i.e., chat models inste
 
 ## Tasks 
 
-- MMLU-redux 
-- GSM
-- AlpacaEval 
-- ...
+- [MMLU-redux](https://github.com/yuchenlin/ZeroEval/blob/main/MMLU_redux.md)
+- [GSM](https://github.com/yuchenlin/ZeroEval/blob/main/GSM.md)
+- [ZebraLogic]()
+- [AlpacaEval]() 
+- 
 
 
 ## Arguments for `_common_eval.sh`
 
-- `-d` for DATA_NAME
+- `-d` for DATA_NAME (mmlu-redux, gsm, ...)
 - `-m` for model_name
 - `-p` for model_pretty_name
 - `-s` for n_shards
