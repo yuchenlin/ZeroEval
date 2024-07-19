@@ -44,18 +44,24 @@ More examples can be found in the `scripts` folder, e.g., the [scripts/_MMLU_red
 
 ## Arguments for `zero_eval_local.sh` and `zero_eval_api.sh`
  
-| Arg | Description                                                                                                                                            | Default        |
-|--------|--------------------------------------------------------------------------------------------------------------------------------------------------------|----------------|
-| `-d`   | DATA_NAME                                                                                                                                              |                |
-| `-m`   | model_name                                                                                                                                             |                |
-| `-p`   | model_pretty_name                                                                                                                                      |                |
-| `-s`   | number of shards (When `-s 1` we'll use all your GPUs for loading the model and running the inference; When `-s K`, we'll use K GPUs and divide the data into K shards for each GPU to run the inference on a single shard, and merge the results at the end.) | 1              |
-| `-f`   | engine (`vllm` by default for `zero_eval_local.sh`, can be changed to `hf`; For `zero_eval_api.sh`, we can use `openai`, `anthropic`, ...)                                                                                    | `vllm` for `zero_eval_local.sh`; `openai` for  `zero_eval_api.sh`       |
-| `-r`   | run_name (the results will be saved in a sub folder with the `run_name` when it is specified)                                       | "default"      |
-| `-t`   | temperature                                                                                                                                            | 0  (greedy decoding)          |
-| `-o`   | top_p for nucleus sampling                                                                                                                                                  | 1.0            |
-| `-e`   | repetition penalty                                                                                                                                     | 1.0            |
-| `-b`   | batch size                                                                                                                                            | 4              |
+
+<details>
+<summary>Command Line Arguments</summary>
+
+| Arguments | Description | Default |
+|-----|-------------|---------|
+| `-d` | DATA_NAME | |
+| `-m` | model_name | |
+| `-p` | model_pretty_name | |
+| `-s` | number of shards (When `-s 1` we'll use all your GPUs for loading the model and running the inference; When `-s K`, we'll use K GPUs and divide the data into K shards for each GPU to run the inference on a single shard, and merge the results at the end.) | 1 |
+| `-f` | engine (`vllm` by default for `zero_eval_local.sh`, can be changed to `hf`; For `zero_eval_api.sh`, we can use `openai`, `anthropic`, ...) | `vllm`/`openai` for `zero_eval_local/api.sh` |
+| `-r` | run_name (the results will be saved in a sub folder with the `run_name` when it is specified) | "default" |
+| `-t` | temperature | 0 (greedy decoding) |
+| `-o` | top_p for nucleus sampling | 1.0 |
+| `-e` | repetition penalty | 1.0 |
+| `-b` | batch size | 4 |
+
+</details>
 
 ## Results 
 
