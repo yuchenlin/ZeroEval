@@ -1,4 +1,4 @@
-# ZeroEval: A simple unified framework for evaluating LLMs
+# ZeroEval: A Unified Framework for Evaluating Language Models
 
 ZeroEval is a simple unified framework for evaluating (large) language models on various tasks.
 This repository aims to evaluate instruction-tuned LLMs for their zero-shot performance on various reasoning tasks such as MMLU and GSM. We evaluate LLMs with a unified setup by controlling the factors such as prompting, sampling, output parsing, etc. In ZeroEval, we perform **zero-shot** prompting, and instruct LM to output both reasoning and answer in a **json**-formatted output. We are actively adding new tasks. Contributions are welcome! 
