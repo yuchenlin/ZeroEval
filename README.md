@@ -30,21 +30,19 @@ pip install -r requirements.txt
 - More tasks will be added soon. (e.g., ARC, MMLU-Pro, etc.)
 <!-- - AlpacaEval (`-d alpaca-eval`) -->
 
+## Example Usage
+
+```bash
+bash zero_eval_local.sh -d mmlu-redux -m meta-llama/Meta-Llama-3-8B-Instruct -p Meta-Llama-3-8B-Instruct -s 4
+bash zero_eval_api.sh -d gsm -f openai -m openai/gpt-4o-mini-2024-07-18 -p gpt-4o-mini-2024-07-18 -s 8
+```
+
+More examples can be found in the `scripts` folder, e.g., the [scripts/_MMLU_redux.md](scripts/_MMLU_redux.md) and [scripts/_GSM.md](scripts/_GSM.md) files.
+
 
 ## Arguments for `zero_eval_local.sh` and `zero_eval_api.sh`
-
-<!-- - `-d` for DATA_NAME
-- `-m` for model_name
-- `-p` for model_pretty_name
-- `-s` for number of shards (optional, default is 1); When `-s 1` we'll use all your gpus for loading the model and running the inference; When `-s K`, we'll use K gpus and divide the data into K shards for each gpu to run the inference on a single shard, and merge the results at the end. 
-- `-f` for engine (`vllm` by default, can be `hf`, `openai`, `anthropic`, ...)
-- `-r` for run_name (optional, default is “default”)
-- `-t` for temperature (optional, default is 0)
-- `-o` for TOP_P (optional, default is 1.0)
-- `-e` for repetition penalty (optional, default is 1.0)
-- `-b` for batch size (4 by default) -->
-
-| Option | Description                                                                                                                                            | Default        |
+ 
+| Arg | Description                                                                                                                                            | Default        |
 |--------|--------------------------------------------------------------------------------------------------------------------------------------------------------|----------------|
 | `-d`   | DATA_NAME                                                                                                                                              |                |
 | `-m`   | model_name                                                                                                                                             |                |
