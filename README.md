@@ -1,9 +1,9 @@
-# ZeroEval 
+# ZeroEval: A simple unified framework for evaluating LLMs
 
+ZeroEval is a simple unified framework for evaluating (large) language models on various tasks.
+This repository aims to evaluate instruction-tuned LLMs for their zero-shot performance on various reasoning tasks such as MMLU and GSM. We evaluate LLMs with a unified setup by controlling the factors such as prompting, sampling, output parsing, etc. In ZeroEval, we perform **zero-shot** prompting, and instruct LM to output both reasoning and answer in a **json**-formatted output. We are actively adding new tasks. Contributions are welcome! 
 
-## Motivation
-
-This repository aims to evaluate instruction-tuned LLMs (i.e., chat models instead of base models) for their zero-shot performance on various reasoning tasks such as MMLU. We encourage the model to generate the answer in the form of a natural language sentence, instead of looking at their logits to decide the answer. 
+- [X post](https://x.com/billyuchenlin/status/1814037110577578377)
 
 
 ## Installation 
@@ -30,7 +30,11 @@ pip install -r requirements.txt
 - More tasks will be added soon. (e.g., ARC, MMLU-Pro, etc.)
 <!-- - AlpacaEval (`-d alpaca-eval`) -->
 
-## Example Usage
+## Usage
+
+`zero_eval_local.sh` and `zero_eval_api.sh` are the two main scripts to run the evaluation.
+
+### Examples
 
 - `bash zero_eval_local.sh -d mmlu-redux -m meta-llama/Meta-Llama-3-8B-Instruct -p Meta-Llama-3-8B-Instruct -s 4` (Run Llama-3-8B-Instruct with greedy decoding on `mmlu-redux`)
 
@@ -42,7 +46,7 @@ pip install -r requirements.txt
 More examples can be found in the `scripts` folder, e.g., the [scripts/_MMLU_redux.md](scripts/_MMLU_redux.md) and [scripts/_GSM.md](scripts/_GSM.md) files.
 
 
-## Arguments for `zero_eval_local.sh` and `zero_eval_api.sh`
+### Arguments  
  
 
 <details>
@@ -50,7 +54,7 @@ More examples can be found in the `scripts` folder, e.g., the [scripts/_MMLU_red
 
 | Arguments | Description | Default |
 |-----|-------------|---------|
-| `-d` | DATA_NAME | |
+| `-d` | DATA_NAME: `mmlu-redux`, `gsm`, `zebra-grid`, `alpaca_eval`, ... (see [src/task_configs.py](src/task_configs.py)) | |
 | `-m` | model_name | |
 | `-p` | model_pretty_name | |
 | `-s` | number of shards (When `-s 1` we'll use all your GPUs for loading the model and running the inference; When `-s K`, we'll use K GPUs and divide the data into K shards for each GPU to run the inference on a single shard, and merge the results at the end.) | 1 |
