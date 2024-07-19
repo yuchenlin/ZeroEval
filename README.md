@@ -5,27 +5,57 @@
 
 This repository aims to evaluate instruction-tuned LLMs (i.e., chat models instead of base models) for their zero-shot performance on various reasoning tasks such as MMLU. We encourage the model to generate the answer in the form of a natural language sentence, instead of looking at their logits to decide the answer. 
 
+
+## Installation 
+
+<details>
+  <summary> Click to expand </summary>
+
+```bash
+conda create -n zeroeval python=3.10
+conda activate zeroeval
+pip install vllm -U # pip install -e vllm 
+pip install -r requirements.txt
+# export HF_HOME=/path/to/your/custom/cache_dir/ 
+```
+
+</details>
+
+
 ## Tasks 
 
-- MMLU-redux 
-- GSM
-- AlpacaEval 
-- ...
+- MMLU-redux (`-d mmlu-redux`)
+- GSM (`-d gsm`)
+- ZebraLogic (`-d zebra-grid`)
+- More tasks will be added soon. (e.g., ARC, MMLU-Pro, etc.)
+<!-- - AlpacaEval (`-d alpaca-eval`) -->
 
 
-## Arguments for `_common_eval.sh`
+## Arguments for `zero_eval_local.sh` and `zero_eval_api.sh`
 
-- `-d` for DATA_NAME
+<!-- - `-d` for DATA_NAME
 - `-m` for model_name
 - `-p` for model_pretty_name
-- `-s` for n_shards
+- `-s` for number of shards (optional, default is 1); When `-s 1` we'll use all your gpus for loading the model and running the inference; When `-s K`, we'll use K gpus and divide the data into K shards for each gpu to run the inference on a single shard, and merge the results at the end. 
 - `-f` for engine (`vllm` by default, can be `hf`, `openai`, `anthropic`, ...)
 - `-r` for run_name (optional, default is “default”)
-- `-t` for TEMP (optional, default is 0)
+- `-t` for temperature (optional, default is 0)
 - `-o` for TOP_P (optional, default is 1.0)
-- `-e` for rp (optional, default is 1.0)
-- `-b` for batch size (4 by default)
+- `-e` for repetition penalty (optional, default is 1.0)
+- `-b` for batch size (4 by default) -->
 
+| Option | Description                                                                                                                                            | Default        |
+|--------|--------------------------------------------------------------------------------------------------------------------------------------------------------|----------------|
+| `-d`   | DATA_NAME                                                                                                                                              |                |
+| `-m`   | model_name                                                                                                                                             |                |
+| `-p`   | model_pretty_name                                                                                                                                      |                |
+| `-s`   | number of shards (When `-s 1` we'll use all your GPUs for loading the model and running the inference; When `-s K`, we'll use K GPUs and divide the data into K shards for each GPU to run the inference on a single shard, and merge the results at the end.) | 1              |
+| `-f`   | engine (`vllm` by default for `zero_eval_local.sh`, can be changed to `hf`; For `zero_eval_api.sh`, we can use `openai`, `anthropic`, ...)                                                                                    | `vllm` for `zero_eval_local.sh`; `openai` for  `zero_eval_api.sh`       |
+| `-r`   | run_name (the results will be saved in a sub folder with the `run_name` when it is specified)                                       | "default"      |
+| `-t`   | temperature                                                                                                                                            | 0  (greedy decoding)          |
+| `-o`   | top_p for nucleus sampling                                                                                                                                                  | 1.0            |
+| `-e`   | repetition penalty                                                                                                                                     | 1.0            |
+| `-b`   | batch size                                                                                                                                            | 4              |
 
 ## Results 
 

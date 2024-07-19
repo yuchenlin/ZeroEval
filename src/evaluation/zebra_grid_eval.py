@@ -121,7 +121,7 @@ def eval_model(model, filepath):
 def gen_results(run_name_folders): 
     model_results = load_model_results(run_name_folders)
 
-    columns = ["Model", "Mode", "Puzzle Acc", "Cell Acc", "No answer", "Easy Puzzle Acc", "Hard Puzzle Acc", "Total Puzzles", "Reason Lens"]
+    columns = ["Model", "Mode", "Puzzle Acc", "Easy Puzzle Acc", "Hard Puzzle Acc", "Cell Acc",  "No answer",  "Total Puzzles", "Reason Lens"]
     rows = []
     for model_name, filepath in model_results.items(): 
         result = eval_model(model_name, filepath) 
@@ -140,8 +140,8 @@ def gen_results(run_name_folders):
         json.dump(rows, f, indent=2)
 
     # write to markdown file
-    # with open(f"result_dirs/zebra-grid.summary.md", "w") as f:
-    #     f.write(tabulate(table_data, headers=columns, tablefmt="github", stralign="center", numalign="center"))
+    with open(f"result_dirs/zebra-grid.summary.md", "w") as f:
+        f.write(tabulate(table_data, headers=columns, tablefmt="github", stralign="center", numalign="center"))
 
 
 if __name__ == "__main__":
