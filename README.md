@@ -65,7 +65,10 @@ More examples can be found in the `scripts` folder, e.g., the [scripts/_MMLU_red
 
 ## Results 
 
-### MMLU-Redux
+
+### MMLU-Redux ([full table](result_dirs/mmlu-redux.summary.md))
+
+`python src/evaluation/mcqa_eval.py mmlu-redux`
 
 |             Model              |  Mode  |  Acc  |  No answer  |  Total  |  Reason Lens  |
 |--------------------------------|--------|-------|-------------|---------|---------------|
@@ -98,7 +101,9 @@ More examples can be found in the `scripts` folder, e.g., the [scripts/_MMLU_red
 |      Qwen2-1.5B-Instruct       | greedy | 41.11 |    7.74     |  2778   |    280.53     |
 
 
-### GSM
+### GSM ([full table](result_dirs/gsm.summary.md))
+
+`python src/evaluation/gsm_eval.py`
 
 |             Model              |  Mode  |  Acc  |  No answer  |  Total  |  Reason Lens  |
 |--------------------------------|--------|-------|-------------|---------|---------------|
@@ -126,3 +131,10 @@ More examples can be found in the `scripts` folder, e.g., the [scripts/_MMLU_red
 |      reka-flash-20240226       | greedy | 74.68 |    0.45     |  1319   |    460.06     |
 | Llama-3-Instruct-8B-SimPO-v0.2 | greedy | 57.47 |    2.05     |  1319   |    485.99     |
 |      Qwen2-1.5B-Instruct       | greedy | 43.9  |    4.78     |  1319   |    298.07     | 
+
+
+### ZebraLogic ([full table](result_dirs/zebra-grid.summary.md))
+
+`python src/evaluation/zebra_grid_eval.py`
+
+See the ZebraLogic Leaderboard: [https://huggingface.co/spaces/allenai/ZebraLogic](https://huggingface.co/spaces/allenai/ZebraLogic) 
