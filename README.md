@@ -142,3 +142,18 @@ More examples can be found in the `scripts` folder, e.g., the [scripts/_MMLU_red
 `python src/evaluation/zebra_grid_eval.py`
 
 See the ZebraLogic Leaderboard: [https://huggingface.co/spaces/allenai/ZebraLogic](https://huggingface.co/spaces/allenai/ZebraLogic) 
+
+
+
+## Citation
+If you find ZeroEval useful, please cite it as follows in your publication:
+
+```bibtex
+@software{Lin_ZeroEval_A_Unified_2024,
+    author = {Lin, Bill Yuchen},
+    month = jul,
+    title = {{ZeroEval: A Unified Framework for Evaluating Language Models}},
+    url = {https://github.com/yuchenlin/ZeroEval},
+    year = {2024}
+}
+```
