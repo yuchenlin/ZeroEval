@@ -3,22 +3,24 @@
 ```bash 
 # export VLLM_WORKER_MULTIPROC_METHOD="FLASH_ATTN"
 # VLLM_WORKER_MULTIPROC_METHOD=spawn 
-bash scripts/_common_eval.sh -d zebra-grid -m Qwen/Qwen2-72B-Instruct -p Qwen2-72B-Instruct -s 1
-bash scripts/_common_eval.sh -d zebra-grid -m Qwen/Qwen2-72B-Instruct -p Qwen2-72B-Instruct -s 1 -r "sampling" -t 0.5
-bash scripts/_common_eval.sh -d zebra-grid -m meta-llama/Meta-Llama-3-70B-Instruct -p Meta-Llama-3-70B-Instruct -s 1 
-bash scripts/_common_eval.sh -d zebra-grid -m meta-llama/Meta-Llama-3-8B-Instruct -p Meta-Llama-3-8B-Instruct -s 4
-bash scripts/_common_eval.sh -d zebra-grid -m meta-llama/Meta-Llama-3-8B-Instruct -p Meta-Llama-3-8B-Instruct -s 4 -r "sampling" -t 0.5
-bash scripts/_common_eval.sh -d zebra-grid -m Qwen/Qwen2-7B-Instruct -p Qwen2-7B-Instruct -s 4 
-bash scripts/_common_eval.sh -d zebra-grid -m 01-ai/Yi-1.5-34B-Chat -p Yi-1.5-34B-Chat -s 1
+bash zero_eval_local.sh -d zebra-grid -m Qwen/Qwen2-72B-Instruct -p Qwen2-72B-Instruct -s 1
+bash zero_eval_local.sh -d zebra-grid -m Qwen/Qwen2-72B-Instruct -p Qwen2-72B-Instruct -s 1 -r "sampling" -t 0.5
+bash zero_eval_local.sh -d zebra-grid -m meta-llama/Meta-Llama-3-70B-Instruct -p Meta-Llama-3-70B-Instruct -s 1 
+bash zero_eval_local.sh -d zebra-grid -m meta-llama/Meta-Llama-3-8B-Instruct -p Meta-Llama-3-8B-Instruct -s 4
+bash zero_eval_local.sh -d zebra-grid -m meta-llama/Meta-Llama-3-8B-Instruct -p Meta-Llama-3-8B-Instruct -s 4 -r "sampling" -t 0.5
+bash zero_eval_local.sh -d zebra-grid -m Qwen/Qwen2-7B-Instruct -p Qwen2-7B-Instruct -s 4 
+bash zero_eval_local.sh -d zebra-grid -m 01-ai/Yi-1.5-34B-Chat -p Yi-1.5-34B-Chat -s 1
 
-bash scripts/_common_eval.sh -d zebra-grid -m mistralai/mathstral-7B-v0.1 -p mathstral-7B-v0.1 -s 4
+bash zero_eval_local.sh -d zebra-grid -m mistralai/mathstral-7B-v0.1 -p mathstral-7B-v0.1 -s 4
+
+bash zero_eval_local.sh -f hf -d zebra-grid -m mistralai/Mistral-Nemo-Instruct-2407 -p Mistral-Nemo-Instruct-2407 -s 4
 ```
 
 <!-- 
 # pip install flashinfer -i https://flashinfer.ai/whl/cu118/torch2.3/
 # VLLM_WORKER_MULTIPROC_METHOD=spawn 
-# export VLLM_ATTENTION_BACKEND=FLASHINFER; bash scripts/_common_eval.sh -d zebra-grid -m google/gemma-2-9b-it -p gemma-2-9b-it -s 4  -b 1
-# export VLLM_ATTENTION_BACKEND=FLASHINFER; bash scripts/_common_eval.sh -d zebra-grid -m google/gemma-2-27b-it -p gemma-2-27b-it -s 1 -b 1 -r "sampling" -t 0.5 
+# export VLLM_ATTENTION_BACKEND=FLASHINFER; bash zero_eval_local.sh -d zebra-grid -m google/gemma-2-9b-it -p gemma-2-9b-it -s 4  -b 1
+# export VLLM_ATTENTION_BACKEND=FLASHINFER; bash zero_eval_local.sh -d zebra-grid -m google/gemma-2-27b-it -p gemma-2-27b-it -s 1 -b 1 -r "sampling" -t 0.5 
 -->
 
 

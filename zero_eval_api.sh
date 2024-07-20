@@ -19,7 +19,7 @@ rp=1.0
 engine_name="openai"
 
 # Parse named arguments
-while getopts ":d:m:p:s:r:t:o:e:f:" opt; do
+while getopts ":d:m:p:s:r:t:o:e:f:b:" opt; do
   case $opt in
     d) DATA_NAME="$OPTARG"
     ;;
@@ -38,6 +38,8 @@ while getopts ":d:m:p:s:r:t:o:e:f:" opt; do
     e) rp="$OPTARG"
     ;;
     f) engine_name="$OPTARG"
+    ;;
+    b) batch_size="$OPTARG"
     ;;
     \?) echo "Invalid option -$OPTARG" >&2
     ;;
