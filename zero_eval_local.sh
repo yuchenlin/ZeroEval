@@ -26,7 +26,7 @@ batch_size=4
 gpu_memory_utilization=0.9
 
 # Parse named arguments
-while getopts ":d:m:p:s:r:t:o:e:b:" opt; do
+while getopts ":d:m:p:s:r:t:o:e:f:b:" opt; do
   case $opt in
     d) DATA_NAME="$OPTARG"
     ;;
@@ -43,6 +43,8 @@ while getopts ":d:m:p:s:r:t:o:e:b:" opt; do
     o) TOP_P="$OPTARG"
     ;;
     e) rp="$OPTARG"
+    ;;
+    f) engine_name="$OPTARG"
     ;;
     b) batch_size="$OPTARG"
     ;;

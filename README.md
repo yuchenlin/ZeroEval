@@ -14,7 +14,8 @@ This repository aims to evaluate instruction-tuned LLMs for their zero-shot perf
 ```bash
 conda create -n zeroeval python=3.10
 conda activate zeroeval
-pip install vllm -U # pip install -e vllm 
+# pip install vllm -U # pip install -e vllm 
+pip install vllm==0.5.1
 pip install -r requirements.txt
 # export HF_HOME=/path/to/your/custom/cache_dir/ 
 ```
