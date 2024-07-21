@@ -70,9 +70,10 @@ More examples can be found in the `scripts` folder, e.g., the [scripts/_MMLU_red
 
 ## Results 
 
-- MMLU-Redux: `python src/evaluation/mcqa_eval.py mmlu-redux` --> `result_dirs/mmlu-redux.summary.md`
-- GSM: `python src/evaluation/gsm_eval.py` --> `result_dirs/gsm.summary.md`
-- ZebraLogic: `python src/evaluation/zebra_grid_eval.py` --> `result_dirs/zebra-grid.summary.md` and [Leaderboard](https://huggingface.co/spaces/allenai/ZebraLogic)
+- MMLU-Redux: `python src/evaluation/mcqa_eval.py mmlu-redux` --> [Full results](result_dirs/mmlu-redux.summary.md)
+- GSM: `python src/evaluation/gsm_eval.py` --> [Full results](result_dirs/gsm.summary.md)
+- ZebraLogic: `python src/evaluation/zebra_grid_eval.py` --> [Full results](result_dirs/zebra-grid.summary.md)
+  and [Leaderboard](https://huggingface.co/spaces/allenai/ZebraLogic)
 - All: `python src/evaluation/summarize.py` --> `result_dirs/summary.md`
 
 
