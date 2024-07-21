@@ -15,6 +15,8 @@ def replace_model_names(cur_data):
     cur_data['Model'] = cur_data['Model'].replace('gemma-2-9b-it@together', 'gemma-2-9b-it') 
     cur_data['Model'] = cur_data['Model'].replace('gemma-2-27b-it@together', 'gemma-2-27b-it') 
     cur_data['Model'] = cur_data['Model'].replace('gemma-2-27b-it@nvidia', 'gemma-2-27b-it') 
+    cur_data['Model'] = cur_data['Model'].replace('deepseek-chat', 'deepseek-v2-chat-0628')
+    cur_data['Model'] = cur_data['Model'].replace('deepseek-coder', 'deepseek-v2-coder-0614')
     return cur_data
 
 gsm_data = replace_model_names(gsm_data)
@@ -33,9 +35,9 @@ mmlu_data = mmlu_data.rename(columns={'Model_mmlu': 'Model'}).rename(columns={'A
 
 # remove the rows when the mode = sampling 
 zebra_data = zebra_data[zebra_data['Mode'] != 'sampling']
-zebra_data = zebra_data[['Model', 'Puzzle Acc', "Easy Puzzle Acc"]]
+zebra_data = zebra_data[['Model', 'Puzzle Acc', "Easy Puzzle Acc"]] # 
 zebra_data = zebra_data.add_suffix('_zebra')
-zebra_data = zebra_data.rename(columns={'Model_zebra': 'Model'}).rename(columns={'Puzzle Acc_zebra': 'ZebraLogic'}).rename(columns={'Easy Puzzle Acc_zebra': 'ZebraLogic-Easy'})
+zebra_data = zebra_data.rename(columns={'Model_zebra': 'Model'}).rename(columns={'Puzzle Acc_zebra': 'ZebraLogic<br/>-Full'}).rename(columns={'Easy Puzzle Acc_zebra': 'ZebraLogic<br/>-Easy'})
 
 
 
@@ -53,6 +55,6 @@ merged_data = merged_data.sort_values(by='Average', ascending=False)
 # Generate a Markdown table
 markdown_table = merged_data.to_markdown(index=False)
 
-# print(markdown_table)
+print(markdown_table)
 with open('result_dirs/summary.md', 'w') as f:
     f.write(markdown_table)
