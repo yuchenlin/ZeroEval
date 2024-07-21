@@ -1,3 +1,5 @@
+![image](https://github.com/user-attachments/assets/aba4df22-61dd-4a8e-b2fb-217ec18865b0)
+
 |             Model              |  Mode  |  Acc  |  No answer  |  Total  |  Reason Lens  |
 |--------------------------------|--------|-------|-------------|---------|---------------|
 |       gpt-4o-2024-05-13        | greedy | 88.01 |    0.14     |  2778   |    629.79     |
