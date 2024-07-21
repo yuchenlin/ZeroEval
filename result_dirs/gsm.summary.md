@@ -15,7 +15,9 @@
 |    claude-3-haiku-20240307     | greedy | 88.78 |      0      |  1319   |    587.65     |
 |       reka-core-20240501       | greedy | 87.49 |    0.08     |  1319   |    414.33     |
 |         gemma-2-9b-it          | greedy | 87.41 |      0      |  1319   |    394.83     |
+|           Athene-70B           | greedy | 86.66 |     0.3     |  1319   |    253.53     |
 |        Yi-1.5-34B-Chat         | greedy | 84.38 |    0.08     |  1319   |    553.32     |
+|   Mistral-Nemo-Instruct-2407   | greedy | 82.79 |      0      |  1319   |    349.81     |
 |            yi-large            | greedy | 81.73 |      0      |  1319   |    479.23     |
 |       gpt-3.5-turbo-0125       | greedy | 80.36 |      0      |  1319   |    350.97     |
 |       Qwen2-7B-Instruct        | greedy | 80.06 |      0      |  1319   |     452.6     |
