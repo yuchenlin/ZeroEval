@@ -32,4 +32,3 @@
 |      reka-flash-20240226       | greedy | 74.68 |    0.45     |  1319   |    460.06     |
 | Llama-3-Instruct-8B-SimPO-v0.2 | greedy | 57.47 |    2.05     |  1319   |    485.99     |
 |      Qwen2-1.5B-Instruct       | greedy | 43.9  |    4.78     |  1319   |    298.07     |
-|      gemma-2-27b-it@vllm       | greedy | 26.91 |    20.55    |  1319   |    743.09     |

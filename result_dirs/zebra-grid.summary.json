@@ -231,6 +231,17 @@
     "Reason Lens": "809.95"
   },
   {
+    "Model": "Athene-70B",
+    "Mode": "greedy",
+    "Puzzle Acc": "16.70",
+    "Cell Acc": "32.98",
+    "No answer": "21.10",
+    "Easy Puzzle Acc": "52.50",
+    "Hard Puzzle Acc": "2.78",
+    "Total Puzzles": 1000,
+    "Reason Lens": "391.19"
+  },
+  {
     "Model": "gemma-2-27b-it@nvidia",
     "Mode": "greedy",
     "Puzzle Acc": "16.30",
@@ -262,17 +273,6 @@
     "Hard Puzzle Acc": "1.25",
     "Total Puzzles": 1000,
     "Reason Lens": "1078.29"
-  },
-  {
-    "Model": "gemma-2-9b-it",
-    "Mode": "greedy",
-    "Puzzle Acc": "12.90",
-    "Cell Acc": "37.07",
-    "No answer": "0.50",
-    "Easy Puzzle Acc": "42.14",
-    "Hard Puzzle Acc": "1.53",
-    "Total Puzzles": 1000,
-    "Reason Lens": "859.14"
   },
   {
     "Model": "gemma-2-9b-it@nvidia",
@@ -383,16 +383,5 @@
     "Hard Puzzle Acc": "0.00",
     "Total Puzzles": 1000,
     "Reason Lens": "1592.60"
-  },
-  {
-    "Model": "gemma-2-27b-it@vllm",
-    "Mode": "greedy",
-    "Puzzle Acc": "0.47",
-    "Cell Acc": "0.31",
-    "No answer": "96.23",
-    "Easy Puzzle Acc": "2.08",
-    "Hard Puzzle Acc": "0.00",
-    "Total Puzzles": 212,
-    "Reason Lens": "1280.62"
   }
 ]
