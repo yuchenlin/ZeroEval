@@ -4,7 +4,7 @@ import os
 from tabulate import tabulate 
 import re
 import sys
-from eval_utils import load_model_results, extract_values_from_json, extract_last_complete_json
+from eval_utils import load_model_results, extract_values_from_json, extract_first_complete_json
  
 
 
@@ -23,7 +23,7 @@ def eval_model(model, filepath):
         # Read and Parse the prediction from model output
         
         prediction_str = item["output"][0]
-        prediction_json = extract_last_complete_json(prediction_str)
+        prediction_json = extract_first_complete_json(prediction_str)
         if prediction_json is None or "answer" not in prediction_json:
             prediction_json = extract_values_from_json(prediction_str, allow_no_quotes=True)
         if prediction_json is None or "answer" not in prediction_json or prediction_json["answer"] is None or prediction_json["answer"] == "": 
