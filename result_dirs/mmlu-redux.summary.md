@@ -1,5 +1,5 @@
 <div style="text-align: center;">
-  <img src="https://github.com/user-attachments/assets/aba4df22-61dd-4a8e-b2fb-217ec18865b0" alt="zebra_banner" style="width: 90%;" />
+  <img src="https://github.com/user-attachments/assets/aba4df22-61dd-4a8e-b2fb-217ec18865b0" alt="zebra_banner" style="width: 70%;" />
 </div>
 
 
