@@ -118,8 +118,15 @@ def gen_results(run_name_folders):
     # print(tabulate(rows, headers=columns, tablefmt="github"))
 
     # write to markdown file
+    banner_header = """
+<div style="text-align: center;">
+  <img src="https://github.com/user-attachments/assets/4666e72d-4202-4283-8e78-e5ce2b030dcf" alt="zebra_banner" style="width: 69%;" />
+</div>
+
+
+"""
     with open(f"result_dirs/{data_name}.summary.md", "w") as f:
-        f.write(tabulate(table_data, headers=columns, tablefmt="github", stralign="center", numalign="center"))
+        f.write(banner_header+tabulate(table_data, headers=columns, tablefmt="github", stralign="center", numalign="center"))
 
     # write to json file 
     with open(f"result_dirs/{data_name}.summary.json", "w") as f:

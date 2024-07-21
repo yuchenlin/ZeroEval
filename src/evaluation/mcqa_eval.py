@@ -74,8 +74,16 @@ def gen_results(run_name_folders):
         json.dump(rows, f, indent=2)
     
     # write to markdown file
+    banner_header = """
+<div style="text-align: center;">
+  <img src="https://github.com/user-attachments/assets/aba4df22-61dd-4a8e-b2fb-217ec18865b0" alt="zebra_banner" style="width: 69%;" />
+</div>
+
+
+"""
     with open(f"result_dirs/{data_name}.summary.md", "w") as f:
-        f.write(tabulate(table_data, headers=columns, tablefmt="github", stralign="center", numalign="center"))
+        f.write(banner_header+tabulate(table_data, headers=columns, tablefmt="github", stralign="center", numalign="center"))
+
 
 if __name__ == "__main__":
     data_name = sys.argv[1]
