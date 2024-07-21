@@ -53,7 +53,7 @@ merged_data['Average'] = merged_data.drop(columns=['Model']).mean(axis=1)
 merged_data = merged_data.sort_values(by='Average', ascending=False)
 
 # Generate a Markdown table
-markdown_table = merged_data.to_markdown(index=False)
+markdown_table = merged_data.to_markdown(index=True, floatfmt=".2f")
 
 print(markdown_table)
 with open('result_dirs/summary.md', 'w') as f:
