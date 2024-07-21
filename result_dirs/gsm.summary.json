@@ -61,12 +61,12 @@
     "Acc": "93.03",
     "No answer": "0.00",
     "Total": 1319,
-    "Reason Lens": "352.44"
+    "Reason Lens": "352.05"
   },
   {
     "Model": "Qwen2-72B-Instruct",
     "Mode": "greedy",
-    "Acc": "92.72",
+    "Acc": "92.65",
     "No answer": "0.00",
     "Total": 1319,
     "Reason Lens": "375.96"
@@ -104,20 +104,20 @@
     "Reason Lens": "587.65"
   },
   {
-    "Model": "reka-core-20240501",
-    "Mode": "greedy",
-    "Acc": "87.49",
-    "No answer": "0.08",
-    "Total": 1319,
-    "Reason Lens": "414.33"
-  },
-  {
     "Model": "gemma-2-9b-it",
     "Mode": "greedy",
     "Acc": "87.41",
     "No answer": "0.00",
     "Total": 1319,
     "Reason Lens": "394.83"
+  },
+  {
+    "Model": "reka-core-20240501",
+    "Mode": "greedy",
+    "Acc": "87.41",
+    "No answer": "0.08",
+    "Total": 1319,
+    "Reason Lens": "414.70"
   },
   {
     "Model": "Athene-70B",
@@ -130,10 +130,10 @@
   {
     "Model": "Yi-1.5-34B-Chat",
     "Mode": "greedy",
-    "Acc": "84.38",
+    "Acc": "84.08",
     "No answer": "0.08",
     "Total": 1319,
-    "Reason Lens": "553.32"
+    "Reason Lens": "553.47"
   },
   {
     "Model": "Mistral-Nemo-Instruct-2407",
@@ -142,14 +142,6 @@
     "No answer": "0.00",
     "Total": 1319,
     "Reason Lens": "349.81"
-  },
-  {
-    "Model": "yi-large",
-    "Mode": "greedy",
-    "Acc": "81.73",
-    "No answer": "0.00",
-    "Total": 1319,
-    "Reason Lens": "479.23"
   },
   {
     "Model": "gpt-3.5-turbo-0125",
@@ -168,6 +160,14 @@
     "Reason Lens": "452.60"
   },
   {
+    "Model": "yi-large",
+    "Mode": "greedy",
+    "Acc": "80.06",
+    "No answer": "0.00",
+    "Total": 1319,
+    "Reason Lens": "479.87"
+  },
+  {
     "Model": "Meta-Llama-3-8B-Instruct",
     "Mode": "greedy",
     "Acc": "78.47",
@@ -178,10 +178,18 @@
   {
     "Model": "Yi-1.5-9B-Chat",
     "Mode": "greedy",
-    "Acc": "77.86",
+    "Acc": "76.42",
     "No answer": "0.08",
     "Total": 1319,
-    "Reason Lens": "485.07"
+    "Reason Lens": "485.39"
+  },
+  {
+    "Model": "Phi-3-mini-4k-instruct",
+    "Mode": "greedy",
+    "Acc": "75.51",
+    "No answer": "0.00",
+    "Total": 1319,
+    "Reason Lens": "462.53"
   },
   {
     "Model": "reka-flash-20240226",
@@ -194,17 +202,17 @@
   {
     "Model": "Llama-3-Instruct-8B-SimPO-v0.2",
     "Mode": "greedy",
-    "Acc": "57.47",
+    "Acc": "57.54",
     "No answer": "2.05",
     "Total": 1319,
-    "Reason Lens": "485.99"
+    "Reason Lens": "505.25"
   },
   {
     "Model": "Qwen2-1.5B-Instruct",
     "Mode": "greedy",
-    "Acc": "43.90",
+    "Acc": "43.37",
     "No answer": "4.78",
     "Total": 1319,
-    "Reason Lens": "298.07"
+    "Reason Lens": "301.67"
   }
 ]
