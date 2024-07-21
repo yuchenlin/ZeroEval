@@ -41,7 +41,7 @@ def eval_model(model, filepath):
             # print("-")
         if prediction_json is None or "answer" not in prediction_json: 
             no_asnwer += 1 
-            if True and  "SimPO" in model:
+            if False and  "Athene" in model: # used for debugging the format of the output
                 print("--------------------------")
                 print(f"No answer for {item['id']}")
                 print(prediction_str)
