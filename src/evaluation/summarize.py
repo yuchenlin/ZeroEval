@@ -31,7 +31,7 @@ gsm_data = gsm_data.rename(columns={'Model_gsm': 'Model'}).rename(columns={'Acc_
 
 mmlu_data = mmlu_data[['Model', 'Acc']]
 mmlu_data = mmlu_data.add_suffix('_mmlu')
-mmlu_data = mmlu_data.rename(columns={'Model_mmlu': 'Model'}).rename(columns={'Acc_mmlu': 'MMLU-Redux'})
+mmlu_data = mmlu_data.rename(columns={'Model_mmlu': 'Model'}).rename(columns={'Acc_mmlu': 'MMLU<br/>-Redux'})
 
 # remove the rows when the mode = sampling 
 zebra_data = zebra_data[zebra_data['Mode'] != 'sampling']
