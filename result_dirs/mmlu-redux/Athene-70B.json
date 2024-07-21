@@ -29882,5 +29882,377 @@
     "source": "edinburgh-dawg/mmlu-redux",
     "config": "formal_logic",
     "task_type": "multiple_choice"
+  },
+  {
+    "session_id": "mmlu-redux-formal_logic-#7",
+    "chat_history": [
+      "\n## Question: \n\nConstruct a complete truth table for the following argument. Then, using the truth table, determine whether the argument is valid or invalid. If the argument is invalid, choose an option which presents a counterexample. (There may be other counterexamples as well.)\n~(M \u00e2\u0089\u00a1 ~N)\nM / N\n\n## Choices:\n\n- (A) Valid\n- (B) Invalid. Counterexample when M and N are true\n- (C) Invalid. Counterexample when M is true and N is false\n- (D) Invalid. Counterexample when N is true and M is false\n\n\n## Instruction \n\nPlease answer this question by first reasoning and then selecting the correct choice. \nPresent your reasoning and solution in the following json format. \nPlease show your choice in the `answer` field with only the choice letter, e.g.,`\"answer\": \"C\"`.\n\n```json\n{\n    \"reasoning\": \"___\",\n    \"answer\": \"___\"\n}\n```\n"
+    ],
+    "model_input": "<|begin_of_text|><|start_header_id|>user<|end_header_id|>\n\n## Question: \n\nConstruct a complete truth table for the following argument. Then, using the truth table, determine whether the argument is valid or invalid. If the argument is invalid, choose an option which presents a counterexample. (There may be other counterexamples as well.)\n~(M \u00e2\u0089\u00a1 ~N)\nM / N\n\n## Choices:\n\n- (A) Valid\n- (B) Invalid. Counterexample when M and N are true\n- (C) Invalid. Counterexample when M is true and N is false\n- (D) Invalid. Counterexample when N is true and M is false\n\n\n## Instruction \n\nPlease answer this question by first reasoning and then selecting the correct choice. \nPresent your reasoning and solution in the following json format. \nPlease show your choice in the `answer` field with only the choice letter, e.g.,`\"answer\": \"C\"`.\n\n```json\n{\n    \"reasoning\": \"___\",\n    \"answer\": \"___\"\n}\n```<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n",
+    "output": [
+      "```json\n{\n  \"reasoning\": \n  \"Here's the complete truth table:\n  | M  | N  | ~(M \u2261 ~N) | M \u2192 N |\n  | --- | --- | --- | --- |\n  | T  | T  | T        | T    |\n  | T  | F  | T        | F    |\n  | F  | T  | F        | T    |\n  | F  | F  | T        | T    |\n\n  The argument ~(M \u2261 ~N) \u2234 M \u2192 N is invalid because the second row shows a case where the premise ~(M \u2261 ~N) is true but the conclusion M \u2192 N is false. This corresponds to **M being true and N being false**.\n\n  **Correct answer:** (C) Invalid. Counterexample when M is true and N is false.\",\n  \"answer\": \"C\"\n}\n```"
+    ],
+    "generator": "Nexusflow/Athene-70B",
+    "configs": {
+      "engine": "vllm",
+      "repetition_penalty": 1.0,
+      "temperature": 0.0,
+      "top_p": 1.0,
+      "max_tokens": 4096
+    },
+    "dataset": "mmlu-redux",
+    "id": "mmlu-redux-formal_logic-#7",
+    "question": "Construct a complete truth table for the following argument. Then, using the truth table, determine whether the argument is valid or invalid. If the argument is invalid, choose an option which presents a counterexample. (There may be other counterexamples as well.)\n~(M \u00e2\u0089\u00a1 ~N)\nM / N",
+    "choices": [
+      "Valid",
+      "Invalid. Counterexample when M and N are true",
+      "Invalid. Counterexample when M is true and N is false",
+      "Invalid. Counterexample when N is true and M is false"
+    ],
+    "correct_answer": "Valid",
+    "source": "edinburgh-dawg/mmlu-redux",
+    "config": "formal_logic",
+    "task_type": "multiple_choice"
+  },
+  {
+    "session_id": "mmlu-redux-formal_logic-#8",
+    "chat_history": [
+      "\n## Question: \n\nUse indirect truth tables to determine whether the following argument is valid. If the argument is invalid, choose an option which presents a counterexample. (There may be other counterexamples as well.)\nE \u00e2\u008a\u0083 F\nG \u00e2\u008a\u0083 ~F / ~G \u00e2\u0088\u00a8 ~E\n\n## Choices:\n\n- (A) Valid\n- (B) Invalid. Counterexample when E, F, and G are true\n- (C) Invalid. Counterexample when E and G are true and F is false\n- (D) Invalid. Counterexample when F and G are true and E is false\n\n\n## Instruction \n\nPlease answer this question by first reasoning and then selecting the correct choice. \nPresent your reasoning and solution in the following json format. \nPlease show your choice in the `answer` field with only the choice letter, e.g.,`\"answer\": \"C\"`.\n\n```json\n{\n    \"reasoning\": \"___\",\n    \"answer\": \"___\"\n}\n```\n"
+    ],
+    "model_input": "<|begin_of_text|><|start_header_id|>user<|end_header_id|>\n\n## Question: \n\nUse indirect truth tables to determine whether the following argument is valid. If the argument is invalid, choose an option which presents a counterexample. (There may be other counterexamples as well.)\nE \u00e2\u008a\u0083 F\nG \u00e2\u008a\u0083 ~F / ~G \u00e2\u0088\u00a8 ~E\n\n## Choices:\n\n- (A) Valid\n- (B) Invalid. Counterexample when E, F, and G are true\n- (C) Invalid. Counterexample when E and G are true and F is false\n- (D) Invalid. Counterexample when F and G are true and E is false\n\n\n## Instruction \n\nPlease answer this question by first reasoning and then selecting the correct choice. \nPresent your reasoning and solution in the following json format. \nPlease show your choice in the `answer` field with only the choice letter, e.g.,`\"answer\": \"C\"`.\n\n```json\n{\n    \"reasoning\": \"___\",\n    \"answer\": \"___\"\n}\n```<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n",
+    "output": [
+      "{\n  \"reasoning\": \"Let's analyze the argument: E \u00e2\u0160\u0192 F, G \u00e2\u0160\u0192 ~F \u00e2\u2021\u2019 ~G \u00e2\u02c6\u00a8 ~E. We seek a counterexample where the premises are true but the conclusion is false. The key insight is that if E \u00e2\u0160\u0192 F and G \u00e2\u0160\u0192 ~F, then G and E cannot both be true (since F would be both true and false). The only counterexample is when E and G are true, and F is false. In this case, both premises hold: E \u00e2\u0160\u0192 F (vacuously, since E is true and F is false) and G \u00e2\u0160\u0192 ~F (trivially, since G is true and ~F is true). However, the conclusion ~G \u00e2\u02c6\u00a8 ~E is false, since neither ~G nor ~E holds. This matches option (C).\",\n  \"answer\": \"C\"\n}"
+    ],
+    "generator": "Nexusflow/Athene-70B",
+    "configs": {
+      "engine": "vllm",
+      "repetition_penalty": 1.0,
+      "temperature": 0.0,
+      "top_p": 1.0,
+      "max_tokens": 4096
+    },
+    "dataset": "mmlu-redux",
+    "id": "mmlu-redux-formal_logic-#8",
+    "question": "Use indirect truth tables to determine whether the following argument is valid. If the argument is invalid, choose an option which presents a counterexample. (There may be other counterexamples as well.)\nE \u00e2\u008a\u0083 F\nG \u00e2\u008a\u0083 ~F / ~G \u00e2\u0088\u00a8 ~E",
+    "choices": [
+      "Valid",
+      "Invalid. Counterexample when E, F, and G are true",
+      "Invalid. Counterexample when E and G are true and F is false",
+      "Invalid. Counterexample when F and G are true and E is false"
+    ],
+    "correct_answer": "Valid",
+    "source": "edinburgh-dawg/mmlu-redux",
+    "config": "formal_logic",
+    "task_type": "multiple_choice"
+  },
+  {
+    "session_id": "mmlu-redux-formal_logic-#9",
+    "chat_history": [
+      "\n## Question: \n\n Construct a complete truth table for the following argument. Then, using the truth table, determine whether the argument is valid or invalid. If the argument is invalid, choose an option which presents a counterexample. (There may be other counterexamples as well.)\n(G \u00e2\u0089\u00a1 H) \u00c2\u00b7 ~I\n~G \u00e2\u0088\u00a8 (~H \u00e2\u0088\u00a8 I) / G\n\n## Choices:\n\n- (A) Valid\n- (B) Invalid. Counterexample when H and I are true and G is false\n- (C) Invalid. Counterexample when H is true and I and G are false\n- (D) Invalid. Counterexample when H, I, and G are false\n\n\n## Instruction \n\nPlease answer this question by first reasoning and then selecting the correct choice. \nPresent your reasoning and solution in the following json format. \nPlease show your choice in the `answer` field with only the choice letter, e.g.,`\"answer\": \"C\"`.\n\n```json\n{\n    \"reasoning\": \"___\",\n    \"answer\": \"___\"\n}\n```\n"
+    ],
+    "model_input": "<|begin_of_text|><|start_header_id|>user<|end_header_id|>\n\n## Question: \n\n Construct a complete truth table for the following argument. Then, using the truth table, determine whether the argument is valid or invalid. If the argument is invalid, choose an option which presents a counterexample. (There may be other counterexamples as well.)\n(G \u00e2\u0089\u00a1 H) \u00c2\u00b7 ~I\n~G \u00e2\u0088\u00a8 (~H \u00e2\u0088\u00a8 I) / G\n\n## Choices:\n\n- (A) Valid\n- (B) Invalid. Counterexample when H and I are true and G is false\n- (C) Invalid. Counterexample when H is true and I and G are false\n- (D) Invalid. Counterexample when H, I, and G are false\n\n\n## Instruction \n\nPlease answer this question by first reasoning and then selecting the correct choice. \nPresent your reasoning and solution in the following json format. \nPlease show your choice in the `answer` field with only the choice letter, e.g.,`\"answer\": \"C\"`.\n\n```json\n{\n    \"reasoning\": \"___\",\n    \"answer\": \"___\"\n}\n```<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n",
+    "output": [
+      "```json\n{\n  \"reasoning\": \n  \"Here's the complete truth table:\n\n  | G | H | I | (G \u2261 H) \u00b7 ~I | ~G \u2228 (~H \u2228 I) | G | Conclusion |\n  |---|---|---|-----------------|-----------------|---|-----------|\n  | T | T | T | F              | T               | T | Valid     |\n  | T | T | F | T              | F               | T | Valid     |\n  | T | F | T | F              | T               | T | Valid     |\n  | T | F | F | F              | T               | T | Valid     |\n  | F | T | T | F              | T               | F | **Invalid** |\n  | F | T | F | T              | T               | F | **Invalid** |\n  | F | F | T | F              | T               | F | Valid     |\n  | F | F | F | F              | T               | F | Valid     |\n\n  The argument is invalid, and the correct counterexample is when **H is true and I and G are false** (row 6). In this case, the premises are true, but the conclusion G is false.\n\n  The correct answer is:\n  \",\n  \"answer\": \"C\"\n}\n```"
+    ],
+    "generator": "Nexusflow/Athene-70B",
+    "configs": {
+      "engine": "vllm",
+      "repetition_penalty": 1.0,
+      "temperature": 0.0,
+      "top_p": 1.0,
+      "max_tokens": 4096
+    },
+    "dataset": "mmlu-redux",
+    "id": "mmlu-redux-formal_logic-#9",
+    "question": " Construct a complete truth table for the following argument. Then, using the truth table, determine whether the argument is valid or invalid. If the argument is invalid, choose an option which presents a counterexample. (There may be other counterexamples as well.)\n(G \u00e2\u0089\u00a1 H) \u00c2\u00b7 ~I\n~G \u00e2\u0088\u00a8 (~H \u00e2\u0088\u00a8 I) / G",
+    "choices": [
+      "Valid",
+      "Invalid. Counterexample when H and I are true and G is false",
+      "Invalid. Counterexample when H is true and I and G are false",
+      "Invalid. Counterexample when H, I, and G are false"
+    ],
+    "correct_answer": "Invalid. Counterexample when H, I, and G are false",
+    "source": "edinburgh-dawg/mmlu-redux",
+    "config": "formal_logic",
+    "task_type": "multiple_choice"
+  },
+  {
+    "session_id": "mmlu-redux-formal_logic-#10",
+    "chat_history": [
+      "\n## Question: \n\nSelect the best translation into predicate logic. David teaches Chris. (c: Chris; d: David; Txy: x teaches y)\n\n## Choices:\n\n- (A) Tdc\n- (B) Tcd\n- (C) Tcc\n- (D) dTc\n\n\n## Instruction \n\nPlease answer this question by first reasoning and then selecting the correct choice. \nPresent your reasoning and solution in the following json format. \nPlease show your choice in the `answer` field with only the choice letter, e.g.,`\"answer\": \"C\"`.\n\n```json\n{\n    \"reasoning\": \"___\",\n    \"answer\": \"___\"\n}\n```\n"
+    ],
+    "model_input": "<|begin_of_text|><|start_header_id|>user<|end_header_id|>\n\n## Question: \n\nSelect the best translation into predicate logic. David teaches Chris. (c: Chris; d: David; Txy: x teaches y)\n\n## Choices:\n\n- (A) Tdc\n- (B) Tcd\n- (C) Tcc\n- (D) dTc\n\n\n## Instruction \n\nPlease answer this question by first reasoning and then selecting the correct choice. \nPresent your reasoning and solution in the following json format. \nPlease show your choice in the `answer` field with only the choice letter, e.g.,`\"answer\": \"C\"`.\n\n```json\n{\n    \"reasoning\": \"___\",\n    \"answer\": \"___\"\n}\n```<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n",
+    "output": [
+      "{\n  \"reasoning\": \"The correct translation is the one where the subject 'David' (d) is the first argument (teaches) and the object 'Chris' (c) is the second argument (is taught). This matches option B: Tcd, which reads 'd teaches c', aligning with the original statement 'David teaches Chris'.\",\n  \"answer\": \"B\"\n}"
+    ],
+    "generator": "Nexusflow/Athene-70B",
+    "configs": {
+      "engine": "vllm",
+      "repetition_penalty": 1.0,
+      "temperature": 0.0,
+      "top_p": 1.0,
+      "max_tokens": 4096
+    },
+    "dataset": "mmlu-redux",
+    "id": "mmlu-redux-formal_logic-#10",
+    "question": "Select the best translation into predicate logic. David teaches Chris. (c: Chris; d: David; Txy: x teaches y)",
+    "choices": [
+      "Tdc",
+      "Tcd",
+      "Tcc",
+      "dTc"
+    ],
+    "correct_answer": "Tdc",
+    "source": "edinburgh-dawg/mmlu-redux",
+    "config": "formal_logic",
+    "task_type": "multiple_choice"
+  },
+  {
+    "session_id": "mmlu-redux-formal_logic-#11",
+    "chat_history": [
+      "\n## Question: \n\nIdentify the conclusion of the following argument. That the world is my idea is a truth valid for every living creature, though only man can contemplate it. In doing so, he attains philosophical wisdom. No truth is more absolutely certain than that all that exists for knowledge and therefore this world is only object in relation to subject, perception of a perceiver. The world is an idea. (Arthur Schopenhauer, The World as Will and Idea)\n\n## Choices:\n\n- (A) The world is an idea.\n- (B) That the world is my idea is a truth valid for every living creature, though only man can contemplate it.\n- (C) In doing so, he attains philosophical wisdom.\n- (D) No truth is more absolutely certain than that all that exists for knowledge and therefore this world is only object in relation to subject, perception of a perceiver.\n\n\n## Instruction \n\nPlease answer this question by first reasoning and then selecting the correct choice. \nPresent your reasoning and solution in the following json format. \nPlease show your choice in the `answer` field with only the choice letter, e.g.,`\"answer\": \"C\"`.\n\n```json\n{\n    \"reasoning\": \"___\",\n    \"answer\": \"___\"\n}\n```\n"
+    ],
+    "model_input": "<|begin_of_text|><|start_header_id|>user<|end_header_id|>\n\n## Question: \n\nIdentify the conclusion of the following argument. That the world is my idea is a truth valid for every living creature, though only man can contemplate it. In doing so, he attains philosophical wisdom. No truth is more absolutely certain than that all that exists for knowledge and therefore this world is only object in relation to subject, perception of a perceiver. The world is an idea. (Arthur Schopenhauer, The World as Will and Idea)\n\n## Choices:\n\n- (A) The world is an idea.\n- (B) That the world is my idea is a truth valid for every living creature, though only man can contemplate it.\n- (C) In doing so, he attains philosophical wisdom.\n- (D) No truth is more absolutely certain than that all that exists for knowledge and therefore this world is only object in relation to subject, perception of a perceiver.\n\n\n## Instruction \n\nPlease answer this question by first reasoning and then selecting the correct choice. \nPresent your reasoning and solution in the following json format. \nPlease show your choice in the `answer` field with only the choice letter, e.g.,`\"answer\": \"C\"`.\n\n```json\n{\n    \"reasoning\": \"___\",\n    \"answer\": \"___\"\n}\n```<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n",
+    "output": [
+      "{\n  \"reasoning\": \"The correct conclusion is the statement that summarizes the main point: the world's nature as an idea. The passage builds up to this conclusion by explaining its universality, its relation to perception, and its certainty. The other options are premises or intermediate claims leading to this conclusion. Specifically, (A) 'The world is an idea' is the only option that directly states the central idea, making it the correct answer.\",\n  \"answer\": \"A\"\n}"
+    ],
+    "generator": "Nexusflow/Athene-70B",
+    "configs": {
+      "engine": "vllm",
+      "repetition_penalty": 1.0,
+      "temperature": 0.0,
+      "top_p": 1.0,
+      "max_tokens": 4096
+    },
+    "dataset": "mmlu-redux",
+    "id": "mmlu-redux-formal_logic-#11",
+    "question": "Identify the conclusion of the following argument. That the world is my idea is a truth valid for every living creature, though only man can contemplate it. In doing so, he attains philosophical wisdom. No truth is more absolutely certain than that all that exists for knowledge and therefore this world is only object in relation to subject, perception of a perceiver. The world is an idea. (Arthur Schopenhauer, The World as Will and Idea)",
+    "choices": [
+      "The world is an idea.",
+      "That the world is my idea is a truth valid for every living creature, though only man can contemplate it.",
+      "In doing so, he attains philosophical wisdom.",
+      "No truth is more absolutely certain than that all that exists for knowledge and therefore this world is only object in relation to subject, perception of a perceiver."
+    ],
+    "correct_answer": "The world is an idea.",
+    "source": "edinburgh-dawg/mmlu-redux",
+    "config": "formal_logic",
+    "task_type": "multiple_choice"
+  },
+  {
+    "session_id": "mmlu-redux-formal_logic-#12",
+    "chat_history": [
+      "\n## Question: \n\nSelect the best translation into predicate logic: Leroy is bad only if DJ Khaled shouts his name.\n\n## Choices:\n\n- (A) Sk \u00e2\u0089\u00a1 Bl\n- (B) Bl \u00e2\u0089\u00a1 Sk\n- (C) Bx \u00e2\u008a\u0083 Sy\n- (D) Bl \u00e2\u008a\u0083 Sk\n\n\n## Instruction \n\nPlease answer this question by first reasoning and then selecting the correct choice. \nPresent your reasoning and solution in the following json format. \nPlease show your choice in the `answer` field with only the choice letter, e.g.,`\"answer\": \"C\"`.\n\n```json\n{\n    \"reasoning\": \"___\",\n    \"answer\": \"___\"\n}\n```\n"
+    ],
+    "model_input": "<|begin_of_text|><|start_header_id|>user<|end_header_id|>\n\n## Question: \n\nSelect the best translation into predicate logic: Leroy is bad only if DJ Khaled shouts his name.\n\n## Choices:\n\n- (A) Sk \u00e2\u0089\u00a1 Bl\n- (B) Bl \u00e2\u0089\u00a1 Sk\n- (C) Bx \u00e2\u008a\u0083 Sy\n- (D) Bl \u00e2\u008a\u0083 Sk\n\n\n## Instruction \n\nPlease answer this question by first reasoning and then selecting the correct choice. \nPresent your reasoning and solution in the following json format. \nPlease show your choice in the `answer` field with only the choice letter, e.g.,`\"answer\": \"C\"`.\n\n```json\n{\n    \"reasoning\": \"___\",\n    \"answer\": \"___\"\n}\n```<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n",
+    "output": [
+      "{\n  \"reasoning\": \"Let `B` represent 'Leroy is bad' and `S` represent 'DJ Khaled shouts his name'. The correct translation is 'If Leroy is bad, then DJ Khaled shouts his name', or `B \u21d2 S`, which is equivalent to `\u00acB \u2228 S`. In the choices, this corresponds to `(D) Bl \u21cf Sk`, since `Bl` (Leroy is bad) implies `Sk` (DJ Khaled shouts his name).\",\n  \"answer\": \"D\"\n}"
+    ],
+    "generator": "Nexusflow/Athene-70B",
+    "configs": {
+      "engine": "vllm",
+      "repetition_penalty": 1.0,
+      "temperature": 0.0,
+      "top_p": 1.0,
+      "max_tokens": 4096
+    },
+    "dataset": "mmlu-redux",
+    "id": "mmlu-redux-formal_logic-#12",
+    "question": "Select the best translation into predicate logic: Leroy is bad only if DJ Khaled shouts his name.",
+    "choices": [
+      "Sk \u00e2\u0089\u00a1 Bl",
+      "Bl \u00e2\u0089\u00a1 Sk",
+      "Bx \u00e2\u008a\u0083 Sy",
+      "Bl \u00e2\u008a\u0083 Sk"
+    ],
+    "correct_answer": "Bl \u00e2\u008a\u0083 Sk",
+    "source": "edinburgh-dawg/mmlu-redux",
+    "config": "formal_logic",
+    "task_type": "multiple_choice"
+  },
+  {
+    "session_id": "mmlu-redux-formal_logic-#13",
+    "chat_history": [
+      "\n## Question: \n\nSelect the best translation into predicate logic. Holly loves Frances. (f: Frances; h: Holly; Lxy: x loves y)\n\n## Choices:\n\n- (A) hLf\n- (B) fLh\n- (C) Lfh\n- (D) Lhf\n\n\n## Instruction \n\nPlease answer this question by first reasoning and then selecting the correct choice. \nPresent your reasoning and solution in the following json format. \nPlease show your choice in the `answer` field with only the choice letter, e.g.,`\"answer\": \"C\"`.\n\n```json\n{\n    \"reasoning\": \"___\",\n    \"answer\": \"___\"\n}\n```\n"
+    ],
+    "model_input": "<|begin_of_text|><|start_header_id|>user<|end_header_id|>\n\n## Question: \n\nSelect the best translation into predicate logic. Holly loves Frances. (f: Frances; h: Holly; Lxy: x loves y)\n\n## Choices:\n\n- (A) hLf\n- (B) fLh\n- (C) Lfh\n- (D) Lhf\n\n\n## Instruction \n\nPlease answer this question by first reasoning and then selecting the correct choice. \nPresent your reasoning and solution in the following json format. \nPlease show your choice in the `answer` field with only the choice letter, e.g.,`\"answer\": \"C\"`.\n\n```json\n{\n    \"reasoning\": \"___\",\n    \"answer\": \"___\"\n}\n```<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n",
+    "output": [
+      "{\n  \"reasoning\": \"The correct translation is `Lfh`, since `Lxy` means `x loves y`, and we want `h` (Holly) to be the one loving `f` (Frances).\",\n  \"answer\": \"C\"\n}"
+    ],
+    "generator": "Nexusflow/Athene-70B",
+    "configs": {
+      "engine": "vllm",
+      "repetition_penalty": 1.0,
+      "temperature": 0.0,
+      "top_p": 1.0,
+      "max_tokens": 4096
+    },
+    "dataset": "mmlu-redux",
+    "id": "mmlu-redux-formal_logic-#13",
+    "question": "Select the best translation into predicate logic. Holly loves Frances. (f: Frances; h: Holly; Lxy: x loves y)",
+    "choices": [
+      "hLf",
+      "fLh",
+      "Lfh",
+      "Lhf"
+    ],
+    "correct_answer": "Lhf",
+    "source": "edinburgh-dawg/mmlu-redux",
+    "config": "formal_logic",
+    "task_type": "multiple_choice"
+  },
+  {
+    "session_id": "mmlu-redux-formal_logic-#14",
+    "chat_history": [
+      "\n## Question: \n\n Select the best translation into predicate logic. Some firefighters rescue victims from danger. (Dx: x is danger; Fx: x is a firefighter; Vx: x is a victim; Rxyz: x rescues y from z)\n\n## Choices:\n\n- (A) (\u00e2\u0088\u0083x){Fx \u00e2\u0080\u00a2 (\u00e2\u0088\u0080y)[Dy \u00e2\u008a\u0083 (\u00e2\u0088\u0083z)(Vz \u00e2\u0080\u00a2 Rxyz)]}\n- (B) (\u00e2\u0088\u0083x){Fx \u00e2\u0080\u00a2 (\u00e2\u0088\u0083y)[Vy \u00e2\u0080\u00a2 (\u00e2\u0088\u0083z)(Dz \u00e2\u0080\u00a2 Rxyz)]}\n- (C) (\u00e2\u0088\u0083x){Fx \u00e2\u0080\u00a2 (\u00e2\u0088\u0083y)(\u00e2\u0088\u0083z)[(Vy \u00e2\u0080\u00a2 Dz) \u00e2\u0080\u00a2 Rxzy]}\n- (D) (\u00e2\u0088\u0080x){Fx \u00e2\u008a\u0083 (\u00e2\u0088\u0083y)[Vy . (\u00e2\u0088\u0083z)(Dz \u00e2\u0080\u00a2 Rxyz)]}\n\n\n## Instruction \n\nPlease answer this question by first reasoning and then selecting the correct choice. \nPresent your reasoning and solution in the following json format. \nPlease show your choice in the `answer` field with only the choice letter, e.g.,`\"answer\": \"C\"`.\n\n```json\n{\n    \"reasoning\": \"___\",\n    \"answer\": \"___\"\n}\n```\n"
+    ],
+    "model_input": "<|begin_of_text|><|start_header_id|>user<|end_header_id|>\n\n## Question: \n\n Select the best translation into predicate logic. Some firefighters rescue victims from danger. (Dx: x is danger; Fx: x is a firefighter; Vx: x is a victim; Rxyz: x rescues y from z)\n\n## Choices:\n\n- (A) (\u00e2\u0088\u0083x){Fx \u00e2\u0080\u00a2 (\u00e2\u0088\u0080y)[Dy \u00e2\u008a\u0083 (\u00e2\u0088\u0083z)(Vz \u00e2\u0080\u00a2 Rxyz)]}\n- (B) (\u00e2\u0088\u0083x){Fx \u00e2\u0080\u00a2 (\u00e2\u0088\u0083y)[Vy \u00e2\u0080\u00a2 (\u00e2\u0088\u0083z)(Dz \u00e2\u0080\u00a2 Rxyz)]}\n- (C) (\u00e2\u0088\u0083x){Fx \u00e2\u0080\u00a2 (\u00e2\u0088\u0083y)(\u00e2\u0088\u0083z)[(Vy \u00e2\u0080\u00a2 Dz) \u00e2\u0080\u00a2 Rxzy]}\n- (D) (\u00e2\u0088\u0080x){Fx \u00e2\u008a\u0083 (\u00e2\u0088\u0083y)[Vy . (\u00e2\u0088\u0083z)(Dz \u00e2\u0080\u00a2 Rxyz)]}\n\n\n## Instruction \n\nPlease answer this question by first reasoning and then selecting the correct choice. \nPresent your reasoning and solution in the following json format. \nPlease show your choice in the `answer` field with only the choice letter, e.g.,`\"answer\": \"C\"`.\n\n```json\n{\n    \"reasoning\": \"___\",\n    \"answer\": \"___\"\n}\n```<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n",
+    "output": [
+      "{\n  \"reasoning\": \"The correct translation should express: 'Some firefighters rescue victims from danger.' Break it down:\n  1. 'Some firefighters': \u2203x Fx.\n  2. 'rescue victims from danger': (\u2203y)(\u2203z)[(Vy \u2227 Dz) \u2227 Rxzy].\n  Combine them: (\u2203x)[Fx \u2227 (\u2203y)(\u2203z)[(Vy \u2227 Dz) \u2227 Rxyz]].\n  The correct match is:\n  **(B) (\u2203x){Fx \u2022 (\u2203y)[Vy \u2022 (\u2203z)(Dz \u2022 Rxyz)]}.\n\n  **Why others are incorrect:**\n  (A) Incorrectly quantifies 'danger' universally (\u2200y) and swaps Rxyz order.\n  (C) Swaps Rxyz order.\n  (D) Incorrectly uses \u2200x (all firefighters) instead of \u2203x (some firefighters).\",\n  \"answer\": \"B\"\n}"
+    ],
+    "generator": "Nexusflow/Athene-70B",
+    "configs": {
+      "engine": "vllm",
+      "repetition_penalty": 1.0,
+      "temperature": 0.0,
+      "top_p": 1.0,
+      "max_tokens": 4096
+    },
+    "dataset": "mmlu-redux",
+    "id": "mmlu-redux-formal_logic-#14",
+    "question": " Select the best translation into predicate logic. Some firefighters rescue victims from danger. (Dx: x is danger; Fx: x is a firefighter; Vx: x is a victim; Rxyz: x rescues y from z)",
+    "choices": [
+      "(\u00e2\u0088\u0083x){Fx \u00e2\u0080\u00a2 (\u00e2\u0088\u0080y)[Dy \u00e2\u008a\u0083 (\u00e2\u0088\u0083z)(Vz \u00e2\u0080\u00a2 Rxyz)]}",
+      "(\u00e2\u0088\u0083x){Fx \u00e2\u0080\u00a2 (\u00e2\u0088\u0083y)[Vy \u00e2\u0080\u00a2 (\u00e2\u0088\u0083z)(Dz \u00e2\u0080\u00a2 Rxyz)]}",
+      "(\u00e2\u0088\u0083x){Fx \u00e2\u0080\u00a2 (\u00e2\u0088\u0083y)(\u00e2\u0088\u0083z)[(Vy \u00e2\u0080\u00a2 Dz) \u00e2\u0080\u00a2 Rxzy]}",
+      "(\u00e2\u0088\u0080x){Fx \u00e2\u008a\u0083 (\u00e2\u0088\u0083y)[Vy . (\u00e2\u0088\u0083z)(Dz \u00e2\u0080\u00a2 Rxyz)]}"
+    ],
+    "correct_answer": "(\u00e2\u0088\u0083x){Fx \u00e2\u0080\u00a2 (\u00e2\u0088\u0083y)[Vy \u00e2\u0080\u00a2 (\u00e2\u0088\u0083z)(Dz \u00e2\u0080\u00a2 Rxyz)]}",
+    "source": "edinburgh-dawg/mmlu-redux",
+    "config": "formal_logic",
+    "task_type": "multiple_choice"
+  },
+  {
+    "session_id": "mmlu-redux-formal_logic-#15",
+    "chat_history": [
+      "\n## Question: \n\n Select the best English interpretation of the given arguments in predicate logic.\n(\u00e2\u0088\u0083x)(Cx \u00e2\u0080\u00a2 Ox)\n(\u00e2\u0088\u0080x)[(~Cx \u00e2\u008a\u0083 ~Bx) \u00e2\u008a\u0083 ~Og]\t/ ~Og\n\n## Choices:\n\n- (A) Some cookies have oatmeal. If something's not being a cookie entails that it doesn't have chocolate chips, then this cookie doesn't have oatmeal. So this cookie doesn't have oatmeal.\n- (B) Some cookies have oatmeal. If something is not a cookie and does not have chocolate chips, it doesn't have oatmeal. So this cookie doesn't have oatmeal.\n- (C) Some cookies have oatmeal. If something doesn't have oatmeal, then it is not a cookie and it doesn't have chocolate chips. So this cookie doesn't have oatmeal.\n- (D) Some cookies have oatmeal. If something's not having chocolate chips entails that it is not a cookie, then it doesn't have oatmeal. So this cookie doesn't have oatmeal.\n\n\n## Instruction \n\nPlease answer this question by first reasoning and then selecting the correct choice. \nPresent your reasoning and solution in the following json format. \nPlease show your choice in the `answer` field with only the choice letter, e.g.,`\"answer\": \"C\"`.\n\n```json\n{\n    \"reasoning\": \"___\",\n    \"answer\": \"___\"\n}\n```\n"
+    ],
+    "model_input": "<|begin_of_text|><|start_header_id|>user<|end_header_id|>\n\n## Question: \n\n Select the best English interpretation of the given arguments in predicate logic.\n(\u00e2\u0088\u0083x)(Cx \u00e2\u0080\u00a2 Ox)\n(\u00e2\u0088\u0080x)[(~Cx \u00e2\u008a\u0083 ~Bx) \u00e2\u008a\u0083 ~Og]\t/ ~Og\n\n## Choices:\n\n- (A) Some cookies have oatmeal. If something's not being a cookie entails that it doesn't have chocolate chips, then this cookie doesn't have oatmeal. So this cookie doesn't have oatmeal.\n- (B) Some cookies have oatmeal. If something is not a cookie and does not have chocolate chips, it doesn't have oatmeal. So this cookie doesn't have oatmeal.\n- (C) Some cookies have oatmeal. If something doesn't have oatmeal, then it is not a cookie and it doesn't have chocolate chips. So this cookie doesn't have oatmeal.\n- (D) Some cookies have oatmeal. If something's not having chocolate chips entails that it is not a cookie, then it doesn't have oatmeal. So this cookie doesn't have oatmeal.\n\n\n## Instruction \n\nPlease answer this question by first reasoning and then selecting the correct choice. \nPresent your reasoning and solution in the following json format. \nPlease show your choice in the `answer` field with only the choice letter, e.g.,`\"answer\": \"C\"`.\n\n```json\n{\n    \"reasoning\": \"___\",\n    \"answer\": \"___\"\n}\n```<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n",
+    "output": [
+      "{\n  \"reasoning\": \"Let's break down the given arguments: `(\u2203x)(Cx \u2227 Ox)` states that some cookies (Cx) have oatmeal (Ox). The second premise `(\u2200x)[(\u00acCx \u2228 \u00acBx) \u2192 \u00acOx]` can be read as: if something is not a cookie or doesn't have chocolate chips, then it doesn't have oatmeal. The conclusion is `\u00acOg`, specifically denying oatmeal for some entity `g`. The correct interpretation is not among the options that conclude 'this cookie doesn't have oatmeal', since `g` might not be the same as the cookies mentioned earlier. Instead, the correct connection is: if `g` has oatmeal, then it must be a cookie with chocolate chips (by contrapositive of the second premise). The given `(\u2203x)(Cx \u2227 Ox)` ensures such a cookie exists, so `g` indeed has these properties, contradicting `\u00acOg`. The closest match is: **none of the options**. The correct interpretation would be: 'Some cookies have oatmeal, and if something lacks oatmeal, it's either not a cookie or lacks chocolate chips; therefore, `\u00acOg` is false, as `g` must be a chocolate-chip cookie with oatmeal.' Since no option exactly matches, this answer format is adapted to clarify the correct understanding.\",\n  \"answer\": \"None of the above (see detailed reasoning)\"\n}"
+    ],
+    "generator": "Nexusflow/Athene-70B",
+    "configs": {
+      "engine": "vllm",
+      "repetition_penalty": 1.0,
+      "temperature": 0.0,
+      "top_p": 1.0,
+      "max_tokens": 4096
+    },
+    "dataset": "mmlu-redux",
+    "id": "mmlu-redux-formal_logic-#15",
+    "question": " Select the best English interpretation of the given arguments in predicate logic.\n(\u00e2\u0088\u0083x)(Cx \u00e2\u0080\u00a2 Ox)\n(\u00e2\u0088\u0080x)[(~Cx \u00e2\u008a\u0083 ~Bx) \u00e2\u008a\u0083 ~Og]\t/ ~Og",
+    "choices": [
+      "Some cookies have oatmeal. If something's not being a cookie entails that it doesn't have chocolate chips, then this cookie doesn't have oatmeal. So this cookie doesn't have oatmeal.",
+      "Some cookies have oatmeal. If something is not a cookie and does not have chocolate chips, it doesn't have oatmeal. So this cookie doesn't have oatmeal.",
+      "Some cookies have oatmeal. If something doesn't have oatmeal, then it is not a cookie and it doesn't have chocolate chips. So this cookie doesn't have oatmeal.",
+      "Some cookies have oatmeal. If something's not having chocolate chips entails that it is not a cookie, then it doesn't have oatmeal. So this cookie doesn't have oatmeal."
+    ],
+    "correct_answer": "Some cookies have oatmeal. If something's not being a cookie entails that it doesn't have chocolate chips, then this cookie doesn't have oatmeal. So this cookie doesn't have oatmeal.",
+    "source": "edinburgh-dawg/mmlu-redux",
+    "config": "formal_logic",
+    "task_type": "multiple_choice"
+  },
+  {
+    "session_id": "mmlu-redux-formal_logic-#16",
+    "chat_history": [
+      "\n## Question: \n\n Select the best translation into predicate logic. All children go to some school. (Cx: x is a child; Sx: x is a school; Gxy: x goes to y)\n\n## Choices:\n\n- (A) (\u00e2\u0088\u0080x)(\u00e2\u0088\u0083y)[(Cx \u00e2\u0080\u00a2 Sy) \u00e2\u0080\u00a2 Gxy)\n- (B) (\u00e2\u0088\u0080x)[Sx \u00e2\u008a\u0083 (\u00e2\u0088\u0083y)(Cy \u00e2\u0080\u00a2 Gxy)]\n- (C) (\u00e2\u0088\u0080x)[Cx \u00e2\u008a\u0083 (\u00e2\u0088\u0083y)(Sy \u00e2\u0080\u00a2 Gxy)]\n- (D) (\u00e2\u0088\u0080x)[Sx \u00e2\u0080\u00a2 (\u00e2\u0088\u0083y)(Cy \u00e2\u0080\u00a2 Gxy)]\n\n\n## Instruction \n\nPlease answer this question by first reasoning and then selecting the correct choice. \nPresent your reasoning and solution in the following json format. \nPlease show your choice in the `answer` field with only the choice letter, e.g.,`\"answer\": \"C\"`.\n\n```json\n{\n    \"reasoning\": \"___\",\n    \"answer\": \"___\"\n}\n```\n"
+    ],
+    "model_input": "<|begin_of_text|><|start_header_id|>user<|end_header_id|>\n\n## Question: \n\n Select the best translation into predicate logic. All children go to some school. (Cx: x is a child; Sx: x is a school; Gxy: x goes to y)\n\n## Choices:\n\n- (A) (\u00e2\u0088\u0080x)(\u00e2\u0088\u0083y)[(Cx \u00e2\u0080\u00a2 Sy) \u00e2\u0080\u00a2 Gxy)\n- (B) (\u00e2\u0088\u0080x)[Sx \u00e2\u008a\u0083 (\u00e2\u0088\u0083y)(Cy \u00e2\u0080\u00a2 Gxy)]\n- (C) (\u00e2\u0088\u0080x)[Cx \u00e2\u008a\u0083 (\u00e2\u0088\u0083y)(Sy \u00e2\u0080\u00a2 Gxy)]\n- (D) (\u00e2\u0088\u0080x)[Sx \u00e2\u0080\u00a2 (\u00e2\u0088\u0083y)(Cy \u00e2\u0080\u00a2 Gxy)]\n\n\n## Instruction \n\nPlease answer this question by first reasoning and then selecting the correct choice. \nPresent your reasoning and solution in the following json format. \nPlease show your choice in the `answer` field with only the choice letter, e.g.,`\"answer\": \"C\"`.\n\n```json\n{\n    \"reasoning\": \"___\",\n    \"answer\": \"___\"\n}\n```<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n",
+    "output": [
+      "{\n  \"reasoning\": \"The correct translation is the one that captures the meaning 'All children go to some school'. This means that for every child (Cx), there exists a school (Sy) such that the child goes to that school (Gxy). The correct order of quantifiers and predicates is crucial. Option C precisely encodes this: 'For all x, if x is a child, then there exists a y such that y is a school and x goes to y'. The other options either swap or misplace the quantifiers, predicates, or implications.\",\n  \"answer\": \"C\"\n}"
+    ],
+    "generator": "Nexusflow/Athene-70B",
+    "configs": {
+      "engine": "vllm",
+      "repetition_penalty": 1.0,
+      "temperature": 0.0,
+      "top_p": 1.0,
+      "max_tokens": 4096
+    },
+    "dataset": "mmlu-redux",
+    "id": "mmlu-redux-formal_logic-#16",
+    "question": " Select the best translation into predicate logic. All children go to some school. (Cx: x is a child; Sx: x is a school; Gxy: x goes to y)",
+    "choices": [
+      "(\u00e2\u0088\u0080x)(\u00e2\u0088\u0083y)[(Cx \u00e2\u0080\u00a2 Sy) \u00e2\u0080\u00a2 Gxy)",
+      "(\u00e2\u0088\u0080x)[Sx \u00e2\u008a\u0083 (\u00e2\u0088\u0083y)(Cy \u00e2\u0080\u00a2 Gxy)]",
+      "(\u00e2\u0088\u0080x)[Cx \u00e2\u008a\u0083 (\u00e2\u0088\u0083y)(Sy \u00e2\u0080\u00a2 Gxy)]",
+      "(\u00e2\u0088\u0080x)[Sx \u00e2\u0080\u00a2 (\u00e2\u0088\u0083y)(Cy \u00e2\u0080\u00a2 Gxy)]"
+    ],
+    "correct_answer": "(\u00e2\u0088\u0080x)[Cx \u00e2\u008a\u0083 (\u00e2\u0088\u0083y)(Sy \u00e2\u0080\u00a2 Gxy)]",
+    "source": "edinburgh-dawg/mmlu-redux",
+    "config": "formal_logic",
+    "task_type": "multiple_choice"
+  },
+  {
+    "session_id": "mmlu-redux-formal_logic-#18",
+    "chat_history": [
+      "\n## Question: \n\n Which of the given formulas of PL is the best symbolization of the following sentence?\nIf Beth rides her bike, she gets to work earlier.\n\n## Choices:\n\n- (A) B \u00e2\u008a\u0083 W\n- (B) W \u00e2\u008a\u0083 B\n- (C) B \u00e2\u0089\u00a1 W\n- (D) Both A and B\n\n\n## Instruction \n\nPlease answer this question by first reasoning and then selecting the correct choice. \nPresent your reasoning and solution in the following json format. \nPlease show your choice in the `answer` field with only the choice letter, e.g.,`\"answer\": \"C\"`.\n\n```json\n{\n    \"reasoning\": \"___\",\n    \"answer\": \"___\"\n}\n```\n"
+    ],
+    "model_input": "<|begin_of_text|><|start_header_id|>user<|end_header_id|>\n\n## Question: \n\n Which of the given formulas of PL is the best symbolization of the following sentence?\nIf Beth rides her bike, she gets to work earlier.\n\n## Choices:\n\n- (A) B \u00e2\u008a\u0083 W\n- (B) W \u00e2\u008a\u0083 B\n- (C) B \u00e2\u0089\u00a1 W\n- (D) Both A and B\n\n\n## Instruction \n\nPlease answer this question by first reasoning and then selecting the correct choice. \nPresent your reasoning and solution in the following json format. \nPlease show your choice in the `answer` field with only the choice letter, e.g.,`\"answer\": \"C\"`.\n\n```json\n{\n    \"reasoning\": \"___\",\n    \"answer\": \"___\"\n}\n```<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n",
+    "output": [
+      "{\n  \"reasoning\": \"The correct symbolization is the one that captures the conditional relationship: 'If Beth rides her bike (B), then she gets to work earlier (W)'. This is precisely what material implication (\u00e2\u0160\u0192) represents. The correct direction is B \u00e2\u0160\u0192 W, meaning 'B implies W' or 'If B, then W'. Therefore, the correct answer is (A) B \u00e2\u0160\u0192 W.\",\n  \"answer\": \"A\"\n}"
+    ],
+    "generator": "Nexusflow/Athene-70B",
+    "configs": {
+      "engine": "vllm",
+      "repetition_penalty": 1.0,
+      "temperature": 0.0,
+      "top_p": 1.0,
+      "max_tokens": 4096
+    },
+    "dataset": "mmlu-redux",
+    "id": "mmlu-redux-formal_logic-#18",
+    "question": " Which of the given formulas of PL is the best symbolization of the following sentence?\nIf Beth rides her bike, she gets to work earlier.",
+    "choices": [
+      "B \u00e2\u008a\u0083 W",
+      "W \u00e2\u008a\u0083 B",
+      "B \u00e2\u0089\u00a1 W",
+      "Both A and B"
+    ],
+    "correct_answer": "B \u00e2\u008a\u0083 W",
+    "source": "edinburgh-dawg/mmlu-redux",
+    "config": "formal_logic",
+    "task_type": "multiple_choice"
+  },
+  {
+    "session_id": "mmlu-redux-formal_logic-#19",
+    "chat_history": [
+      "\n## Question: \n\n Select the best translation into predicate logic:: Some blue herons migrate.\n\n## Choices:\n\n- (A) (\u00e2\u0088\u0080x)[(Hx \u00e2\u0080\u00a2 Bx) \u00e2\u0080\u00a2 Mx]\n- (B) (\u00e2\u0088\u0083x)[(Hx \u00e2\u0080\u00a2 Bx) \u00e2\u008a\u0083 Mx]\n- (C) (\u00e2\u0088\u0080x)[(Hx \u00e2\u0080\u00a2 Bx) \u00e2\u008a\u0083 Mx]\n- (D) (\u00e2\u0088\u0083x)[(Hx \u00e2\u0080\u00a2 Bx) \u00e2\u0080\u00a2 Mx]\n\n\n## Instruction \n\nPlease answer this question by first reasoning and then selecting the correct choice. \nPresent your reasoning and solution in the following json format. \nPlease show your choice in the `answer` field with only the choice letter, e.g.,`\"answer\": \"C\"`.\n\n```json\n{\n    \"reasoning\": \"___\",\n    \"answer\": \"___\"\n}\n```\n"
+    ],
+    "model_input": "<|begin_of_text|><|start_header_id|>user<|end_header_id|>\n\n## Question: \n\n Select the best translation into predicate logic:: Some blue herons migrate.\n\n## Choices:\n\n- (A) (\u00e2\u0088\u0080x)[(Hx \u00e2\u0080\u00a2 Bx) \u00e2\u0080\u00a2 Mx]\n- (B) (\u00e2\u0088\u0083x)[(Hx \u00e2\u0080\u00a2 Bx) \u00e2\u008a\u0083 Mx]\n- (C) (\u00e2\u0088\u0080x)[(Hx \u00e2\u0080\u00a2 Bx) \u00e2\u008a\u0083 Mx]\n- (D) (\u00e2\u0088\u0083x)[(Hx \u00e2\u0080\u00a2 Bx) \u00e2\u0080\u00a2 Mx]\n\n\n## Instruction \n\nPlease answer this question by first reasoning and then selecting the correct choice. \nPresent your reasoning and solution in the following json format. \nPlease show your choice in the `answer` field with only the choice letter, e.g.,`\"answer\": \"C\"`.\n\n```json\n{\n    \"reasoning\": \"___\",\n    \"answer\": \"___\"\n}\n```<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n",
+    "output": [
+      "{\n  \"reasoning\": \"The correct translation is the one that asserts the existence of at least one blue heron that migrates. `(\u2203x)[(Hx \u2227 Bx) \u2192 Mx]` says that if something is a blue heron, then it migrates, which means all blue herons migrate. The correct answer is `(\u2203x)[(Hx \u2227 Bx) \u2227 Mx]`, which states that there exists an x that is both a blue heron and a migrator. This directly captures the meaning of 'Some blue herons migrate'.\",\n  \"answer\": \"D\"\n}"
+    ],
+    "generator": "Nexusflow/Athene-70B",
+    "configs": {
+      "engine": "vllm",
+      "repetition_penalty": 1.0,
+      "temperature": 0.0,
+      "top_p": 1.0,
+      "max_tokens": 4096
+    },
+    "dataset": "mmlu-redux",
+    "id": "mmlu-redux-formal_logic-#19",
+    "question": " Select the best translation into predicate logic:: Some blue herons migrate.",
+    "choices": [
+      "(\u00e2\u0088\u0080x)[(Hx \u00e2\u0080\u00a2 Bx) \u00e2\u0080\u00a2 Mx]",
+      "(\u00e2\u0088\u0083x)[(Hx \u00e2\u0080\u00a2 Bx) \u00e2\u008a\u0083 Mx]",
+      "(\u00e2\u0088\u0080x)[(Hx \u00e2\u0080\u00a2 Bx) \u00e2\u008a\u0083 Mx]",
+      "(\u00e2\u0088\u0083x)[(Hx \u00e2\u0080\u00a2 Bx) \u00e2\u0080\u00a2 Mx]"
+    ],
+    "correct_answer": "(\u00e2\u0088\u0083x)[(Hx \u00e2\u0080\u00a2 Bx) \u00e2\u0080\u00a2 Mx]",
+    "source": "edinburgh-dawg/mmlu-redux",
+    "config": "formal_logic",
+    "task_type": "multiple_choice"
   }
 ]

@@ -23,7 +23,7 @@
 |       reka-core-20240501       | greedy | 76.42 |    0.76     |  2778   |     701.4     |
 |    gemma-2-27b-it@together     | greedy | 75.67 |    0.61     |  2778   |    446.51     |
 |    claude-3-sonnet-20240229    | greedy | 74.87 |    0.07     |  2778   |    671.75     |
-|           Athene-70B           | greedy | 73.74 |     0.1     |   956   |    550.18     |
+|           Athene-70B           | greedy | 73.56 |     0.1     |   972   |     547.8     |
 |        Yi-1.5-34B-Chat         | greedy | 73.04 |    0.58     |  2778   |    618.29     |
 |      gemma-2-9b-it@nvidia      | greedy | 72.82 |    0.76     |  2778   |      499      |
 |    claude-3-haiku-20240307     | greedy | 72.32 |    0.04     |  2778   |    644.63     |
