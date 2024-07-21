@@ -216,14 +216,6 @@
     "Reason Lens": "600.81"
   },
   {
-    "Model": "gemma-2-27b-it@vllm",
-    "Mode": "greedy",
-    "Acc": "59.47",
-    "No answer": "12.56",
-    "Total": 2778,
-    "Reason Lens": "990.98"
-  },
-  {
     "Model": "Llama-3-Instruct-8B-SimPO-v0.2",
     "Mode": "greedy",
     "Acc": "55.22",

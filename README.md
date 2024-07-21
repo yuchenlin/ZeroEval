@@ -70,81 +70,40 @@ More examples can be found in the `scripts` folder, e.g., the [scripts/_MMLU_red
 
 ## Results 
 
-
-### MMLU-Redux ([full table](result_dirs/mmlu-redux.summary.md))
-
-`python src/evaluation/mcqa_eval.py mmlu-redux`
-
-|             Model              |  Mode  |  Acc  |  No answer  |  Total  |  Reason Lens  |
-|--------------------------------|--------|-------|-------------|---------|---------------|
-|       gpt-4o-2024-05-13        | greedy | 88.01 |    0.14     |  2778   |    629.79     |
-|   claude-3-5-sonnet-20240620   | greedy |  86   |    0.18     |  2778   |    907.09     |
-|     gpt-4-turbo-2024-04-09     | greedy | 85.31 |    0.04     |  2778   |    631.38     |
-|         gemini-1.5-pro         | greedy | 82.76 |    1.94     |  2778   |     666.7     |
-|     claude-3-opus-20240229     | greedy | 82.54 |    0.58     |  2778   |    500.35     |
-|        yi-large-preview        | greedy | 82.18 |    0.14     |  2778   |    968.52     |
-|           gpt-4-0314           | greedy | 81.64 |    0.04     |  2778   |    397.22     |
-|       Qwen2-72B-Instruct       | greedy | 81.57 |    0.25     |  2778   |    486.46     |
-|     gpt-4o-mini-2024-07-18     | greedy | 81.5  |    0.07     |  2778   |      526      |
-|            yi-large            | greedy | 81.25 |      0      |  2778   |     773.8     |
-|         deepseek-chat          | greedy | 80.81 |    0.11     |  2778   |    691.91     |
-|         deepseek-coder         | greedy | 79.63 |    0.14     |  2778   |    704.72     |
-|   Meta-Llama-3-70B-Instruct    | greedy | 77.97 |    0.11     |  2778   |    520.45     |
-|        gemini-1.5-flash        | greedy | 77.36 |    1.26     |  2778   |    583.45     |
-|       reka-core-20240501       | greedy | 76.42 |    0.76     |  2778   |     701.4     |
-|    gemma-2-27b-it@together     | greedy | 75.67 |    0.61     |  2778   |    446.51     |
-|    claude-3-sonnet-20240229    | greedy | 74.87 |    0.07     |  2778   |    671.75     |
-|        Yi-1.5-34B-Chat         | greedy | 73.04 |    0.58     |  2778   |    618.29     |
-|      gemma-2-9b-it@nvidia      | greedy | 72.82 |    0.76     |  2778   |      499      |
-|    claude-3-haiku-20240307     | greedy | 72.32 |    0.04     |  2778   |    644.63     |
-|       gpt-3.5-turbo-0125       | greedy | 68.36 |    0.04     |  2778   |    357.92     |
-|       Qwen2-7B-Instruct        | greedy | 66.92 |    0.72     |  2778   |    533.15     |
-|         Yi-1.5-9B-Chat         | greedy | 65.05 |    4.61     |  2778   |    542.37     |
-|      reka-flash-20240226       | greedy | 64.72 |    0.32     |  2778   |    659.25     |
-|    Meta-Llama-3-8B-Instruct    | greedy | 61.66 |    0.97     |  2778   |    600.81     |
-| Llama-3-Instruct-8B-SimPO-v0.2 | greedy | 55.22 |    1.19     |  2778   |    446.68     |
-|      Qwen2-1.5B-Instruct       | greedy | 41.11 |    7.74     |  2778   |    280.53     |
+- MMLU-Redux: `python src/evaluation/mcqa_eval.py mmlu-redux` --> `result_dirs/mmlu-redux.summary.md`
+- GSM: `python src/evaluation/gsm_eval.py` --> `result_dirs/gsm.summary.md`
+- ZebraLogic: `python src/evaluation/zebra_grid_eval.py` --> `result_dirs/zebra-grid.summary.md` and [Leaderboard](https://huggingface.co/spaces/allenai/ZebraLogic)
+- All: `python src/evaluation/summarize.py` --> `result_dirs/summary.md`
 
 
-### GSM ([full table](result_dirs/gsm.summary.md))
+| Model                      |   GSM |   MMLU-Redux |   ZebraLogic |   ZebraLogic-Easy |   Average |
+|:---------------------------|------:|-------------:|-------------:|------------------:|----------:|
+| claude-3-5-sonnet-20240620 | 95.6  |        86    |         33.4 |             87.5  |   75.625  |
+| gpt-4o-2024-05-13          | 95.38 |        88.01 |         28.2 |             77.86 |   72.3625 |
+| claude-3-opus-20240229     | 95.6  |        82.54 |         27   |             78.21 |   70.8375 |
+| deepseek-chat              | 93.93 |        80.81 |         22.7 |             68.57 |   66.5025 |
+| Qwen2-72B-Instruct         | 92.72 |        81.57 |         21.4 |             63.93 |   64.905  |
+| deepseek-coder             | 93.78 |        79.63 |         21.1 |             64.64 |   64.7875 |
+| gpt-4o-mini-2024-07-18     | 94.24 |        81.5  |         20.1 |             62.5  |   64.585  |
+| gemini-1.5-pro             | 93.4  |        82.76 |         19.4 |             55.71 |   62.8175 |
+| gemini-1.5-flash           | 91.36 |        77.36 |         19.4 |             59.29 |   61.8525 |
+| claude-3-sonnet-20240229   | 91.51 |        74.87 |         18.7 |             58.93 |   61.0025 |
+| Meta-Llama-3-70B-Instruct  | 93.03 |        77.97 |         16.8 |             52.86 |   60.165  |
+| yi-large                   | 81.73 |        81.25 |         18.8 |             58.21 |   59.9975 |
+| gemma-2-27b-it             | 90.22 |        75.67 |         16.3 |             50.71 |   58.225  |
+| Athene-70B                 | 86.66 |        76.53 |         16.7 |             52.5  |   58.0975 |
+| claude-3-haiku-20240307    | 88.78 |        72.32 |         14.3 |             47.86 |   55.815  |
+| reka-core-20240501         | 87.49 |        76.42 |         13   |             43.21 |   55.03   |
+| gemma-2-9b-it              | 87.41 |        72.82 |         12.8 |             41.79 |   53.705  |
+| Yi-1.5-34B-Chat            | 84.38 |        73.04 |         11.5 |             37.5  |   51.605  |
+| Mistral-Nemo-Instruct-2407 | 82.79 |        66.88 |         11.8 |             38.93 |   50.1    |
+| Meta-Llama-3-8B-Instruct   | 78.47 |        61.66 |         11.9 |             40.71 |   48.185  |
+| gpt-3.5-turbo-0125         | 80.36 |        68.36 |         10.1 |             33.57 |   48.0975 |
+| Qwen2-7B-Instruct          | 80.06 |        66.92 |          8.4 |             29.29 |   46.1675 |
+| reka-flash-20240226        | 74.68 |        64.72 |          9.3 |             30.71 |   44.8525 |
+| Yi-1.5-9B-Chat             | 77.86 |        65.05 |          2.3 |              8.21 |   38.355  |
 
-`python src/evaluation/gsm_eval.py`
-
-|             Model              |  Mode  |  Acc  |  No answer  |  Total  |  Reason Lens  |
-|--------------------------------|--------|-------|-------------|---------|---------------|
-|   claude-3-5-sonnet-20240620   | greedy | 95.6  |      0      |  1319   |    465.19     |
-|     claude-3-opus-20240229     | greedy | 95.6  |      0      |  1319   |    410.62     |
-|       gpt-4o-2024-05-13        | greedy | 95.38 |      0      |  1319   |    479.98     |
-|     gpt-4o-mini-2024-07-18     | greedy | 94.24 |      0      |  1319   |    463.71     |
-|         deepseek-chat          | greedy | 93.93 |      0      |  1319   |    495.52     |
-|         deepseek-coder         | greedy | 93.78 |      0      |  1319   |    566.89     |
-|         gemini-1.5-pro         | greedy | 93.4  |      0      |  1319   |    389.17     |
-|   Meta-Llama-3-70B-Instruct    | greedy | 93.03 |      0      |  1319   |    352.44     |
-|       Qwen2-72B-Instruct       | greedy | 92.72 |      0      |  1319   |    375.96     |
-|    claude-3-sonnet-20240229    | greedy | 91.51 |      0      |  1319   |    762.69     |
-|        gemini-1.5-flash        | greedy | 91.36 |      0      |  1319   |    344.61     |
-|    gemma-2-27b-it@together     | greedy | 90.22 |      0      |  1319   |    364.68     |
-|    claude-3-haiku-20240307     | greedy | 88.78 |      0      |  1319   |    587.65     |
-|       reka-core-20240501       | greedy | 87.49 |    0.08     |  1319   |    414.33     |
-|         gemma-2-9b-it          | greedy | 87.41 |      0      |  1319   |    394.83     |
-|        Yi-1.5-34B-Chat         | greedy | 84.38 |    0.08     |  1319   |    553.32     |
-|            yi-large            | greedy | 81.73 |      0      |  1319   |    479.23     |
-|       gpt-3.5-turbo-0125       | greedy | 80.36 |      0      |  1319   |    350.97     |
-|       Qwen2-7B-Instruct        | greedy | 80.06 |      0      |  1319   |     452.6     |
-|    Meta-Llama-3-8B-Instruct    | greedy | 78.47 |      0      |  1319   |    429.39     |
-|         Yi-1.5-9B-Chat         | greedy | 77.86 |    0.08     |  1319   |    485.07     |
-|      reka-flash-20240226       | greedy | 74.68 |    0.45     |  1319   |    460.06     |
-| Llama-3-Instruct-8B-SimPO-v0.2 | greedy | 57.47 |    2.05     |  1319   |    485.99     |
-|      Qwen2-1.5B-Instruct       | greedy | 43.9  |    4.78     |  1319   |    298.07     | 
-
-
-### ZebraLogic ([full table](result_dirs/zebra-grid.summary.md))
-
-`python src/evaluation/zebra_grid_eval.py`
-
-See the ZebraLogic Leaderboard: [https://huggingface.co/spaces/allenai/ZebraLogic](https://huggingface.co/spaces/allenai/ZebraLogic) 
-
-
+ 
 
 ## Citation
 If you find ZeroEval useful, please cite it as follows in your publication:
