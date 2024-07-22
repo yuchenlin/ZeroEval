@@ -27,12 +27,16 @@
 |      gemma-2-9b-it@nvidia      | greedy | 72.82 |    0.76     |  2778   |      499      |
 |        Yi-1.5-34B-Chat         | greedy | 72.79 |    1.01     |  2778   |     620.1     |
 |    claude-3-haiku-20240307     | greedy | 72.32 |    0.04     |  2778   |    644.59     |
+|     Phi-3-mini-4k-instruct     | greedy | 70.34 |    0.43     |  2778   |    677.09     |
+|         command-r-plus         | greedy | 68.61 |      0      |  2778   |    401.51     |
 |       gpt-3.5-turbo-0125       | greedy | 68.36 |    0.04     |  2778   |    357.92     |
 |       Qwen2-7B-Instruct        | greedy | 66.92 |    0.72     |  2778   |    533.15     |
 |   Mistral-Nemo-Instruct-2407   | greedy | 66.88 |    0.47     |  2778   |    464.19     |
 |         Yi-1.5-9B-Chat         | greedy | 65.05 |    4.61     |  2778   |    542.87     |
 |      reka-flash-20240226       | greedy | 64.72 |    0.32     |  2778   |    659.25     |
+|   Mixtral-8x7B-Instruct-v0.1   | greedy | 63.17 |    5.51     |  2778   |    324.31     |
 |    Meta-Llama-3-8B-Instruct    | greedy | 61.66 |    0.97     |  2778   |    600.81     |
+|           command-r            | greedy | 61.12 |    0.04     |  2778   |    382.23     |
 | Llama-3-Instruct-8B-SimPO-v0.2 | greedy | 55.22 |    1.19     |  2778   |     450.6     |
 |      Qwen2-1.5B-Instruct       | greedy | 41.11 |    7.74     |  2778   |    280.56     |
 |         Rex-v0.1-1.5B          | greedy | 39.09 |    4.79     |  2778   |    329.35     |
