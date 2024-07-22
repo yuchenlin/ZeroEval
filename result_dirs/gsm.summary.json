@@ -144,12 +144,28 @@
     "Reason Lens": "349.81"
   },
   {
+    "Model": "yi-large-preview",
+    "Mode": "greedy",
+    "Acc": "82.64",
+    "No answer": "0.00",
+    "Total": 1319,
+    "Reason Lens": "514.25"
+  },
+  {
     "Model": "gpt-3.5-turbo-0125",
     "Mode": "greedy",
     "Acc": "80.36",
     "No answer": "0.00",
     "Total": 1319,
     "Reason Lens": "350.97"
+  },
+  {
+    "Model": "command-r-plus",
+    "Mode": "greedy",
+    "Acc": "80.14",
+    "No answer": "0.08",
+    "Total": 1319,
+    "Reason Lens": "294.08"
   },
   {
     "Model": "Qwen2-7B-Instruct",
@@ -200,12 +216,28 @@
     "Reason Lens": "460.06"
   },
   {
+    "Model": "Mixtral-8x7B-Instruct-v0.1",
+    "Mode": "greedy",
+    "Acc": "70.13",
+    "No answer": "2.27",
+    "Total": 1319,
+    "Reason Lens": "361.12"
+  },
+  {
     "Model": "Llama-3-Instruct-8B-SimPO-v0.2",
     "Mode": "greedy",
     "Acc": "57.54",
     "No answer": "2.05",
     "Total": 1319,
     "Reason Lens": "505.25"
+  },
+  {
+    "Model": "command-r",
+    "Mode": "greedy",
+    "Acc": "52.99",
+    "No answer": "0.00",
+    "Total": 1319,
+    "Reason Lens": "294.43"
   },
   {
     "Model": "Qwen2-1.5B-Instruct",

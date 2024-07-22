@@ -168,6 +168,22 @@
     "Reason Lens": "644.59"
   },
   {
+    "Model": "Phi-3-mini-4k-instruct",
+    "Mode": "greedy",
+    "Acc": "70.34",
+    "No answer": "0.43",
+    "Total": 2778,
+    "Reason Lens": "677.09"
+  },
+  {
+    "Model": "command-r-plus",
+    "Mode": "greedy",
+    "Acc": "68.61",
+    "No answer": "0.00",
+    "Total": 2778,
+    "Reason Lens": "401.51"
+  },
+  {
     "Model": "gpt-3.5-turbo-0125",
     "Mode": "greedy",
     "Acc": "68.36",
@@ -208,12 +224,28 @@
     "Reason Lens": "659.25"
   },
   {
+    "Model": "Mixtral-8x7B-Instruct-v0.1",
+    "Mode": "greedy",
+    "Acc": "63.17",
+    "No answer": "5.51",
+    "Total": 2778,
+    "Reason Lens": "324.31"
+  },
+  {
     "Model": "Meta-Llama-3-8B-Instruct",
     "Mode": "greedy",
     "Acc": "61.66",
     "No answer": "0.97",
     "Total": 2778,
     "Reason Lens": "600.81"
+  },
+  {
+    "Model": "command-r",
+    "Mode": "greedy",
+    "Acc": "61.12",
+    "No answer": "0.04",
+    "Total": 2778,
+    "Reason Lens": "382.23"
   },
   {
     "Model": "Llama-3-Instruct-8B-SimPO-v0.2",

@@ -24,12 +24,16 @@
 |           Athene-70B           | greedy | 86.66 |     0.3     |  1319   |    253.53     |
 |        Yi-1.5-34B-Chat         | greedy | 84.08 |    0.08     |  1319   |    553.47     |
 |   Mistral-Nemo-Instruct-2407   | greedy | 82.79 |      0      |  1319   |    349.81     |
+|        yi-large-preview        | greedy | 82.64 |      0      |  1319   |    514.25     |
 |       gpt-3.5-turbo-0125       | greedy | 80.36 |      0      |  1319   |    350.97     |
+|         command-r-plus         | greedy | 80.14 |    0.08     |  1319   |    294.08     |
 |       Qwen2-7B-Instruct        | greedy | 80.06 |      0      |  1319   |     452.6     |
 |            yi-large            | greedy | 80.06 |      0      |  1319   |    479.87     |
 |    Meta-Llama-3-8B-Instruct    | greedy | 78.47 |      0      |  1319   |    429.39     |
 |         Yi-1.5-9B-Chat         | greedy | 76.42 |    0.08     |  1319   |    485.39     |
 |     Phi-3-mini-4k-instruct     | greedy | 75.51 |      0      |  1319   |    462.53     |
 |      reka-flash-20240226       | greedy | 74.68 |    0.45     |  1319   |    460.06     |
+|   Mixtral-8x7B-Instruct-v0.1   | greedy | 70.13 |    2.27     |  1319   |    361.12     |
 | Llama-3-Instruct-8B-SimPO-v0.2 | greedy | 57.54 |    2.05     |  1319   |    505.25     |
+|           command-r            | greedy | 52.99 |      0      |  1319   |    294.43     |
 |      Qwen2-1.5B-Instruct       | greedy | 43.37 |    4.78     |  1319   |    301.67     |
