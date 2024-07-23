@@ -4,8 +4,10 @@ import os
 from tabulate import tabulate 
 import re
 import sys 
-from eval_utils import load_model_results, extract_values_from_json, extract_last_complete_json, extract_first_complete_json
+from eval_utils import load_model_results, extract_values_from_json, extract_first_complete_json, model_specific_extraction
  
+
+
 
 def santize_math_answers(answer):
     # ignore symbols like $ 
@@ -29,25 +31,30 @@ def eval_model(model, filepath):
 
     solved_examples = 0 
     num_total_examples = len(data) 
-    no_asnwer = 0  
+    no_answer = 0  
     
     reason_lens = []
     for item in data:  
         # Read and Parse the prediction from model output
-        prediction_str = item["output"][0]
-        # prediction_json = extract_last_complete_json(prediction_str)
+        prediction_str = item["output"][0] 
         prediction_json = extract_first_complete_json(prediction_str)
         if prediction_json is None or "answer" not in prediction_json:
             prediction_json = extract_values_from_json(prediction_str, allow_no_quotes=True)
             # print("-")
         if prediction_json is None or "answer" not in prediction_json: 
-            no_asnwer += 1 
-            if False and  "Athene" in model: # used for debugging the format of the output
-                print("--------------------------")
-                print(f"No answer for {item['id']}")
-                print(prediction_str)
-                print(prediction_json)
-            continue 
+            try_extracted_answer = model_specific_extraction(model, prediction_str)
+            if try_extracted_answer:
+                # print(f"Extracted answer from model: {try_extracted_answer}")
+                prediction_json["answer"] = try_extracted_answer
+            else:
+                no_answer += 1 
+                if False and  "3.1" in model: # used for debugging the format of the output
+                    print("--------------------------")
+                    print(f"No answer for {item['id']}")
+                    print(prediction_str)
+                    print(prediction_json)
+                    print(correct_answer)
+                continue 
         reason = prediction_json.get("reasoning", "")
         model_answer = str(prediction_json["answer"])
         correct_answer = item["answer"].replace("#", "").strip()
@@ -71,7 +78,7 @@ def eval_model(model, filepath):
                         print("--- correct")
             else:
                 # To debug the wrong examples
-                if True and "gpt-4o-2024-05-13" in model:
+                if False and "3.1" in model:
                     print(f"Model: {model_answer}, Truth: {correct_answer}")
                     print(f"Extracted from model: {first_number_in_model_answer.group()}, Extracted from truth: {first_number_in_correct_answer.group()}")
                     print("--- incorrect")
@@ -95,7 +102,7 @@ def eval_model(model, filepath):
     result["Model"] = model.split("%")[0]
     result["Mode"] = model.split("%")[1]
     result["Acc"] = f"{solved_examples/num_total_examples*100:.2f}"
-    result["No answer"] = f"{no_asnwer/num_total_examples*100:.2f}"
+    result["No answer"] = f"{no_answer/num_total_examples*100:.2f}"
     result["Total"] = num_total_examples
     result["Reason Lens"] = f"{sum(reason_lens)/len(reason_lens):.2f}"
     return result

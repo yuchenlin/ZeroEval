@@ -1,5 +1,13 @@
 [
   {
+    "Model": "Llama-3.1-405B-Instruct-Turbo",
+    "Mode": "greedy",
+    "Acc": "95.91",
+    "No answer": "0.08",
+    "Total": 1319,
+    "Reason Lens": "365.07"
+  },
+  {
     "Model": "claude-3-5-sonnet-20240620",
     "Mode": "greedy",
     "Acc": "95.60",
@@ -214,6 +222,14 @@
     "No answer": "0.45",
     "Total": 1319,
     "Reason Lens": "460.06"
+  },
+  {
+    "Model": "Meta-Llama-3.1-8B-Instruct",
+    "Mode": "greedy",
+    "Acc": "72.33",
+    "No answer": "0.38",
+    "Total": 1319,
+    "Reason Lens": "483.41"
   },
   {
     "Model": "Mixtral-8x7B-Instruct-v0.1",

@@ -3,9 +3,25 @@ import os
 import json 
 
 
+def model_specific_extraction(model_name, prediction_str): 
+    if "Llama-3.1" in model_name:
+        if "boxed" in prediction_str:
+            # print(prediction_str)
+            # extract "$\boxed{36}$" --> 36 
+            # print(prediction_str)
+            match = re.search(r'\\boxed{([\w\d]+)}', prediction_str)
+            if match:
+                return {"answer": match.group(1)}
+    return None
+
+
 def load_model_results(run_name_folders):
     model_results = {}
+    
     for run_name, folder in run_name_folders.items():
+        if not os.path.exists(folder):
+            print(f"Folder {folder} does not exist.")
+            continue
         # iterate all json files under the folder 
         for filename in os.listdir(folder):
             filepath = os.path.join(folder, filename)

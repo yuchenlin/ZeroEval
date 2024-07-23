@@ -6,6 +6,7 @@
 
 |             Model              |  Mode  |  Acc  |  No answer  |  Total  |  Reason Lens  |
 |--------------------------------|--------|-------|-------------|---------|---------------|
+| Llama-3.1-405B-Instruct-Turbo  | greedy | 95.91 |    0.08     |  1319   |    365.07     |
 |   claude-3-5-sonnet-20240620   | greedy | 95.6  |      0      |  1319   |    465.19     |
 |     claude-3-opus-20240229     | greedy | 95.6  |      0      |  1319   |    410.62     |
 |       gpt-4o-2024-05-13        | greedy | 95.38 |      0      |  1319   |    479.98     |
@@ -33,6 +34,7 @@
 |         Yi-1.5-9B-Chat         | greedy | 76.42 |    0.08     |  1319   |    485.39     |
 |     Phi-3-mini-4k-instruct     | greedy | 75.51 |      0      |  1319   |    462.53     |
 |      reka-flash-20240226       | greedy | 74.68 |    0.45     |  1319   |    460.06     |
+|   Meta-Llama-3.1-8B-Instruct   | greedy | 72.33 |    0.38     |  1319   |    483.41     |
 |   Mixtral-8x7B-Instruct-v0.1   | greedy | 70.13 |    2.27     |  1319   |    361.12     |
 | Llama-3-Instruct-8B-SimPO-v0.2 | greedy | 57.54 |    2.05     |  1319   |    505.25     |
 |           command-r            | greedy | 52.99 |      0      |  1319   |    294.43     |

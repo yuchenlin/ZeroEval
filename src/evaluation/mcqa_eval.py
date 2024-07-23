@@ -4,7 +4,7 @@ import os
 from tabulate import tabulate 
 import re
 import sys
-from eval_utils import load_model_results, extract_values_from_json, extract_first_complete_json
+from eval_utils import load_model_results, extract_values_from_json, extract_first_complete_json, model_specific_extraction
  
 
 
@@ -16,7 +16,7 @@ def eval_model(model, filepath):
 
     solved_examples = 0 
     num_total_examples = len(data) 
-    no_asnwer = 0  
+    no_answer = 0  
     
     reason_lens = []
     for item in data:  
@@ -27,12 +27,18 @@ def eval_model(model, filepath):
         if prediction_json is None or "answer" not in prediction_json:
             prediction_json = extract_values_from_json(prediction_str, allow_no_quotes=True)
         if prediction_json is None or "answer" not in prediction_json or prediction_json["answer"] is None or prediction_json["answer"] == "": 
-            no_asnwer += 1 
-            if False and  "claude-3-5-sonnet-20240620" in model:
-                print(f"No answer for {item['id']}")
-                print(prediction_str)
-                print(prediction_json)
-            continue 
+            try_extracted_answer = model_specific_extraction(model, prediction_str)
+            if try_extracted_answer:
+                # print(f"Extracted answer from model: {try_extracted_answer}")
+                prediction_json["answer"] = try_extracted_answer
+            else:
+                no_answer += 1 
+                if True and "Llama-3.1" in model:
+                    print(f"No answer for {item['id']}")
+                    print(prediction_str)
+                    print(prediction_json)
+                    print(correct_answer)
+                continue 
         reason = prediction_json.get("reasoning", "")
         model_answer = prediction_json["answer"]
         correct_answer = item["correct_answer"]
@@ -46,7 +52,7 @@ def eval_model(model, filepath):
     result["Model"] = model.split("%")[0]
     result["Mode"] = model.split("%")[1]
     result["Acc"] = f"{solved_examples/num_total_examples*100:.2f}"
-    result["No answer"] = f"{no_asnwer/num_total_examples*100:.2f}"
+    result["No answer"] = f"{no_answer/num_total_examples*100:.2f}"
     result["Total"] = num_total_examples
     result["Reason Lens"] = f"{sum(reason_lens)/len(reason_lens):.2f}"
     return result
