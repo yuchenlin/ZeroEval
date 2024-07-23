@@ -50,7 +50,7 @@ bash zero_eval_api.sh -d mmlu-redux -f anthropic -m anthropic/claude-3-sonnet-20
 bash zero_eval_api.sh -d mmlu-redux -f openai -m google/gemma-2-9b-it@nvidia -p gemma-2-9b-it@nvidia -s 8
 bash zero_eval_api.sh -d mmlu-redux -f openai -m google/gemma-2-27b-it@nvidia -p gemma-2-27b-it@nvidia -s 8
 
-bash zero_eval_api.sh -d mmlu-redux -f google -m google/gemini-1.5-pro -p gemini-1.5-pro -s 8
+bash zero_eval_api.sh -d mmlu-redux -f google -m google/-1.5-pro -p gemini-1.5-pro -s 8
 bash zero_eval_api.sh -d mmlu-redux -f google -m google/gemini-1.5-flash -p gemini-1.5-flash -s 8
 
 

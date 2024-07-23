@@ -14,6 +14,8 @@ def mapping_task_names(data_name):
         dataset = load_dataset("allenai/ZebraLogicBench", "grid_mode", split="test")
     elif data_name == "alpaca_eval":
         dataset = load_dataset("tatsu-lab/alpaca_eval", "alpaca_eval", split="eval")  
+    elif data_name == "numersense-v2":
+        dataset = load_dataset("yuchenlin/zero-eval", "numersense-v2", split="test")
     else:
         raise ValueError(f"Data name {data_name} not supported")
     return dataset, id_name
@@ -29,6 +31,10 @@ def prompt_generation(data_name, data_item, args):
     elif data_name in ["zebra-grid"]:
         prompt = apply_lgp_grid_template(data_item) 
     elif data_name in ["gsm"]:
+        prompt = apply_oeqa_template(data_item)
+    elif data_name in ["numersense-v2"]:
+        if "no_cot" in args.run_name:
+            prompt = apply_oeqa_template(data_item, cot=False)
         prompt = apply_oeqa_template(data_item)
     else:
         raise ValueError(f"Data name {data_name} not supported")

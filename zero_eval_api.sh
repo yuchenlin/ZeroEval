@@ -17,9 +17,10 @@ TEMP=0
 TOP_P=1.0
 rp=1.0
 engine_name="openai"
+MAX_TOKENS=4096; 
 
 # Parse named arguments
-while getopts ":d:m:p:s:r:t:o:e:f:b:" opt; do
+while getopts ":d:m:p:s:r:t:o:e:f:b:x:" opt; do
   case $opt in
     d) DATA_NAME="$OPTARG"
     ;;
@@ -41,6 +42,8 @@ while getopts ":d:m:p:s:r:t:o:e:f:b:" opt; do
     ;;
     b) batch_size="$OPTARG"
     ;;
+    x) MAX_TOKENS="$OPTARG"
+    ;;
     \?) echo "Invalid option -$OPTARG" >&2
     ;;
   esac
@@ -56,7 +59,6 @@ fi
 
 
 
-MAX_TOKENS=4096; 
 batch_size=4; 
 CACHE_DIR=${HF_HOME:-"default"}
 # output_dir="result_dirs/${DATA_NAME}/cot=${cot}/" 
@@ -77,6 +79,7 @@ if [ $n_shards -eq 1 ]; then
         --data_name $DATA_NAME \
         --engine $engine_name \
         --model_name $model_name \
+        --run_name $run_name \
         --top_p $TOP_P --temperature $TEMP --repetition_penalty $rp \
         --batch_size $batch_size --max_tokens $MAX_TOKENS \
         --output_folder $output_dir/  
@@ -92,6 +95,7 @@ elif [ $n_shards -gt 1 ]; then
             --data_name $DATA_NAME \
             --engine $engine_name \
             --model_name $model_name \
+            --run_name $run_name \
             --model_pretty_name $model_pretty_name \
             --top_p $TOP_P --temperature $TEMP --repetition_penalty $rp \
             --batch_size $batch_size --max_tokens $MAX_TOKENS \

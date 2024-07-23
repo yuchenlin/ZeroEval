@@ -3,7 +3,7 @@ import json
 
 from templates.ZEBRA_GRID import ZEBRA_GRID
 from templates.MCQA import MCQA
-from templates.OEQA import OEQA
+from templates.OEQA import OEQA, OEQA_DIRECT
 
 
 def generate_choice_string(choices):
@@ -20,13 +20,15 @@ def apply_mc_template(item):
     prompt_str = prompt_str.replace("{choices}", generate_choice_string(choices))
     return prompt_str
 
-def apply_oeqa_template(item):
+def apply_oeqa_template(item, cot=True):
     question = item["question"]
-    prompt_str = OEQA[:]
+    if cot:
+        prompt_str = OEQA[:]
+    else:
+        prompt_str = OEQA_DIRECT[:]
     prompt_str = prompt_str.replace("{question}", question) 
     return prompt_str
-    
-
+ 
 def apply_lgp_grid_template(item):
     prompt_str = ZEBRA_GRID[:] 
     prompt_str = prompt_str.replace("{puzzle}", item["puzzle"])

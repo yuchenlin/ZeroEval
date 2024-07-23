@@ -65,6 +65,8 @@ bash zero_eval_api.sh -d zebra-grid -f openai -m deepseek-coder -p deepseek-code
 bash zero_eval_api.sh -d zebra-grid -f openai -m yi-large -p yi-large -s 8
 bash zero_eval_api.sh -d zebra-grid -f openai -m yi-large-preview -p yi-large-preview -s 8
 
+bash zero_eval_api.sh -d zebra-grid -f together -m meta-llama/Meta-Llama-3.1-405B-Instruct-Turbo -p Llama-3.1-405B-Instruct-Turbo -s 8 -x 2048
+
 ```
 
  
