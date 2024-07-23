@@ -27,7 +27,7 @@ zebra_data = replace_model_names(zebra_data)
 # Add suffixes to the columns
 gsm_data = gsm_data[['Model', 'Acc']]
 gsm_data = gsm_data.add_suffix('_gsm')
-gsm_data = gsm_data.rename(columns={'Model_gsm': 'Model'}).rename(columns={'Acc_gsm': 'GSM'})
+gsm_data = gsm_data.rename(columns={'Model_gsm': 'Model'}).rename(columns={'Acc_gsm': 'GSM8K'})
 
 mmlu_data = mmlu_data[['Model', 'Acc']]
 mmlu_data = mmlu_data.add_suffix('_mmlu')
@@ -35,7 +35,7 @@ mmlu_data = mmlu_data.rename(columns={'Model_mmlu': 'Model'}).rename(columns={'A
 
 # remove the rows when the mode = sampling 
 zebra_data = zebra_data[zebra_data['Mode'] != 'sampling']
-zebra_data = zebra_data[['Model', "Easy Puzzle Acc"]] #  'Puzzle Acc', 
+zebra_data = zebra_data[['Model', "Easy Puzzle Acc", 'Puzzle Acc']] #  'Puzzle Acc', 
 zebra_data = zebra_data.add_suffix('_zebra')
 zebra_data = zebra_data.rename(columns={'Model_zebra': 'Model'}).rename(columns={'Puzzle Acc_zebra': 'ZebraLogic<br/>-Full'}).rename(columns={'Easy Puzzle Acc_zebra': 'ZebraLogic<br/>-Easy'})
 
