@@ -22,6 +22,17 @@
     "Reason Lens": "1153.83"
   },
   {
+    "Model": "Llama-3.1-405B-Instruct-Turbo",
+    "Mode": "greedy",
+    "Puzzle Acc": "32.60",
+    "Cell Acc": "45.80",
+    "No answer": "12.50",
+    "Easy Puzzle Acc": "87.14",
+    "Hard Puzzle Acc": "11.39",
+    "Total Puzzles": 1000,
+    "Reason Lens": "314.66"
+  },
+  {
     "Model": "gpt-4o-2024-05-13",
     "Mode": "sampling",
     "Puzzle Acc": "30.80",

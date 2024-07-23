@@ -21,6 +21,7 @@
 |   Meta-Llama-3-70B-Instruct    | greedy | 78.01 |    0.11     |  2778   |    520.77     |
 |        gemini-1.5-flash        | greedy | 77.36 |    1.26     |  2778   |    583.45     |
 |           Athene-70B           | greedy | 76.64 |    0.04     |  2778   |    552.61     |
+| Llama-3.1-405B-Instruct-Turbo  | greedy | 76.53 |    0.76     |  2778   |    449.71     |
 |       reka-core-20240501       | greedy | 76.42 |    0.76     |  2778   |    701.67     |
 |    gemma-2-27b-it@together     | greedy | 75.67 |    0.61     |  2778   |    446.51     |
 |    claude-3-sonnet-20240229    | greedy | 74.87 |    0.07     |  2778   |    671.75     |

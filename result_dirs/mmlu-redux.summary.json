@@ -120,6 +120,14 @@
     "Reason Lens": "552.61"
   },
   {
+    "Model": "Llama-3.1-405B-Instruct-Turbo",
+    "Mode": "greedy",
+    "Acc": "76.53",
+    "No answer": "0.76",
+    "Total": 2778,
+    "Reason Lens": "449.71"
+  },
+  {
     "Model": "reka-core-20240501",
     "Mode": "greedy",
     "Acc": "76.42",

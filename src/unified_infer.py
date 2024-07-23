@@ -72,9 +72,22 @@ if __name__ == "__main__":
         args.tokenizer_name = args.model_name
     if args.engine == "vllm":
         from vllm import LLM, SamplingParams
+        if "Meta-Llama-3.1" in args.model_name:
+            rope_scaling = {
+                "factor": 8.0,
+                "low_freq_factor": 1.0,
+                "high_freq_factor": 4.0,
+                "original_max_position_embeddings": 8192,
+                "rope_type": "llama3",
+                "type": "yarn"
+            }
+        else:
+            rope_scaling = None
         llm = LLM(model=args.model_name, tokenizer=args.tokenizer_name, tensor_parallel_size=args.tensor_parallel_size,
                         download_dir=args.download_dir, dtype=args.dtype, tokenizer_mode=args.tokenizer_mode,
-                        max_model_len=args.max_model_len, trust_remote_code=True, gpu_memory_utilization=args.gpu_memory_utilization,
+                        max_model_len=args.max_model_len, trust_remote_code=True, 
+                        gpu_memory_utilization=args.gpu_memory_utilization, 
+                        rope_scaling=rope_scaling
                         )
     elif args.engine == "hf":
         llm = DecoderOnlyModelManager(args.model_name, args.model_name, cache_dir=args.download_dir,
@@ -176,6 +189,7 @@ if __name__ == "__main__":
     todo_inputs = model_inputs[num_skipped:]
 
     if args.engine == "vllm":
+
         sampling_params = SamplingParams(top_p=args.top_p, temperature=args.temperature, repetition_penalty=args.repetition_penalty, max_tokens=args.max_tokens,
                                          stop=stop_words, stop_token_ids=stop_token_ids, include_stop_str_in_output=include_stop_str_in_output, n=args.num_outputs)
         for cur_id in tqdm(range(0, len(todo_inputs), args.batch_size), desc=f"Generating {args.model_name} from {args.start_index} to {args.end_index}"):
