@@ -25,8 +25,10 @@ engine_name="vllm"
 batch_size=4
 gpu_memory_utilization=0.9
 
+MAX_TOKENS=4096; 
+
 # Parse named arguments
-while getopts ":d:m:p:s:r:t:o:e:f:b:" opt; do
+while getopts ":d:m:p:s:r:t:o:e:f:b:x:" opt; do
   case $opt in
     d) DATA_NAME="$OPTARG"
     ;;
@@ -48,6 +50,8 @@ while getopts ":d:m:p:s:r:t:o:e:f:b:" opt; do
     ;;
     b) batch_size="$OPTARG"
     ;;
+    x) MAX_TOKENS="$OPTARG"
+    ;;
     \?) echo "Invalid option -$OPTARG" >&2
     ;;
   esac
@@ -60,7 +64,6 @@ if [ -z "$DATA_NAME" ] || [ -z "$model_name" ] || [ -z "$model_pretty_name" ] ||
 fi
 
 
-MAX_TOKENS=4096; 
 
 CACHE_DIR=${HF_HOME:-"default"}
 if [ "$run_name" = "default" ]; then
@@ -94,6 +97,7 @@ if [ $n_shards -eq 1 ]; then
         --engine $engine_name \
         --data_name $DATA_NAME \
         --model_name $model_name \
+        --run_name $run_name \
         --gpu_memory_utilization $gpu_memory_utilization \
         --use_hf_conv_template --use_imend_stop \
         --download_dir $CACHE_DIR \
@@ -118,6 +122,7 @@ elif [ $n_shards -gt 1 ]; then
             --shard_id $shard_id \
             --data_name $DATA_NAME \
             --model_name $model_name \
+            --run_name $run_name \
             --gpu_memory_utilization $gpu_memory_utilization \
             --use_hf_conv_template --use_imend_stop \
             --download_dir $CACHE_DIR \

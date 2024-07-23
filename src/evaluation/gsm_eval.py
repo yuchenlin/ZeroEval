@@ -3,7 +3,7 @@ from collections import defaultdict
 import os 
 from tabulate import tabulate 
 import re
- 
+import sys 
 from eval_utils import load_model_results, extract_values_from_json, extract_last_complete_json, extract_first_complete_json
  
 
@@ -71,7 +71,7 @@ def eval_model(model, filepath):
                         print("--- correct")
             else:
                 # To debug the wrong examples
-                if False and "SimPO" in model:
+                if True and "gpt-4o-2024-05-13" in model:
                     print(f"Model: {model_answer}, Truth: {correct_answer}")
                     print(f"Extracted from model: {first_number_in_model_answer.group()}, Extracted from truth: {first_number_in_correct_answer.group()}")
                     print("--- incorrect")
@@ -135,8 +135,12 @@ def gen_results(run_name_folders):
 
 
 if __name__ == "__main__":
-    data_name = "gsm"
+
+    data_name = "gsm" # by default if there is no sys.argv[1]
+    if len(sys.argv) > 1:
+        data_name = sys.argv[1]
     run_name_folders = {
         "greedy": f"result_dirs/{data_name}", 
+        "sampling": f"result_dirs/{data_name}/sampling",
     }  
     gen_results(run_name_folders)

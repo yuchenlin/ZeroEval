@@ -49,7 +49,8 @@ def parse_args():
     parser.add_argument('--use_imend_stop', action='store_true')
 
     # only for MT-bench; not useful for other benchmarks
-    parser.add_argument('--cot', type=str, default="True")
+    # parser.add_argument('--cot', type=str, default="True")
+    parser.add_argument('--run_name', type=str, default="")
     return parser.parse_args()
 
 
