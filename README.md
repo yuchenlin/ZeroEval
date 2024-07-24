@@ -121,3 +121,7 @@ If you find ZeroEval useful, please cite it as follows in your publication:
     year = {2024}
 }
 ```
+
+## Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=yuchenlin/ZeroEval&type=Date)](https://star-history.com/#yuchenlin/ZeroEval&Date)
