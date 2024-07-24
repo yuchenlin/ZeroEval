@@ -33,7 +33,8 @@ def eval_model(model, filepath):
                 prediction_json["answer"] = try_extracted_answer
             else:
                 no_answer += 1 
-                if True and "Llama-3.1" in model:
+                # print the no answer examples for debugging 
+                if False and "Llama-3.1" in model:
                     print(f"No answer for {item['id']}")
                     print(prediction_str)
                     print(prediction_json)
@@ -46,6 +47,18 @@ def eval_model(model, filepath):
         label_of_correct_answer = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"[index_of_correct_answer]
         if  model_answer == label_of_correct_answer or f"{label_of_correct_answer})" in model_answer:
             solved_examples += 1
+        else:
+            if True and "Llama-3.1" in model: # for debugging 
+                print(f"## Example ID {item['id']}")
+                # print(f"Input: {item['chat_history'][0]}")
+                print(f"\n### Question:\n\n {item['question']}")
+                print(f"\n### Choices:\n\n")
+                for choice_index, choice in enumerate(item["choices"]):
+                    print(f"- {chr(65+choice_index)}) {choice}")
+                print(f"\n### Correct Answer:\n\n {label_of_correct_answer}")
+                print(f"\n### Model's reasoning:\n\n {reason}")
+                print(f"\n### Model's prediction:\n\n {model_answer}")
+                print("\n\n--------------------------------\n\n")
         reason_lens.append(len(reason))
  
     result = {}
