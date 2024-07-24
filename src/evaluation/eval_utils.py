@@ -11,7 +11,7 @@ def model_specific_extraction(model_name, prediction_str):
             # print(prediction_str)
             match = re.search(r'\\boxed{([\w\d]+)}', prediction_str)
             if match:
-                return {"answer": match.group(1)}
+                return match.group(1)
     return None
 
 
