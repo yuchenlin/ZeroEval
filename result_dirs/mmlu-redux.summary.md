@@ -8,6 +8,7 @@
 |--------------------------------|--------|-------|-------------|---------|---------------|
 |       gpt-4o-2024-05-13        | greedy | 88.01 |    0.14     |  2778   |    629.79     |
 |   claude-3-5-sonnet-20240620   | greedy |  86   |    0.18     |  2778   |     907.1     |
+| Llama-3.1-405B-Instruct-Turbo  | greedy | 85.64 |    0.76     |  2778   |    449.71     |
 |     gpt-4-turbo-2024-04-09     | greedy | 85.31 |    0.04     |  2778   |    631.38     |
 |         gemini-1.5-pro         | greedy | 82.76 |    1.94     |  2778   |     666.7     |
 |     claude-3-opus-20240229     | greedy | 82.54 |    0.58     |  2778   |    500.35     |
@@ -21,7 +22,6 @@
 |   Meta-Llama-3-70B-Instruct    | greedy | 78.01 |    0.11     |  2778   |    520.77     |
 |        gemini-1.5-flash        | greedy | 77.36 |    1.26     |  2778   |    583.45     |
 |           Athene-70B           | greedy | 76.64 |    0.04     |  2778   |    552.61     |
-| Llama-3.1-405B-Instruct-Turbo  | greedy | 76.53 |    0.76     |  2778   |    449.71     |
 |       reka-core-20240501       | greedy | 76.42 |    0.76     |  2778   |    701.67     |
 |    gemma-2-27b-it@together     | greedy | 75.67 |    0.61     |  2778   |    446.51     |
 |    claude-3-sonnet-20240229    | greedy | 74.87 |    0.07     |  2778   |    671.75     |
@@ -34,8 +34,8 @@
 |       Qwen2-7B-Instruct        | greedy | 66.92 |    0.72     |  2778   |    533.15     |
 |   Mistral-Nemo-Instruct-2407   | greedy | 66.88 |    0.47     |  2778   |    464.19     |
 |         Yi-1.5-9B-Chat         | greedy | 65.05 |    4.61     |  2778   |    542.87     |
+|   Meta-Llama-3.1-8B-Instruct   | greedy | 64.79 |    1.94     |  2778   |    463.76     |
 |      reka-flash-20240226       | greedy | 64.72 |    0.32     |  2778   |    659.25     |
-|   Meta-Llama-3.1-8B-Instruct   | greedy | 63.61 |    1.94     |  2778   |    463.76     |
 |   Mixtral-8x7B-Instruct-v0.1   | greedy | 63.17 |    5.51     |  2778   |    324.31     |
 |    Meta-Llama-3-8B-Instruct    | greedy | 61.66 |    0.97     |  2778   |    600.81     |
 |           command-r            | greedy | 61.12 |    0.04     |  2778   |    382.23     |
