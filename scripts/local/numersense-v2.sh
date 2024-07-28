@@ -19,3 +19,6 @@ bash zero_eval_api.sh -d numersense-v2 -f google -m google/gemini-1.5-flash -p g
 bash zero_eval_api.sh -d numersense-v2 -f anthropic -m anthropic/claude-3-5-sonnet-20240620 -p claude-3-5-sonnet-20240620 -s 8 
 
 # python src/evaluation/gsm_eval.py numersense-v2
+
+
+bash zero_eval_api.sh -d numersense-v2 -f openai -m openai/gpt-4o-mini-2024-07-18 -p gpt-4o-mini-2024-07-18 -s 8 -r "greedy@no_cot"

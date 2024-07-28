@@ -294,7 +294,7 @@ if __name__ == "__main__":
                 else:
                     google_msg.append({"role":"model","parts": [chat_item,]})
             google_args = {
-                "model": args.model_pretty_name,
+                "model": args.model_name,
                 "messages": google_msg,
                 'generation_config': {
                     "temperature": args.temperature,
@@ -325,7 +325,7 @@ if __name__ == "__main__":
                 else:
                     cohere_msg.append({"role":"Chatbot","message": chat_item})
             cohere_args = {
-                "model": args.model_pretty_name,
+                "model": args.model_name,
                 "prompt": None,
                 "system_msg": system_msg,
                 "messages": cohere_msg,
@@ -354,7 +354,7 @@ if __name__ == "__main__":
                 else:
                     mistral_msg.append({"role":"assistant","content": chat_item})
             mistral_args = {
-                "model": args.model_pretty_name,
+                "model": args.model_name,
                 "prompt": None,
                 "messages": mistral_msg,
                 "top_p": args.top_p,
@@ -383,7 +383,7 @@ if __name__ == "__main__":
                 else:
                     anthropic_msg.append({"role":"assistant","content": chat_item})
             anthropic_args = {
-                "model": args.model_pretty_name,
+                "model": args.model_name,
                 "prompt": None,
                 "system_msg": system_msg,
                 "messages": anthropic_msg,
@@ -413,7 +413,7 @@ if __name__ == "__main__":
                 else:
                     reka_msg.append({"role":"assistant","content": chat_item})
             reka_args = {
-                "model": args.model_pretty_name,
+                "model": args.model_name,
                 "messages": reka_msg,
                 "top_p": args.top_p,
                 "temperature": args.temperature,
