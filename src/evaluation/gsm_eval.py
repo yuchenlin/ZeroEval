@@ -149,5 +149,6 @@ if __name__ == "__main__":
     run_name_folders = {
         "greedy": f"result_dirs/{data_name}", 
         "sampling": f"result_dirs/{data_name}/sampling",
+        "greedy@no_cot": f"result_dirs/{data_name}/greedy@no_cot",
     }  
     gen_results(run_name_folders)

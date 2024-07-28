@@ -49,6 +49,14 @@
   },
   {
     "Model": "gpt-4o-mini-2024-07-18",
+    "Mode": "greedy@no_cot",
+    "Acc": "88.87",
+    "No answer": "0.00",
+    "Total": 512,
+    "Reason Lens": "337.13"
+  },
+  {
+    "Model": "gpt-4o-mini-2024-07-18",
     "Mode": "sampling",
     "Acc": "85.55",
     "No answer": "0.00",
@@ -58,10 +66,10 @@
   {
     "Model": "Meta-Llama-3-70B-Instruct",
     "Mode": "greedy",
-    "Acc": "82.14",
+    "Acc": "84.57",
     "No answer": "0.00",
-    "Total": 308,
-    "Reason Lens": "255.22"
+    "Total": 512,
+    "Reason Lens": "250.10"
   },
   {
     "Model": "claude-3-5-sonnet-20240620",
