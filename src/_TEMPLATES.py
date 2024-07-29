@@ -78,6 +78,17 @@ if __name__ == "__main__":
             print("-"*100) 
             break
 
+    def crux_test():
+        dataset = load_dataset("flydust/zero-eval", "crux", split="test")
+        dataset = list(dataset)
+        # shuffule
+        random.shuffle(dataset)
+        for item in dataset:
+            print(apply_oeqa_template(item, cot=True))
+            print("-"*100) 
+            break
+
 
     # mcqa_test()
-    gsm_test()
+    # gsm_test()
+    crux_test()
