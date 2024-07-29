@@ -1,0 +1,18 @@
+[
+  {
+    "Model": "Meta-Llama-3-8B-Instruct",
+    "Mode": "greedy",
+    "Acc": "34.88",
+    "No answer": "0.25",
+    "Total": 800,
+    "Reason Lens": "411.06"
+  },
+  {
+    "Model": "Meta-Llama-3.1-8B-Instruct",
+    "Mode": "greedy",
+    "Acc": "33.50",
+    "No answer": "0.62",
+    "Total": 800,
+    "Reason Lens": "541.61"
+  }
+]
