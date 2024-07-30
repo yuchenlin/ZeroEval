@@ -48,6 +48,14 @@
     "Reason Lens": "463.71"
   },
   {
+    "Model": "Meta-Llama-3.1-70B-Instruct",
+    "Mode": "greedy",
+    "Acc": "94.16",
+    "No answer": "0.08",
+    "Total": 1319,
+    "Reason Lens": "453.94"
+  },
+  {
     "Model": "deepseek-chat",
     "Mode": "greedy",
     "Acc": "93.93",

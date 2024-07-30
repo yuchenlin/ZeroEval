@@ -33,7 +33,7 @@ def parse_args():
     parser.add_argument('--temperature',default=0, type=float)
     parser.add_argument('--repetition_penalty',default=1, type=float)
     parser.add_argument('--max_tokens',default=7500, type=int)
-    parser.add_argument('--max_model_len',default=None, type=int)
+    parser.add_argument('--max_model_len',default=-1, type=int)
     parser.add_argument('--num_shards', default=1, type=int)
     parser.add_argument('--shard_id', default=0, type=int)
     parser.add_argument('--start_index',default=0, type=int) # 0 means from the beginning of the list
@@ -71,23 +71,12 @@ if __name__ == "__main__":
     if args.tokenizer_name == "auto":
         args.tokenizer_name = args.model_name
     if args.engine == "vllm":
-        from vllm import LLM, SamplingParams
-        # if "Meta-Llama-3.1" in args.model_name:
-        #     rope_scaling = {
-        #         "factor": 8.0,
-        #         "low_freq_factor": 1.0,
-        #         "high_freq_factor": 4.0,
-        #         "original_max_position_embeddings": 8192,
-        #         "rope_type": "llama3",
-        #         "type": "yarn"
-        #     }
-        # else:
-        #     rope_scaling = None
+        from vllm import LLM, SamplingParams 
+        max_model_len = None if args.max_model_len == -1 else args.max_model_len
         llm = LLM(model=args.model_name, tokenizer=args.tokenizer_name, tensor_parallel_size=args.tensor_parallel_size,
                         download_dir=args.download_dir, dtype=args.dtype, tokenizer_mode=args.tokenizer_mode,
-                        max_model_len=args.max_model_len, trust_remote_code=True, 
-                        gpu_memory_utilization=args.gpu_memory_utilization, 
-                        # rope_scaling=rope_scaling
+                        max_model_len=max_model_len, trust_remote_code=True, 
+                        gpu_memory_utilization=args.gpu_memory_utilization,  
                         )
     elif args.engine == "hf":
         llm = DecoderOnlyModelManager(args.model_name, args.model_name, cache_dir=args.download_dir,

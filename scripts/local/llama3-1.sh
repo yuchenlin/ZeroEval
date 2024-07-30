@@ -7,17 +7,17 @@
 
 
 
-bash zero_eval_local.sh -d gsm -m meta-llama/Meta-Llama-3.1-8B-Instruct -p Meta-Llama-3.1-8B-Instruct -s 4
-wait 
-bash zero_eval_local.sh -d mmlu-redux -m meta-llama/Meta-Llama-3.1-8B-Instruct -p Meta-Llama-3.1-8B-Instruct -s 4
-wait 
-bash zero_eval_local.sh -d zebra-grid -m meta-llama/Meta-Llama-3.1-8B-Instruct -p Meta-Llama-3.1-8B-Instruct -s 4
-wait 
+# bash zero_eval_local.sh -d gsm -m meta-llama/Meta-Llama-3.1-8B-Instruct -p Meta-Llama-3.1-8B-Instruct -s 4
+# wait 
+# bash zero_eval_local.sh -d mmlu-redux -m meta-llama/Meta-Llama-3.1-8B-Instruct -p Meta-Llama-3.1-8B-Instruct -s 4
+# wait 
+# bash zero_eval_local.sh -d zebra-grid -m meta-llama/Meta-Llama-3.1-8B-Instruct -p Meta-Llama-3.1-8B-Instruct -s 4
+# wait 
 
 
-# bash zero_eval_local.sh -d gsm -m meta-llama/Meta-Llama-3.1-70B-Instruct -p Meta-Llama-3.1-70B-Instruct -s 1
-# wait 
-# bash zero_eval_local.sh -d mmlu-redux -m meta-llama/Meta-Llama-3.1-70B-Instruct -p Meta-Llama-3.1-70B-Instruct -s 1
-# wait 
-# bash zero_eval_local.sh -d zebra-grid -m meta-llama/Meta-Llama-3.1-70B-Instruct -p Meta-Llama-3.1-70B-Instruct -s 1
-# wait 
+bash zero_eval_local.sh -d gsm -m meta-llama/Meta-Llama-3.1-70B-Instruct -p Meta-Llama-3.1-70B-Instruct -s 1
+wait 
+bash zero_eval_local.sh -d mmlu-redux -m meta-llama/Meta-Llama-3.1-70B-Instruct -p Meta-Llama-3.1-70B-Instruct -s 1 -b 1
+wait 
+bash zero_eval_local.sh -d zebra-grid -m meta-llama/Meta-Llama-3.1-70B-Instruct -p Meta-Llama-3.1-70B-Instruct -s 1 -b 1
+wait 
