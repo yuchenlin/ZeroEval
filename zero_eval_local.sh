@@ -1,16 +1,7 @@
-# DATA_NAME=$1
-# model_name=$2
-# model_pretty_name=$3
-# n_shards=$4
-# run_name=${5:-"default"}
-# TEMP=${6:-0}
-# TOP_P=${7:-1.0}
-# rp=${8:-1.0} 
-
-
 #!/bin/bash
 
 
+HF_HUB_ENABLE_HF_TRANSFER=1
 
 # Initialize default values
 DATA_NAME=""
@@ -23,7 +14,8 @@ TOP_P=1.0
 rp=1.0
 engine_name="vllm"
 batch_size=4
-gpu_memory_utilization=0.9
+
+gpu_memory_utilization=0.95
 
 MAX_TOKENS=4096; 
 

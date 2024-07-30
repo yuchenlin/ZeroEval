@@ -17,6 +17,9 @@ def replace_model_names(cur_data):
     cur_data['Model'] = cur_data['Model'].replace('gemma-2-27b-it@nvidia', 'gemma-2-27b-it') 
     cur_data['Model'] = cur_data['Model'].replace('deepseek-chat', 'deepseek-v2-chat-0628')
     cur_data['Model'] = cur_data['Model'].replace('deepseek-coder', 'deepseek-v2-coder-0614')
+    cur_data['Model'] = cur_data['Model'].replace('DeepSeek-Coder-V2-0724', 'deepseek-v2-coder-0724')
+    cur_data['Model'] = cur_data['Model'].replace('Llama-3.1-405B-Instruct-Turbo', 'Llama-3.1-405B-Inst-fp8')
+    
     return cur_data
 
 gsm_data = replace_model_names(gsm_data)

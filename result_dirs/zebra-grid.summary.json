@@ -55,6 +55,17 @@
     "Reason Lens": "1549.74"
   },
   {
+    "Model": "Mistral-Large-2",
+    "Mode": "greedy",
+    "Puzzle Acc": "29.00",
+    "Cell Acc": "47.64",
+    "No answer": "1.70",
+    "Easy Puzzle Acc": "80.36",
+    "Hard Puzzle Acc": "9.03",
+    "Total Puzzles": 1000,
+    "Reason Lens": "1592.39"
+  },
+  {
     "Model": "gpt-4-turbo-2024-04-09",
     "Mode": "greedy",
     "Puzzle Acc": "28.40",
@@ -141,6 +152,17 @@
     "Hard Puzzle Acc": "4.17",
     "Total Puzzles": 1000,
     "Reason Lens": "1324.55"
+  },
+  {
+    "Model": "DeepSeek-Coder-V2-0724",
+    "Mode": "greedy",
+    "Puzzle Acc": "20.50",
+    "Cell Acc": "42.35",
+    "No answer": "3.40",
+    "Easy Puzzle Acc": "61.79",
+    "Hard Puzzle Acc": "4.44",
+    "Total Puzzles": 1000,
+    "Reason Lens": "1230.63"
   },
   {
     "Model": "gpt-4o-mini-2024-07-18",
@@ -308,6 +330,17 @@
     "Reason Lens": "1078.29"
   },
   {
+    "Model": "Meta-Llama-3.1-8B-Instruct",
+    "Mode": "greedy",
+    "Puzzle Acc": "12.80",
+    "Cell Acc": "13.68",
+    "No answer": "61.50",
+    "Easy Puzzle Acc": "43.57",
+    "Hard Puzzle Acc": "0.83",
+    "Total Puzzles": 1000,
+    "Reason Lens": "1043.90"
+  },
+  {
     "Model": "gemma-2-9b-it@nvidia",
     "Mode": "greedy",
     "Puzzle Acc": "12.80",
@@ -372,17 +405,6 @@
     "Hard Puzzle Acc": "0.97",
     "Total Puzzles": 1000,
     "Reason Lens": "1282.40"
-  },
-  {
-    "Model": "Meta-Llama-3.1-8B-Instruct",
-    "Mode": "greedy",
-    "Puzzle Acc": "10.30",
-    "Cell Acc": "13.22",
-    "No answer": "59.20",
-    "Easy Puzzle Acc": "34.29",
-    "Hard Puzzle Acc": "0.97",
-    "Total Puzzles": 1000,
-    "Reason Lens": "893.32"
   },
   {
     "Model": "gpt-3.5-turbo-0125",
