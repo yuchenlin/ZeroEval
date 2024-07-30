@@ -32,6 +32,14 @@
     "Reason Lens": "631.38"
   },
   {
+    "Model": "Mistral-Large-2",
+    "Mode": "greedy",
+    "Acc": "82.97",
+    "No answer": "0.14",
+    "Total": 2778,
+    "Reason Lens": "490.94"
+  },
+  {
     "Model": "gemini-1.5-pro",
     "Mode": "greedy",
     "Acc": "82.76",
@@ -94,6 +102,14 @@
     "No answer": "0.11",
     "Total": 2778,
     "Reason Lens": "691.91"
+  },
+  {
+    "Model": "DeepSeek-Coder-V2-0724",
+    "Mode": "greedy",
+    "Acc": "80.24",
+    "No answer": "0.32",
+    "Total": 2778,
+    "Reason Lens": "650.65"
   },
   {
     "Model": "deepseek-coder",
@@ -200,6 +216,14 @@
     "Reason Lens": "357.92"
   },
   {
+    "Model": "Meta-Llama-3.1-8B-Instruct",
+    "Mode": "greedy",
+    "Acc": "67.24",
+    "No answer": "4.25",
+    "Total": 2778,
+    "Reason Lens": "732.70"
+  },
+  {
     "Model": "Qwen2-7B-Instruct",
     "Mode": "greedy",
     "Acc": "66.92",
@@ -222,14 +246,6 @@
     "No answer": "4.61",
     "Total": 2778,
     "Reason Lens": "542.87"
-  },
-  {
-    "Model": "Meta-Llama-3.1-8B-Instruct",
-    "Mode": "greedy",
-    "Acc": "64.79",
-    "No answer": "1.94",
-    "Total": 2778,
-    "Reason Lens": "463.76"
   },
   {
     "Model": "reka-flash-20240226",

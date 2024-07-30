@@ -48,7 +48,7 @@ def eval_model(model, filepath):
         if  model_answer == label_of_correct_answer or f"{label_of_correct_answer})" in model_answer:
             solved_examples += 1
         else:
-            if True and "Llama-3.1" in model: # for debugging 
+            if False and "Llama-3.1" in model: # for debugging 
                 print(f"## Example ID {item['id']}")
                 # print(f"Input: {item['chat_history'][0]}")
                 print(f"\n### Question:\n\n {item['question']}")

@@ -270,6 +270,10 @@ def openai_chat_request(
             client = OpenAI(api_key=os.environ.get("NVIDIA_API_KEY"), base_url="https://integrate.api.nvidia.com/v1")
             model = model.replace("@nvidia", "")
             nvidia_mode = True 
+        elif model.endswith("@lepton"):
+            assert os.environ.get("LEPTON_API_TOKEN") is not None, "Please set LEPTON_API_TOKEN in the environment variables."
+            client = openai.OpenAI(base_url="https://llama3-1-405b.lepton.run/api/v1/", api_key=os.environ.get('LEPTON_API_TOKEN'))
+            model = model.replace("@lepton", "")
             # print(model, client.api_key, client.base_url)
         else:
             client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
