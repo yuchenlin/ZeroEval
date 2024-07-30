@@ -70,8 +70,18 @@ if [[ $model_name == *"gemma-2"* ]]; then
     # if 27b in model name, then use 0.8 gpu memory utilization
     if [[ $model_name == *"27b"* ]]; then
         gpu_memory_utilization=0.8
+        echo "Using 0.8 gpu memory utilization"
     fi 
 fi
+
+max_model_len=-1
+
+if [[ $model_name == *"70B"* ]]; then
+        gpu_memory_utilization=0.9
+        max_model_len=4096
+        echo "Using 0.9 gpu memory utilization"
+fi 
+
 
 
 # If the n_shards is 1, then we can directly run the model
@@ -91,6 +101,7 @@ if [ $n_shards -eq 1 ]; then
         --model_name $model_name \
         --run_name $run_name \
         --gpu_memory_utilization $gpu_memory_utilization \
+        --max_model_len $max_model_len \
         --use_hf_conv_template --use_imend_stop \
         --download_dir $CACHE_DIR \
         --tensor_parallel_size $num_gpus \
