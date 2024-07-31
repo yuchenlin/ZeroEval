@@ -43,5 +43,6 @@
 |    Meta-Llama-3-8B-Instruct    | greedy | 61.66 |    0.97     |  2778   |    600.81     |
 |           command-r            | greedy | 61.12 |    0.04     |  2778   |    382.23     |
 | Llama-3-Instruct-8B-SimPO-v0.2 | greedy | 55.22 |    1.19     |  2778   |     450.6     |
+|         gemma-2-2b-it          | greedy | 51.94 |    2.59     |  2778   |    554.74     |
 |      Qwen2-1.5B-Instruct       | greedy | 41.11 |    7.74     |  2778   |    280.56     |
 |         Rex-v0.1-1.5B          | greedy | 39.09 |    4.79     |  2778   |    329.35     |

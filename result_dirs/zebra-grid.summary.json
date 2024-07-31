@@ -121,6 +121,17 @@
     "Reason Lens": "1165.90"
   },
   {
+    "Model": "Meta-Llama-3.1-70B-Instruct",
+    "Mode": "greedy",
+    "Puzzle Acc": "24.90",
+    "Cell Acc": "27.98",
+    "No answer": "43.00",
+    "Easy Puzzle Acc": "73.57",
+    "Hard Puzzle Acc": "5.97",
+    "Total Puzzles": 1000,
+    "Reason Lens": "1483.68"
+  },
+  {
     "Model": "deepseek-chat",
     "Mode": "greedy",
     "Puzzle Acc": "22.70",
