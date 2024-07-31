@@ -75,7 +75,7 @@ def eval_model(model, filepath):
                         print("--- correct")
             else:
                 # To debug the wrong examples
-                if "3.1" in model:
+                if False and "3.1" in model:
                     print(f"--- incorrect {item['id']} ---")
                     print(f"Model: {model_answer}, Truth: {correct_answer}")
                     print(f"Problem: {item['question']}")
