@@ -484,6 +484,17 @@
     "Reason Lens": "1473.23"
   },
   {
+    "Model": "gemma-2-2b-it",
+    "Mode": "greedy",
+    "Puzzle Acc": "4.20",
+    "Cell Acc": "9.97",
+    "No answer": "57.20",
+    "Easy Puzzle Acc": "14.29",
+    "Hard Puzzle Acc": "0.28",
+    "Total Puzzles": 1000,
+    "Reason Lens": "1032.89"
+  },
+  {
     "Model": "Yi-1.5-9B-Chat",
     "Mode": "greedy",
     "Puzzle Acc": "2.30",
