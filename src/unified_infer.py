@@ -283,7 +283,7 @@ if __name__ == "__main__":
                 else:
                     google_msg.append({"role":"model","parts": [chat_item,]})
             google_args = {
-                "model": args.model_name,
+                "model": args.model_name.replace("google/", ""),
                 "messages": google_msg,
                 'generation_config': {
                     "temperature": args.temperature,
@@ -372,7 +372,7 @@ if __name__ == "__main__":
                 else:
                     anthropic_msg.append({"role":"assistant","content": chat_item})
             anthropic_args = {
-                "model": args.model_name,
+                "model": args.model_name.replace("anthropic/", ""),
                 "prompt": None,
                 "system_msg": system_msg,
                 "messages": anthropic_msg,
@@ -402,7 +402,7 @@ if __name__ == "__main__":
                 else:
                     reka_msg.append({"role":"assistant","content": chat_item})
             reka_args = {
-                "model": args.model_name,
+                "model": args.model_name.replace("reka/", ""),
                 "messages": reka_msg,
                 "top_p": args.top_p,
                 "temperature": args.temperature,
