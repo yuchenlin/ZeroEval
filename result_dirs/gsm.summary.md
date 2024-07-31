@@ -41,4 +41,5 @@
 |   Mixtral-8x7B-Instruct-v0.1   | greedy | 70.13 |    2.27     |  1319   |    361.12     |
 | Llama-3-Instruct-8B-SimPO-v0.2 | greedy | 57.54 |    2.05     |  1319   |    505.25     |
 |           command-r            | greedy | 52.99 |      0      |  1319   |    294.43     |
+|         gemma-2-2b-it          | greedy | 51.63 |    0.38     |  1319   |    420.05     |
 |      Qwen2-1.5B-Instruct       | greedy | 43.37 |    4.78     |  1319   |    301.67     |

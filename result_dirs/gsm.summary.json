@@ -280,6 +280,14 @@
     "Reason Lens": "294.43"
   },
   {
+    "Model": "gemma-2-2b-it",
+    "Mode": "greedy",
+    "Acc": "51.63",
+    "No answer": "0.38",
+    "Total": 1319,
+    "Reason Lens": "420.05"
+  },
+  {
     "Model": "Qwen2-1.5B-Instruct",
     "Mode": "greedy",
     "Acc": "43.37",
