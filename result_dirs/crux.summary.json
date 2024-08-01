@@ -24,6 +24,14 @@
     "Reason Lens": "568.12"
   },
   {
+    "Model": "Mistral-Large-2",
+    "Mode": "greedy",
+    "Acc": "56.38",
+    "No answer": "0.25",
+    "Total": 800,
+    "Reason Lens": "469.91"
+  },
+  {
     "Model": "gpt-4o-mini-2024-07-18",
     "Mode": "greedy",
     "Acc": "56.12",
@@ -56,12 +64,36 @@
     "Reason Lens": "514.44"
   },
   {
+    "Model": "reka-core-20240501",
+    "Mode": "greedy",
+    "Acc": "43.62",
+    "No answer": "0.00",
+    "Total": 800,
+    "Reason Lens": "525.50"
+  },
+  {
+    "Model": "deepseek-v2-coder-0724",
+    "Mode": "greedy",
+    "Acc": "42.25",
+    "No answer": "0.00",
+    "Total": 800,
+    "Reason Lens": "564.88"
+  },
+  {
     "Model": "gemma-2-9b-it",
     "Mode": "greedy",
     "Acc": "41.50",
     "No answer": "0.00",
     "Total": 800,
     "Reason Lens": "484.51"
+  },
+  {
+    "Model": "claude-3-sonnet-20240229",
+    "Mode": "greedy",
+    "Acc": "41.00",
+    "No answer": "0.00",
+    "Total": 800,
+    "Reason Lens": "749.15"
   },
   {
     "Model": "claude-3-opus-20240229",
@@ -86,6 +118,14 @@
     "No answer": "0.25",
     "Total": 800,
     "Reason Lens": "411.06"
+  },
+  {
+    "Model": "yi-large",
+    "Mode": "greedy",
+    "Acc": "34.25",
+    "No answer": "0.00",
+    "Total": 800,
+    "Reason Lens": "628.25"
   },
   {
     "Model": "Meta-Llama-3.1-8B-Instruct",
