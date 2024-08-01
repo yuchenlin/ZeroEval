@@ -64,6 +64,14 @@
     "Reason Lens": "514.44"
   },
   {
+    "Model": "Meta-Llama-3.1-70B-Instruct",
+    "Mode": "greedy",
+    "Acc": "47.25",
+    "No answer": "0.50",
+    "Total": 800,
+    "Reason Lens": "493.74"
+  },
+  {
     "Model": "reka-core-20240501",
     "Mode": "greedy",
     "Acc": "43.62",
@@ -112,6 +120,14 @@
     "Reason Lens": "421.67"
   },
   {
+    "Model": "Meta-Llama-3.1-8B-Instruct",
+    "Mode": "greedy",
+    "Acc": "37.50",
+    "No answer": "0.62",
+    "Total": 800,
+    "Reason Lens": "535.85"
+  },
+  {
     "Model": "Meta-Llama-3-8B-Instruct",
     "Mode": "greedy",
     "Acc": "34.88",
@@ -128,12 +144,12 @@
     "Reason Lens": "628.25"
   },
   {
-    "Model": "Meta-Llama-3.1-8B-Instruct",
+    "Model": "yi-large-preview",
     "Mode": "greedy",
     "Acc": "33.50",
-    "No answer": "0.62",
+    "No answer": "0.00",
     "Total": 800,
-    "Reason Lens": "541.61"
+    "Reason Lens": "689.52"
   },
   {
     "Model": "claude-3-haiku-20240307",
