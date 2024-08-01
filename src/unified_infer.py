@@ -53,7 +53,32 @@ def parse_args():
     parser.add_argument('--run_name', type=str, default="")
     return parser.parse_args()
 
-
+def infer_maybe_lora(model_name):
+    if os.path.exists(model_name):
+        if os.path.exists(f"{model_name}/adapter_config.json"):
+            adapter_config_path = f"{model_name}/adapter_config.json"
+            adapter_path = model_name
+            lora_model = True
+        else:
+            lora_model = False
+    else:
+        # try hugging face
+        from huggingface_hub import hf_hub_download, snapshot_download
+        try:
+            adapter_config_path = hf_hub_download(repo_id=model_name, filename="adapter_config.json")
+            adapter_path = snapshot_download(repo_id=model_name)
+            lora_model = True
+        except Exception as e:
+            lora_model = False
+    if lora_model:
+        with open(adapter_config_path) as f:
+            adapter_config = json.load(f)
+        base_model_name_or_path = adapter_config["base_model_name_or_path"]
+        lora_model = adapter_path
+    else:
+        base_model_name_or_path = model_name
+        lora_model = None
+    return base_model_name_or_path, lora_model
 
 def sanitize_args(args):
     if args.download_dir == "default":
@@ -73,10 +98,17 @@ if __name__ == "__main__":
     if args.engine == "vllm":
         from vllm import LLM, SamplingParams 
         max_model_len = None if args.max_model_len == -1 else args.max_model_len
-        llm = LLM(model=args.model_name, tokenizer=args.tokenizer_name, tensor_parallel_size=args.tensor_parallel_size,
+        base_model_name_or_path, lora_model_name_or_path = infer_maybe_lora(args.model_name)
+        if lora_model_name_or_path:
+            from vllm.lora.request import LoRARequest
+            lora_request = LoRARequest(lora_model_name_or_path.split("/")[-1], 1, lora_model_name_or_path)
+        else:
+            lora_request = None
+        llm = LLM(model=base_model_name_or_path, tokenizer=args.tokenizer_name, tensor_parallel_size=args.tensor_parallel_size,
                         download_dir=args.download_dir, dtype=args.dtype, tokenizer_mode=args.tokenizer_mode,
                         max_model_len=max_model_len, trust_remote_code=True, 
                         gpu_memory_utilization=args.gpu_memory_utilization,  
+                        enable_lora=lora_request is not None
                         )
     elif args.engine == "hf":
         llm = DecoderOnlyModelManager(args.model_name, args.model_name, cache_dir=args.download_dir,
@@ -183,7 +215,7 @@ if __name__ == "__main__":
                                          stop=stop_words, stop_token_ids=stop_token_ids, include_stop_str_in_output=include_stop_str_in_output, n=args.num_outputs)
         for cur_id in tqdm(range(0, len(todo_inputs), args.batch_size), desc=f"Generating {args.model_name} from {args.start_index} to {args.end_index}"):
             batch_inputs = todo_inputs[cur_id:cur_id+args.batch_size]
-            batch_outputs = llm.generate(batch_inputs, sampling_params, use_tqdm=False)
+            batch_outputs = llm.generate(batch_inputs, sampling_params, use_tqdm=False, lora_request=lora_request)
             outputs.extend([[o.text for o in x.outputs] for x in batch_outputs]) # TODO: enbale multiple generation
             save_outputs(args, id_strs, outputs, chat_history, metadata, model_inputs, filepath)
         save_outputs(args, id_strs, outputs, chat_history, metadata, model_inputs, filepath)
