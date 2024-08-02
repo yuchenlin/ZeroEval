@@ -15,6 +15,7 @@
 |   claude-3-opus-20240229    | greedy | 68.62 |      0      |   800   |    521.62     |
 |    deepseek-v2-chat-0628    | greedy | 68.5  |      0      |   800   |    568.12     |
 |   deepseek-v2-coder-0724    | greedy | 67.75 |      0      |   800   |    564.88     |
+|       gemini-1.5-pro        | greedy | 66.25 |    0.25     |   800   |    385.66     |
 |  claude-3-sonnet-20240229   | greedy | 64.75 |      0      |   800   |    749.15     |
 | Meta-Llama-3.1-70B-Instruct | greedy | 62.62 |     0.5     |   800   |    493.74     |
 |      gemini-1.5-flash       | greedy | 61.88 |    0.25     |   800   |    514.44     |

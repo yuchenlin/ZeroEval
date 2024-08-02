@@ -72,6 +72,14 @@
     "Reason Lens": "564.88"
   },
   {
+    "Model": "gemini-1.5-pro",
+    "Mode": "greedy",
+    "Acc": "66.25",
+    "No answer": "0.25",
+    "Total": 800,
+    "Reason Lens": "385.66"
+  },
+  {
     "Model": "claude-3-sonnet-20240229",
     "Mode": "greedy",
     "Acc": "64.75",
