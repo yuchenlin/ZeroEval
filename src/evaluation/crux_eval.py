@@ -5,22 +5,7 @@ from tabulate import tabulate
 import re
 import sys 
 from eval_utils import load_model_results, extract_values_from_json, extract_first_complete_json, model_specific_extraction
- 
 
-def is_valid_string(value):
-    if not isinstance(value, str):
-        return False
-    
-    if any(char in value for char in '({[]})'):
-        return False
-    
-    if value.replace('.', '', 1).isdigit():
-        return False
-    
-    if value.lower() in ['true', 'false']:
-        return False
-    
-    return True
 
 def eval_model(model, filepath):
     global private_solutions
@@ -55,12 +40,10 @@ def eval_model(model, filepath):
                     print(correct_answer)
                 continue 
         reason = prediction_json.get("reasoning", "")
-        # We use string to compare the answers
-        if is_valid_string(prediction_json["answer"]):
-            model_answer = '\'' + str(prediction_json["answer"]) + '\''
-        else:
-            model_answer = str(prediction_json["answer"])
-        correct_answer = str(item["answer"])
+        
+        # We use string to compare the answers, so we need to strip the quotes
+        model_answer = str(prediction_json["answer"]).strip("'\"")
+        correct_answer = str(item["answer"]).strip("'\"")
         
         correct = False 
         if model_answer and correct_answer:
