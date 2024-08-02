@@ -2,127 +2,151 @@
   {
     "Model": "gpt-4o-2024-05-13",
     "Mode": "greedy",
-    "Acc": "74.12",
+    "Acc": "83.62",
     "No answer": "0.25",
     "Total": 800,
     "Reason Lens": "611.46"
   },
   {
-    "Model": "Llama-3.1-405B-Inst-fp8",
-    "Mode": "greedy",
-    "Acc": "64.50",
-    "No answer": "2.62",
-    "Total": 800,
-    "Reason Lens": "300.62"
-  },
-  {
-    "Model": "deepseek-v2-chat-0628",
-    "Mode": "greedy",
-    "Acc": "64.38",
-    "No answer": "0.00",
-    "Total": 800,
-    "Reason Lens": "568.12"
-  },
-  {
-    "Model": "Mistral-Large-2",
-    "Mode": "greedy",
-    "Acc": "56.38",
-    "No answer": "0.25",
-    "Total": 800,
-    "Reason Lens": "469.91"
-  },
-  {
-    "Model": "gpt-4o-mini-2024-07-18",
-    "Mode": "greedy",
-    "Acc": "56.12",
-    "No answer": "0.12",
-    "Total": 800,
-    "Reason Lens": "391.32"
-  },
-  {
-    "Model": "gpt-3.5-turbo-0125",
-    "Mode": "greedy",
-    "Acc": "50.62",
-    "No answer": "0.25",
-    "Total": 800,
-    "Reason Lens": "405.27"
-  },
-  {
     "Model": "claude-3-5-sonnet-20240620",
     "Mode": "greedy",
-    "Acc": "50.12",
+    "Acc": "78.75",
     "No answer": "0.00",
     "Total": 800,
     "Reason Lens": "518.28"
   },
   {
-    "Model": "gemini-1.5-flash",
+    "Model": "gpt-4o-mini-2024-07-18",
     "Mode": "greedy",
-    "Acc": "48.25",
+    "Acc": "73.50",
+    "No answer": "0.12",
+    "Total": 800,
+    "Reason Lens": "391.32"
+  },
+  {
+    "Model": "Mistral-Large-2",
+    "Mode": "greedy",
+    "Acc": "72.88",
     "No answer": "0.25",
     "Total": 800,
-    "Reason Lens": "514.44"
+    "Reason Lens": "469.91"
   },
   {
-    "Model": "Meta-Llama-3.1-70B-Instruct",
+    "Model": "Llama-3.1-405B-Inst-fp8",
     "Mode": "greedy",
-    "Acc": "47.25",
-    "No answer": "0.50",
+    "Acc": "72.12",
+    "No answer": "2.62",
     "Total": 800,
-    "Reason Lens": "493.74"
-  },
-  {
-    "Model": "reka-core-20240501",
-    "Mode": "greedy",
-    "Acc": "43.62",
-    "No answer": "0.00",
-    "Total": 800,
-    "Reason Lens": "525.50"
-  },
-  {
-    "Model": "deepseek-v2-coder-0724",
-    "Mode": "greedy",
-    "Acc": "42.25",
-    "No answer": "0.00",
-    "Total": 800,
-    "Reason Lens": "564.88"
-  },
-  {
-    "Model": "gemma-2-9b-it",
-    "Mode": "greedy",
-    "Acc": "41.50",
-    "No answer": "0.00",
-    "Total": 800,
-    "Reason Lens": "484.51"
-  },
-  {
-    "Model": "claude-3-sonnet-20240229",
-    "Mode": "greedy",
-    "Acc": "41.00",
-    "No answer": "0.00",
-    "Total": 800,
-    "Reason Lens": "749.15"
+    "Reason Lens": "300.62"
   },
   {
     "Model": "claude-3-opus-20240229",
     "Mode": "greedy",
-    "Acc": "39.12",
+    "Acc": "68.62",
     "No answer": "0.00",
     "Total": 800,
     "Reason Lens": "521.62"
   },
   {
+    "Model": "deepseek-v2-chat-0628",
+    "Mode": "greedy",
+    "Acc": "68.50",
+    "No answer": "0.00",
+    "Total": 800,
+    "Reason Lens": "568.12"
+  },
+  {
+    "Model": "deepseek-v2-coder-0724",
+    "Mode": "greedy",
+    "Acc": "67.75",
+    "No answer": "0.00",
+    "Total": 800,
+    "Reason Lens": "564.88"
+  },
+  {
+    "Model": "claude-3-sonnet-20240229",
+    "Mode": "greedy",
+    "Acc": "64.75",
+    "No answer": "0.00",
+    "Total": 800,
+    "Reason Lens": "749.15"
+  },
+  {
+    "Model": "Meta-Llama-3.1-70B-Instruct",
+    "Mode": "greedy",
+    "Acc": "62.62",
+    "No answer": "0.50",
+    "Total": 800,
+    "Reason Lens": "493.74"
+  },
+  {
+    "Model": "gemini-1.5-flash",
+    "Mode": "greedy",
+    "Acc": "61.88",
+    "No answer": "0.25",
+    "Total": 800,
+    "Reason Lens": "514.44"
+  },
+  {
+    "Model": "yi-large-preview",
+    "Mode": "greedy",
+    "Acc": "58.63",
+    "No answer": "0.00",
+    "Total": 800,
+    "Reason Lens": "689.52"
+  },
+  {
+    "Model": "yi-large",
+    "Mode": "greedy",
+    "Acc": "58.38",
+    "No answer": "0.00",
+    "Total": 800,
+    "Reason Lens": "628.25"
+  },
+  {
     "Model": "gemma-2-27b-it",
     "Mode": "greedy",
-    "Acc": "38.00",
+    "Acc": "55.88",
     "No answer": "0.00",
     "Total": 800,
     "Reason Lens": "421.67"
   },
   {
+    "Model": "claude-3-haiku-20240307",
+    "Mode": "greedy",
+    "Acc": "53.62",
+    "No answer": "0.12",
+    "Total": 800,
+    "Reason Lens": "708.22"
+  },
+  {
+    "Model": "gpt-3.5-turbo-0125",
+    "Mode": "greedy",
+    "Acc": "53.25",
+    "No answer": "0.25",
+    "Total": 800,
+    "Reason Lens": "405.27"
+  },
+  {
+    "Model": "reka-core-20240501",
+    "Mode": "greedy",
+    "Acc": "45.00",
+    "No answer": "0.00",
+    "Total": 800,
+    "Reason Lens": "525.50"
+  },
+  {
+    "Model": "gemma-2-9b-it",
+    "Mode": "greedy",
+    "Acc": "44.88",
+    "No answer": "0.00",
+    "Total": 800,
+    "Reason Lens": "484.51"
+  },
+  {
     "Model": "Meta-Llama-3.1-8B-Instruct",
     "Mode": "greedy",
-    "Acc": "37.50",
+    "Acc": "38.75",
     "No answer": "0.62",
     "Total": 800,
     "Reason Lens": "535.85"
@@ -130,39 +154,15 @@
   {
     "Model": "Meta-Llama-3-8B-Instruct",
     "Mode": "greedy",
-    "Acc": "34.88",
+    "Acc": "37.00",
     "No answer": "0.25",
     "Total": 800,
     "Reason Lens": "411.06"
   },
   {
-    "Model": "yi-large",
-    "Mode": "greedy",
-    "Acc": "34.25",
-    "No answer": "0.00",
-    "Total": 800,
-    "Reason Lens": "628.25"
-  },
-  {
-    "Model": "yi-large-preview",
-    "Mode": "greedy",
-    "Acc": "33.50",
-    "No answer": "0.00",
-    "Total": 800,
-    "Reason Lens": "689.52"
-  },
-  {
-    "Model": "claude-3-haiku-20240307",
-    "Mode": "greedy",
-    "Acc": "32.62",
-    "No answer": "0.12",
-    "Total": 800,
-    "Reason Lens": "708.22"
-  },
-  {
     "Model": "reka-flash-20240226",
     "Mode": "greedy",
-    "Acc": "20.88",
+    "Acc": "33.25",
     "No answer": "0.00",
     "Total": 800,
     "Reason Lens": "565.61"
