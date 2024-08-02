@@ -24,6 +24,14 @@
     "Reason Lens": "449.71"
   },
   {
+    "Model": "gemini-1.5-pro-exp-0801",
+    "Mode": "greedy",
+    "Acc": "85.53",
+    "No answer": "1.22",
+    "Total": 2778,
+    "Reason Lens": "656.64"
+  },
+  {
     "Model": "gpt-4-turbo-2024-04-09",
     "Mode": "greedy",
     "Acc": "85.31",

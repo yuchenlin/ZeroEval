@@ -148,14 +148,15 @@ def retry_handler(retry_limit=10):
                         kwargs['shorten_msg_times'] = retried
                     return func(*args, **kwargs)
                 except Exception as e:
+                    print(e)
                     # if rate limit error, wait 2 seconds and retry
-                    if isinstance(e, OPENAI_RATE_LIMIT_ERROR):
+                    if isinstance(e, OPENAI_RATE_LIMIT_ERROR) or "exhausted" in str(e).lower():
                         words = str(e).split(' ')
                         try:
                             time_to_wait = int(words[words.index('after') + 1])
                         except ValueError:
-                            time_to_wait = 5
-                        # print("Rate limit error, waiting for {} seconds for another try..".format(time_to_wait))
+                            time_to_wait = 15
+                        print("Rate limit error, waiting for {} seconds for another try..".format(time_to_wait))
                         time.sleep(time_to_wait) # wait 30 seconds
                         # print("Finished waiting for {} seconds. Start another try".format(time_to_wait))
                     elif isinstance(e, OPENAI_API_ERROR):
@@ -409,7 +410,7 @@ def google_chat_request(
             stop_sequences=generation_config['stop_sequences'],
             top_p=generation_config['top_p']
         ),
-        request_options={"timeout": 600}
+        request_options={"timeout": 1000}
     )
     if len(response.candidates) == 0:
         output = ''

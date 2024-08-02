@@ -9,6 +9,7 @@
 |       gpt-4o-2024-05-13        | greedy | 88.01 |    0.14     |  2778   |    629.79     |
 |   claude-3-5-sonnet-20240620   | greedy |  86   |    0.18     |  2778   |     907.1     |
 | Llama-3.1-405B-Instruct-Turbo  | greedy | 85.64 |    0.76     |  2778   |    449.71     |
+|    gemini-1.5-pro-exp-0801     | greedy | 85.53 |    1.22     |  2778   |    656.64     |
 |     gpt-4-turbo-2024-04-09     | greedy | 85.31 |    0.04     |  2778   |    631.38     |
 |        Mistral-Large-2         | greedy | 82.97 |    0.14     |  2778   |    490.94     |
 |  Meta-Llama-3.1-70B-Instruct   | greedy | 82.97 |    1.26     |  2778   |    668.14     |

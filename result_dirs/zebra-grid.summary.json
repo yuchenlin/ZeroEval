@@ -121,6 +121,17 @@
     "Reason Lens": "1165.90"
   },
   {
+    "Model": "gemini-1.5-pro-exp-0801",
+    "Mode": "greedy",
+    "Puzzle Acc": "25.20",
+    "Cell Acc": "48.50",
+    "No answer": "0.00",
+    "Easy Puzzle Acc": "72.50",
+    "Hard Puzzle Acc": "6.81",
+    "Total Puzzles": 1000,
+    "Reason Lens": "1389.75"
+  },
+  {
     "Model": "Meta-Llama-3.1-70B-Instruct",
     "Mode": "greedy",
     "Puzzle Acc": "24.90",

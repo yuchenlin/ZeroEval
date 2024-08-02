@@ -11,6 +11,7 @@
 |     claude-3-opus-20240229     | greedy | 95.6  |      0      |  1319   |    410.62     |
 |        Mistral-Large-2         | greedy | 95.53 |      0      |  1319   |    391.07     |
 |       gpt-4o-2024-05-13        | greedy | 95.38 |      0      |  1319   |    479.98     |
+|    gemini-1.5-pro-exp-0801     | greedy |  95   |      0      |  1319   |     298.8     |
 |     gpt-4o-mini-2024-07-18     | greedy | 94.24 |      0      |  1319   |    463.71     |
 |  Meta-Llama-3.1-70B-Instruct   | greedy | 94.16 |    0.08     |  1319   |    453.94     |
 |         deepseek-chat          | greedy | 93.93 |      0      |  1319   |    495.52     |
