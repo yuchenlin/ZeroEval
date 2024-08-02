@@ -4,10 +4,12 @@ import pandas as pd
 gsm_file = 'result_dirs/gsm.summary.json'
 mmlu_file = 'result_dirs/mmlu-redux.summary.json'
 zebra_file = 'result_dirs/zebra-grid.summary.json'
+crux_file = 'result_dirs/crux.summary.json'
 
 gsm_data = pd.read_json(gsm_file)
 mmlu_data = pd.read_json(mmlu_file)
 zebra_data = pd.read_json(zebra_file)
+crux_data = pd.read_json(crux_file)
 
 # replace the value from "gemma-2-9b-it@nvidia" to "gemma-2-9b-it" for all data. only when the model name is "gemma-2-9b-it@nvidia"
 def replace_model_names(cur_data):
@@ -38,15 +40,19 @@ mmlu_data = mmlu_data.rename(columns={'Model_mmlu': 'Model'}).rename(columns={'A
 
 # remove the rows when the mode = sampling 
 zebra_data = zebra_data[zebra_data['Mode'] != 'sampling']
-zebra_data = zebra_data[['Model', "Easy Puzzle Acc", 'Puzzle Acc']] #  'Puzzle Acc', 
+zebra_data = zebra_data[['Model', "Easy Puzzle Acc"]] #, 'Puzzle Acc']] #  'Puzzle Acc', 
 zebra_data = zebra_data.add_suffix('_zebra')
 zebra_data = zebra_data.rename(columns={'Model_zebra': 'Model'}).rename(columns={'Puzzle Acc_zebra': 'ZebraLogic<br/>-Full'}).rename(columns={'Easy Puzzle Acc_zebra': 'ZebraLogic<br/>-Easy'})
 
 
+crux_data = crux_data[['Model', 'Acc']]
+crux_data = crux_data.add_suffix('_crux')
+crux_data = crux_data.rename(columns={'Model_crux': 'Model'}).rename(columns={'Acc_crux': 'CRUX'})
 
 # Merge the dataframes on the "Model" column
 merged_data = pd.merge(gsm_data, mmlu_data, on='Model')
 merged_data = pd.merge(merged_data, zebra_data, on='Model')
+merged_data = pd.merge(merged_data, crux_data, on='Model')
 
 
 # add a final column to do average of the scores except for Model name 
