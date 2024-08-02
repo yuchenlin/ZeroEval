@@ -40,7 +40,7 @@ mmlu_data = mmlu_data.rename(columns={'Model_mmlu': 'Model'}).rename(columns={'A
 
 # remove the rows when the mode = sampling 
 zebra_data = zebra_data[zebra_data['Mode'] != 'sampling']
-zebra_data = zebra_data[['Model', "Easy Puzzle Acc"]] #, 'Puzzle Acc']] #  'Puzzle Acc', 
+zebra_data = zebra_data[['Model', "Puzzle Acc"]] #, 'Puzzle Acc']] #  'Puzzle Acc',  # Easy 
 zebra_data = zebra_data.add_suffix('_zebra')
 zebra_data = zebra_data.rename(columns={'Model_zebra': 'Model'}).rename(columns={'Puzzle Acc_zebra': 'ZebraLogic<br/>-Full'}).rename(columns={'Easy Puzzle Acc_zebra': 'ZebraLogic<br/>-Easy'})
 
@@ -72,3 +72,8 @@ print(markdown_table_lite)
 # print(markdown_table)
 with open('result_dirs/summary.md', 'w') as f:
     f.write(markdown_table)
+
+# save the json output
+
+with open('result_dirs/summary.json', 'w') as f:
+    f.write(merged_data.to_json(orient='records', lines=False))

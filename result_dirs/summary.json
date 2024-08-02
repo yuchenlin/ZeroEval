@@ -1,0 +1,242 @@
+[
+    {
+        "Model": "gpt-4o-2024-05-13",
+        "GSM8K": 95.38,
+        "MMLU\n-Redux": 88.01,
+        "ZebraLogic\n-Full": 28.2,
+        "CRUX": 83.62,
+        "Average": 73.8025
+    },
+    {
+        "Model": "claude-3-5-sonnet-20240620",
+        "GSM8K": 95.6,
+        "MMLU\n-Redux": 86.0,
+        "ZebraLogic\n-Full": 33.4,
+        "CRUX": 78.75,
+        "Average": 73.4375
+    },
+    {
+        "Model": "Llama-3.1-405B-Inst-fp8",
+        "GSM8K": 95.91,
+        "MMLU\n-Redux": 85.64,
+        "ZebraLogic\n-Full": 32.6,
+        "CRUX": 72.12,
+        "Average": 71.5675
+    },
+    {
+        "Model": "Mistral-Large-2",
+        "GSM8K": 95.53,
+        "MMLU\n-Redux": 82.97,
+        "ZebraLogic\n-Full": 29.0,
+        "CRUX": 72.88,
+        "Average": 70.095
+    },
+    {
+        "Model": "gemini-1.5-pro-exp-0801",
+        "GSM8K": 95.0,
+        "MMLU\n-Redux": 85.53,
+        "ZebraLogic\n-Full": 25.2,
+        "CRUX": 73.0,
+        "Average": 69.6825
+    },
+    {
+        "Model": "claude-3-opus-20240229",
+        "GSM8K": 95.6,
+        "MMLU\n-Redux": 82.54,
+        "ZebraLogic\n-Full": 27.0,
+        "CRUX": 68.62,
+        "Average": 68.44
+    },
+    {
+        "Model": "gpt-4o-mini-2024-07-18",
+        "GSM8K": 94.24,
+        "MMLU\n-Redux": 81.5,
+        "ZebraLogic\n-Full": 20.1,
+        "CRUX": 73.5,
+        "Average": 67.335
+    },
+    {
+        "Model": "deepseek-v2-chat-0628",
+        "GSM8K": 93.93,
+        "MMLU\n-Redux": 80.81,
+        "ZebraLogic\n-Full": 22.7,
+        "CRUX": 68.5,
+        "Average": 66.485
+    },
+    {
+        "Model": "Meta-Llama-3.1-70B-Instruct",
+        "GSM8K": 94.16,
+        "MMLU\n-Redux": 82.97,
+        "ZebraLogic\n-Full": 24.9,
+        "CRUX": 62.62,
+        "Average": 66.1625
+    },
+    {
+        "Model": "deepseek-v2-coder-0724",
+        "GSM8K": 91.51,
+        "MMLU\n-Redux": 80.24,
+        "ZebraLogic\n-Full": 20.5,
+        "CRUX": 67.75,
+        "Average": 65.0
+    },
+    {
+        "Model": "Qwen2-72B-Instruct",
+        "GSM8K": 92.65,
+        "MMLU\n-Redux": 81.61,
+        "ZebraLogic\n-Full": 21.4,
+        "CRUX": 57.38,
+        "Average": 63.26
+    },
+    {
+        "Model": "gemini-1.5-flash",
+        "GSM8K": 91.36,
+        "MMLU\n-Redux": 77.36,
+        "ZebraLogic\n-Full": 19.4,
+        "CRUX": 61.88,
+        "Average": 62.5
+    },
+    {
+        "Model": "claude-3-sonnet-20240229",
+        "GSM8K": 91.51,
+        "MMLU\n-Redux": 74.87,
+        "ZebraLogic\n-Full": 18.7,
+        "CRUX": 64.75,
+        "Average": 62.4575
+    },
+    {
+        "Model": "Meta-Llama-3-70B-Instruct",
+        "GSM8K": 93.03,
+        "MMLU\n-Redux": 78.01,
+        "ZebraLogic\n-Full": 16.8,
+        "CRUX": 57.12,
+        "Average": 61.24
+    },
+    {
+        "Model": "yi-large-preview",
+        "GSM8K": 82.64,
+        "MMLU\n-Redux": 82.15,
+        "ZebraLogic\n-Full": 18.9,
+        "CRUX": 58.63,
+        "Average": 60.58
+    },
+    {
+        "Model": "yi-large",
+        "GSM8K": 80.06,
+        "MMLU\n-Redux": 81.17,
+        "ZebraLogic\n-Full": 18.8,
+        "CRUX": 58.38,
+        "Average": 59.6025
+    },
+    {
+        "Model": "gemma-2-27b-it",
+        "GSM8K": 90.22,
+        "MMLU\n-Redux": 75.67,
+        "ZebraLogic\n-Full": 16.3,
+        "CRUX": 55.88,
+        "Average": 59.5175
+    },
+    {
+        "Model": "claude-3-haiku-20240307",
+        "GSM8K": 88.78,
+        "MMLU\n-Redux": 72.32,
+        "ZebraLogic\n-Full": 14.3,
+        "CRUX": 53.62,
+        "Average": 57.255
+    },
+    {
+        "Model": "reka-core-20240501",
+        "GSM8K": 87.41,
+        "MMLU\n-Redux": 76.42,
+        "ZebraLogic\n-Full": 13.0,
+        "CRUX": 45.0,
+        "Average": 55.4575
+    },
+    {
+        "Model": "gemma-2-9b-it",
+        "GSM8K": 87.41,
+        "MMLU\n-Redux": 72.82,
+        "ZebraLogic\n-Full": 12.8,
+        "CRUX": 44.88,
+        "Average": 54.4775
+    },
+    {
+        "Model": "gpt-3.5-turbo-0125",
+        "GSM8K": 80.36,
+        "MMLU\n-Redux": 68.36,
+        "ZebraLogic\n-Full": 10.1,
+        "CRUX": 53.25,
+        "Average": 53.0175
+    },
+    {
+        "Model": "Yi-1.5-34B-Chat",
+        "GSM8K": 84.08,
+        "MMLU\n-Redux": 72.79,
+        "ZebraLogic\n-Full": 11.5,
+        "CRUX": 42.88,
+        "Average": 52.8125
+    },
+    {
+        "Model": "Meta-Llama-3.1-8B-Instruct",
+        "GSM8K": 84.0,
+        "MMLU\n-Redux": 67.24,
+        "ZebraLogic\n-Full": 12.8,
+        "CRUX": 38.75,
+        "Average": 50.6975
+    },
+    {
+        "Model": "Phi-3-mini-4k-instruct",
+        "GSM8K": 75.51,
+        "MMLU\n-Redux": 70.34,
+        "ZebraLogic\n-Full": 11.6,
+        "CRUX": 43.5,
+        "Average": 50.2375
+    },
+    {
+        "Model": "Qwen2-7B-Instruct",
+        "GSM8K": 80.06,
+        "MMLU\n-Redux": 66.92,
+        "ZebraLogic\n-Full": 8.4,
+        "CRUX": 36.75,
+        "Average": 48.0325
+    },
+    {
+        "Model": "Meta-Llama-3-8B-Instruct",
+        "GSM8K": 78.47,
+        "MMLU\n-Redux": 61.66,
+        "ZebraLogic\n-Full": 11.9,
+        "CRUX": 36.62,
+        "Average": 47.1625
+    },
+    {
+        "Model": "Yi-1.5-9B-Chat",
+        "GSM8K": 76.42,
+        "MMLU\n-Redux": 65.05,
+        "ZebraLogic\n-Full": 2.3,
+        "CRUX": 43.75,
+        "Average": 46.88
+    },
+    {
+        "Model": "Mixtral-8x7B-Instruct-v0.1",
+        "GSM8K": 70.13,
+        "MMLU\n-Redux": 63.17,
+        "ZebraLogic\n-Full": 8.7,
+        "CRUX": 43.5,
+        "Average": 46.375
+    },
+    {
+        "Model": "reka-flash-20240226",
+        "GSM8K": 74.68,
+        "MMLU\n-Redux": 64.72,
+        "ZebraLogic\n-Full": 9.3,
+        "CRUX": 33.25,
+        "Average": 45.4875
+    },
+    {
+        "Model": "gemma-2-2b-it",
+        "GSM8K": 51.63,
+        "MMLU\n-Redux": 51.94,
+        "ZebraLogic\n-Full": 4.2,
+        "CRUX": 20.75,
+        "Average": 32.13
+    }
+]
