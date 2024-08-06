@@ -48,6 +48,14 @@
     "Reason Lens": "300.62"
   },
   {
+    "Model": "Meta-Llama-3.1-405B-Instruct@hyperbolic",
+    "Mode": "greedy",
+    "Acc": "69.70",
+    "No answer": "0.00",
+    "Total": 33,
+    "Reason Lens": "328.45"
+  },
+  {
     "Model": "claude-3-opus-20240229",
     "Mode": "greedy",
     "Acc": "68.62",
@@ -158,6 +166,14 @@
     "No answer": "0.25",
     "Total": 800,
     "Reason Lens": "405.27"
+  },
+  {
+    "Model": "Athene-70B",
+    "Mode": "greedy",
+    "Acc": "49.75",
+    "No answer": "0.00",
+    "Total": 800,
+    "Reason Lens": "283.62"
   },
   {
     "Model": "reka-core-20240501",
