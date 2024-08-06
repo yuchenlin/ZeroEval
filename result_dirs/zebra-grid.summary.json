@@ -44,6 +44,17 @@
     "Reason Lens": "439.96"
   },
   {
+    "Model": "gpt-4o-2024-08-06",
+    "Mode": "greedy",
+    "Puzzle Acc": "31.70",
+    "Cell Acc": "50.34",
+    "No answer": "3.60",
+    "Easy Puzzle Acc": "84.64",
+    "Hard Puzzle Acc": "11.11",
+    "Total Puzzles": 1000,
+    "Reason Lens": "1106.51"
+  },
+  {
     "Model": "gpt-4o-2024-05-13",
     "Mode": "sampling",
     "Puzzle Acc": "30.80",
