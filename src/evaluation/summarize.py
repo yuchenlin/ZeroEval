@@ -65,7 +65,7 @@ merged_data = merged_data.sort_values(by='Average', ascending=False)
 markdown_table = merged_data.to_markdown(index=False, floatfmt=".2f")
 
 # rename the <br> in column names with "\n"
-merged_data.columns = merged_data.columns.str.replace('<br/>', '\n')
+# merged_data.columns = merged_data.columns.str.replace('<br/>', '\n')
 markdown_table_lite = merged_data.to_markdown(index=False, floatfmt=".2f", tablefmt="grid")
 print(markdown_table_lite)
 

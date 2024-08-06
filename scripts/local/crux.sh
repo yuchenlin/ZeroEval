@@ -71,3 +71,5 @@
 
 # bash zero_eval_local.sh -d crux -m google/gemma-2-2b-it -p gemma-2-2b-it -s 4 -f hf
 # wait 
+
+# bash zero_eval_local.sh -f vllm -d crux -m Nexusflow/Athene-70B -p Athene-70B -s 1

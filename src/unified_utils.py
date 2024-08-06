@@ -273,6 +273,10 @@ def openai_chat_request(
             client = OpenAI(api_key=os.environ.get("NVIDIA_API_KEY"), base_url="https://integrate.api.nvidia.com/v1")
             model = model.replace("@nvidia", "")
             nvidia_mode = True 
+        elif model.endswith("@hyperbolic"): 
+            assert os.environ.get("HYPERBOLIC_API_KEY") is not None, "Please set HYPERBOLIC_API_KEY in the environment variables."
+            client = OpenAI(api_key=os.environ.get("HYPERBOLIC_API_KEY"), base_url="https://api.hyperbolic.xyz/v1")
+            model = model.replace("@hyperbolic", "")            
         elif model.endswith("@lepton"):
             assert os.environ.get("LEPTON_API_TOKEN") is not None, "Please set LEPTON_API_TOKEN in the environment variables."
             client = openai.OpenAI(base_url="https://llama3-1-405b.lepton.run/api/v1/", api_key=os.environ.get('LEPTON_API_TOKEN'))
