@@ -3,7 +3,7 @@ datasets
 tenacity
 google-generativeai
 cohere
-mistralai
+mistralai<1.0
 anthropic
 reka-api
 jsonlines
