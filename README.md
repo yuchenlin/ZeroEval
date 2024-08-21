@@ -76,7 +76,7 @@ More examples can be found in the `scripts` folder, e.g., the [scripts/_MMLU_red
 - GSM: `python src/evaluation/gsm_eval.py` --> [Full results](result_dirs/gsm.summary.md)
 - ZebraLogic: `python src/evaluation/zebra_grid_eval.py` --> [Full results](result_dirs/zebra-grid.summary.md)
   and [Leaderboard](https://huggingface.co/spaces/allenai/ZebraLogic)
-- CRUX: `python src/evaluation/crux.py` --> [Full results](result_dirs/crux.summary.md)
+- CRUX: `python src/evaluation/crux_eval.py` --> [Full results](result_dirs/crux.summary.md)
 - All: `python src/evaluation/summarize.py` --> [Full results](result_dirs/summary.md) ⬇️
 
 | Model                       |   GSM8K |   MMLU<br/>-Redux |   ZebraLogic<br/>-Easy |   CRUX |   Average |
