@@ -20,8 +20,8 @@ def apply_mc_template(item):
     prompt_str = prompt_str.replace("{choices}", generate_choice_string(choices))
     return prompt_str
 
-def apply_oeqa_template(item, cot=True):
-    question = item["question"]
+def apply_oeqa_template(item, question_key="question", cot=True):
+    question = item[question_key]
     if cot:
         prompt_str = OEQA[:]
     else:
@@ -88,7 +88,18 @@ if __name__ == "__main__":
             print("-"*100) 
             break
 
+    def math_l5_test():
+        dataset = load_dataset("AI-MO/aimo-validation-math-level-5", split="train")
+        dataset = list(dataset)
+        # shuffule
+        random.shuffle(dataset)
+        for item in dataset:
+            print(apply_oeqa_template(item, question_key="problem")) 
+            print(item)
+            print("-"*100) 
+            break
 
     # mcqa_test()
     # gsm_test()
-    crux_test()
+    # crux_test()
+    math_l5_test()

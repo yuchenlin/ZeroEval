@@ -5,7 +5,7 @@ import json
 
 def model_specific_extraction(model_name, prediction_str): 
     if "Llama-3.1" in model_name:
-        if "boxed" in prediction_str:
+        if "boxed" in prediction_str[-30:]:
             # print(prediction_str)
             # extract "$\boxed{36}$" --> 36 
             # print(prediction_str)
