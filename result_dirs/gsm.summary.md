@@ -6,8 +6,8 @@
 
 |                  Model                  |  Mode  |  Acc  |  No answer  |  Total  |  Reason Lens  |
 |-----------------------------------------|--------|-------|-------------|---------|---------------|
-| Meta-Llama-3.1-405B-Instruct@hyperbolic | greedy | 96.9  |    0.22     |   452   |    421.47     |
 |            gpt-4o-2024-08-06            | greedy | 96.21 |      0      |  1319   |    462.06     |
+| Meta-Llama-3.1-405B-Instruct@hyperbolic | greedy | 95.98 |    0.08     |  1319   |    421.83     |
 |      Llama-3.1-405B-Instruct-Turbo      | greedy | 95.91 |    0.08     |  1319   |    365.07     |
 |       claude-3-5-sonnet-20240620        | greedy | 95.6  |      0      |  1319   |    465.19     |
 |         claude-3-opus-20240229          | greedy | 95.6  |      0      |  1319   |    410.62     |

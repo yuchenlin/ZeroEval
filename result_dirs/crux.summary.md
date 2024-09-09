@@ -13,7 +13,7 @@
 |         gemini-1.5-pro-exp-0801         | greedy |  73   |    0.12     |   800   |    436.82     |
 |             Mistral-Large-2             | greedy | 72.88 |    0.25     |   800   |    469.91     |
 |         Llama-3.1-405B-Inst-fp8         | greedy | 72.12 |    2.62     |   800   |    300.62     |
-| Meta-Llama-3.1-405B-Instruct@hyperbolic | greedy | 69.7  |      0      |   33    |    328.45     |
+| Meta-Llama-3.1-405B-Instruct@hyperbolic | greedy | 71.5  |    1.12     |   800   |    345.76     |
 |         claude-3-opus-20240229          | greedy | 68.62 |      0      |   800   |    521.62     |
 |          deepseek-v2-chat-0628          | greedy | 68.5  |      0      |   800   |    568.12     |
 |         deepseek-v2-coder-0724          | greedy | 67.75 |      0      |   800   |    564.88     |

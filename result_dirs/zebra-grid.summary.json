@@ -66,6 +66,17 @@
     "Reason Lens": "1549.74"
   },
   {
+    "Model": "gemini-1.5-pro-exp-0827",
+    "Mode": "greedy",
+    "Puzzle Acc": "30.50",
+    "Cell Acc": "50.84",
+    "No answer": "0.80",
+    "Easy Puzzle Acc": "79.64",
+    "Hard Puzzle Acc": "11.39",
+    "Total Puzzles": 1000,
+    "Reason Lens": "1594.47"
+  },
+  {
     "Model": "Mistral-Large-2",
     "Mode": "greedy",
     "Puzzle Acc": "29.00",
@@ -141,6 +152,17 @@
     "Hard Puzzle Acc": "6.81",
     "Total Puzzles": 1000,
     "Reason Lens": "1389.75"
+  },
+  {
+    "Model": "Meta-Llama-3.1-405B-Instruct@hyperbolic",
+    "Mode": "greedy",
+    "Puzzle Acc": "25.00",
+    "Cell Acc": "46.62",
+    "No answer": "6.25",
+    "Easy Puzzle Acc": "66.67",
+    "Hard Puzzle Acc": "15.38",
+    "Total Puzzles": 16,
+    "Reason Lens": "1517.13"
   },
   {
     "Model": "Meta-Llama-3.1-70B-Instruct",
