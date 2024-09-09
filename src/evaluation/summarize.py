@@ -76,7 +76,7 @@ crux_data = crux_data.rename(columns={'Model_crux': 'Model'}).rename(columns={'A
 
 math_data = math_data[['Model', 'Acc']]
 math_data = math_data.add_suffix('_math')
-math_data = math_data.rename(columns={'Model_math': 'Model'}).rename(columns={'Acc_math': 'Math-L5'})
+math_data = math_data.rename(columns={'Model_math': 'Model'}).rename(columns={'Acc_math': 'MATH<br/>-L5'})
 
 
 # Generate the summary of the results (merging and only keep the models that have all results on MMLU, ZEBRA, CRUX, MATH)
@@ -118,12 +118,7 @@ def generate_full():
     merged_data = pd.merge(merged_data, zebra_data, on='Model', how='outer')
     merged_data = pd.merge(merged_data, crux_data, on='Model', how='outer')
     merged_data = pd.merge(merged_data, math_data, on='Model', how='outer')
-
-    # # add a final column to do average of the scores except for Model name 
-    # merged_data['Average'] = merged_data.drop(columns=['Model']).mean(axis=1)
-
-    # # rank the models based on the average score
-    # merged_data = merged_data.sort_values(by='Average', ascending=False)
+ 
 
     # sort by the average,  just for sorting purposes
     merged_data['Average'] = merged_data.drop(columns=['Model']).mean(axis=1)
