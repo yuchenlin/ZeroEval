@@ -1,19 +1,19 @@
 [
   {
-    "Model": "Meta-Llama-3.1-405B-Instruct@hyperbolic",
-    "Mode": "greedy",
-    "Acc": "96.90",
-    "No answer": "0.22",
-    "Total": 452,
-    "Reason Lens": "421.47"
-  },
-  {
     "Model": "gpt-4o-2024-08-06",
     "Mode": "greedy",
     "Acc": "96.21",
     "No answer": "0.00",
     "Total": 1319,
     "Reason Lens": "462.06"
+  },
+  {
+    "Model": "Meta-Llama-3.1-405B-Instruct@hyperbolic",
+    "Mode": "greedy",
+    "Acc": "95.98",
+    "No answer": "0.08",
+    "Total": 1319,
+    "Reason Lens": "421.83"
   },
   {
     "Model": "Llama-3.1-405B-Instruct-Turbo",

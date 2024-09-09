@@ -69,6 +69,7 @@ bash zero_eval_api.sh -d mmlu-redux -f together -m google/gemma-2-27b-it@togethe
 # bash zero_eval_api.sh -d mmlu-redux -f together -m meta-llama/Llama-3-70b-chat-hf -p Llama-3-70b-chat-hf -s 8
 # bash zero_eval_api.sh -d mmlu-redux -f together -m meta-llama/Llama-3-8B-chat-hf -p Llama-3-8B-chat-hf -s 8
 
+bash zero_eval_api.sh -d mmlu-redux -f google -m google/gemini-1.5-pro-exp-0827 -p gemini-1.5-pro-exp-0827 -s 1
 ```
 
  

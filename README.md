@@ -17,7 +17,7 @@ This repository aims to evaluate instruction-tuned LLMs for their zero-shot perf
 conda create -n zeroeval python=3.10
 conda activate zeroeval
 # pip install vllm -U # pip install -e vllm 
-pip install vllm==0.5.1
+pip install vllm -U
 pip install -r requirements.txt
 # export HF_HOME=/path/to/your/custom/cache_dir/ 
 ```
@@ -57,7 +57,7 @@ More examples can be found in the `scripts` folder, e.g., the [scripts/_MMLU_red
 
 | Arguments | Description | Default |
 |-----|-------------|---------|
-| `-d` | DATA_NAME: `mmlu-redux`, `gsm`, `zebra-grid`, `alpaca_eval`, ... (see [src/task_configs.py](src/task_configs.py)) | |
+| `-d` | DATA_NAME: `mmlu-redux`, `gsm`, `math-l5`, `zebra-grid`, `alpaca_eval`, ... (see [src/task_configs.py](src/task_configs.py)) | |
 | `-m` | model_name | |
 | `-p` | model_pretty_name | |
 | `-s` | number of shards (When `-s 1` we'll use all your GPUs for loading the model and running the inference; When `-s K`, we'll use K GPUs and divide the data into K shards for each GPU to run the inference on a single shard, and merge the results at the end.) | 1 |
@@ -73,7 +73,7 @@ More examples can be found in the `scripts` folder, e.g., the [scripts/_MMLU_red
 ## Results 
 
 - MMLU-Redux: `python src/evaluation/mcqa_eval.py mmlu-redux` --> [Full results](result_dirs/mmlu-redux.summary.md)
-- GSM: `python src/evaluation/gsm_eval.py` --> [Full results](result_dirs/gsm.summary.md)
+- GSM/MATH-L5: `python src/evaluation/math_eval.py math-l5` --> [Full results](result_dirs/gsm.summary.md)
 - ZebraLogic: `python src/evaluation/zebra_grid_eval.py` --> [Full results](result_dirs/zebra-grid.summary.md)
   and [Leaderboard](https://huggingface.co/spaces/allenai/ZebraLogic)
 - CRUX: `python src/evaluation/crux_eval.py` --> [Full results](result_dirs/crux.summary.md)

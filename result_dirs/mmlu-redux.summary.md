@@ -8,10 +8,12 @@
 |-----------------------------------------|--------|-------|-------------|---------|---------------|
 |            gpt-4o-2024-08-06            | greedy | 88.26 |    0.04     |  2778   |    691.73     |
 |            gpt-4o-2024-05-13            | greedy | 88.01 |    0.14     |  2778   |    629.79     |
+|         gemini-1.5-pro-exp-0827         | greedy | 86.14 |    1.26     |  2778   |    858.08     |
 |       claude-3-5-sonnet-20240620        | greedy |  86   |    0.18     |  2778   |     907.1     |
 |      Llama-3.1-405B-Instruct-Turbo      | greedy | 85.64 |    0.76     |  2778   |    449.71     |
 |         gemini-1.5-pro-exp-0801         | greedy | 85.53 |    1.22     |  2778   |    656.64     |
 |         gpt-4-turbo-2024-04-09          | greedy | 85.31 |    0.04     |  2778   |    631.38     |
+| Meta-Llama-3.1-405B-Instruct@hyperbolic | greedy | 84.41 |    1.15     |  2778   |    563.13     |
 |             Mistral-Large-2             | greedy | 82.97 |    0.14     |  2778   |    490.94     |
 |       Meta-Llama-3.1-70B-Instruct       | greedy | 82.97 |    1.26     |  2778   |    668.14     |
 |             gemini-1.5-pro              | greedy | 82.76 |    1.94     |  2778   |     666.7     |
@@ -24,7 +26,6 @@
 |              deepseek-chat              | greedy | 80.81 |    0.11     |  2778   |    691.91     |
 |         DeepSeek-Coder-V2-0724          | greedy | 80.24 |    0.32     |  2778   |    650.65     |
 |             deepseek-coder              | greedy | 79.63 |    0.14     |  2778   |    704.72     |
-| Meta-Llama-3.1-405B-Instruct@hyperbolic | greedy | 78.43 |      0      |   51    |    595.96     |
 |        Meta-Llama-3-70B-Instruct        | greedy | 78.01 |    0.11     |  2778   |    520.77     |
 |            gemini-1.5-flash             | greedy | 77.36 |    1.26     |  2778   |    583.45     |
 |               Athene-70B                | greedy | 76.64 |    0.04     |  2778   |    552.61     |

@@ -67,6 +67,9 @@ bash zero_eval_api.sh -d zebra-grid -f openai -m yi-large-preview -p yi-large-pr
 
 bash zero_eval_api.sh -d zebra-grid -f together -m meta-llama/Meta-Llama-3.1-405B-Instruct-Turbo -p Llama-3.1-405B-Instruct-Turbo -s 8 -x 2048
 
+
+bash zero_eval_api.sh -d zebra-grid -f google -m google/gemini-1.5-pro-exp-0827 -p gemini-1.5-pro-exp-0827 -s 1
+
 ```
 
  
