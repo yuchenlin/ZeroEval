@@ -33,6 +33,7 @@
 |       Meta-Llama-3.1-8B-Instruct        | greedy |  84   |    0.38     |  1319   |    511.97     |
 |       Mistral-Nemo-Instruct-2407        | greedy | 82.79 |      0      |  1319   |    349.81     |
 |            yi-large-preview             | greedy | 82.64 |      0      |  1319   |    514.25     |
+|          Phi-3.5-mini-instruct          | greedy | 82.03 |    1.21     |  1319   |    665.69     |
 |           gpt-3.5-turbo-0125            | greedy | 80.36 |      0      |  1319   |    350.97     |
 |             command-r-plus              | greedy | 80.14 |    0.08     |  1319   |    294.08     |
 |            Qwen2-7B-Instruct            | greedy | 80.06 |      0      |  1319   |     452.6     |

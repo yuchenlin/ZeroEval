@@ -36,6 +36,7 @@
 |         Phi-3-mini-4k-instruct          | greedy | 43.5  |    0.75     |   800   |    539.63     |
 |       Mixtral-8x7B-Instruct-v0.1        | greedy | 43.5  |    0.25     |   800   |    463.08     |
 |             Yi-1.5-34B-Chat             | greedy | 42.88 |      0      |   800   |    561.47     |
+|          Phi-3.5-mini-instruct          | greedy | 40.88 |      3      |   800   |    625.13     |
 |       Meta-Llama-3.1-8B-Instruct        | greedy | 38.75 |    0.62     |   800   |    535.85     |
 |            Qwen2-7B-Instruct            | greedy | 36.75 |    0.12     |   800   |    368.51     |
 |        Meta-Llama-3-8B-Instruct         | greedy | 36.62 |    0.25     |   800   |    411.52     |

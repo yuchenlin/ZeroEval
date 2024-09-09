@@ -528,6 +528,17 @@
     "Reason Lens": "1473.23"
   },
   {
+    "Model": "Phi-3.5-mini-instruct",
+    "Mode": "greedy",
+    "Puzzle Acc": "6.40",
+    "Cell Acc": "5.98",
+    "No answer": "80.60",
+    "Easy Puzzle Acc": "21.79",
+    "Hard Puzzle Acc": "0.42",
+    "Total Puzzles": 1000,
+    "Reason Lens": "718.43"
+  },
+  {
     "Model": "gemma-2-2b-it",
     "Mode": "greedy",
     "Puzzle Acc": "4.20",

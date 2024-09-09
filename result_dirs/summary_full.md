@@ -42,6 +42,7 @@
 | Phi-3-mini-4k-instruct         |   75.51 |             70.34 |                  38.21 |  43.50 |          16.23 |
 | command-r                      |   52.99 |             61.12 |                  32.14 | nan    |         nan    |
 | Yi-1.5-9B-Chat                 |   76.42 |             65.05 |                   8.21 |  43.75 |         nan    |
+| Phi-3.5-mini-instruct          |   82.03 |             67.67 |                  21.79 |  40.88 |          18.72 |
 | deepseek-v2.5-0908             |  nan    |            nan    |                 nan    | nan    |          44.66 |
 | Qwen2-1.5B-Instruct            |   43.37 |             41.11 |                 nan    | nan    |         nan    |
 | Rex-v0.1-1.5B                  |  nan    |             39.09 |                 nan    | nan    |         nan    |
