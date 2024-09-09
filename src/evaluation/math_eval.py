@@ -9,7 +9,7 @@ from eval_utils import load_model_results, extract_values_from_json, extract_fir
 
 
 
-def santize_math_answers(answer):
+def sanitize_math_answers(answer):
     # ignore symbols like $ 
     answer = answer.replace("$", "").strip()
     # ignore the units like miles after the number  
@@ -34,10 +34,13 @@ def eval_model(model, filepath):
     no_answer = 0  
     
     reason_lens = []
+    parsed_results = [] 
     for item in data:  
         # Read and Parse the prediction from model output
+        parsed_item = item.copy()
         prediction_str = item["output"][0] 
         prediction_json = extract_first_complete_json(prediction_str)
+        flag_parsed_answer = True
         if prediction_json is None or "answer" not in prediction_json:
             prediction_json = extract_values_from_json(prediction_str, allow_no_quotes=True)
             # print("-")
@@ -48,20 +51,34 @@ def eval_model(model, filepath):
                 prediction_json["answer"] = try_extracted_answer
             else:
                 no_answer += 1 
+                flag_parsed_answer = False 
                 if False and  "3.1" in model: # used for debugging the format of the output
                     print("--------------------------")
                     print(f"No answer for {item['id']}")
                     print(prediction_str)
                     print(prediction_json)
                     print(correct_answer)
-                continue 
+                # continue         
         reason = prediction_json.get("reasoning", "")
-        model_answer = str(prediction_json["answer"])
         correct_answer = item["answer"].replace("#", "").strip()
-        # santize the answers
+        model_answer = None 
+        if not flag_parsed_answer:
+            # if "{"+correct_answer+"}" in prediction_str:
+            # # Note: we assume the answer is correct if it is in the prediction string
+            #     parsed_item["remarks"] = "Correct answer + {} is in the prediction string"
+            #     model_answer = correct_answer
+            # else:
+            parsed_item["model_answer"] = {"raw": None, "sanitized": None, "first_number": None} # not matched 
+            parsed_item["correct_answer"] = {"raw": correct_answer}
+            parsed_item["matched"] = "No answer extracted"
+            parsed_results.append(parsed_item) 
+            continue
+        else:
+            model_answer = str(prediction_json["answer"])
+        # sanitize the answers
         raw_model_answer = model_answer[:]
-        model_answer = santize_math_answers(model_answer)
-        correct_answer = santize_math_answers(correct_answer)
+        model_answer = sanitize_math_answers(model_answer)
+        correct_answer = sanitize_math_answers(correct_answer)
          
         first_number_in_model_answer = re.search(r"-?\d+(\.\d+)?", model_answer)
         first_number_in_correct_answer = re.search(r"-?\d+(\.\d+)?", correct_answer)
@@ -97,6 +114,13 @@ def eval_model(model, filepath):
             if not correct:
                 print(item["id"], "incorrect")
         reason_lens.append(len(reason))
+
+        parsed_item["model_answer"] = {"raw": raw_model_answer, "sanitized": model_answer, "first_number": first_number_in_model_answer.group() if first_number_in_model_answer else None}
+        parsed_item["correct_answer"] = {"raw": correct_answer, "sanitized": correct_answer, "first_number": first_number_in_correct_answer.group() if first_number_in_correct_answer else None}
+        parsed_item["matched"] = correct
+        parsed_results.append(parsed_item)
+
+
  
     result = {}
     result["Model"] = model.split("%")[0]
@@ -105,7 +129,7 @@ def eval_model(model, filepath):
     result["No answer"] = f"{no_answer/num_total_examples*100:.2f}"
     result["Total"] = num_total_examples
     result["Reason Lens"] = f"{sum(reason_lens)/len(reason_lens):.2f}"
-    return result
+    return result, parsed_results
 
 
 def gen_results(run_name_folders): 
@@ -114,7 +138,17 @@ def gen_results(run_name_folders):
     columns = ["Model", "Mode", "Acc", "No answer", "Total", "Reason Lens"]
     rows = []
     for model_name, filepath in model_results.items(): 
-        result = eval_model(model_name, filepath) 
+        # print(model_name)
+        if model_name in ["gemini-1.5-flash-exp-0827%greedy"]:
+            continue
+        result, parsed_results = eval_model(model_name, filepath) 
+        # save the parsed_results to the same filepath with a  new prefix 
+        parsed_results_filepath = filepath.replace("result_dirs", "result_dirs_parsed")
+        # create folders if not exist
+        os.makedirs(os.path.dirname(parsed_results_filepath), exist_ok=True)
+        # save 
+        with open(parsed_results_filepath, "w") as f:
+            json.dump(parsed_results, f, indent=2)
         rows.append(result)
 
     # sort the rows by puzzle accuracy
@@ -142,13 +176,13 @@ def gen_results(run_name_folders):
 
 
 if __name__ == "__main__":
-
-    data_name = "gsm" # by default if there is no sys.argv[1]
+ 
+    data_name = sys.argv[1] if len(sys.argv) > 1 else "math-l5"
     if len(sys.argv) > 1:
         data_name = sys.argv[1]
     run_name_folders = {
         "greedy": f"result_dirs/{data_name}", 
-        "sampling": f"result_dirs/{data_name}/sampling",
-        "greedy@no_cot": f"result_dirs/{data_name}/greedy@no_cot",
+        # "sampling": f"result_dirs/{data_name}/sampling",
+        # "greedy@no_cot": f"result_dirs/{data_name}/greedy@no_cot",
     }  
     gen_results(run_name_folders)
