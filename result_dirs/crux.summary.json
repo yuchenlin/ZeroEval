@@ -240,6 +240,14 @@
     "Reason Lens": "561.47"
   },
   {
+    "Model": "Phi-3.5-mini-instruct",
+    "Mode": "greedy",
+    "Acc": "40.88",
+    "No answer": "3.00",
+    "Total": 800,
+    "Reason Lens": "625.13"
+  },
+  {
     "Model": "Meta-Llama-3.1-8B-Instruct",
     "Mode": "greedy",
     "Acc": "38.75",

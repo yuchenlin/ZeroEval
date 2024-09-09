@@ -216,6 +216,14 @@
     "Reason Lens": "514.25"
   },
   {
+    "Model": "Phi-3.5-mini-instruct",
+    "Mode": "greedy",
+    "Acc": "82.03",
+    "No answer": "1.21",
+    "Total": 1319,
+    "Reason Lens": "665.69"
+  },
+  {
     "Model": "gpt-3.5-turbo-0125",
     "Mode": "greedy",
     "Acc": "80.36",

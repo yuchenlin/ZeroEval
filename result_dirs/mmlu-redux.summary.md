@@ -38,6 +38,7 @@
 |         Phi-3-mini-4k-instruct          | greedy | 70.34 |    0.43     |  2778   |    677.09     |
 |             command-r-plus              | greedy | 68.61 |      0      |  2778   |    401.51     |
 |           gpt-3.5-turbo-0125            | greedy | 68.36 |    0.04     |  2778   |    357.92     |
+|          Phi-3.5-mini-instruct          | greedy | 67.67 |     4.5     |  2778   |    899.49     |
 |       Meta-Llama-3.1-8B-Instruct        | greedy | 67.24 |    4.25     |  2778   |     732.7     |
 |            Qwen2-7B-Instruct            | greedy | 66.92 |    0.72     |  2778   |    533.15     |
 |       Mistral-Nemo-Instruct-2407        | greedy | 66.88 |    0.47     |  2778   |    464.19     |

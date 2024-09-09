@@ -74,13 +74,23 @@ if [[ $model_name == *"gemma-2"* ]]; then
     fi 
 fi
 
+
+
+
 max_model_len=-1
+
+# if model name contains "phi-3.5" then use a different gpu_memory_utilization
+if [[ $model_name == *"Phi-3.5"* ]]; then
+    gpu_memory_utilization=0.9
+    max_model_len=4096
+fi
 
 if [[ $model_name == *"70B"* ]]; then
         gpu_memory_utilization=0.9
         max_model_len=4096
-        echo "Using 0.9 gpu memory utilization"
 fi 
+
+echo "Using ${gpu_memory_utilization} gpu memory utilization and max_model_len=${max_model_len}"
 
 
 
@@ -127,6 +137,7 @@ elif [ $n_shards -gt 1 ]; then
             --model_name $model_name \
             --run_name $run_name \
             --gpu_memory_utilization $gpu_memory_utilization \
+            --max_model_len $max_model_len \
             --use_hf_conv_template --use_imend_stop \
             --download_dir $CACHE_DIR \
             --tensor_parallel_size $num_gpus \

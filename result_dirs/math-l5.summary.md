@@ -21,6 +21,7 @@
 |             gemma-2-27b-it              | greedy | 26.63 |    0.42     |   721   |    966.99     |
 |       Meta-Llama-3.1-8B-Instruct        | greedy | 22.19 |    19.42    |   721   |    1101.49    |
 |              gemma-2-9b-it              | greedy | 19.42 |    0.69     |   721   |    979.22     |
+|          Phi-3.5-mini-instruct          | greedy | 18.72 |    6.24     |   721   |    1374.95    |
 |             Yi-1.5-34B-Chat             | greedy | 18.17 |    0.42     |   721   |    1106.09    |
 |         Phi-3-mini-4k-instruct          | greedy | 16.23 |    9.15     |   721   |    830.07     |
 |         claude-3-haiku-20240307         | greedy | 15.12 |    0.14     |   721   |    781.21     |

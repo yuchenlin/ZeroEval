@@ -256,6 +256,14 @@
     "Reason Lens": "357.92"
   },
   {
+    "Model": "Phi-3.5-mini-instruct",
+    "Mode": "greedy",
+    "Acc": "67.67",
+    "No answer": "4.50",
+    "Total": 2778,
+    "Reason Lens": "899.49"
+  },
+  {
     "Model": "Meta-Llama-3.1-8B-Instruct",
     "Mode": "greedy",
     "Acc": "67.24",
