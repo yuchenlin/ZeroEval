@@ -8,6 +8,14 @@
     "Reason Lens": "1209.70"
   },
   {
+    "Model": "Meta-Llama-3.1-70B-Instruct",
+    "Mode": "greedy",
+    "Acc": "58.04",
+    "No answer": "9.82",
+    "Total": 224,
+    "Reason Lens": "562.01"
+  },
+  {
     "Model": "gpt-4o-2024-08-06",
     "Mode": "greedy",
     "Acc": "55.34",
@@ -54,6 +62,14 @@
     "No answer": "1.42",
     "Total": 706,
     "Reason Lens": "371.20"
+  },
+  {
+    "Model": "Llama-3.1-405B-Inst-SN",
+    "Mode": "greedy",
+    "Acc": "49.79",
+    "No answer": "6.93",
+    "Total": 721,
+    "Reason Lens": "301.83"
   },
   {
     "Model": "Mistral-Large-2",

@@ -244,7 +244,7 @@ if __name__ == "__main__":
             result = openai_chat_request(**kwargs)
             return result
 
-        for cur_id in tqdm(range(0, len(todo_inputs)), desc=f"Generating {args.model_name} from {args.start_index} to {args.end_index}"):
+        for cur_id in tqdm(range(0, len(todo_inputs)), desc=f"Generating {args.model_name} from {args.start_index} to {args.end_index} on {args.data_name}"):
             # input_text = todo_inputs[cur_id]
             chat = todo_chats[cur_id]
             openai_msg = [{"role":"system", "content":"You are a helpful AI assistant."}]
