@@ -1,5 +1,13 @@
 [
   {
+    "Model": "chatgpt-4o-latest-24-09-07",
+    "Mode": "greedy",
+    "Acc": "88.88",
+    "No answer": "0.07",
+    "Total": 2778,
+    "Reason Lens": "622.27"
+  },
+  {
     "Model": "gpt-4o-2024-08-06",
     "Mode": "greedy",
     "Acc": "88.26",

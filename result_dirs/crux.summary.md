@@ -7,12 +7,15 @@
 |                  Model                  |  Mode  |  Acc  |  No answer  |  Total  |  Reason Lens  |
 |-----------------------------------------|--------|-------|-------------|---------|---------------|
 |            gpt-4o-2024-08-06            | greedy |  85   |    0.12     |   800   |     760.7     |
+|       chatgpt-4o-latest-24-09-07        | greedy | 84.25 |      0      |   800   |    683.45     |
 |            gpt-4o-2024-05-13            | greedy | 83.62 |    0.25     |   800   |    611.46     |
 |       claude-3-5-sonnet-20240620        | greedy | 78.75 |      0      |   800   |    518.28     |
 |         gemini-1.5-pro-exp-0827         | greedy | 77.62 |    0.25     |   800   |    581.76     |
+|         gpt-4-turbo-2024-04-09          | greedy | 76.75 |      0      |   800   |    566.57     |
 |         gpt-4o-mini-2024-07-18          | greedy | 73.5  |    0.12     |   800   |    391.32     |
 |         gemini-1.5-pro-exp-0801         | greedy |  73   |    0.12     |   800   |    436.82     |
 |             Mistral-Large-2             | greedy | 72.88 |    0.25     |   800   |    469.91     |
+|               gpt-4-0314                | greedy | 72.38 |      0      |   800   |    404.28     |
 |         Llama-3.1-405B-Inst-fp8         | greedy | 72.12 |    2.62     |   800   |    300.62     |
 | Meta-Llama-3.1-405B-Instruct@hyperbolic | greedy | 71.5  |    1.12     |   800   |    345.76     |
 |         claude-3-opus-20240229          | greedy | 68.62 |      0      |   800   |    521.62     |

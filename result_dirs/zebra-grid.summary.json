@@ -77,6 +77,17 @@
     "Reason Lens": "1594.47"
   },
   {
+    "Model": "chatgpt-4o-latest-24-09-07",
+    "Mode": "greedy",
+    "Puzzle Acc": "29.90",
+    "Cell Acc": "48.83",
+    "No answer": "4.20",
+    "Easy Puzzle Acc": "81.43",
+    "Hard Puzzle Acc": "9.86",
+    "Total Puzzles": 1000,
+    "Reason Lens": "1539.99"
+  },
+  {
     "Model": "Mistral-Large-2",
     "Mode": "greedy",
     "Puzzle Acc": "29.00",
