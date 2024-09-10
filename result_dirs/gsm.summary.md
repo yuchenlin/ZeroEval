@@ -21,6 +21,7 @@
 |             gemini-1.5-pro              | greedy | 93.4  |      0      |  1319   |    389.17     |
 |        Meta-Llama-3-70B-Instruct        | greedy | 93.03 |      0      |  1319   |    352.05     |
 |           Qwen2-72B-Instruct            | greedy | 92.65 |      0      |  1319   |    375.96     |
+|           deepseek-v2.5-0908            | greedy | 92.49 |      0      |  1319   |    490.46     |
 |        claude-3-sonnet-20240229         | greedy | 91.51 |      0      |  1319   |    762.69     |
 |         DeepSeek-Coder-V2-0724          | greedy | 91.51 |      0      |  1319   |    494.62     |
 |            gemini-1.5-flash             | greedy | 91.36 |      0      |  1319   |    344.61     |

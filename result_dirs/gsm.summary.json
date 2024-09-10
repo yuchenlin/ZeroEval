@@ -120,6 +120,14 @@
     "Reason Lens": "375.96"
   },
   {
+    "Model": "deepseek-v2.5-0908",
+    "Mode": "greedy",
+    "Acc": "92.49",
+    "No answer": "0.00",
+    "Total": 1319,
+    "Reason Lens": "490.46"
+  },
+  {
     "Model": "claude-3-sonnet-20240229",
     "Mode": "greedy",
     "Acc": "91.51",

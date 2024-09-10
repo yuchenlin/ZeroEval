@@ -144,6 +144,14 @@
     "Reason Lens": "691.91"
   },
   {
+    "Model": "deepseek-v2.5-0908",
+    "Mode": "greedy",
+    "Acc": "80.35",
+    "No answer": "0.22",
+    "Total": 2778,
+    "Reason Lens": "641.15"
+  },
+  {
     "Model": "DeepSeek-Coder-V2-0724",
     "Mode": "greedy",
     "Acc": "80.24",
