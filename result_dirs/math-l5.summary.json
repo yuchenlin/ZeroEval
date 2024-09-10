@@ -64,6 +64,14 @@
     "Reason Lens": "951.92"
   },
   {
+    "Model": "gpt-4-turbo-2024-04-09",
+    "Mode": "greedy",
+    "Acc": "46.46",
+    "No answer": "0.55",
+    "Total": 721,
+    "Reason Lens": "918.03"
+  },
+  {
     "Model": "deepseek-v2.5-0908",
     "Mode": "greedy",
     "Acc": "44.66",
@@ -88,12 +96,28 @@
     "Reason Lens": "803.39"
   },
   {
+    "Model": "claude-3-opus-20240229",
+    "Mode": "greedy",
+    "Acc": "36.89",
+    "No answer": "0.00",
+    "Total": 721,
+    "Reason Lens": "683.08"
+  },
+  {
     "Model": "Meta-Llama-3.1-70B-Instruct@hyperbolic",
     "Mode": "greedy",
     "Acc": "35.76",
     "No answer": "12.24",
     "Total": 425,
     "Reason Lens": "291.99"
+  },
+  {
+    "Model": "gemini-1.5-flash",
+    "Mode": "greedy",
+    "Acc": "34.81",
+    "No answer": "2.36",
+    "Total": 721,
+    "Reason Lens": "758.07"
   },
   {
     "Model": "gemma-2-27b-it",
@@ -104,12 +128,52 @@
     "Reason Lens": "966.99"
   },
   {
+    "Model": "gpt-4-0314",
+    "Mode": "greedy",
+    "Acc": "26.07",
+    "No answer": "1.11",
+    "Total": 721,
+    "Reason Lens": "821.18"
+  },
+  {
+    "Model": "Qwen2-7B-Instruct",
+    "Mode": "greedy",
+    "Acc": "23.86",
+    "No answer": "3.61",
+    "Total": 721,
+    "Reason Lens": "993.61"
+  },
+  {
     "Model": "Meta-Llama-3.1-8B-Instruct",
     "Mode": "greedy",
     "Acc": "22.19",
     "No answer": "19.42",
     "Total": 721,
     "Reason Lens": "1101.49"
+  },
+  {
+    "Model": "reka-core-20240501",
+    "Mode": "greedy",
+    "Acc": "21.91",
+    "No answer": "2.64",
+    "Total": 721,
+    "Reason Lens": "705.50"
+  },
+  {
+    "Model": "Athene-70B",
+    "Mode": "greedy",
+    "Acc": "20.67",
+    "No answer": "0.55",
+    "Total": 721,
+    "Reason Lens": "488.00"
+  },
+  {
+    "Model": "Yi-1.5-9B-Chat",
+    "Mode": "greedy",
+    "Acc": "19.97",
+    "No answer": "14.01",
+    "Total": 721,
+    "Reason Lens": "520.48"
   },
   {
     "Model": "gemma-2-9b-it",
@@ -158,5 +222,21 @@
     "No answer": "0.42",
     "Total": 721,
     "Reason Lens": "501.75"
+  },
+  {
+    "Model": "Meta-Llama-3-8B-Instruct",
+    "Mode": "greedy",
+    "Acc": "7.91",
+    "No answer": "11.93",
+    "Total": 721,
+    "Reason Lens": "770.32"
+  },
+  {
+    "Model": "gemma-2-2b-it",
+    "Mode": "greedy",
+    "Acc": "4.30",
+    "No answer": "16.23",
+    "Total": 721,
+    "Reason Lens": "832.15"
   }
 ]
