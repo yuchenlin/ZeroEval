@@ -187,6 +187,17 @@
     "Reason Lens": "1260.23"
   },
   {
+    "Model": "deepseek-v2.5-0908",
+    "Mode": "greedy",
+    "Puzzle Acc": "22.10",
+    "Cell Acc": "38.01",
+    "No answer": "12.70",
+    "Easy Puzzle Acc": "68.21",
+    "Hard Puzzle Acc": "4.17",
+    "Total Puzzles": 1000,
+    "Reason Lens": "1294.46"
+  },
+  {
     "Model": "Qwen2-72B-Instruct",
     "Mode": "greedy",
     "Puzzle Acc": "21.40",

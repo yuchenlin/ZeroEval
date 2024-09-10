@@ -18,6 +18,7 @@
 | gpt-4o-mini-2024-07-18         |   94.24 |             81.50 |                  62.50 |  73.50 |          52.15 |
 | claude-3-sonnet-20240229       |   91.51 |             74.87 |                  58.93 |  64.75 |         nan    |
 | gemini-1.5-flash               |   91.36 |             77.36 |                  59.29 |  61.88 |         nan    |
+| deepseek-v2.5-0908             |   92.49 |             80.35 |                  68.21 |  68.12 |          44.66 |
 | yi-large-preview               |   82.64 |             82.15 |                  58.93 |  58.63 |         nan    |
 | Meta-Llama-3-70B-Instruct      |   93.03 |             78.01 |                  52.86 |  57.12 |         nan    |
 | yi-large                       |   80.06 |             81.17 |                  58.21 |  58.38 |         nan    |
@@ -43,7 +44,6 @@
 | command-r                      |   52.99 |             61.12 |                  32.14 | nan    |         nan    |
 | Yi-1.5-9B-Chat                 |   76.42 |             65.05 |                   8.21 |  43.75 |         nan    |
 | Phi-3.5-mini-instruct          |   82.03 |             67.67 |                  21.79 |  40.88 |          18.72 |
-| deepseek-v2.5-0908             |  nan    |            nan    |                 nan    | nan    |          44.66 |
 | Qwen2-1.5B-Instruct            |   43.37 |             41.11 |                 nan    | nan    |         nan    |
 | Rex-v0.1-1.5B                  |  nan    |             39.09 |                 nan    | nan    |         nan    |
 | gemma-2-2b-it                  |   51.63 |             51.94 |                  14.29 |  20.75 |         nan    |

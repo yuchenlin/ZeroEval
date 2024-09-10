@@ -24,6 +24,7 @@
 |         gpt-4o-mini-2024-07-18          | greedy | 81.5  |    0.07     |  2778   |      526      |
 |                yi-large                 | greedy | 81.17 |      0      |  2778   |    774.85     |
 |              deepseek-chat              | greedy | 80.81 |    0.11     |  2778   |    691.91     |
+|           deepseek-v2.5-0908            | greedy | 80.35 |    0.22     |  2778   |    641.15     |
 |         DeepSeek-Coder-V2-0724          | greedy | 80.24 |    0.32     |  2778   |    650.65     |
 |             deepseek-coder              | greedy | 79.63 |    0.14     |  2778   |    704.72     |
 |        Meta-Llama-3-70B-Instruct        | greedy | 78.01 |    0.11     |  2778   |    520.77     |
