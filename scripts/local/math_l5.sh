@@ -74,17 +74,17 @@
 
 
 
-bash zero_eval_local.sh -f vllm -d math-l5 -m Nexusflow/Athene-70B -p Athene-70B -s 1
-wait 
+# bash zero_eval_local.sh -f vllm -d math-l5 -m Nexusflow/Athene-70B -p Athene-70B -s 1
+# wait 
 
-bash zero_eval_local.sh -d math-l5 -m google/gemma-2-2b-it -p gemma-2-2b-it -s 4 -f hf
-wait 
+# bash zero_eval_local.sh -d math-l5 -m google/gemma-2-2b-it -p gemma-2-2b-it -s 4 -f hf
+# wait 
 
-bash zero_eval_local.sh -d math-l5 -m meta-llama/Meta-Llama-3-8B-Instruct -p Meta-Llama-3-8B-Instruct -s 4
-wait 
+# bash zero_eval_local.sh -d math-l5 -m meta-llama/Meta-Llama-3-8B-Instruct -p Meta-Llama-3-8B-Instruct -s 4
+# wait 
 
-bash zero_eval_local.sh -d math-l5 -m 01-ai/Yi-1.5-9B-Chat -p Yi-1.5-9B-Chat -s 4
-wait 
+# bash zero_eval_local.sh -d math-l5 -m 01-ai/Yi-1.5-9B-Chat -p Yi-1.5-9B-Chat -s 4
+# wait 
 
-bash zero_eval_local.sh -d math-l5 -m Qwen/Qwen2-7B-Instruct -p Qwen2-7B-Instruct -s 4 
-wait 
+# bash zero_eval_local.sh -d math-l5 -m Qwen/Qwen2-7B-Instruct -p Qwen2-7B-Instruct -s 4 
+# wait 

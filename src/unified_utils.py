@@ -277,6 +277,10 @@ def openai_chat_request(
             assert os.environ.get("HYPERBOLIC_API_KEY") is not None, "Please set HYPERBOLIC_API_KEY in the environment variables."
             client = OpenAI(api_key=os.environ.get("HYPERBOLIC_API_KEY"), base_url="https://api.hyperbolic.xyz/v1")
             model = model.replace("@hyperbolic", "")            
+        elif model.endswith("@sambanova"): 
+            assert os.environ.get("SAMBANOVA_API_KEY") is not None, "Please set SAMBANOVA_API_KEY in the environment variables."
+            client = OpenAI(api_key=os.environ.get("SAMBANOVA_API_KEY"), base_url="https://api.sambanova.ai/v1")
+            model = model.replace("@sambanova", "")             
         elif model.endswith("@lepton"):
             assert os.environ.get("LEPTON_API_TOKEN") is not None, "Please set LEPTON_API_TOKEN in the environment variables."
             client = openai.OpenAI(base_url="https://llama3-1-405b.lepton.run/api/v1/", api_key=os.environ.get('LEPTON_API_TOKEN'))
@@ -317,7 +321,7 @@ def openai_chat_request(
                 **kwargs,
             )
         # print(f"Received response from OpenAI API with model {model}")
-        contents = []
+        contents = [] 
         for choice in response.choices:
             # Check if the response is valid
             if choice.finish_reason not in ['stop', 'length']:

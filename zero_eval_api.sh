@@ -79,6 +79,7 @@ if [ $n_shards -eq 1 ]; then
         --data_name $DATA_NAME \
         --engine $engine_name \
         --model_name $model_name \
+        --model_pretty_name $model_pretty_name \
         --run_name $run_name \
         --top_p $TOP_P --temperature $TEMP --repetition_penalty $rp \
         --batch_size $batch_size --max_tokens $MAX_TOKENS \
