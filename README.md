@@ -28,9 +28,11 @@ pip install -r requirements.txt
 ## Tasks 
 
 - [MMLU-redux](https://arxiv.org/abs/2406.04127) (`-d mmlu-redux`)
-- [GSM8K](https://openai.com/index/solving-math-word-problems/) (`-d gsm`)
 - [ZebraLogic](https://huggingface.co/blog/yuchenlin/zebra-logic) (`-d zebra-grid`)
 - [CRUX](https://crux-eval.github.io/) (`-d crux`)
+- [MATH (Level 5)](https://huggingface.co/datasets/AI-MO/aimo-validation-math-level-5) (`-d math-l5`)
+- [GSM8K](https://openai.com/index/solving-math-word-problems/) (`-d gsm`)
+
 - More tasks will be added soon. (e.g., ARC, MMLU-Pro, etc.)
 <!-- - AlpacaEval (`-d alpaca-eval`) -->
 
