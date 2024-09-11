@@ -98,10 +98,10 @@
   {
     "Model": "Llama-3.1-405B-Inst@sambanova",
     "Mode": "greedy",
-    "Acc": "70.85",
-    "No answer": "0.13",
-    "Total": 772,
-    "Reason Lens": "413.67"
+    "Acc": "71.25",
+    "No answer": "0.12",
+    "Total": 800,
+    "Reason Lens": "414.28"
   },
   {
     "Model": "claude-3-opus-20240229",

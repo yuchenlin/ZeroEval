@@ -24,6 +24,14 @@
     "Reason Lens": "629.79"
   },
   {
+    "Model": "Llama-3.1-405B-Inst@sambanova",
+    "Mode": "greedy",
+    "Acc": "86.21",
+    "No answer": "0.25",
+    "Total": 2778,
+    "Reason Lens": "629.07"
+  },
+  {
     "Model": "gemini-1.5-pro-exp-0827",
     "Mode": "greedy",
     "Acc": "86.14",

@@ -99,6 +99,17 @@
     "Reason Lens": "1592.39"
   },
   {
+    "Model": "Llama-3.1-405B-Inst@sambanova",
+    "Mode": "greedy",
+    "Puzzle Acc": "28.57",
+    "Cell Acc": "39.41",
+    "No answer": "24.55",
+    "Easy Puzzle Acc": "92.31",
+    "Hard Puzzle Acc": "9.30",
+    "Total Puzzles": 224,
+    "Reason Lens": "2177.18"
+  },
+  {
     "Model": "gpt-4-turbo-2024-04-09",
     "Mode": "greedy",
     "Puzzle Acc": "28.40",
