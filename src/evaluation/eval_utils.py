@@ -10,6 +10,7 @@ def model_name_replacement(model_name):
     model_name = model_name.replace('deepseek-chat', 'deepseek-v2-chat-0628')
     model_name = model_name.replace('deepseek-coder', 'deepseek-v2-coder-0614')
     model_name = model_name.replace('DeepSeek-Coder-V2-0724', 'deepseek-v2-coder-0724')
+    model_name = model_name.replace('Llama-3.1-405B-Inst-fp8', 'Llama-3.1-405B-Inst-fp8@together') 
     model_name = model_name.replace('Llama-3.1-405B-Instruct-Turbo', 'Llama-3.1-405B-Inst-fp8@together')
     model_name = model_name.replace('Meta-Llama-3.1-405B-Instruct@hyperbolic', 'Llama-3.1-405B-Inst@hyperbolic')
     return model_name
