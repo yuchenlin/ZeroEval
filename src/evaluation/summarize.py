@@ -42,8 +42,8 @@ def replace_model_names(cur_data):
     cur_data['Model'] = cur_data['Model'].replace('deepseek-chat', 'deepseek-v2-chat-0628')
     cur_data['Model'] = cur_data['Model'].replace('deepseek-coder', 'deepseek-v2-coder-0614')
     cur_data['Model'] = cur_data['Model'].replace('DeepSeek-Coder-V2-0724', 'deepseek-v2-coder-0724')
-    cur_data['Model'] = cur_data['Model'].replace('Llama-3.1-405B-Instruct-Turbo', 'Llama-3.1-405B-Inst-fp8')
-    cur_data['Model'] = cur_data['Model'].replace('Meta-Llama-3.1-405B-Instruct@hyperbolic', 'Llama-3.1-405B-Inst-bf16')
+    cur_data['Model'] = cur_data['Model'].replace('Llama-3.1-405B-Instruct-Turbo', 'Llama-3.1-405B-Inst-fp8@together')
+    cur_data['Model'] = cur_data['Model'].replace('Meta-Llama-3.1-405B-Instruct@hyperbolic', 'Llama-3.1-405B-Inst@hyperbolic')
     
     return cur_data
 

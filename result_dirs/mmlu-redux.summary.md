@@ -9,6 +9,7 @@
 |       chatgpt-4o-latest-24-09-07        | greedy | 88.88 |    0.07     |  2778   |    622.27     |
 |            gpt-4o-2024-08-06            | greedy | 88.26 |    0.04     |  2778   |    691.73     |
 |            gpt-4o-2024-05-13            | greedy | 88.01 |    0.14     |  2778   |    629.79     |
+|      Llama-3.1-405B-Inst@sambanova      | greedy | 86.21 |    0.25     |  2778   |    629.07     |
 |         gemini-1.5-pro-exp-0827         | greedy | 86.14 |    1.26     |  2778   |    858.08     |
 |       claude-3-5-sonnet-20240620        | greedy |  86   |    0.18     |  2778   |     907.1     |
 |      Llama-3.1-405B-Instruct-Turbo      | greedy | 85.64 |    0.76     |  2778   |    449.71     |
