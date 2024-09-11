@@ -26,10 +26,10 @@
   {
     "Model": "Llama-3.1-405B-Inst@sambanova",
     "Mode": "greedy",
-    "Acc": "95.77",
-    "No answer": "0.00",
-    "Total": 851,
-    "Reason Lens": "466.59"
+    "Acc": "95.91",
+    "No answer": "0.08",
+    "Total": 1319,
+    "Reason Lens": "464.76"
   },
   {
     "Model": "claude-3-5-sonnet-20240620",

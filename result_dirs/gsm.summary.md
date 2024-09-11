@@ -9,7 +9,7 @@
 |        gpt-4o-2024-08-06         | greedy | 96.21 |      0      |  1319   |    462.06     |
 |  Llama-3.1-405B-Inst@hyperbolic  | greedy | 95.98 |    0.08     |  1319   |    421.83     |
 | Llama-3.1-405B-Inst-fp8@together | greedy | 95.91 |    0.08     |  1319   |    365.07     |
-|  Llama-3.1-405B-Inst@sambanova   | greedy | 95.77 |      0      |   851   |    466.59     |
+|  Llama-3.1-405B-Inst@sambanova   | greedy | 95.91 |    0.08     |  1319   |    464.76     |
 |    claude-3-5-sonnet-20240620    | greedy | 95.6  |      0      |  1319   |    465.19     |
 |      claude-3-opus-20240229      | greedy | 95.6  |      0      |  1319   |    410.62     |
 |         Mistral-Large-2          | greedy | 95.53 |      0      |  1319   |    391.07     |
