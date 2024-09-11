@@ -4,7 +4,7 @@ import os
 from tabulate import tabulate
 from datasets import load_dataset
 
-from eval_utils import load_model_results, extract_last_complete_json
+from eval_utils import load_model_results, extract_last_complete_json, model_name_replacement
 
 private_solutions = {}
 
@@ -115,6 +115,7 @@ def eval_model(model, filepath):
     result["Hard Puzzle Acc"] = f"{hard_solved_puzzles/hard_total_puzzles*100:.2f}"
     result["Total Puzzles"] = num_total_puzzles
     result["Reason Lens"] = f"{sum(reason_lens)/len(reason_lens):.2f}"
+    result["Model"] = model_name_replacement(result["Model"])
     return result
 
 

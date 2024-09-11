@@ -4,9 +4,7 @@ import os
 from tabulate import tabulate 
 import re
 import sys
-from eval_utils import load_model_results, extract_values_from_json, extract_first_complete_json, model_specific_extraction
- 
-
+from eval_utils import load_model_results, extract_values_from_json, extract_first_complete_json, model_specific_extraction, model_name_replacement
 
 def eval_model(model, filepath):
     global private_solutions
@@ -68,6 +66,8 @@ def eval_model(model, filepath):
     result["No answer"] = f"{no_answer/num_total_examples*100:.2f}"
     result["Total"] = num_total_examples
     result["Reason Lens"] = f"{sum(reason_lens)/len(reason_lens):.2f}"
+
+    result["Model"] = model_name_replacement(result["Model"])
     return result
 
 

@@ -48,7 +48,7 @@
     "Reason Lens": "907.10"
   },
   {
-    "Model": "Llama-3.1-405B-Instruct-Turbo",
+    "Model": "Llama-3.1-405B-Inst-fp8@together",
     "Mode": "greedy",
     "Acc": "85.64",
     "No answer": "0.76",
@@ -72,7 +72,7 @@
     "Reason Lens": "631.38"
   },
   {
-    "Model": "Meta-Llama-3.1-405B-Instruct@hyperbolic",
+    "Model": "Llama-3.1-405B-Inst@hyperbolic",
     "Mode": "greedy",
     "Acc": "84.41",
     "No answer": "1.15",
@@ -152,7 +152,7 @@
     "Reason Lens": "774.85"
   },
   {
-    "Model": "deepseek-chat",
+    "Model": "deepseek-v2-chat-0628",
     "Mode": "greedy",
     "Acc": "80.81",
     "No answer": "0.11",
@@ -168,7 +168,7 @@
     "Reason Lens": "641.15"
   },
   {
-    "Model": "DeepSeek-Coder-V2-0724",
+    "Model": "deepseek-v2-coder-0724",
     "Mode": "greedy",
     "Acc": "80.24",
     "No answer": "0.32",
@@ -176,7 +176,7 @@
     "Reason Lens": "650.65"
   },
   {
-    "Model": "deepseek-coder",
+    "Model": "deepseek-v2-coder-0614",
     "Mode": "greedy",
     "Acc": "79.63",
     "No answer": "0.14",
@@ -216,7 +216,7 @@
     "Reason Lens": "701.67"
   },
   {
-    "Model": "gemma-2-27b-it@together",
+    "Model": "gemma-2-27b-it",
     "Mode": "greedy",
     "Acc": "75.67",
     "No answer": "0.61",
@@ -232,7 +232,7 @@
     "Reason Lens": "671.75"
   },
   {
-    "Model": "gemma-2-9b-it@nvidia",
+    "Model": "gemma-2-9b-it",
     "Mode": "greedy",
     "Acc": "72.82",
     "No answer": "0.76",

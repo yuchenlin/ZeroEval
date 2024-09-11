@@ -2,6 +2,17 @@ import re
 import os 
 import json 
 
+def model_name_replacement(model_name):
+    model_name = model_name.replace('gemma-2-9b-it@nvidia', 'gemma-2-9b-it') 
+    model_name = model_name.replace('gemma-2-9b-it@together', 'gemma-2-9b-it') 
+    model_name = model_name.replace('gemma-2-27b-it@together', 'gemma-2-27b-it') 
+    model_name = model_name.replace('gemma-2-27b-it@nvidia', 'gemma-2-27b-it') 
+    model_name = model_name.replace('deepseek-chat', 'deepseek-v2-chat-0628')
+    model_name = model_name.replace('deepseek-coder', 'deepseek-v2-coder-0614')
+    model_name = model_name.replace('DeepSeek-Coder-V2-0724', 'deepseek-v2-coder-0724')
+    model_name = model_name.replace('Llama-3.1-405B-Instruct-Turbo', 'Llama-3.1-405B-Inst-fp8@together')
+    model_name = model_name.replace('Meta-Llama-3.1-405B-Instruct@hyperbolic', 'Llama-3.1-405B-Inst@hyperbolic')
+    return model_name
 
 def model_specific_extraction(model_name, prediction_str): 
     if "Llama-3.1" in model_name:

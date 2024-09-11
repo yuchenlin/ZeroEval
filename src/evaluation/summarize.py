@@ -1,4 +1,5 @@
 import pandas as pd
+from eval_utils import model_name_replacement
 
 # Load the JSON files
 gsm_file = 'result_dirs/gsm.summary.json'
@@ -35,16 +36,7 @@ math_data = filter_models_by_num_examples(math_data, total_num_examples['math-l5
 
 # replace the value from "gemma-2-9b-it@nvidia" to "gemma-2-9b-it" for all data. only when the model name is "gemma-2-9b-it@nvidia"
 def replace_model_names(cur_data):
-    cur_data['Model'] = cur_data['Model'].replace('gemma-2-9b-it@nvidia', 'gemma-2-9b-it') 
-    cur_data['Model'] = cur_data['Model'].replace('gemma-2-9b-it@together', 'gemma-2-9b-it') 
-    cur_data['Model'] = cur_data['Model'].replace('gemma-2-27b-it@together', 'gemma-2-27b-it') 
-    cur_data['Model'] = cur_data['Model'].replace('gemma-2-27b-it@nvidia', 'gemma-2-27b-it') 
-    cur_data['Model'] = cur_data['Model'].replace('deepseek-chat', 'deepseek-v2-chat-0628')
-    cur_data['Model'] = cur_data['Model'].replace('deepseek-coder', 'deepseek-v2-coder-0614')
-    cur_data['Model'] = cur_data['Model'].replace('DeepSeek-Coder-V2-0724', 'deepseek-v2-coder-0724')
-    cur_data['Model'] = cur_data['Model'].replace('Llama-3.1-405B-Instruct-Turbo', 'Llama-3.1-405B-Inst-fp8@together')
-    cur_data['Model'] = cur_data['Model'].replace('Meta-Llama-3.1-405B-Instruct@hyperbolic', 'Llama-3.1-405B-Inst@hyperbolic')
-    
+    cur_data['Model'] = model_name_replacement(cur_data['Model'])    
     return cur_data
 
 gsm_data = replace_model_names(gsm_data)

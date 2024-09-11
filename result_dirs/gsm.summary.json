@@ -8,7 +8,7 @@
     "Reason Lens": "462.06"
   },
   {
-    "Model": "Meta-Llama-3.1-405B-Instruct@hyperbolic",
+    "Model": "Llama-3.1-405B-Inst@hyperbolic",
     "Mode": "greedy",
     "Acc": "95.98",
     "No answer": "0.08",
@@ -16,7 +16,7 @@
     "Reason Lens": "421.83"
   },
   {
-    "Model": "Llama-3.1-405B-Instruct-Turbo",
+    "Model": "Llama-3.1-405B-Inst-fp8@together",
     "Mode": "greedy",
     "Acc": "95.91",
     "No answer": "0.08",
@@ -80,7 +80,7 @@
     "Reason Lens": "453.94"
   },
   {
-    "Model": "deepseek-chat",
+    "Model": "deepseek-v2-chat-0628",
     "Mode": "greedy",
     "Acc": "93.93",
     "No answer": "0.00",
@@ -88,7 +88,7 @@
     "Reason Lens": "495.52"
   },
   {
-    "Model": "deepseek-coder",
+    "Model": "deepseek-v2-coder-0614",
     "Mode": "greedy",
     "Acc": "93.78",
     "No answer": "0.00",
@@ -136,7 +136,7 @@
     "Reason Lens": "762.69"
   },
   {
-    "Model": "DeepSeek-Coder-V2-0724",
+    "Model": "deepseek-v2-coder-0724",
     "Mode": "greedy",
     "Acc": "91.51",
     "No answer": "0.00",
@@ -152,7 +152,7 @@
     "Reason Lens": "344.61"
   },
   {
-    "Model": "gemma-2-27b-it@together",
+    "Model": "gemma-2-27b-it",
     "Mode": "greedy",
     "Acc": "90.22",
     "No answer": "0.00",
