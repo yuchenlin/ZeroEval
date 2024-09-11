@@ -18,6 +18,7 @@
 |               gpt-4-0314                | greedy | 72.38 |      0      |   800   |    404.28     |
 |         Llama-3.1-405B-Inst-fp8         | greedy | 72.12 |    2.62     |   800   |    300.62     |
 | Meta-Llama-3.1-405B-Instruct@hyperbolic | greedy | 71.5  |    1.12     |   800   |    345.76     |
+|      Llama-3.1-405B-Inst@sambanova      | greedy | 70.85 |    0.13     |   772   |    413.67     |
 |         claude-3-opus-20240229          | greedy | 68.62 |      0      |   800   |    521.62     |
 |          deepseek-v2-chat-0628          | greedy | 68.5  |      0      |   800   |    568.12     |
 |           deepseek-v2.5-0908            | greedy | 68.12 |    0.12     |   800   |    524.02     |

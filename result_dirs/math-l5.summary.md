@@ -7,17 +7,17 @@
 |                  Model                  |  Mode  |  Acc  |  No answer  |  Total  |  Reason Lens  |
 |-----------------------------------------|--------|-------|-------------|---------|---------------|
 |         gemini-1.5-pro-exp-0827         | greedy | 68.1  |    1.25     |   721   |    1209.7     |
-|       Meta-Llama-3.1-70B-Instruct       | greedy | 58.04 |    9.82     |   224   |    562.01     |
 |            gpt-4o-2024-08-06            | greedy | 55.34 |    4.02     |   721   |    1164.68    |
 |            gpt-4o-2024-05-13            | greedy | 54.79 |    4.58     |   721   |    1254.44    |
 |       chatgpt-4o-latest-24-09-07        | greedy | 53.12 |    1.94     |   721   |    1277.75    |
 |         gpt-4o-mini-2024-07-18          | greedy | 52.15 |    1.11     |   721   |    648.64     |
 |       claude-3-5-sonnet-20240620        | greedy | 51.87 |      0      |   721   |    799.23     |
 | Meta-Llama-3.1-405B-Instruct@hyperbolic | greedy | 51.56 |    1.42     |   706   |     371.2     |
-|         Llama-3.1-405B-Inst-SN          | greedy | 49.79 |    6.93     |   721   |    301.83     |
+|      Llama-3.1-405B-Inst@sambanova      | greedy | 49.79 |    6.93     |   721   |    301.83     |
 |             Mistral-Large-2             | greedy | 48.54 |    0.69     |   721   |    951.92     |
 |         gpt-4-turbo-2024-04-09          | greedy | 46.46 |    0.55     |   721   |    918.03     |
 |           deepseek-v2.5-0908            | greedy | 44.66 |    1.66     |   721   |    1022.35    |
+|       Meta-Llama-3.1-70B-Instruct       | greedy | 43.13 |    12.21    |   721   |    504.65     |
 |             gemini-1.5-pro              | greedy | 39.81 |    0.42     |   721   |    784.11     |
 |           Qwen2-72B-Instruct            | greedy | 38.28 |    1.11     |   721   |    803.39     |
 |         claude-3-opus-20240229          | greedy | 36.89 |      0      |   721   |    683.08     |

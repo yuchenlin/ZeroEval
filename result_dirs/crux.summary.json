@@ -96,6 +96,14 @@
     "Reason Lens": "345.76"
   },
   {
+    "Model": "Llama-3.1-405B-Inst@sambanova",
+    "Mode": "greedy",
+    "Acc": "70.85",
+    "No answer": "0.13",
+    "Total": 772,
+    "Reason Lens": "413.67"
+  },
+  {
     "Model": "claude-3-opus-20240229",
     "Mode": "greedy",
     "Acc": "68.62",
