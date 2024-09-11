@@ -80,7 +80,7 @@
     "Reason Lens": "404.28"
   },
   {
-    "Model": "Llama-3.1-405B-Inst-fp8",
+    "Model": "Llama-3.1-405B-Inst-fp8@together",
     "Mode": "greedy",
     "Acc": "72.12",
     "No answer": "2.62",
