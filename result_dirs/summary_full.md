@@ -20,7 +20,6 @@
 | Meta-Llama-3.1-70B-Instruct      |   94.16 |             82.97 |                  73.57 |  62.62 |          43.13 |
 | deepseek-v2.5-0908               |   92.49 |             80.35 |                  68.21 |  68.12 |          44.66 |
 | yi-large-preview                 |   82.64 |             82.15 |                  58.93 |  58.63 |         nan    |
-| Meta-Llama-3-70B-Instruct        |   93.03 |             78.01 |                  52.86 |  57.12 |         nan    |
 | yi-large                         |   80.06 |             81.17 |                  58.21 |  58.38 |         nan    |
 | Llama-3.1-405B-Inst@sambanova    |  nan    |             86.21 |                 nan    |  71.25 |          49.79 |
 | gemini-1.5-pro                   |   93.40 |             82.76 |                  55.71 |  66.25 |          39.81 |
@@ -29,6 +28,7 @@
 | command-r-plus                   |   80.14 |             68.61 |                  44.64 | nan    |         nan    |
 | gpt-4-0314                       |  nan    |             81.64 |                  77.14 |  72.38 |          26.07 |
 | Mistral-Nemo-Instruct-2407       |   82.79 |             66.88 |                  38.93 | nan    |         nan    |
+| Meta-Llama-3-70B-Instruct        |   93.03 |             78.01 |                  52.86 |  57.12 |          25.10 |
 | gemma-2-27b-it                   |   90.22 |             75.67 |                  50.71 |  55.88 |          26.63 |
 | Athene-70B                       |   86.66 |             76.64 |                  52.50 |  49.75 |          20.67 |
 | Llama-3-Instruct-8B-SimPO-v0.2   |   57.54 |             55.22 |                 nan    | nan    |         nan    |

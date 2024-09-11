@@ -88,7 +88,7 @@
     "Reason Lens": "300.62"
   },
   {
-    "Model": "Meta-Llama-3.1-405B-Instruct@hyperbolic",
+    "Model": "Llama-3.1-405B-Inst@hyperbolic",
     "Mode": "greedy",
     "Acc": "71.50",
     "No answer": "1.12",

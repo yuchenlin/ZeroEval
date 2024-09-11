@@ -22,7 +22,7 @@
     "Reason Lens": "1153.83"
   },
   {
-    "Model": "Llama-3.1-405B-Instruct-Turbo",
+    "Model": "Llama-3.1-405B-Inst-fp8@together",
     "Mode": "greedy",
     "Puzzle Acc": "32.60",
     "Cell Acc": "45.80",
@@ -33,7 +33,7 @@
     "Reason Lens": "314.66"
   },
   {
-    "Model": "Llama-3.1-405B-Instruct-Turbo",
+    "Model": "Llama-3.1-405B-Inst-fp8@together",
     "Mode": "sampling",
     "Puzzle Acc": "32.60",
     "Cell Acc": "47.04",
@@ -53,6 +53,17 @@
     "Hard Puzzle Acc": "11.11",
     "Total Puzzles": 1000,
     "Reason Lens": "1106.51"
+  },
+  {
+    "Model": "Llama-3.1-405B-Inst@sambanova",
+    "Mode": "greedy",
+    "Puzzle Acc": "31.02",
+    "Cell Acc": "40.60",
+    "No answer": "22.60",
+    "Easy Puzzle Acc": "86.89",
+    "Hard Puzzle Acc": "10.32",
+    "Total Puzzles": 677,
+    "Reason Lens": "1990.56"
   },
   {
     "Model": "gpt-4o-2024-05-13",
@@ -97,17 +108,6 @@
     "Hard Puzzle Acc": "9.03",
     "Total Puzzles": 1000,
     "Reason Lens": "1592.39"
-  },
-  {
-    "Model": "Llama-3.1-405B-Inst@sambanova",
-    "Mode": "greedy",
-    "Puzzle Acc": "28.57",
-    "Cell Acc": "39.41",
-    "No answer": "24.55",
-    "Easy Puzzle Acc": "92.31",
-    "Hard Puzzle Acc": "9.30",
-    "Total Puzzles": 224,
-    "Reason Lens": "2177.18"
   },
   {
     "Model": "gpt-4-turbo-2024-04-09",
@@ -176,7 +176,7 @@
     "Reason Lens": "1389.75"
   },
   {
-    "Model": "Meta-Llama-3.1-405B-Instruct@hyperbolic",
+    "Model": "Llama-3.1-405B-Inst@hyperbolic",
     "Mode": "greedy",
     "Puzzle Acc": "25.00",
     "Cell Acc": "46.62",
@@ -198,7 +198,7 @@
     "Reason Lens": "1483.68"
   },
   {
-    "Model": "deepseek-chat",
+    "Model": "deepseek-v2-chat-0628",
     "Mode": "greedy",
     "Puzzle Acc": "22.70",
     "Cell Acc": "42.46",
@@ -231,7 +231,7 @@
     "Reason Lens": "1813.82"
   },
   {
-    "Model": "deepseek-coder",
+    "Model": "deepseek-v2-coder-0614",
     "Mode": "greedy",
     "Puzzle Acc": "21.10",
     "Cell Acc": "41.58",
@@ -242,7 +242,7 @@
     "Reason Lens": "1324.55"
   },
   {
-    "Model": "DeepSeek-Coder-V2-0724",
+    "Model": "deepseek-v2-coder-0724",
     "Mode": "greedy",
     "Puzzle Acc": "20.50",
     "Cell Acc": "42.35",
@@ -374,7 +374,7 @@
     "Reason Lens": "391.19"
   },
   {
-    "Model": "gemma-2-27b-it@nvidia",
+    "Model": "gemma-2-27b-it",
     "Mode": "greedy",
     "Puzzle Acc": "16.30",
     "Cell Acc": "41.18",
@@ -429,7 +429,7 @@
     "Reason Lens": "1043.90"
   },
   {
-    "Model": "gemma-2-9b-it@nvidia",
+    "Model": "gemma-2-9b-it",
     "Mode": "greedy",
     "Puzzle Acc": "12.80",
     "Cell Acc": "36.79",
