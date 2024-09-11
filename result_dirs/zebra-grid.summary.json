@@ -55,17 +55,6 @@
     "Reason Lens": "1106.51"
   },
   {
-    "Model": "Llama-3.1-405B-Inst@sambanova",
-    "Mode": "greedy",
-    "Puzzle Acc": "31.02",
-    "Cell Acc": "40.60",
-    "No answer": "22.60",
-    "Easy Puzzle Acc": "86.89",
-    "Hard Puzzle Acc": "10.32",
-    "Total Puzzles": 677,
-    "Reason Lens": "1990.56"
-  },
-  {
     "Model": "gpt-4o-2024-05-13",
     "Mode": "sampling",
     "Puzzle Acc": "30.80",
@@ -86,6 +75,17 @@
     "Hard Puzzle Acc": "11.39",
     "Total Puzzles": 1000,
     "Reason Lens": "1594.47"
+  },
+  {
+    "Model": "Llama-3.1-405B-Inst@sambanova",
+    "Mode": "greedy",
+    "Puzzle Acc": "30.10",
+    "Cell Acc": "39.06",
+    "No answer": "24.70",
+    "Easy Puzzle Acc": "84.64",
+    "Hard Puzzle Acc": "8.89",
+    "Total Puzzles": 1000,
+    "Reason Lens": "2001.12"
   },
   {
     "Model": "chatgpt-4o-latest-24-09-07",
