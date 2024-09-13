@@ -57,9 +57,10 @@ mmlu_data = mmlu_data.rename(columns={'Model_mmlu': 'Model'}).rename(columns={'A
 
 # remove the rows when the mode = sampling 
 zebra_data = zebra_data[zebra_data['Mode'] != 'sampling']
-zebra_data = zebra_data[['Model', "Easy Puzzle Acc"]] #, 'Puzzle Acc']] #  'Puzzle Acc',  # Easy 
+# zebra_data = zebra_data[['Model', "Easy Puzzle Acc"]] #, 'Puzzle Acc']] #  'Puzzle Acc',  # Easy 
+zebra_data = zebra_data[['Model', "Puzzle Acc"]] #, 'Puzzle Acc']] #  'Puzzle Acc',  # Easy 
 zebra_data = zebra_data.add_suffix('_zebra')
-zebra_data = zebra_data.rename(columns={'Model_zebra': 'Model'}).rename(columns={'Puzzle Acc_zebra': 'ZebraLogic'}).rename(columns={'Easy Puzzle Acc_zebra': 'ZebraLogic<br/>-Easy'})
+zebra_data = zebra_data.rename(columns={'Model_zebra': 'Model'}).rename(columns={'Puzzle Acc_zebra': 'ZebraLogic'}).rename(columns={'Easy Puzzle Acc_zebra': 'ZebraLogic<br/>-Easy'}).rename(columns={'Puzzle Acc_zebra': 'ZebraLogic<br/>-Full'})
 
 
 crux_data = crux_data[['Model', 'Acc']]

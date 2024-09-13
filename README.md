@@ -75,14 +75,16 @@ More examples can be found in the `scripts` folder, e.g., the [scripts/_MMLU_red
 
 ## Results 
 
+🚨 View results on our Leaderboard: [https://hf.co/spaces/allenai/ZeroEval](https://huggingface.co/spaces/allenai/ZeroEval)
+
 - MMLU-Redux: `python src/evaluation/mcqa_eval.py mmlu-redux` --> [Full results](result_dirs/mmlu-redux.summary.md)
-- GSM/MATH-L5: `python src/evaluation/math_eval.py math-l5` --> [Full results](result_dirs/gsm.summary.md)
+- GSM/MATH-L5: `python src/evaluation/math_eval.py math-l5/gsm` --> [Full results](result_dirs/gsm.summary.md)
 - ZebraLogic: `python src/evaluation/zebra_grid_eval.py` --> [Full results](result_dirs/zebra-grid.summary.md)
   and [Leaderboard](https://huggingface.co/spaces/allenai/ZebraLogic)
 - CRUX: `python src/evaluation/crux_eval.py` --> [Full results](result_dirs/crux.summary.md)
 - All: `python src/evaluation/summarize.py` --> [Full results](result_dirs/summary.md) ⬇️
 
-View results on our Leaderboard: [https://hf.co/spaces/allenai/ZeroEval](https://huggingface.co/spaces/allenai/ZeroEval)
+
 
 
 <!-- 

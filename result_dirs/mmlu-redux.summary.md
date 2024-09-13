@@ -9,6 +9,7 @@
 |    chatgpt-4o-latest-24-09-07    | greedy | 88.88 |    0.07     |  2778   |    622.27     |
 |        gpt-4o-2024-08-06         | greedy | 88.26 |    0.04     |  2778   |    691.73     |
 |        gpt-4o-2024-05-13         | greedy | 88.01 |    0.14     |  2778   |    629.79     |
+|        o1-mini-2024-09-12        | greedy | 86.72 |    0.32     |  2778   |     464.2     |
 |  Llama-3.1-405B-Inst@sambanova   | greedy | 86.21 |    0.25     |  2778   |    629.07     |
 |     gemini-1.5-pro-exp-0827      | greedy | 86.14 |    1.26     |  2778   |    858.08     |
 |    claude-3-5-sonnet-20240620    | greedy |  86   |    0.18     |  2778   |     907.1     |
@@ -21,6 +22,7 @@
 |          gemini-1.5-pro          | greedy | 82.76 |    1.94     |  2778   |     666.7     |
 |      claude-3-opus-20240229      | greedy | 82.54 |    0.58     |  2778   |    500.35     |
 |         yi-large-preview         | greedy | 82.15 |    0.14     |  2778   |     982.6     |
+|    gemini-1.5-flash-exp-0827     | greedy | 81.99 |    1.43     |  2243   |    796.62     |
 |            gpt-4-0314            | greedy | 81.64 |    0.04     |  2778   |    397.22     |
 |        Qwen2-72B-Instruct        | greedy | 81.61 |    0.29     |  2778   |    486.41     |
 |      gpt-4o-mini-2024-07-18      | greedy | 81.5  |    0.07     |  2778   |      526      |
