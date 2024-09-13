@@ -1,5 +1,13 @@
 [
   {
+    "Model": "o1-mini-2024-09-12",
+    "Mode": "greedy",
+    "Acc": "89.32",
+    "No answer": "5.27",
+    "Total": 721,
+    "Reason Lens": "759.02"
+  },
+  {
     "Model": "gemini-1.5-pro-exp-0827",
     "Mode": "greedy",
     "Acc": "68.10",

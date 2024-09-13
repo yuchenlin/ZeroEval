@@ -1,5 +1,13 @@
 [
   {
+    "Model": "o1-mini-2024-09-12",
+    "Mode": "greedy",
+    "Acc": "91.38",
+    "No answer": "0.38",
+    "Total": 800,
+    "Reason Lens": "468.30"
+  },
+  {
     "Model": "gpt-4o-2024-08-06",
     "Mode": "greedy",
     "Acc": "85.00",

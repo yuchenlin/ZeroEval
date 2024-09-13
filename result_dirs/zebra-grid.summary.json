@@ -1,5 +1,16 @@
 [
   {
+    "Model": "o1-mini-2024-09-12",
+    "Mode": "greedy",
+    "Puzzle Acc": "46.70",
+    "Cell Acc": "34.21",
+    "No answer": "45.30",
+    "Easy Puzzle Acc": "86.79",
+    "Hard Puzzle Acc": "31.11",
+    "Total Puzzles": 1000,
+    "Reason Lens": "863.88"
+  },
+  {
     "Model": "claude-3-5-sonnet-20240620",
     "Mode": "greedy",
     "Puzzle Acc": "33.40",
