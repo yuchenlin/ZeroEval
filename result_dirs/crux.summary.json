@@ -80,6 +80,14 @@
     "Reason Lens": "469.91"
   },
   {
+    "Model": "gemini-1.5-flash-exp-0827",
+    "Mode": "greedy",
+    "Acc": "72.50",
+    "No answer": "0.38",
+    "Total": 800,
+    "Reason Lens": "631.85"
+  },
+  {
     "Model": "gpt-4-0314",
     "Mode": "greedy",
     "Acc": "72.38",

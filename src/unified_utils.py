@@ -307,13 +307,13 @@ def openai_chat_request(
             )
         else: 
             # print(f"Requesting chat completion from OpenAI API with model {model}")
-            if model.startswith("o1-") and messages[0]["role"] == "system":
-                messages = messages[1:]
+            if model.startswith("o1-"):
+                if messages[0]["role"] == "system":
+                    messages = messages[1:]
                 response = client.chat.completions.create(
                     model=model, 
                     response_format = {"type": "json_object"} if json_mode else None,
-                    messages=messages, 
-                    max_completion_tokens=max_tokens, # new version
+                    messages=messages,  
                     top_p=top_p,
                     n=n,
                     frequency_penalty=frequency_penalty,

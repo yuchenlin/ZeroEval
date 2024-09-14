@@ -39,6 +39,9 @@ def parse_args():
     parser.add_argument('--start_index',default=0, type=int) # 0 means from the beginning of the list
     parser.add_argument('--end_index',default=-1, type=int) # -1 means to the end of the list
     parser.add_argument('--filepath',default="auto", type=str)
+
+    parser.add_argument('--cache_filepath', default=None, type=str)
+
     parser.add_argument('--overwrite', action='store_true')
     parser.add_argument('--no_repeat_ngram_size', default=0, type=int)
     parser.add_argument('--hf_bf16', action='store_true')
@@ -207,6 +210,18 @@ if __name__ == "__main__":
     print(f"We skipped the first {num_skipped} examples")
 
 
+    # Load the existing data from the cache_filepath
+    cache_outputs = {}
+    if args.cache_filepath is not None:
+        if os.path.exists(args.cache_filepath):
+            with open(args.cache_filepath) as f:
+                cache_data = json.load(f)
+            for output_item in cache_data:
+                # if output_item["output"]  is a list and the first string is not empty 
+                if type(output_item["output"]) == list and len(output_item["output"]) > 0 and len(output_item["output"][0]) > 0:
+                    cache_outputs[output_item["session_id"]] = output_item
+        print(f"Loaded {len(cache_outputs)} non-empty outputs from the cache file: {args.cache_filepath}")
+
     todo_inputs = model_inputs[num_skipped:]
 
     if args.engine == "vllm":
@@ -221,7 +236,7 @@ if __name__ == "__main__":
         save_outputs(args, id_strs, outputs, chat_history, metadata, model_inputs, filepath)
 
     elif args.engine == "hf":
-        for cur_id in tqdm(range(0, len(todo_inputs), args.batch_size), desc=f"Generating {args.model_name} from {args.start_index} to {args.end_index}"):
+        for cur_id in tqdm(range(0, len(todo_inputs), args.batch_size), desc=f"Generating {args.model_name} from {args.start_index} to {args.end_index} on {args.data_name}"):
             batch_inputs = todo_inputs[cur_id:cur_id+args.batch_size]
             sampling_params = {
                 "do_sample": True if args.temperature > 0 else False,
@@ -247,23 +262,29 @@ if __name__ == "__main__":
         for cur_id in tqdm(range(0, len(todo_inputs)), desc=f"Generating {args.model_name} from {args.start_index} to {args.end_index} on {args.data_name}"):
             # input_text = todo_inputs[cur_id]
             chat = todo_chats[cur_id] 
-            openai_msg = [{"role":"system", "content":"You are a helpful AI assistant."}] 
-            for i, chat_item in enumerate(chat):
-                if i % 2 == 0:
-                    openai_msg.append({"role":"user","content": chat_item})
-                else:
-                    openai_msg.append({"role":"assistant","content": chat_item})
-            openai_args = {
-                "model": args.model_name,
-                "prompt": None,
-                "messages": openai_msg,
-                "top_p": args.top_p,
-                "temperature": args.temperature,
-                "max_tokens": args.max_tokens,
-                "stop": stop_words,
-            }
-            result = api(**openai_args)
-            outputs.append(result)
+            current_id_str = id_strs[cur_id]
+            # check if in the cache
+            if current_id_str in cache_outputs:
+                print(f"Using cache from {args.cache_filepath} for {current_id_str}")
+                outputs.append(cache_outputs[current_id_str]["output"])
+            else:
+                openai_msg = [{"role":"system", "content":"You are a helpful AI assistant."}] 
+                for i, chat_item in enumerate(chat):
+                    if i % 2 == 0:
+                        openai_msg.append({"role":"user","content": chat_item})
+                    else:
+                        openai_msg.append({"role":"assistant","content": chat_item})
+                openai_args = {
+                    "model": args.model_name,
+                    "prompt": None,
+                    "messages": openai_msg,
+                    "top_p": args.top_p,
+                    "temperature": args.temperature,
+                    "max_tokens": args.max_tokens,
+                    "stop": stop_words,
+                }
+                result = api(**openai_args)
+                outputs.append(result)
             save_outputs(args, id_strs, outputs, chat_history, metadata, model_inputs, filepath)
 
     elif args.engine == "together":
@@ -273,7 +294,7 @@ if __name__ == "__main__":
             result = together_chat_request(**kwargs)
             return result
 
-        for cur_id in tqdm(range(0, len(todo_inputs)), desc=f"Generating {args.model_name} from {args.start_index} to {args.end_index}"):
+        for cur_id in tqdm(range(0, len(todo_inputs)), desc=f"Generating {args.model_name} from {args.start_index} to {args.end_index} on {args.data_name}"):
             # input_text = todo_inputs[cur_id]
             chat = todo_chats[cur_id]
             msgs = []
@@ -303,7 +324,7 @@ if __name__ == "__main__":
             result = google_chat_request(**kwargs)
             return result
 
-        for cur_id in tqdm(range(0, len(todo_inputs)), desc=f"Generating {args.model_name} from {args.start_index} to {args.end_index}"):
+        for cur_id in tqdm(range(0, len(todo_inputs)), desc=f"Generating {args.model_name} from {args.start_index} to {args.end_index} on {args.data_name}"):
             # input_text = todo_inputs[cur_id]
             chat = todo_chats[cur_id]
             #google_msg = [{"role":"user", "parts": ["You are a helpful AI assistant."]}]
@@ -335,7 +356,7 @@ if __name__ == "__main__":
             result = cohere_chat_request(**kwargs)
             return result
 
-        for cur_id in tqdm(range(0, len(todo_inputs)), desc=f"Generating {args.model_name} from {args.start_index} to {args.end_index}"):
+        for cur_id in tqdm(range(0, len(todo_inputs)), desc=f"Generating {args.model_name} from {args.start_index} to {args.end_index} on {args.data_name}"):
             # input_text = todo_inputs[cur_id]
             chat = todo_chats[cur_id]
             system_msg = "You are a helpful AI assistant."
@@ -365,7 +386,7 @@ if __name__ == "__main__":
             result = mistral_chat_request(**kwargs)
             return result
 
-        for cur_id in tqdm(range(0, len(todo_inputs)), desc=f"Generating {args.model_name} from {args.start_index} to {args.end_index}"):
+        for cur_id in tqdm(range(0, len(todo_inputs)), desc=f"Generating {args.model_name} from {args.start_index} to {args.end_index} on {args.data_name}"):
             # input_text = todo_inputs[cur_id]
             chat = todo_chats[cur_id]
             mistral_msg = [{"role":"system", "content":"You are a helpful AI assistant."}]
@@ -393,7 +414,7 @@ if __name__ == "__main__":
             result = anthropic_chat_request(**kwargs)
             return result
 
-        for cur_id in tqdm(range(0, len(todo_inputs)), desc=f"Generating {args.model_name} from {args.start_index} to {args.end_index}"):
+        for cur_id in tqdm(range(0, len(todo_inputs)), desc=f"Generating {args.model_name} from {args.start_index} to {args.end_index} on {args.data_name}"):
             # input_text = todo_inputs[cur_id]
             chat = todo_chats[cur_id]
             system_msg = "You are a helpful AI assistant."
@@ -424,7 +445,7 @@ if __name__ == "__main__":
             result = reka_chat_request(**kwargs)
             return result
 
-        for cur_id in tqdm(range(0, len(todo_inputs)), desc=f"Generating {args.model_name} from {args.start_index} to {args.end_index}"):
+        for cur_id in tqdm(range(0, len(todo_inputs)), desc=f"Generating {args.model_name} from {args.start_index} to {args.end_index} on {args.data_name}"):
             # input_text = todo_inputs[cur_id]
             chat = todo_chats[cur_id]
             reka_msg = []

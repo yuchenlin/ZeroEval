@@ -16,6 +16,7 @@
 |      gpt-4o-mini-2024-07-18      | greedy | 73.5  |    0.12     |   800   |    391.32     |
 |     gemini-1.5-pro-exp-0801      | greedy |  73   |    0.12     |   800   |    436.82     |
 |         Mistral-Large-2          | greedy | 72.88 |    0.25     |   800   |    469.91     |
+|    gemini-1.5-flash-exp-0827     | greedy | 72.5  |    0.38     |   800   |    631.85     |
 |            gpt-4-0314            | greedy | 72.38 |      0      |   800   |    404.28     |
 | Llama-3.1-405B-Inst-fp8@together | greedy | 72.12 |    2.62     |   800   |    300.62     |
 |  Llama-3.1-405B-Inst@hyperbolic  | greedy | 71.5  |    1.12     |   800   |    345.76     |

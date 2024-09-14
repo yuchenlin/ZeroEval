@@ -32,6 +32,14 @@
     "Reason Lens": "1254.44"
   },
   {
+    "Model": "gemini-1.5-flash-exp-0827",
+    "Mode": "greedy",
+    "Acc": "54.51",
+    "No answer": "6.80",
+    "Total": 721,
+    "Reason Lens": "1279.53"
+  },
+  {
     "Model": "chatgpt-4o-latest-24-09-07",
     "Mode": "greedy",
     "Acc": "53.12",

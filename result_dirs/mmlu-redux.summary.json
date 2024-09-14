@@ -130,10 +130,10 @@
   {
     "Model": "gemini-1.5-flash-exp-0827",
     "Mode": "greedy",
-    "Acc": "81.99",
-    "No answer": "1.43",
-    "Total": 2243,
-    "Reason Lens": "796.62"
+    "Acc": "82.11",
+    "No answer": "1.48",
+    "Total": 2778,
+    "Reason Lens": "794.53"
   },
   {
     "Model": "gpt-4-0314",
