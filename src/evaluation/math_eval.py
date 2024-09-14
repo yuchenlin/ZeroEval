@@ -140,8 +140,8 @@ def gen_results(run_name_folders):
     rows = []
     for model_name, filepath in model_results.items(): 
         # print(model_name)
-        if model_name in ["gemini-1.5-flash-exp-0827%greedy"]:
-            continue
+        # if model_name in ["gemini-1.5-flash-exp-0827%greedy"]:
+        #     continue
         result, parsed_results = eval_model(model_name, filepath) 
         # save the parsed_results to the same filepath with a  new prefix 
         parsed_results_filepath = filepath.replace("result_dirs", "result_dirs_parsed")

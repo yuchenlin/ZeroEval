@@ -1,6 +1,6 @@
 [
   {
-    "Model": "o1-mini-2024-09-12",
+    "Model": "o1-mini-2024-09-12.legacy",
     "Mode": "greedy",
     "Puzzle Acc": "46.70",
     "Cell Acc": "34.21",
@@ -143,6 +143,17 @@
     "Reason Lens": "1643.51"
   },
   {
+    "Model": "o1-mini-2024-09-12",
+    "Mode": "greedy",
+    "Puzzle Acc": "27.23",
+    "Cell Acc": "33.48",
+    "No answer": "1.31",
+    "Easy Puzzle Acc": "40.00",
+    "Hard Puzzle Acc": "22.71",
+    "Total Puzzles": 459,
+    "Reason Lens": "965.93"
+  },
+  {
     "Model": "gpt-4-0314",
     "Mode": "greedy",
     "Puzzle Acc": "27.10",
@@ -196,6 +207,17 @@
     "Hard Puzzle Acc": "15.38",
     "Total Puzzles": 16,
     "Reason Lens": "1517.13"
+  },
+  {
+    "Model": "gemini-1.5-flash-exp-0827",
+    "Mode": "greedy",
+    "Puzzle Acc": "25.00",
+    "Cell Acc": "43.56",
+    "No answer": "8.50",
+    "Easy Puzzle Acc": "70.71",
+    "Hard Puzzle Acc": "7.22",
+    "Total Puzzles": 1000,
+    "Reason Lens": "1705.11"
   },
   {
     "Model": "Meta-Llama-3.1-70B-Instruct",
