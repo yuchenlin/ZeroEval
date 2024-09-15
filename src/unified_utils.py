@@ -165,8 +165,7 @@ def retry_handler(retry_limit=10):
                         if "invalid" in str(e).lower():
                             print("Invalid request, returning.")
                             retried = retry_limit
-                            raise e
-                        
+                            return ['API Error: this query is blocked by APIs. ' + str(e)]
                     else:
                         err_msg = str(e)
                         print(e.__class__.__name__+":", err_msg)

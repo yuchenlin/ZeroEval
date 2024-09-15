@@ -8,6 +8,14 @@
     "Reason Lens": "759.02"
   },
   {
+    "Model": "o1-preview-2024-09-12",
+    "Mode": "greedy",
+    "Acc": "84.47",
+    "No answer": "3.33",
+    "Total": 721,
+    "Reason Lens": "961.63"
+  },
+  {
     "Model": "gemini-1.5-pro-exp-0827",
     "Mode": "greedy",
     "Acc": "68.10",

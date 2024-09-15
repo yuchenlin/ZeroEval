@@ -1,5 +1,16 @@
 [
   {
+    "Model": "o1-preview-2024-09-12",
+    "Mode": "greedy",
+    "Puzzle Acc": "71.40",
+    "Cell Acc": "75.14",
+    "No answer": "0.30",
+    "Easy Puzzle Acc": "98.57",
+    "Hard Puzzle Acc": "60.83",
+    "Total Puzzles": 1000,
+    "Reason Lens": "1565.88"
+  },
+  {
     "Model": "o1-mini-2024-09-12",
     "Mode": "greedy",
     "Puzzle Acc": "52.60",
