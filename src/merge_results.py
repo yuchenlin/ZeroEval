@@ -23,7 +23,7 @@ json_files = []
 for file in os.listdir(directory_path):
     if file == target_filepath:
         continue # skip the target file
-    if file.startswith(prefix+".") and file.endswith(".json"):
+    if file.startswith(prefix+".") and file.endswith(".json") and file != target_filepath:
         if len(file.split(".")) >= 2:
             ind = file.split(".")[-2]
             if len(ind.split("-")) == 2:
