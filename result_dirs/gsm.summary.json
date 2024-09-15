@@ -8,6 +8,14 @@
     "Reason Lens": "462.06"
   },
   {
+    "Model": "o1-mini-2024-09-12",
+    "Mode": "greedy",
+    "Acc": "96.06",
+    "No answer": "0.00",
+    "Total": 1319,
+    "Reason Lens": "335.77"
+  },
+  {
     "Model": "Llama-3.1-405B-Inst@hyperbolic",
     "Mode": "greedy",
     "Acc": "95.98",
@@ -62,6 +70,14 @@
     "No answer": "0.00",
     "Total": 1319,
     "Reason Lens": "479.98"
+  },
+  {
+    "Model": "gemini-1.5-flash-exp-0827",
+    "Mode": "greedy",
+    "Acc": "95.01",
+    "No answer": "0.00",
+    "Total": 681,
+    "Reason Lens": "515.13"
   },
   {
     "Model": "gemini-1.5-pro-exp-0801",

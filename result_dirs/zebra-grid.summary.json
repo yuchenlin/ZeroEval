@@ -1,14 +1,14 @@
 [
   {
-    "Model": "o1-mini-2024-09-12.legacy",
+    "Model": "o1-mini-2024-09-12",
     "Mode": "greedy",
-    "Puzzle Acc": "46.70",
-    "Cell Acc": "34.21",
-    "No answer": "45.30",
-    "Easy Puzzle Acc": "86.79",
-    "Hard Puzzle Acc": "31.11",
+    "Puzzle Acc": "52.60",
+    "Cell Acc": "52.29",
+    "No answer": "0.80",
+    "Easy Puzzle Acc": "87.14",
+    "Hard Puzzle Acc": "39.17",
     "Total Puzzles": 1000,
-    "Reason Lens": "863.88"
+    "Reason Lens": "993.28"
   },
   {
     "Model": "claude-3-5-sonnet-20240620",
@@ -141,17 +141,6 @@
     "Hard Puzzle Acc": "8.89",
     "Total Puzzles": 1000,
     "Reason Lens": "1643.51"
-  },
-  {
-    "Model": "o1-mini-2024-09-12",
-    "Mode": "greedy",
-    "Puzzle Acc": "27.23",
-    "Cell Acc": "33.48",
-    "No answer": "1.31",
-    "Easy Puzzle Acc": "40.00",
-    "Hard Puzzle Acc": "22.71",
-    "Total Puzzles": 459,
-    "Reason Lens": "965.93"
   },
   {
     "Model": "gpt-4-0314",
