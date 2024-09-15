@@ -7,6 +7,7 @@
 |              Model               |  Mode  |  Acc  |  No answer  |  Total  |  Reason Lens  |
 |----------------------------------|--------|-------|-------------|---------|---------------|
 |        gpt-4o-2024-08-06         | greedy | 96.21 |      0      |  1319   |    462.06     |
+|        o1-mini-2024-09-12        | greedy | 96.06 |      0      |  1319   |    335.77     |
 |  Llama-3.1-405B-Inst@hyperbolic  | greedy | 95.98 |    0.08     |  1319   |    421.83     |
 | Llama-3.1-405B-Inst-fp8@together | greedy | 95.91 |    0.08     |  1319   |    365.07     |
 |  Llama-3.1-405B-Inst@sambanova   | greedy | 95.91 |    0.08     |  1319   |    464.76     |
@@ -14,6 +15,7 @@
 |      claude-3-opus-20240229      | greedy | 95.6  |      0      |  1319   |    410.62     |
 |         Mistral-Large-2          | greedy | 95.53 |      0      |  1319   |    391.07     |
 |        gpt-4o-2024-05-13         | greedy | 95.38 |      0      |  1319   |    479.98     |
+|    gemini-1.5-flash-exp-0827     | greedy | 95.01 |      0      |   681   |    515.13     |
 |     gemini-1.5-pro-exp-0801      | greedy |  95   |      0      |  1319   |     298.8     |
 |      gpt-4o-mini-2024-07-18      | greedy | 94.24 |      0      |  1319   |    463.71     |
 |   Meta-Llama-3.1-70B-Instruct    | greedy | 94.16 |    0.08     |  1319   |    453.94     |

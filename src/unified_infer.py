@@ -254,6 +254,7 @@ if __name__ == "__main__":
 
     elif args.engine == "openai":
         todo_chats = chat_history[num_skipped:]
+        todo_ids = id_strs[num_skipped:]
         @retry_handler(retry_limit=10)
         def api(**kwargs):
             result = openai_chat_request(**kwargs)
@@ -262,7 +263,7 @@ if __name__ == "__main__":
         for cur_id in tqdm(range(0, len(todo_inputs)), desc=f"Generating {args.model_name} from {args.start_index} to {args.end_index} on {args.data_name}"):
             # input_text = todo_inputs[cur_id]
             chat = todo_chats[cur_id] 
-            current_id_str = id_strs[cur_id]
+            current_id_str = todo_ids[cur_id]
             # check if in the cache
             if current_id_str in cache_outputs:
                 print(f"Using cache from {args.cache_filepath} for {current_id_str}")
