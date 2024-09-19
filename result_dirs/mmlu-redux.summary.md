@@ -15,6 +15,7 @@
 |     gemini-1.5-pro-exp-0827      | greedy | 86.14 |    1.26     |  2778   |    858.08     |
 |    claude-3-5-sonnet-20240620    | greedy |  86   |    0.18     |  2778   |     907.1     |
 | Llama-3.1-405B-Inst-fp8@together | greedy | 85.64 |    0.76     |  2778   |    449.71     |
+|       Qwen2.5-72B-Instruct       | greedy | 85.57 |      0      |  2778   |    667.07     |
 |     gemini-1.5-pro-exp-0801      | greedy | 85.53 |    1.22     |  2778   |    656.64     |
 |      gpt-4-turbo-2024-04-09      | greedy | 85.31 |    0.04     |  2778   |    631.38     |
 |  Llama-3.1-405B-Inst@hyperbolic  | greedy | 84.41 |    1.15     |  2778   |    563.13     |

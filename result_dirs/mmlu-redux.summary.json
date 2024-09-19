@@ -72,6 +72,14 @@
     "Reason Lens": "449.71"
   },
   {
+    "Model": "Qwen2.5-72B-Instruct",
+    "Mode": "greedy",
+    "Acc": "85.57",
+    "No answer": "0.00",
+    "Total": 2778,
+    "Reason Lens": "667.07"
+  },
+  {
     "Model": "gemini-1.5-pro-exp-0801",
     "Mode": "greedy",
     "Acc": "85.53",

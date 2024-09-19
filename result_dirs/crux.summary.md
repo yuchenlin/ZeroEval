@@ -20,6 +20,7 @@
 |    gemini-1.5-flash-exp-0827     | greedy | 72.5  |    0.38     |   800   |    631.85     |
 |            gpt-4-0314            | greedy | 72.38 |      0      |   800   |    404.28     |
 | Llama-3.1-405B-Inst-fp8@together | greedy | 72.12 |    2.62     |   800   |    300.62     |
+|       Qwen2.5-72B-Instruct       | greedy | 71.88 |      0      |   800   |    531.01     |
 |  Llama-3.1-405B-Inst@hyperbolic  | greedy | 71.5  |    1.12     |   800   |    345.76     |
 |  Llama-3.1-405B-Inst@sambanova   | greedy | 71.25 |    0.12     |   800   |    414.28     |
 |      claude-3-opus-20240229      | greedy | 68.62 |      0      |   800   |    521.62     |

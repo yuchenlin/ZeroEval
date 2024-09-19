@@ -24,6 +24,14 @@
     "Reason Lens": "1209.70"
   },
   {
+    "Model": "Qwen2.5-72B-Instruct",
+    "Mode": "greedy",
+    "Acc": "60.19",
+    "No answer": "1.53",
+    "Total": 721,
+    "Reason Lens": "1106.33"
+  },
+  {
     "Model": "gpt-4o-2024-08-06",
     "Mode": "greedy",
     "Acc": "55.34",
