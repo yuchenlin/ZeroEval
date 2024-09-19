@@ -112,6 +112,14 @@
     "Reason Lens": "300.62"
   },
   {
+    "Model": "Qwen2.5-72B-Instruct",
+    "Mode": "greedy",
+    "Acc": "71.88",
+    "No answer": "0.00",
+    "Total": 800,
+    "Reason Lens": "531.01"
+  },
+  {
     "Model": "Llama-3.1-405B-Inst@hyperbolic",
     "Mode": "greedy",
     "Acc": "71.50",

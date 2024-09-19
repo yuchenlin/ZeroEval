@@ -176,6 +176,17 @@
     "Reason Lens": "855.72"
   },
   {
+    "Model": "Qwen2.5-72B-Instruct",
+    "Mode": "greedy",
+    "Puzzle Acc": "26.60",
+    "Cell Acc": "40.92",
+    "No answer": "11.90",
+    "Easy Puzzle Acc": "76.43",
+    "Hard Puzzle Acc": "7.22",
+    "Total Puzzles": 1000,
+    "Reason Lens": "1795.90"
+  },
+  {
     "Model": "gpt-4-turbo-2024-04-09",
     "Mode": "sampling",
     "Puzzle Acc": "26.40",
