@@ -376,6 +376,14 @@
     "Reason Lens": "659.25"
   },
   {
+    "Model": "Qwen2.5-3B-Instruct",
+    "Mode": "greedy",
+    "Acc": "64.25",
+    "No answer": "0.72",
+    "Total": 2778,
+    "Reason Lens": "708.95"
+  },
+  {
     "Model": "Mixtral-8x7B-Instruct-v0.1",
     "Mode": "greedy",
     "Acc": "63.17",

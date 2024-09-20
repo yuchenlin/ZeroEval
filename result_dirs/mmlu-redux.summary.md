@@ -53,6 +53,7 @@
 |    Mistral-Nemo-Instruct-2407    | greedy | 66.88 |    0.47     |  2778   |    464.19     |
 |          Yi-1.5-9B-Chat          | greedy | 65.05 |    4.61     |  2778   |    542.87     |
 |       reka-flash-20240226        | greedy | 64.72 |    0.32     |  2778   |    659.25     |
+|       Qwen2.5-3B-Instruct        | greedy | 64.25 |    0.72     |  2778   |    708.95     |
 |    Mixtral-8x7B-Instruct-v0.1    | greedy | 63.17 |    5.51     |  2778   |    324.31     |
 |     Meta-Llama-3-8B-Instruct     | greedy | 61.66 |    0.97     |  2778   |    600.81     |
 |            command-r             | greedy | 61.12 |    0.04     |  2778   |    382.23     |

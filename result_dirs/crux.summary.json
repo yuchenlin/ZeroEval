@@ -368,6 +368,14 @@
     "Reason Lens": "565.61"
   },
   {
+    "Model": "Qwen2.5-3B-Instruct",
+    "Mode": "greedy",
+    "Acc": "32.12",
+    "No answer": "1.00",
+    "Total": 800,
+    "Reason Lens": "502.87"
+  },
+  {
     "Model": "gemma-2-2b-it",
     "Mode": "greedy",
     "Acc": "20.75",

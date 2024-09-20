@@ -31,6 +31,7 @@
 |            gemini-1.5-flash            | greedy | 34.81 |    2.36     |   721   |    758.07     |
 |             gemma-2-27b-it             | greedy | 26.63 |    0.42     |   721   |    966.99     |
 |               gpt-4-0314               | greedy | 26.07 |    1.11     |   721   |    821.18     |
+|          Qwen2.5-3B-Instruct           | greedy | 25.52 |    10.26    |   721   |    1334.37    |
 |       Meta-Llama-3-70B-Instruct        | greedy | 25.1  |    1.53     |   721   |    646.34     |
 |           Qwen2-7B-Instruct            | greedy | 23.86 |    3.61     |   721   |    993.61     |
 |       Meta-Llama-3.1-8B-Instruct       | greedy | 22.19 |    19.42    |   721   |    1101.49    |

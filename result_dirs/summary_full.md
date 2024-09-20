@@ -52,5 +52,6 @@
 | command-r                        |   52.99 |             61.12 |         9.90 | nan    |         nan    |
 | Meta-Llama-3-8B-Instruct         |   78.47 |             61.66 |        11.90 |  36.62 |           7.91 |
 | Rex-v0.1-1.5B                    |  nan    |             39.09 |       nan    | nan    |         nan    |
+| Qwen2.5-3B-Instruct              |  nan    |             64.25 |         4.80 |  32.12 |          25.52 |
 | gemma-2-2b-it                    |   51.63 |             51.94 |         4.20 |  20.75 |           4.30 |
 | mathstral-7B-v0.1                |  nan    |            nan    |         9.00 | nan    |         nan    |
