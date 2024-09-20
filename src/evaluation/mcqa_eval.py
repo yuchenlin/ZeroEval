@@ -17,6 +17,7 @@ def eval_model(model, filepath):
     no_answer = 0  
     
     reason_lens = []
+    parsed_results = []
     for item in data:  
         # Read and Parse the prediction from model output
         
@@ -45,7 +46,9 @@ def eval_model(model, filepath):
         label_of_correct_answer = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"[index_of_correct_answer]
         if  model_answer == label_of_correct_answer or f"{label_of_correct_answer})" in model_answer:
             solved_examples += 1
+            correct = True
         else:
+            correct = False
             if False and "Llama-3.1" in model: # for debugging 
                 print(f"## Example ID {item['id']}")
                 # print(f"Input: {item['chat_history'][0]}")
@@ -58,7 +61,12 @@ def eval_model(model, filepath):
                 print(f"\n### Model's prediction:\n\n {model_answer}")
                 print("\n\n--------------------------------\n\n")
         reason_lens.append(len(reason))
- 
+        parsed_item = item.copy()
+        parsed_item["model_answer"] = model_answer
+        parsed_item["correct_answer"] = label_of_correct_answer
+        parsed_item["matched"] = correct
+        parsed_results.append(parsed_item)
+
     result = {}
     result["Model"] = model.split("%")[0]
     result["Mode"] = model.split("%")[1]
@@ -68,7 +76,7 @@ def eval_model(model, filepath):
     result["Reason Lens"] = f"{sum(reason_lens)/len(reason_lens):.2f}"
 
     result["Model"] = model_name_replacement(result["Model"])
-    return result
+    return result, parsed_results
 
 
 def gen_results(run_name_folders): 
@@ -77,7 +85,14 @@ def gen_results(run_name_folders):
     columns = ["Model", "Mode", "Acc", "No answer", "Total", "Reason Lens"]
     rows = []
     for model_name, filepath in model_results.items(): 
-        result = eval_model(model_name, filepath) 
+        result, parsed_results = eval_model(model_name, filepath) 
+        # Save the parsed_results to the same filepath with a new prefix
+        parsed_results_filepath = filepath.replace("result_dirs", "result_dirs_parsed")
+        # Create folders if they don't exist
+        os.makedirs(os.path.dirname(parsed_results_filepath), exist_ok=True)
+        # Save parsed results
+        with open(parsed_results_filepath, "w") as f:
+            json.dump(parsed_results, f, indent=2)
         rows.append(result)
 
     # sort the rows by puzzle accuracy
