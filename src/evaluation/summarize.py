@@ -1,5 +1,5 @@
 import pandas as pd
-from eval_utils import model_name_replacement
+from eval_utils import model_name_replacement, total_num_examples
 
 # Load the JSON files
 gsm_file = 'result_dirs/gsm.summary.json'
@@ -9,13 +9,6 @@ zebra_file = 'result_dirs/zebra-grid.summary.json'
 crux_file = 'result_dirs/crux.summary.json'
 
 
-total_num_examples = {
-    'gsm': 1319,
-    'mmlu-redux': 2778,
-    'zebra-grid': 1000,
-    'crux': 800,
-    'math-l5': 721
-}
 
 gsm_data = pd.read_json(gsm_file)
 math_data = pd.read_json(math_file)
