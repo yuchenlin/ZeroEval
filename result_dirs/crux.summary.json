@@ -160,6 +160,14 @@
     "Reason Lens": "524.02"
   },
   {
+    "Model": "Qwen2.5-32B-Instruct",
+    "Mode": "greedy",
+    "Acc": "68.12",
+    "No answer": "0.38",
+    "Total": 800,
+    "Reason Lens": "545.23"
+  },
+  {
     "Model": "deepseek-v2-coder-0724",
     "Mode": "greedy",
     "Acc": "67.75",
@@ -254,6 +262,14 @@
     "No answer": "0.25",
     "Total": 800,
     "Reason Lens": "405.27"
+  },
+  {
+    "Model": "Qwen2.5-7B-Instruct",
+    "Mode": "greedy",
+    "Acc": "51.25",
+    "No answer": "0.50",
+    "Total": 800,
+    "Reason Lens": "531.07"
   },
   {
     "Model": "Athene-70B",

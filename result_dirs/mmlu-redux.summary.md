@@ -19,6 +19,7 @@
 |     gemini-1.5-pro-exp-0801      | greedy | 85.53 |    1.22     |  2778   |    656.64     |
 |      gpt-4-turbo-2024-04-09      | greedy | 85.31 |    0.04     |  2778   |    631.38     |
 |  Llama-3.1-405B-Inst@hyperbolic  | greedy | 84.41 |    1.15     |  2778   |    563.13     |
+|       Qwen2.5-32B-Instruct       | greedy | 83.66 |    0.04     |  2778   |    626.06     |
 |         Mistral-Large-2          | greedy | 82.97 |    0.14     |  2778   |    490.94     |
 |   Meta-Llama-3.1-70B-Instruct    | greedy | 82.97 |    1.26     |  2778   |    668.14     |
 |          gemini-1.5-pro          | greedy | 82.76 |    1.94     |  2778   |     666.7     |
@@ -38,6 +39,7 @@
 |            Athene-70B            | greedy | 76.64 |    0.04     |  2778   |    552.61     |
 |        reka-core-20240501        | greedy | 76.42 |    0.76     |  2778   |    701.67     |
 |          gemma-2-27b-it          | greedy | 75.67 |    0.61     |  2778   |    446.51     |
+|       Qwen2.5-7B-Instruct        | greedy | 75.13 |    0.11     |  2778   |    759.05     |
 |     claude-3-sonnet-20240229     | greedy | 74.87 |    0.07     |  2778   |    671.75     |
 |          gemma-2-9b-it           | greedy | 72.82 |    0.76     |  2778   |      499      |
 |         Yi-1.5-34B-Chat          | greedy | 72.79 |    1.01     |  2778   |     620.1     |

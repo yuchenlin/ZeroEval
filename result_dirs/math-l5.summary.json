@@ -32,6 +32,14 @@
     "Reason Lens": "1106.33"
   },
   {
+    "Model": "Qwen2.5-32B-Instruct",
+    "Mode": "greedy",
+    "Acc": "59.50",
+    "No answer": "1.11",
+    "Total": 721,
+    "Reason Lens": "881.54"
+  },
+  {
     "Model": "gpt-4o-2024-08-06",
     "Mode": "greedy",
     "Acc": "55.34",
@@ -86,6 +94,14 @@
     "No answer": "1.42",
     "Total": 706,
     "Reason Lens": "371.20"
+  },
+  {
+    "Model": "Qwen2.5-7B-Instruct",
+    "Mode": "greedy",
+    "Acc": "51.46",
+    "No answer": "2.77",
+    "Total": 721,
+    "Reason Lens": "1405.03"
   },
   {
     "Model": "Llama-3.1-405B-Inst@sambanova",

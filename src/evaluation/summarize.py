@@ -36,6 +36,8 @@ math_data = filter_models_by_num_examples(math_data, total_num_examples['math-l5
 
 # replace the value from "gemma-2-9b-it@nvidia" to "gemma-2-9b-it" for all data. only when the model name is "gemma-2-9b-it@nvidia"
 def replace_model_names(cur_data):
+    # remove the data for model Qwenya-2-9b-it@nvidia
+    cur_data = cur_data[cur_data['Model'] != 'Qwen2.5-32B-Instruct']
     cur_data['Model'] = model_name_replacement(cur_data['Model'])    
     return cur_data
 

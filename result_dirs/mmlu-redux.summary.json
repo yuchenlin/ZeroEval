@@ -104,6 +104,14 @@
     "Reason Lens": "563.13"
   },
   {
+    "Model": "Qwen2.5-32B-Instruct",
+    "Mode": "greedy",
+    "Acc": "83.66",
+    "No answer": "0.04",
+    "Total": 2778,
+    "Reason Lens": "626.06"
+  },
+  {
     "Model": "Mistral-Large-2",
     "Mode": "greedy",
     "Acc": "82.97",
@@ -254,6 +262,14 @@
     "No answer": "0.61",
     "Total": 2778,
     "Reason Lens": "446.51"
+  },
+  {
+    "Model": "Qwen2.5-7B-Instruct",
+    "Mode": "greedy",
+    "Acc": "75.13",
+    "No answer": "0.11",
+    "Total": 2778,
+    "Reason Lens": "759.05"
   },
   {
     "Model": "claude-3-sonnet-20240229",
