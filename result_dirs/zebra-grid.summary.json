@@ -638,6 +638,17 @@
     "Reason Lens": "718.43"
   },
   {
+    "Model": "Qwen2.5-3B-Instruct",
+    "Mode": "greedy",
+    "Puzzle Acc": "4.80",
+    "Cell Acc": "11.44",
+    "No answer": "56.70",
+    "Easy Puzzle Acc": "17.14",
+    "Hard Puzzle Acc": "0.00",
+    "Total Puzzles": 1000,
+    "Reason Lens": "906.58"
+  },
+  {
     "Model": "gemma-2-2b-it",
     "Mode": "greedy",
     "Puzzle Acc": "4.20",

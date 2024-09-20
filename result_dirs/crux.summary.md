@@ -52,4 +52,5 @@
 |        Qwen2-7B-Instruct         | greedy | 36.75 |    0.12     |   800   |    368.51     |
 |     Meta-Llama-3-8B-Instruct     | greedy | 36.62 |    0.25     |   800   |    411.52     |
 |       reka-flash-20240226        | greedy | 33.25 |      0      |   800   |    565.61     |
+|       Qwen2.5-3B-Instruct        | greedy | 32.12 |      1      |   800   |    502.87     |
 |          gemma-2-2b-it           | greedy | 20.75 |      0      |   800   |    351.05     |

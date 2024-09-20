@@ -200,6 +200,14 @@
     "Reason Lens": "821.18"
   },
   {
+    "Model": "Qwen2.5-3B-Instruct",
+    "Mode": "greedy",
+    "Acc": "25.52",
+    "No answer": "10.26",
+    "Total": 721,
+    "Reason Lens": "1334.37"
+  },
+  {
     "Model": "Meta-Llama-3-70B-Instruct",
     "Mode": "greedy",
     "Acc": "25.10",
