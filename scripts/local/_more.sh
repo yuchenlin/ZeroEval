@@ -32,7 +32,13 @@
 # bash zero_eval_local.sh -d zebra-grid -m Qwen/Qwen2.5-72B-Instruct -p Qwen2.5-72B-Instruct -s 1
 # bash zero_eval_local.sh -d mmlu-redux -m Qwen/Qwen2.5-72B-Instruct -p Qwen2.5-72B-Instruct -s 1
 
-bash zero_eval_local.sh -d crux -m Qwen/Qwen2.5-32B-Instruct -p Qwen2.5-32B-Instruct -s 1
-bash zero_eval_local.sh -d math-l5 -m Qwen/Qwen2.5-32B-Instruct -p Qwen2.5-32B-Instruct -s 1
-bash zero_eval_local.sh -d zebra-grid -m Qwen/Qwen2.5-32B-Instruct -p Qwen2.5-32B-Instruct -s 1
-bash zero_eval_local.sh -d mmlu-redux -m Qwen/Qwen2.5-32B-Instruct -p Qwen2.5-32B-Instruct -s 1
+# bash zero_eval_local.sh -d crux -m Qwen/Qwen2.5-32B-Instruct -p Qwen2.5-32B-Instruct -s 1
+# bash zero_eval_local.sh -d math-l5 -m Qwen/Qwen2.5-32B-Instruct -p Qwen2.5-32B-Instruct -s 1
+# bash zero_eval_local.sh -d zebra-grid -m Qwen/Qwen2.5-32B-Instruct -p Qwen2.5-32B-Instruct -s 1
+# bash zero_eval_local.sh -d mmlu-redux -m Qwen/Qwen2.5-32B-Instruct -p Qwen2.5-32B-Instruct -s 1
+
+
+bash zero_eval_local.sh -d crux -m Qwen/Qwen2.5-7B-Instruct -p Qwen2.5-7B-Instruct -s 4
+bash zero_eval_local.sh -d math-l5 -m Qwen/Qwen2.5-7B-Instruct -p Qwen2.5-7B-Instruct -s 4
+bash zero_eval_local.sh -d zebra-grid -m Qwen/Qwen2.5-7B-Instruct -p Qwen2.5-7B-Instruct -s 4
+bash zero_eval_local.sh -d mmlu-redux -m Qwen/Qwen2.5-7B-Instruct -p Qwen2.5-7B-Instruct -s 4

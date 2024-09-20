@@ -198,6 +198,17 @@
     "Reason Lens": "1165.90"
   },
   {
+    "Model": "Qwen2.5-32B-Instruct",
+    "Mode": "greedy",
+    "Puzzle Acc": "26.10",
+    "Cell Acc": "43.39",
+    "No answer": "6.30",
+    "Easy Puzzle Acc": "77.50",
+    "Hard Puzzle Acc": "6.11",
+    "Total Puzzles": 1000,
+    "Reason Lens": "1333.07"
+  },
+  {
     "Model": "gemini-1.5-pro-exp-0801",
     "Mode": "greedy",
     "Puzzle Acc": "25.20",
@@ -482,6 +493,17 @@
     "Hard Puzzle Acc": "1.53",
     "Total Puzzles": 1000,
     "Reason Lens": "849.84"
+  },
+  {
+    "Model": "Qwen2.5-7B-Instruct",
+    "Mode": "greedy",
+    "Puzzle Acc": "12.00",
+    "Cell Acc": "30.67",
+    "No answer": "9.50",
+    "Easy Puzzle Acc": "38.93",
+    "Hard Puzzle Acc": "1.53",
+    "Total Puzzles": 1000,
+    "Reason Lens": "850.93"
   },
   {
     "Model": "Meta-Llama-3-8B-Instruct",

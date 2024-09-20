@@ -26,6 +26,7 @@
 |      claude-3-opus-20240229      | greedy | 68.62 |      0      |   800   |    521.62     |
 |      deepseek-v2-chat-0628       | greedy | 68.5  |      0      |   800   |    568.12     |
 |        deepseek-v2.5-0908        | greedy | 68.12 |    0.12     |   800   |    524.02     |
+|       Qwen2.5-32B-Instruct       | greedy | 68.12 |    0.38     |   800   |    545.23     |
 |      deepseek-v2-coder-0724      | greedy | 67.75 |      0      |   800   |    564.88     |
 |          gemini-1.5-pro          | greedy | 66.25 |    0.25     |   800   |    385.66     |
 |     claude-3-sonnet-20240229     | greedy | 64.75 |      0      |   800   |    749.15     |
@@ -38,6 +39,7 @@
 |          gemma-2-27b-it          | greedy | 55.88 |      0      |   800   |    421.67     |
 |     claude-3-haiku-20240307      | greedy | 53.62 |    0.12     |   800   |    708.22     |
 |        gpt-3.5-turbo-0125        | greedy | 53.25 |    0.25     |   800   |    405.27     |
+|       Qwen2.5-7B-Instruct        | greedy | 51.25 |     0.5     |   800   |    531.07     |
 |            Athene-70B            | greedy | 49.75 |      0      |   800   |    283.62     |
 |        reka-core-20240501        | greedy |  45   |      0      |   800   |     525.5     |
 |          gemma-2-9b-it           | greedy | 44.88 |      0      |   800   |    484.51     |

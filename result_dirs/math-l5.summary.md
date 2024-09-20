@@ -10,6 +10,7 @@
 |         o1-preview-2024-09-12          | greedy | 84.47 |    3.33     |   721   |    961.63     |
 |        gemini-1.5-pro-exp-0827         | greedy | 68.1  |    1.25     |   721   |    1209.7     |
 |          Qwen2.5-72B-Instruct          | greedy | 60.19 |    1.53     |   721   |    1106.33    |
+|          Qwen2.5-32B-Instruct          | greedy | 59.5  |    1.11     |   721   |    881.54     |
 |           gpt-4o-2024-08-06            | greedy | 55.34 |    4.02     |   721   |    1164.68    |
 |           gpt-4o-2024-05-13            | greedy | 54.79 |    4.58     |   721   |    1254.44    |
 |       gemini-1.5-flash-exp-0827        | greedy | 54.51 |     6.8     |   721   |    1279.53    |
@@ -17,6 +18,7 @@
 |         gpt-4o-mini-2024-07-18         | greedy | 52.15 |    1.11     |   721   |    648.64     |
 |       claude-3-5-sonnet-20240620       | greedy | 51.87 |      0      |   721   |    799.23     |
 |     Llama-3.1-405B-Inst@hyperbolic     | greedy | 51.56 |    1.42     |   706   |     371.2     |
+|          Qwen2.5-7B-Instruct           | greedy | 51.46 |    2.77     |   721   |    1405.03    |
 |     Llama-3.1-405B-Inst@sambanova      | greedy | 49.79 |    6.93     |   721   |    301.83     |
 |            Mistral-Large-2             | greedy | 48.54 |    0.69     |   721   |    951.92     |
 |         gpt-4-turbo-2024-04-09         | greedy | 46.46 |    0.55     |   721   |    918.03     |
