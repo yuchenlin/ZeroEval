@@ -32,6 +32,7 @@ def eval_model(model, filepath):
     num_total_puzzles_by_size = defaultdict(int)
     solved_puzzles_by_size = defaultdict(int) 
     reason_lens = []
+    parsed_results = []  # New list to store parsed results
     for item in data:
         # solution = item["solution"]
         solution = private_solutions[item["id"]]
@@ -89,8 +90,11 @@ def eval_model(model, filepath):
             solved_puzzles += 1
             solved_puzzles_by_size[size] += 1
 
-        
-         
+        parsed_item = item.copy()
+        parsed_item["correct_cells"] = this_correct_cells
+        parsed_item["total_cells"] = this_total_cells
+        parsed_item["solved"] = this_correct_cells == this_total_cells
+        parsed_results.append(parsed_item)
 
     # # print the success rate by size; order the dict by size first  
     sizes = sorted(num_total_puzzles_by_size.keys()) 
@@ -116,7 +120,7 @@ def eval_model(model, filepath):
     result["Total Puzzles"] = num_total_puzzles
     result["Reason Lens"] = f"{sum(reason_lens)/len(reason_lens):.2f}"
     result["Model"] = model_name_replacement(result["Model"])
-    return result
+    return result, parsed_results  # Return parsed_results along with the result
 
 
 def gen_results(run_name_folders): 
@@ -125,7 +129,14 @@ def gen_results(run_name_folders):
     columns = ["Model", "Mode", "Puzzle Acc", "Easy Puzzle Acc", "Hard Puzzle Acc", "Cell Acc",  "No answer",  "Total Puzzles", "Reason Lens"]
     rows = []
     for model_name, filepath in model_results.items(): 
-        result = eval_model(model_name, filepath) 
+        result, parsed_results = eval_model(model_name, filepath) 
+        # Save the parsed_results to the same filepath with a new prefix
+        parsed_results_filepath = filepath.replace("result_dirs", "result_dirs_parsed")
+        # Create folders if they don't exist
+        os.makedirs(os.path.dirname(parsed_results_filepath), exist_ok=True)
+        # Save parsed results
+        with open(parsed_results_filepath, "w") as f:
+            json.dump(parsed_results, f, indent=2)
         rows.append(result)
 
     # sort the rows by puzzle accuracy
