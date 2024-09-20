@@ -62,6 +62,7 @@ def eval_model(model, filepath):
                 print("\n\n--------------------------------\n\n")
         reason_lens.append(len(reason))
         parsed_item = item.copy()
+        parsed_item["reasoning"] = reason
         parsed_item["model_answer"] = model_answer
         parsed_item["correct_answer"] = label_of_correct_answer
         parsed_item["matched"] = correct

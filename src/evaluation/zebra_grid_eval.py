@@ -91,6 +91,7 @@ def eval_model(model, filepath):
             solved_puzzles_by_size[size] += 1
 
         parsed_item = item.copy()
+        parsed_item["reasoning"] = reason
         parsed_item["correct_cells"] = this_correct_cells
         parsed_item["total_cells"] = this_total_cells
         parsed_item["solved"] = this_correct_cells == this_total_cells

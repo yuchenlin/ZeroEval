@@ -115,6 +115,7 @@ def eval_model(model, filepath):
                 print(item["id"], "incorrect")
         reason_lens.append(len(reason))
 
+        parsed_item["reasoning"] = reason
         parsed_item["model_answer"] = {"raw": raw_model_answer, "sanitized": model_answer, "first_number": first_number_in_model_answer.group() if first_number_in_model_answer else None}
         parsed_item["correct_answer"] = {"raw": correct_answer, "sanitized": correct_answer, "first_number": first_number_in_correct_answer.group() if first_number_in_correct_answer else None}
         parsed_item["matched"] = correct
