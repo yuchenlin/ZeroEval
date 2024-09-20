@@ -7,6 +7,13 @@ This repository aims to evaluate instruction-tuned LLMs for their zero-shot perf
 - [X post](https://x.com/billyuchenlin/status/1814037110577578377)
 
 
+## Todo
+
+- [ ] Support new tasks (GPPA, AIME, etc.)
+- [ ] Add private tests 
+- [ ] Prefix-prefill for open models such that the parsing is easier
+- [ ] Add other formatting options (e.g. markup language instead of json, etc.)
+
 
 ## Installation 
 
