@@ -65,6 +65,9 @@ def eval_model(model, filepath):
                     print(f"Problem: {item['question']}")
                     print(f"Json: {prediction_json}")
                     print(f"Extracted from model: {model_answer}, Extracted from truth: {correct_answer}")
+        # consider both model_answer and correct_answer are empty string
+        elif model_answer == "" and correct_answer == "":
+            correct = True
         if correct:
             solved_examples += 1
 

@@ -90,8 +90,9 @@ def summarize_results(task_name):
                         task_summary[example["id"]]["incorrect_models"] = []
                         task_summary[example["id"]]["model_answers"] = {}
                         task_summary[example["id"]]["reasoning"] = {}
-                    # if the example is in the dictionary, add the model name to the correct or incorrect list
-                    if example.get("matched", False) or example.get("solved", False):
+                    # Check if matched and not "No answer extracted"
+                    if (example.get("matched", False) and 
+                        example.get("matched") != "No answer extracted") or example.get("solved", False):
                         task_summary[example["id"]]["correct_models"].append(model_name)
                     else:
                         task_summary[example["id"]]["incorrect_models"].append(model_name)
