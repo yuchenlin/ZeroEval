@@ -8,7 +8,31 @@ def escape_html(text):
 def format_text_with_newlines(text):
     if text is None:
         return ""
-    return "<br>".join(escape_html(line) for line in text.split("\n"))
+    
+    lines = text.split("\n")
+    formatted_lines = []
+    in_code_block = False
+    
+    for i, line in enumerate(lines):
+        if "[PYTHON]" in line:
+            in_code_block = True
+            if formatted_lines and formatted_lines[-1].endswith("<br>"):
+                formatted_lines[-1] = formatted_lines[-1][:-4]  # Remove the last <br>
+            formatted_lines.append("<pre><code>")
+            line = line.replace("[PYTHON]", "").strip()
+        if "[/PYTHON]" in line:
+            in_code_block = False
+            line = line.replace("[/PYTHON]", "").strip()
+            formatted_lines.append(escape_html(line))
+            formatted_lines.append("</code></pre>")
+            continue
+        
+        if in_code_block:
+            formatted_lines.append(escape_html(line) + "\n")
+        else:
+            formatted_lines.append(escape_html(line) + "<br>")
+    
+    return "".join(formatted_lines)
 
 def write_html(task_summaries, output_file):
     """
@@ -31,7 +55,7 @@ def write_html(task_summaries, output_file):
             .container { max-width: 1200px; margin: 0 auto; background-color: white; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
             .correct { background-color: #90EE90; }
             .incorrect { background-color: #FFB6C1; }
-            table { border-collapse: collapse; width: 100%; font-size: 14px; margin-top: 20px; }
+            table { border-collapse: collapse; width: 100%; font-size: 14px; margin-top: 20px; display: none; }
             th, td { border: 1px solid #ddd; padding: 12px; text-align: left; }
             th { background-color: #f2f2f2; }
             .model-name { cursor: pointer; color: #0066cc; }
@@ -43,6 +67,9 @@ def write_html(task_summaries, output_file):
             .task-content { display: none; }
             .task-button { margin-right: 10px; padding: 10px 20px; background-color: #3498db; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; }
             .task-button:hover { background-color: #2980b9; }
+            .table-button { margin-top: 10px; padding: 5px 10px; background-color: #2ecc71; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 14px; }
+            .table-button:hover { background-color: #27ae60; }
+            tr, th, td { padding: 8px; line-height: 1.2; }
         </style>
         <script>
             function toggleReasoning(modelId) {
@@ -67,6 +94,14 @@ def write_html(task_summaries, output_file):
                 }
                 event.target.style.backgroundColor = '#2980b9';
             }
+            function toggleTable(tableId) {
+                var table = document.getElementById(tableId);
+                if (table.style.display === "table") {
+                    table.style.display = "none";
+                } else {
+                    table.style.display = "table";
+                }
+            }
         </script>
     </head>
     <body>
@@ -86,11 +121,13 @@ def write_html(task_summaries, output_file):
         html_content += f'<div id="{task_name}" class="task-content">'
         for example_id, example in task_summary.items():
             if example['correct_ratio'] < 0.1:  # Only process examples with correct_ratio < 10%
+                table_id = f"table_{task_name}_{example_id}"
                 html_content += f"""
                 <h2>Example: {example_id}</h2>
                 <p><strong>Question:</strong> {format_text_with_newlines(example['question'])}</p>
                 <p><strong>Correct Answer:</strong> {format_text_with_newlines(str(example['correct_answer']))}</p>
-                <table>
+                <button class="table-button" onclick="toggleTable('{table_id}')">Toggle Results</button>
+                <table id="{table_id}">
                     <tr>
                         <th>Model</th>
                         <th>Correct</th>
