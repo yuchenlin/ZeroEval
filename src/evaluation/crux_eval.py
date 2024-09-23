@@ -43,7 +43,7 @@ def eval_model(model, filepath):
         reason = prediction_json.get("reasoning", "")
         
         # We use string to compare the answers, so we need to strip the quotes
-        model_answer = str(prediction_json["answer"]).strip("'\"")
+        model_answer = str(prediction_json["answer"]).strip("'\"").replace('\n', '\\n')
         correct_answer = str(item["answer"]).strip("'\"")
         
         correct = False 
@@ -65,6 +65,9 @@ def eval_model(model, filepath):
                     print(f"Problem: {item['question']}")
                     print(f"Json: {prediction_json}")
                     print(f"Extracted from model: {model_answer}, Extracted from truth: {correct_answer}")
+        # consider both model_answer and correct_answer are empty string
+        elif model_answer == "" and correct_answer == "":
+            correct = True
         if correct:
             solved_examples += 1
 
