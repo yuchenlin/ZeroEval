@@ -25,7 +25,7 @@ def mapping_task_names(data_name):
     elif data_name == "mmlu-pro-lite":
         dataset = load_dataset("DongfuJiang/zeroeval", "mmlu_pro_lite", split="test")
     elif data_name == "gpqa-main":
-        dataset = load_dataset("Idavidrein/gpqa", "gpqa_main", split="test")
+        dataset = load_dataset("DongfuJiang/zeroeval", "gpqa_main", split="test")
     else:
         raise ValueError(f"Data name {data_name} not supported")
     return dataset, id_name
