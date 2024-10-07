@@ -122,7 +122,7 @@ def gen_results(run_name_folders):
 
 if __name__ == "__main__":
     data_name = sys.argv[1]
-    if data_name not in ["mmlu-redux"]:
+    if data_name not in ["mmlu-redux", "mmlu-pro-lite", "gpqa-diamond", "gpqa-main"]:
         print(f"Invalid data name: {data_name}")
         sys.exit(1)
     run_name_folders = {

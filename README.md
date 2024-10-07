@@ -39,6 +39,8 @@ pip install -r requirements.txt
 - [CRUX](https://crux-eval.github.io/) (`-d crux`)
 - [MATH (Level 5)](https://huggingface.co/datasets/AI-MO/aimo-validation-math-level-5) (`-d math-l5`)
 - [GSM8K](https://openai.com/index/solving-math-word-problems/) (`-d gsm`)
+- [GPQA](https://arxiv.org/abs/2311.12022) (`-d gpqa-main` or `-d gpqa-diamond`)
+- [MMLU-Pro-Lite](https://arxiv.org/abs/2406.01574) (`-d mmlu-pro-lite`)
 
 - More tasks will be added soon. (e.g., ARC, MMLU-Pro, etc.)
 <!-- - AlpacaEval (`-d alpaca-eval`) -->
