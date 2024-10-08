@@ -26,6 +26,7 @@ def shuffle_choices_and_create_example(row, index):
     prompt += "\n\nChoices:"
     for i, choice in enumerate(list_choices):
         prompt += f"\n({chr(65+i)}) {choice}"
+    prompt += "\nAnswer with the letter of the correct choice."
     new_example["question"] = prompt
     return new_example
 

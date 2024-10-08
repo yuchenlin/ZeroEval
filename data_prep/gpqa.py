@@ -23,6 +23,7 @@ def shuffle_choices_and_create_example(row, index):
     }
     prompt = f"What is the correct answer to this question: {row['Question']}"
     prompt += f"\n\nChoices:\n(A) {list_choices[0]}\n(B) {list_choices[1]}\n(C) {list_choices[2]}\n(D) {list_choices[3]}"
+    prompt += "\nAnswer with the letter of the correct choice."
     new_example["question"] = prompt
     return new_example
 
