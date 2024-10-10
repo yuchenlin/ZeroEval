@@ -20,6 +20,12 @@ def mapping_task_names(data_name):
         dataset = load_dataset("flydust/zero-eval", "crux", split="test")
     elif data_name == "math-l5":
         dataset = load_dataset("AI-MO/aimo-validation-math-level-5", split="train")
+    elif data_name == "gpqa-diamond":
+        dataset = load_dataset("DongfuJiang/zeroeval", "gpqa_diamond", split="test")
+    elif data_name == "mmlu-pro-lite":
+        dataset = load_dataset("DongfuJiang/zeroeval", "mmlu_pro_lite", split="test")
+    elif data_name == "gpqa-main":
+        dataset = load_dataset("DongfuJiang/zeroeval", "gpqa_main", split="test")
     else:
         raise ValueError(f"Data name {data_name} not supported")
     return dataset, id_name
@@ -28,7 +34,7 @@ def prompt_generation(data_name, data_item, args):
     """
     Generate prompt for different tasks.
     """
-    if data_name in ["mmlu-redux"]:  # and other multiple-choice QA dataset 
+    if data_name in ["mmlu-redux", "gpqa_diamond", "gpqa_main", "mmlu_pro_lite"]:  # and other multiple-choice QA dataset 
         prompt = apply_mc_template(data_item) 
     elif data_name in ["alpaca_eval"]:
         prompt = data_item["instruction"]
