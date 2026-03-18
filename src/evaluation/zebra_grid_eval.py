@@ -4,12 +4,18 @@ import os
 from tabulate import tabulate
 from datasets import load_dataset
 
-from eval_utils import load_model_results, extract_last_complete_json, model_name_replacement
+from .eval_utils import load_model_results, extract_last_complete_json, model_name_replacement
 
 from collections import Counter
 from collections import defaultdict
+from src.tasks import TASKS_COLLECTION
+
+TASK = TASKS_COLLECTION['zebra-grid']
 
 private_solutions = {}
+
+class NotEnoughExamplesError(Exception):
+    pass
 
 def load_private_solutions():
     global private_solutions
@@ -41,6 +47,10 @@ def eval_model(model, filepath, mode="best_of_n", max_N=None):
     correct_cells = 0
     total_cells = 0
     no_answer = 0
+
+    
+    if TASK.total_num_examples != num_total_puzzles:
+        raise NotEnoughExamplesError("Task not Finished")
 
     num_total_puzzles_by_size = defaultdict(int)
     solved_puzzles_by_size = defaultdict(int)
@@ -324,6 +334,8 @@ def gen_results(run_name_folders, bon=False, save_results=True):
     rows = []
 
     for model_name, filepath in model_results.items():
+
+
         if bon and "bon_" in filepath or "rm_" in filepath:
             # result, parsed_results = eval_model(model_name, filepath, mode="majority_of_n", max_N=32)
             # result, parsed_results = eval_model(model_name, filepath, mode="most_common_of_n", max_N=64)
@@ -337,7 +349,9 @@ def gen_results(run_name_folders, bon=False, save_results=True):
                     continue
                 if "rm_32" in filepath and K > 32:
                     continue
+
                 result, parsed_results = eval_model(model_name, filepath, mode="rm_bon", max_N=K)
+
                 save_parsed_results(filepath.replace(".json", f".rm_bon.K={K}.json"), parsed_results)
                 rows.append(result)
 
@@ -354,9 +368,15 @@ def gen_results(run_name_folders, bon=False, save_results=True):
                 # rows.append(result)
         else:
             # Save the parsed_results to the same filepath with a new prefix
-            result, parsed_results = eval_model(model_name, filepath, mode="single")
+            try:
+                result, parsed_results = eval_model(model_name, filepath, mode="single")
+            except NotEnoughExamplesError:
+                print("Not enough generations. skipping.")
+                continue
+            
             save_parsed_results(filepath, parsed_results)
             rows.append(result)
+
     if "bon_" in filepath:
         # rows = sorted(rows, key=lambda x: -float(x["Puzzle Acc"]))
         # first sort by N_Mode and then sort by N_Size
@@ -381,8 +401,9 @@ def gen_results(run_name_folders, bon=False, save_results=True):
             f.write(tabulate(table_data, headers=columns, tablefmt="github", stralign="center", numalign="center"))
 
 
-if __name__ == "__main__":
 
+if __name__ == "__main__":
+    
     run_name_folders = {
         "greedy": "result_dirs/zebra-grid",
         # "sampling": "result_dirs/zebra-grid/sampling",

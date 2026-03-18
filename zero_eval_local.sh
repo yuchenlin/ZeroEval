@@ -12,15 +12,16 @@ run_name="default"
 TEMP=0
 TOP_P=1.0
 rp=1.0
-engine_name="vllm"
+engine_name="vllm_async"
 batch_size=4
+max_model_len=-1
 
 gpu_memory_utilization=0.95
 
-MAX_TOKENS=4096; 
+MAX_TOKENS=30000; 
 
 # Parse named arguments
-while getopts ":d:m:p:s:r:t:o:e:f:b:x:" opt; do
+while getopts ":d:m:p:s:r:t:o:e:f:b:x:l:" opt; do
   case $opt in
     d) DATA_NAME="$OPTARG"
     ;;
@@ -44,6 +45,8 @@ while getopts ":d:m:p:s:r:t:o:e:f:b:x:" opt; do
     ;;
     x) MAX_TOKENS="$OPTARG"
     ;;
+    l) max_model_len="$OPTARG"
+    ;;    
     \?) echo "Invalid option -$OPTARG" >&2
     ;;
   esac
@@ -77,7 +80,7 @@ fi
 
 
 
-max_model_len=-1
+
 
 # if model name contains "phi-3.5" then use a different gpu_memory_utilization
 if [[ $model_name == *"Phi-3.5"* ]]; then
@@ -97,15 +100,16 @@ echo "Using ${gpu_memory_utilization} gpu memory utilization and max_model_len=$
 # If the n_shards is 1, then we can directly run the model
 # else, use  Data-parallellism
 if [ $n_shards -eq 1 ]; then
-    # gpu="0,1,2,3"; num_gpus=4; # change the number of gpus to your preference
     # echo "n_shards = 1"
-    num_gpus=$(nvidia-smi --query-gpu=count --format=csv,noheader | head -n 1)
+    # gpu="0,1,2,3"; num_gpus=4; # change the number of gpus to your preference
+    # allows to limit cuda devices using CUDA_VISIBLE_DEVICES=0,1,2
+    num_gpus=$(python -c "import torch; print(torch.cuda.device_count());")
     # gpu= # from 0 to the last gpu id
     gpu=$(seq -s, 0 $((num_gpus - 1)))
 
     echo "n_shards = 1; num_gpus = $num_gpus; gpu = $gpu"
     CUDA_VISIBLE_DEVICES=$gpu \
-    python src/unified_infer.py \
+    python -m src.unified_infer \
         --engine $engine_name \
         --data_name $DATA_NAME \
         --model_name $model_name \
@@ -122,6 +126,31 @@ if [ $n_shards -eq 1 ]; then
         --batch_size $batch_size --max_tokens $MAX_TOKENS \
         --output_folder $output_dir/  
 
+elif [ $engine_name == "vllm_async" ]; then
+    echo "Using Async vLLM"
+    num_gpus=$(python -c "import torch; print(torch.cuda.device_count())")
+    dp_size=$n_shards
+    tp_size=$(($num_gpus / $dp_size))
+    echo "dp_size = $dp_size; tp_size = $tp_size;"
+    python -m src.unified_infer \
+        --engine $engine_name \
+        --data_name $DATA_NAME \
+        --model_name $model_name \
+        --run_name $run_name \
+        --gpu_memory_utilization $gpu_memory_utilization \
+        --max_model_len $max_model_len \
+        --use_hf_conv_template --use_imend_stop \
+        --download_dir $CACHE_DIR \
+        --data_parallel_size $dp_size \
+        --tensor_parallel_size $tp_size \
+        --dtype bfloat16 \
+        --model_pretty_name $model_pretty_name \
+        --top_p $TOP_P --temperature $TEMP \
+        --repetition_penalty $rp \
+        --batch_size $batch_size \
+        --max_tokens $MAX_TOKENS \
+        --output_folder $output_dir/  
+
 elif [ $n_shards -gt 1 ]; then
     echo "Using Data-parallelism"
     start_gpu=0
@@ -129,7 +158,7 @@ elif [ $n_shards -gt 1 ]; then
     shards_dir="${output_dir}/tmp_${model_pretty_name}"
     for ((shard_id = 0, gpu = $start_gpu; shard_id < $n_shards; shard_id++, gpu++)); do
         CUDA_VISIBLE_DEVICES=$gpu \
-        python src/unified_infer.py \
+        python -m src.unified_infer \
             --engine $engine_name \
             --num_shards $n_shards \
             --shard_id $shard_id \
@@ -150,7 +179,7 @@ elif [ $n_shards -gt 1 ]; then
               &
     done 
     wait 
-    python src/merge_results.py $shards_dir/ $model_pretty_name
+    python -m src.merge_results $shards_dir/ $model_pretty_name
     cp $shards_dir/${model_pretty_name}.json $output_dir/${model_pretty_name}.json
 else
     echo "Invalid n_shards"

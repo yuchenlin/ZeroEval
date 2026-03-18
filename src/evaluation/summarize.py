@@ -1,35 +1,44 @@
+from pathlib import Path
+import sys
+parent_dir = Path(__file__).resolve().parent.parent
+sys.path.append(str(parent_dir))
+# imported from parent
+from tasks import TASKS_COLLECTION 
+
+
 import pandas as pd
-from eval_utils import model_name_replacement, total_num_examples
-
-# Load the JSON files
-gsm_file = 'result_dirs/gsm.summary.json'
-math_file = 'result_dirs/math-l5.summary.json'
-mmlu_file = 'result_dirs/mmlu-redux.summary.json'
-zebra_file = 'result_dirs/zebra-grid.summary.json'
-crux_file = 'result_dirs/crux.summary.json'
-gplanet_file = 'result_dirs/gplanet.summary.json'
+from eval_utils import model_name_replacement
 
 
 
-gsm_data = pd.read_json(gsm_file)
-math_data = pd.read_json(math_file)
-mmlu_data = pd.read_json(mmlu_file)
-zebra_data = pd.read_json(zebra_file)
-crux_data = pd.read_json(crux_file)
-gplanet_data = pd.read_json(gplanet_file)
+def read_summary_stats(task_key: str):
+    # Load the JSON files
+    data = TASKS_COLLECTION[task_key].load_summary_file()
+    return data
+
+
+gsm_data = read_summary_stats('gsm')
+math_data = read_summary_stats('math-l5')
+mmlu_data = read_summary_stats('mmlu-redux')
+zebra_data =read_summary_stats('zebra-grid')
+crux_data = read_summary_stats('crux')
+gplanet_data = read_summary_stats('gplanet')
+
 
 # only keep the models that have the same number of examples as the total_num_examples
-def filter_models_by_num_examples(cur_data, total_num_examples, total_key='Total'):
+def filter_models_by_num_examples(cur_data: pd.DataFrame, task_key: str, total_key='Total'):
+    total_num_examples = TASKS_COLLECTION[task_key].total_num_examples
     cur_data = cur_data[cur_data[total_key] == total_num_examples]
     return cur_data
 
-gsm_data = filter_models_by_num_examples(gsm_data, total_num_examples['gsm'])
-mmlu_data = filter_models_by_num_examples(mmlu_data, total_num_examples['mmlu-redux'])
-zebra_data = filter_models_by_num_examples(zebra_data, total_num_examples['zebra-grid'], 'Total Puzzles')
+gsm_data = filter_models_by_num_examples(gsm_data, 'gsm')
+mmlu_data = filter_models_by_num_examples(mmlu_data, 'mmlu-redux')
+zebra_data = filter_models_by_num_examples(zebra_data, 'zebra-grid', 'Total Puzzles')
 
-crux_data = filter_models_by_num_examples(crux_data, total_num_examples['crux'])
-math_data = filter_models_by_num_examples(math_data, total_num_examples['math-l5'])
-gplanet_data = filter_models_by_num_examples(gplanet_data, total_num_examples['gplanet'])
+crux_data = filter_models_by_num_examples(crux_data, 'crux')
+math_data = filter_models_by_num_examples(math_data, 'math-l5')
+gplanet_data = filter_models_by_num_examples(gplanet_data, 'gplanet')
+
 
 # replace the value from "gemma-2-9b-it@nvidia" to "gemma-2-9b-it" for all data. only when the model name is "gemma-2-9b-it@nvidia"
 def replace_model_names(cur_data):
@@ -74,14 +83,17 @@ gplanet_data = gplanet_data[['Model', 'f1']]
 gplanet_data = gplanet_data.add_suffix('_gplanet')
 gplanet_data = gplanet_data.rename(columns={'Model_gplanet': 'Model'}).rename(columns={'f1_gplanet': 'GPLAN-ET'})
 
+
+
 # Generate the summary of the results (merging and only keep the models that have all results on MMLU, ZEBRA, CRUX, MATH)
 def generate_summary(): 
-    # Merge the dataframes on the "Model" column
-    # merged_data = pd.merge(gsm_data, mmlu_data, on='Model')
+    # Merge the dataframes on the "Model" column (only matched rows)
+    merged_data = pd.merge(gsm_data, mmlu_data, on='Model')
     merged_data = pd.merge(mmlu_data, zebra_data, on='Model')
     merged_data = pd.merge(merged_data, crux_data, on='Model')
     merged_data = pd.merge(merged_data, math_data, on='Model')
     merged_data = pd.merge(merged_data, gplanet_data, on='Model')
+
 
     # add a final column to do average of the scores except for Model name 
     merged_data['Average'] = merged_data.drop(columns=['Model']).mean(axis=1)
@@ -104,7 +116,7 @@ def generate_summary():
     # save the json output
     # merged_data.columns = merged_data.columns.str.replace('<br/>', '\n')
     with open('result_dirs/summary.json', 'w') as f:
-        f.write(merged_data.to_json(orient='records', lines=False))
+        f.write(merged_data.to_json(orient='records', lines=False, indent=4))
 
 # Generate the full summary of the results (merging and leave NaN for the models that do not have all results on MMLU, ZEBRA, CRUX, MATH)
 def generate_full():
@@ -137,8 +149,9 @@ def generate_full():
     # save the json output
     # merged_data.columns = merged_data.columns.str.replace('<br/>', '\n')
     with open('result_dirs/summary_full.json', 'w') as f:
-        f.write(merged_data.to_json(orient='records', lines=False))
+        f.write(merged_data.to_json(orient='records', lines=False, indent=4))
 
 
-generate_summary()
-generate_full()
+if __name__ == "__main__":
+    generate_summary()
+    generate_full()

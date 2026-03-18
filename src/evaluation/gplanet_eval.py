@@ -181,6 +181,7 @@ def gen_results(run_name_folders):
 
 
 if __name__ == "__main__":
+    
     data_name = "gplanet"  # by default if there is no sys.argv[1]
     if len(sys.argv) > 1:
         data_name = sys.argv[1]

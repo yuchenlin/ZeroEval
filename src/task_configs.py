@@ -1,32 +1,20 @@
 from datasets import load_dataset
-from _TEMPLATES import apply_mc_template, apply_lgp_grid_template, apply_oeqa_template, apply_gplanet_template
+from ._TEMPLATES import apply_mc_template, apply_lgp_grid_template, apply_oeqa_template, apply_gplanet_template
+from .tasks import TASKS_COLLECTION
+
 
 def mapping_task_names(data_name):
     """
     Mapping the task names to the dataset and id name.
     """
-    id_name = "id"
-    if data_name == "mmlu-redux":
-        dataset = load_dataset("yuchenlin/zero-eval", "mmlu-redux", split="test")
-    elif data_name == "gsm":
-        dataset = load_dataset("yuchenlin/zero-eval", "gsm", split="test")
-    elif data_name == "zebra-grid":
-        dataset = load_dataset("allenai/ZebraLogicBench", "grid_mode", split="test")
-    elif data_name == "alpaca_eval":
-        dataset = load_dataset("tatsu-lab/alpaca_eval", "alpaca_eval", split="eval")  
-    elif data_name == "numersense-v2":
-        dataset = load_dataset("yuchenlin/zero-eval", "numersense-v2", split="test")
-    elif data_name == "crux":
-        dataset = load_dataset("flydust/zero-eval", "crux", split="test")
-    elif data_name == "math-l5":
-        dataset = load_dataset("AI-MO/aimo-validation-math-level-5", split="train")
-    elif data_name == "wildbench_v2-hard":
-        dataset = load_dataset("allenai/WildBench", "v2-hard", split="test")
-        id_name = "session_id"
-    elif data_name == "gplanet":
-        dataset = load_dataset("WildEval/G-PlanET", split="test")
+    if data_name in TASKS_COLLECTION:
+        task = TASKS_COLLECTION[data_name]
+        dataset = task.load_dataset()
+        id_name = task.id_name
     else:
-        raise ValueError(f"Data name {data_name} not supported")
+        allowed_data_names = ",".join(list(TASKS_COLLECTION.keys()))
+        raise ValueError(f"Data name {data_name} not supported. Allowed data names = {allowed_data_names} ")
+        
     return dataset, id_name
 
 def prompt_generation(data_name, data_item, args):
@@ -54,6 +42,9 @@ def prompt_generation(data_name, data_item, args):
         prompt = apply_oeqa_template(data_item)
     elif data_name in ['gplanet']:
         prompt = apply_gplanet_template(data_item)
+    elif data_name in TASKS_COLLECTION:
+        task = TASKS_COLLECTION[data_name]
+        prompt = task.apply_template(data_item)
     else:
         raise ValueError(f"Data name {data_name} not supported")
     return prompt
@@ -75,3 +66,8 @@ def result_format(output_item, args):
     else:
         pass 
     return output_item
+
+
+
+if __name__ == "__main__":
+    mapping_task_names('crux')

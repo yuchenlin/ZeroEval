@@ -1,10 +1,10 @@
 import json
 
 
-from templates.ZEBRA_GRID import ZEBRA_GRID
-from templates.MCQA import MCQA
-from templates.OEQA import OEQA, OEQA_DIRECT
-from templates.GPLANET import GPLANET
+from .templates.ZEBRA_GRID import ZEBRA_GRID
+from .templates.MCQA import MCQA
+from .templates.OEQA import OEQA, OEQA_DIRECT
+from .templates.GPLANET import GPLANET
 
 def generate_choice_string(choices):
     choice_string = ""

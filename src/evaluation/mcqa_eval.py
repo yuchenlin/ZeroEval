@@ -121,6 +121,7 @@ def gen_results(run_name_folders):
 
 
 if __name__ == "__main__":
+    
     data_name = sys.argv[1]
     if data_name not in ["mmlu-redux"]:
         print(f"Invalid data name: {data_name}")

@@ -1,3 +1,4 @@
+result_dirs/*
 result_dirs/wildbench_v2-hard
 !evaluation/results_v2.0522/pairwise.v2/eval=gpt-4-turbo-2024-04-09/ref=gpt-4-turbo-2024-04-09/*.json
 local_scripts/
@@ -155,6 +156,9 @@ dmypy.json
 # Cython debug symbols
 cython_debug/
 
+# Visual Studio Code / VSCode
+.vscode
+
 # PyCharm
 #  JetBrains specific template is maintained in a separate JetBrains.gitignore that can
 #  be found at https://github.com/github/gitignore/blob/main/Global/JetBrains.gitignore
@@ -190,6 +194,7 @@ evaluation/eval_template.no_checklist.md
 # # !result_dirs/wild_bench_v2/
 # result_dirs/wild_bench_v2/tmp_*
  
+*.nfs
 *.0-128.json
 *.128-256.json
 *.256-384.json

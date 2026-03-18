@@ -78,7 +78,7 @@ fi
 if [ $n_shards -eq 1 ]; then
     echo "n_shards = 1"
     CUDA_VISIBLE_DEVICES=$gpu \
-    python src/unified_infer.py \
+    python -m src.unified_infer \
         --data_name $DATA_NAME \
         --engine $engine_name \
         --model_name $model_name \
@@ -94,7 +94,7 @@ elif [ $n_shards -gt 1 ]; then
     start_gpu=0 
     shards_dir="${output_dir}/tmp_${model_pretty_name}"
     for ((shard_id = 0; shard_id < $n_shards; shard_id++, gpu++)); do
-        python src/unified_infer.py \
+        python -m src.unified_infer \
             --num_shards $n_shards \
             --shard_id $shard_id \
             --data_name $DATA_NAME \
@@ -109,7 +109,7 @@ elif [ $n_shards -gt 1 ]; then
               &
     done 
     wait 
-    python src/merge_results.py $shards_dir/ $model_pretty_name
+    python src.merge_results $shards_dir/ $model_pretty_name
     cp $shards_dir/${model_pretty_name}.json $output_dir/${model_pretty_name}.json
 else
     echo "Invalid n_shards"

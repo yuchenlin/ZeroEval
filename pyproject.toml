@@ -1,0 +1,11 @@
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]
+norecursedirs = ["src", 
+                "scripts",
+                "result_dirs",
+                "zebra_logic_analysis",
+                "result_dirs_follow_up",
+                "result_dirs_parsed"
+]
+addopts = ""

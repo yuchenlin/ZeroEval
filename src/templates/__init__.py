@@ -1,0 +1,2 @@
+from .MATH_HENDRYCKS import MATH_HENDRYCKS_PROMPT
+from .MMLU_pro import MMLU_PRO_PROMPT

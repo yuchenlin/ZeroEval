@@ -2,15 +2,6 @@ import re
 import os 
 import json 
 
-total_num_examples = {
-    'gsm': 1319,
-    'mmlu-redux': 2778,
-    'zebra-grid': 1000,
-    'crux': 800,
-    'math-l5': 721,
-    'gplanet': 1396
-}
-
 
 def model_name_replacement(model_name):
     model_name = model_name.replace('gemma-2-9b-it@nvidia', 'gemma-2-9b-it') 
