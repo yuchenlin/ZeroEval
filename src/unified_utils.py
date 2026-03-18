@@ -4,6 +4,8 @@ import time
 from functools import wraps
 from typing import List
 import openai
+import shutil
+
 
 if openai.__version__ == "0.28.0":
     OPENAI_RATE_LIMIT_ERROR = openai.error.RateLimitError
@@ -12,13 +14,6 @@ else:
     from openai import OpenAI
     OPENAI_RATE_LIMIT_ERROR = openai.RateLimitError
     OPENAI_API_ERROR = openai.APIError
-
-
-from tenacity import (
-    retry,
-    stop_after_attempt,
-    wait_random_exponential,
-)  # for exponential backoff
 
 from warnings import catch_warnings
 import warnings
@@ -131,7 +126,8 @@ def clear_output(output, model_name):
 
 
 def save_outputs(
-    args, id_strs, outputs, chat_history, metadata, model_inputs, filepath
+    args, id_strs, outputs, chat_history, metadata, model_inputs, 
+    filepath: str
 ):
     formatted_outputs = []
     for ind in range(len(outputs)):
@@ -162,9 +158,25 @@ def save_outputs(
         formatted_outputs.append(output_item)
     if not os.path.exists(os.path.dirname(filepath)):
         os.makedirs(os.path.dirname(filepath))
-    with open(filepath, "w") as f:
-        json.dump(formatted_outputs, f, indent=2)
 
+    # Create a backup copy
+    backup_path = filepath + '.bak'
+    if os.path.exists(filepath):
+        shutil.copy(filepath, backup_path)  
+    
+    try:
+        with open(filepath, "w") as f:
+            json.dump(formatted_outputs, f, indent=2)
+
+        # remove backup file if successfully saved
+        if os.path.exists(backup_path):
+            os.remove(backup_path)
+
+    except Exception as e:
+        if not os.path.exists(filepath) and os.path.exists(backup_path):
+            os.rename(backup_path, filepath)
+        raise e
+    
 
 
 def prepare_save_outputs(args, id_strs, chat_history, metadata, model_inputs, filepath):
@@ -174,6 +186,7 @@ def prepare_save_outputs(args, id_strs, chat_history, metadata, model_inputs, fi
             args, id_strs, outputs, chat_history, metadata, model_inputs, filepath
         )
     return _inner_func
+
 
 def retry_handler(retry_limit=10):
     """

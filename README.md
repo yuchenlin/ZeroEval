@@ -16,7 +16,6 @@ ZeroEval is a simple unified framework for evaluating (large) language models on
 ```bash
 conda create -n zeroeval python=3.12
 conda activate zeroeval
-pip install -U "vllm>=0.17"
 pip install -r requirements.txt
 # export HF_HOME=/path/to/your/custom/cache_dir/
 ```
@@ -27,6 +26,7 @@ pip install -r requirements.txt
 ## Tasks
 
 - [MMLU-redux](https://arxiv.org/abs/2406.04127) (`-d mmlu-redux`)
+- [G-PlanET](https://huggingface.co/datasets/WildEval/G-PlanET) (`-d gplanet`)
 - [ZebraLogic](https://huggingface.co/blog/yuchenlin/zebra-logic) (`-d zebra-grid`)
 - [CRUX](https://crux-eval.github.io/) (`-d crux`)
 - [MATH (Level 5)](https://huggingface.co/datasets/AI-MO/aimo-validation-math-level-5) (`-d math-l5`)

@@ -139,7 +139,7 @@ def gen_results(task: MMLUProTask, run_name_folders: str):
     idx_sort = sorted(range(len(rows)), key=lambda i: -float(rows[i]["Acc"]))
     rows = [rows[i] for i in idx_sort]
     cats = [cats[i] for i in idx_sort]
-
+    cats_names.sort() # provides a consistent order
     
     # Convert rows to the expected format for tabulate
     table_data = [[row[col] for col in columns] + [cat[col] for col in cats_names] for row, cat in zip(rows,cats)]

@@ -280,3 +280,27 @@ class MMLUProShortTask(MMLUProTask):
         dataset = self._sample_dataset(dataset, sample_frac = 0.2, seed = 42)
 
         return dataset
+    
+
+
+
+
+@register_class
+class ArcAGI2Task(TaskMeta):
+     _id_name: str = "arc_agi_2"
+     name = "arc-agi-2"
+     total_num_examples = 167 
+     summary_file = 'result_dirs/arc-agi-2.summary.json'
+
+     def load_dataset(self):
+          # Note that github dataset has 1000 examples in train and 120 in test. 
+          # But because some files contains several tests they were flattened.
+          dataset = datasets.load_dataset("sirorezka/arc-agi-2", split="test")
+          return dataset
+          
+     def apply_template(self, item: dict) -> str:
+
+          1/0
+          prompt = MATH_HENDRYCKS_PROMPT
+          prompt = prompt.replace("{problem}", item["problem"])
+          return prompt    

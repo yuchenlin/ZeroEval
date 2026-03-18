@@ -16,6 +16,7 @@ test_data = [
 ("hendrycks-math"),
 ("mmlu-pro"),
 ("mmlu-pro-short"),
+("arc-agi-2"),
 ]
 @pytest.mark.parametrize("ds_name", test_data)
 def test_hendrycks_math(ds_name):

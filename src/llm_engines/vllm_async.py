@@ -15,7 +15,8 @@ except:
 
 from vllm import AsyncLLMEngine
 
-def create_vllm_async_engine(args: RunConfig):
+
+def get_engine_args(args: RunConfig):
     max_model_len = None if args.max_model_len == -1 else args.max_model_len
     engine_args = AsyncEngineArgs(
         model=args.model_name,
@@ -26,7 +27,11 @@ def create_vllm_async_engine(args: RunConfig):
         # gpu_memory_utilization=args.gpu_memory_utilization, # gives errors
         trust_remote_code=True,
         max_model_len=max_model_len,
-    )
+    )    
+    return engine_args
+
+def create_vllm_async_engine(args: RunConfig):
+    engine_args = get_engine_args(args)
     # llm = None
     llm = AsyncLLMEngine.from_engine_args(engine_args)    
     return llm
